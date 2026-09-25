@@ -7,536 +7,698 @@
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#f5f7fc;
-  color:#202333;
+    background:#eef1f7;
+    color:#202333;
 }
 
 button{
-  border:0;
-  cursor:pointer;
+    font-family:inherit;
+    border:0;
+    cursor:pointer;
 }
 
 .app{
-  max-width:480px;
-  min-height:100vh;
-  margin:auto;
-  background:#fff;
-  position:relative;
-  padding-bottom:75px;
+    width:100%;
+    max-width:480px;
+    min-height:100vh;
+    margin:auto;
+    background:#fff;
+    padding-bottom:75px;
 }
 
-/* TOP */
+/* ================= TOP ================= */
+
 .topbar{
-  height:58px;
-  display:flex;
-  align-items:center;
-  padding:0 16px;
-  border-bottom:1px solid #eee;
+    height:58px;
+    display:flex;
+    align-items:center;
+    padding:0 16px;
+    border-bottom:1px solid #eee;
+    background:#fff;
 }
 
 .logo{
-  font-size:23px;
-  font-weight:800;
-  color:#12aee8;
+    font-size:24px;
+    font-weight:800;
+    color:#10abe5;
 }
 
 .logo span{
-  color:#7657ed;
+    color:#7657e9;
 }
 
-/* HOME TABS */
+/* ================= HOME TABS ================= */
+
 .homeTabs{
-  display:flex;
-  align-items:center;
-  gap:17px;
-  padding:13px 14px 8px;
-  white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:12px 14px 9px;
+    background:#fff;
 }
 
 .homeTabs button{
-  background:none;
-  font-size:14px;
-  color:#777;
+    background:none;
+    color:#858585;
+    font-size:13px;
 }
 
-.homeTabs .active{
-  color:#111;
-  font-weight:700;
+.homeTabs button.active{
+    color:#222;
+    font-weight:700;
 }
 
-.spacer{
-  flex:1;
+.flexSpace{
+    flex:1;
 }
 
 .searchBtn,
 .createBtn{
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  background:#eef9ff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#eef9ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .searchBtn svg{
-  width:22px;
-  height:22px;
+    width:22px;
+    height:22px;
 }
 
 .createBtn svg{
-  width:21px;
-  height:21px;
+    width:21px;
+    height:21px;
 }
 
-/* EVENT */
+/* ================= EVENTS ================= */
+
 .eventBox{
-  margin:8px 14px 13px;
-  height:125px;
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
+    position:relative;
+    height:126px;
+    margin:8px 14px 14px;
+    overflow:hidden;
+    border-radius:17px;
 }
 
 .eventSlide{
-  position:absolute;
-  inset:0;
-  display:none;
-  padding:20px;
-  color:white;
+    position:absolute;
+    inset:0;
+    display:none;
+    padding:20px;
+    color:white;
 }
 
 .eventSlide.active{
-  display:block;
+    display:block;
 }
 
-.event1{background:linear-gradient(135deg,#13b9ee,#7860f5);}
-.event2{background:linear-gradient(135deg,#ff6a9e,#8459ed);}
-.event3{background:linear-gradient(135deg,#ff9b42,#ef557d);}
-.event4{background:linear-gradient(135deg,#20c7a5,#2588ee);}
-.event5{background:linear-gradient(135deg,#7159ed,#bc55d9);}
-.event6{background:linear-gradient(135deg,#f05f5f,#ff9b48);}
-.event7{background:linear-gradient(135deg,#159fc7,#4d65e8);}
+.event1{background:linear-gradient(135deg,#0db7eb,#7557ed);}
+.event2{background:linear-gradient(135deg,#ff679d,#7958ec);}
+.event3{background:linear-gradient(135deg,#ff9a3d,#ee557e);}
+.event4{background:linear-gradient(135deg,#19c6a4,#2b8ee8);}
+.event5{background:linear-gradient(135deg,#7358ec,#b34ed3);}
+.event6{background:linear-gradient(135deg,#ef5e61,#ff9a43);}
+.event7{background:linear-gradient(135deg,#149fc5,#5366e9);}
 
 .eventSlide h2{
-  font-size:22px;
-  margin-bottom:7px;
+    font-size:22px;
+    margin-bottom:7px;
 }
 
 .eventSlide p{
-  font-size:13px;
-  opacity:.92;
+    font-size:13px;
+    opacity:.94;
 }
 
-/* THREE CATEGORY BOXES */
+/* ================= THREE CATEGORIES ================= */
+
 .categoryThree{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  padding:0 14px 15px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    padding:0 14px 16px;
 }
 
 .categoryBox{
-  height:58px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  font-weight:700;
-  font-size:13px;
-  cursor:pointer;
+    height:59px;
+    border-radius:13px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:13px;
+    font-weight:700;
 }
 
 .categoryBox small{
-  font-size:10px;
-  font-weight:400;
-  margin-top:3px;
+    margin-top:3px;
+    font-size:9px;
+    font-weight:400;
 }
 
 .celebration{
-  background:#fff0f5;
-  color:#e94c81;
+    background:#fff0f5;
+    color:#e74b80;
 }
 
 .charm{
-  background:#f1edff;
-  color:#7157df;
+    background:#f1edff;
+    color:#7156df;
 }
 
-.room{
-  background:#eafaff;
-  color:#079dcc;
+.roomCategory{
+    background:#e9faff;
+    color:#079bc9;
 }
 
-/* POPULAR */
+/* ================= POPULAR ================= */
+
 .sectionTitle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:3px 14px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px 10px;
 }
 
 .sectionTitle h2{
-  font-size:18px;
+    font-size:18px;
 }
 
 .sectionTitle span{
-  font-size:12px;
-  color:#999;
+    color:#999;
+    font-size:11px;
 }
 
-/* ROOM GRID */
+/* ================= ROOM GRID ================= */
+
 .roomGrid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  padding:0 14px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:0 14px;
 }
 
 .roomCard{
-  background:#fff;
-  border:1px solid #eee;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
-  cursor:pointer;
+    background:white;
+    border:1px solid #ededed;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
 }
 
-.roomImage{
-  height:105px;
-  position:relative;
-  background-size:cover;
-  background-position:center;
+.roomCover{
+    height:108px;
+    position:relative;
+    background-size:cover;
+    background-position:center;
 }
 
 .onlineBadge{
-  position:absolute;
-  top:7px;
-  left:7px;
-  background:#20c978;
-  color:white;
-  border-radius:20px;
-  padding:4px 7px;
-  font-size:10px;
-  font-weight:bold;
+    position:absolute;
+    left:7px;
+    top:7px;
+    padding:4px 7px;
+    border-radius:15px;
+    background:#1dc779;
+    color:white;
+    font-size:9px;
+    font-weight:bold;
 }
 
-.viewerBadge{
-  position:absolute;
-  right:7px;
-  bottom:7px;
-  background:rgba(0,0,0,.6);
-  color:white;
-  border-radius:20px;
-  padding:4px 7px;
-  font-size:10px;
+.peopleBadge{
+    position:absolute;
+    right:7px;
+    bottom:7px;
+    padding:4px 7px;
+    border-radius:15px;
+    background:rgba(0,0,0,.58);
+    color:white;
+    font-size:9px;
 }
 
 .roomInfo{
-  padding:9px;
+    padding:9px;
 }
 
 .roomName{
-  font-weight:700;
-  font-size:13px;
-  margin-bottom:4px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:4px;
 }
 
 .roomId{
-  color:#777;
-  font-size:10px;
+    font-size:9px;
+    color:#888;
 }
 
-.hostLine{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  margin-top:7px;
+.host{
+    display:flex;
+    align-items:center;
+    margin-top:7px;
+    gap:6px;
 }
 
-.hostAvatar{
-  width:23px;
-  height:23px;
-  border-radius:50%;
-  object-fit:cover;
+.host img{
+    width:24px;
+    height:24px;
+    border-radius:50%;
 }
 
-.hostName{
-  font-size:10px;
-  color:#555;
+.hostText{
+    font-size:9px;
+    color:#666;
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
+
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  z-index:100;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.58);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:200;
 }
 
 .modal.show{
-  display:flex;
+    display:flex;
 }
 
 .modalBox{
-  width:100%;
-  max-width:480px;
-  max-height:88vh;
-  background:#fff;
-  border-radius:23px 23px 0 0;
-  padding:18px;
-  overflow:auto;
+    width:100%;
+    max-width:480px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:22px 22px 0 0;
+    padding:17px;
 }
 
-.modalHead{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:14px;
+.modalHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
 }
 
-.modalHead h2{
-  font-size:19px;
+.modalHeader h2{
+    font-size:19px;
 }
 
-.closeBtn{
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:#f1f2f6;
-  font-size:18px;
+.close{
+    width:33px;
+    height:33px;
+    border-radius:50%;
+    background:#f1f2f6;
+    font-size:20px;
 }
 
-/* ROOM INSIDE */
+/* ================= ROOM INSIDE ================= */
+
 .roomHeader{
-  background:linear-gradient(135deg,#11afe7,#7959ec);
-  color:white;
-  padding:18px;
-  border-radius:16px;
-  margin-bottom:15px;
+    padding:18px;
+    border-radius:16px;
+    color:white;
+    background:linear-gradient(135deg,#0caee6,#7657eb);
+    margin-bottom:15px;
 }
 
 .roomHeader h2{
-  font-size:20px;
-  margin-bottom:5px;
+    font-size:20px;
+    margin-bottom:6px;
 }
 
 .roomHeader p{
-  font-size:12px;
-  opacity:.9;
+    font-size:11px;
+    margin-top:3px;
+    opacity:.9;
 }
 
-.onlineTotal{
-  margin-top:12px;
-  display:inline-block;
-  background:rgba(255,255,255,.2);
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:12px;
+.onlineCount{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 10px;
+    border-radius:20px;
+    background:rgba(255,255,255,.2);
+    font-size:11px;
+}
+
+/* ================= SEATS ================= */
+
+.seatTitle{
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
 .seatGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
 }
 
 .seat{
-  min-height:105px;
-  border-radius:14px;
-  background:#f4f6fa;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  border:1px solid #eee;
+    min-height:104px;
+    background:#f5f6fa;
+    border:1px solid #e9e9ee;
+    border-radius:14px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
 
 .seat.online{
-  background:#edfff6;
-  border-color:#b8efd3;
+    background:#edfff6;
+    border-color:#b9ecd1;
 }
 
-.seatAvatar{
-  width:43px;
-  height:43px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-bottom:6px;
+.seat img{
+    width:43px;
+    height:43px;
+    object-fit:cover;
+    border-radius:50%;
+    margin-bottom:6px;
 }
 
 .seatName{
-  font-size:10px;
-  font-weight:bold;
+    font-size:10px;
+    font-weight:bold;
 }
 
 .seatId{
-  font-size:8px;
-  color:#777;
-  margin-top:3px;
+    font-size:8px;
+    color:#777;
+    margin-top:3px;
 }
 
-.emptyIcon{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:#e5e8ee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#999;
-  font-size:20px;
-  margin-bottom:6px;
+.emptyCircle{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    background:#e5e7ed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#999;
+    font-size:22px;
+    margin-bottom:6px;
 }
 
-.emptyText{
-  color:#999;
-  font-size:10px;
+.empty{
+    color:#999;
+    font-size:9px;
 }
 
-/* ROOM BUTTONS */
+/* ================= ROOM ACTIONS ================= */
+
 .roomActions{
-  display:flex;
-  gap:8px;
-  margin-top:15px;
+    display:flex;
+    gap:8px;
+    margin-top:15px;
 }
 
 .roomActions button{
-  flex:1;
-  height:43px;
-  border-radius:12px;
-  background:#eef9ff;
-  color:#079dcc;
-  font-weight:bold;
+    flex:1;
+    height:44px;
+    border-radius:12px;
+    background:#eef9ff;
+    color:#079dcc;
+    font-weight:bold;
 }
 
-.roomActions .join{
-  background:linear-gradient(90deg,#12afe7,#7658ed);
-  color:white;
+.roomActions .enter{
+    background:linear-gradient(90deg,#10afe5,#7657eb);
+    color:white;
 }
 
-/* CATEGORY */
+/* ================= VOICE ROOM ================= */
+
+.voiceRoom{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(160deg,#17234c,#381e61,#111827);
+    color:white;
+    z-index:500;
+    display:none;
+    flex-direction:column;
+}
+
+.voiceRoom.show{
+    display:flex;
+}
+
+.voiceTop{
+    padding:17px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.voiceTitle{
+    font-size:16px;
+    font-weight:bold;
+}
+
+.voiceId{
+    font-size:10px;
+    opacity:.75;
+    margin-top:4px;
+}
+
+.exitVoice{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:white;
+    font-size:18px;
+}
+
+.voiceContent{
+    flex:1;
+    padding:25px 17px;
+    overflow:auto;
+}
+
+.voiceSeats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:30px;
+}
+
+.voiceSeat{
+    text-align:center;
+}
+
+.voiceSeat img{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    border:2px solid #fff;
+    object-fit:cover;
+}
+
+.voiceSeat div{
+    font-size:10px;
+    margin-top:6px;
+}
+
+.voiceChat{
+    margin-top:35px;
+    padding:14px;
+    background:rgba(255,255,255,.08);
+    border-radius:15px;
+}
+
+.voiceChat p{
+    font-size:11px;
+    margin-bottom:9px;
+}
+
+.voiceBottom{
+    padding:13px;
+    display:flex;
+    justify-content:space-around;
+    background:rgba(0,0,0,.35);
+}
+
+.voiceButton{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    background:rgba(255,255,255,.13);
+    color:white;
+    font-size:18px;
+}
+
+.giftButton{
+    background:linear-gradient(135deg,#ff5f9b,#ff9c43);
+}
+
+/* ================= CATEGORY ================= */
+
 .categoryRoom{
-  border:1px solid #eee;
-  border-radius:14px;
-  padding:12px;
-  margin-bottom:9px;
+    padding:12px;
+    border:1px solid #eee;
+    border-radius:13px;
+    margin-bottom:8px;
 }
 
 .categoryRoom h3{
-  font-size:14px;
-  margin-bottom:4px;
+    font-size:13px;
+    margin-bottom:5px;
 }
 
 .categoryRoom p{
-  font-size:10px;
-  color:#777;
+    font-size:9px;
+    color:#777;
 }
 
 .rankTitle{
-  margin:17px 0 9px;
-  font-size:16px;
-  font-weight:bold;
+    font-size:16px;
+    font-weight:bold;
+    margin:17px 0 9px;
 }
 
 .rankRow{
-  display:flex;
-  align-items:center;
-  padding:9px;
-  background:#f7f8fc;
-  border-radius:11px;
-  margin-bottom:7px;
+    display:flex;
+    align-items:center;
+    padding:9px;
+    margin-bottom:7px;
+    border-radius:11px;
+    background:#f7f8fc;
 }
 
-.rankNo{
-  width:27px;
-  font-weight:bold;
+.rankNumber{
+    width:27px;
+    font-size:13px;
+    font-weight:bold;
 }
 
-.rankAvatar{
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  object-fit:cover;
-  margin-right:9px;
+.rankRow img{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    margin-right:9px;
 }
 
-.rankName{
-  flex:1;
-  font-size:12px;
+.rankUser{
+    flex:1;
+    font-size:11px;
 }
 
-.rankScore{
-  font-size:11px;
-  color:#7658ed;
-  font-weight:bold;
+.rankUser small{
+    color:#888;
+    font-size:8px;
 }
 
-/* BOTTOM NAV */
+.rankValue{
+    color:#7657e9;
+    font-size:10px;
+    font-weight:bold;
+}
+
+/* ================= OTHER PAGES ================= */
+
+.page{
+    display:none;
+    padding:20px 14px;
+}
+
+.page.show{
+    display:block;
+}
+
+.page h2{
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.simpleCard{
+    padding:16px;
+    border-radius:14px;
+    background:#f6f8fc;
+    margin-bottom:10px;
+}
+
+.simpleCard strong{
+    font-size:14px;
+}
+
+.simpleCard p{
+    font-size:11px;
+    color:#777;
+    margin-top:5px;
+}
+
+/* ================= BOTTOM ================= */
+
 .bottomNav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
-  height:67px;
-  background:#fff;
-  border-top:1px solid #eee;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  z-index:50;
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:480px;
+    height:68px;
+    background:white;
+    border-top:1px solid #eee;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    z-index:100;
 }
 
 .navItem{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:4px;
-  color:#999;
-  font-size:10px;
-  cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:3px;
+    color:#999;
+    font-size:10px;
 }
 
 .navItem.active{
-  color:#7658ed;
-  font-weight:bold;
+    color:#7657e9;
+    font-weight:bold;
 }
 
 .navIcon{
-  font-size:21px;
+    font-size:21px;
 }
 
-/* TOAST */
+/* ================= TOAST ================= */
+
 .toast{
-  position:fixed;
-  bottom:85px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#222;
-  color:#fff;
-  padding:9px 14px;
-  border-radius:20px;
-  font-size:12px;
-  display:none;
-  z-index:300;
+    position:fixed;
+    left:50%;
+    bottom:85px;
+    transform:translateX(-50%);
+    background:#222;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:20px;
+    font-size:11px;
+    display:none;
+    z-index:1000;
 }
 
 .toast.show{
-  display:block;
+    display:block;
 }
 </style>
 </head>
@@ -545,687 +707,1322 @@ button{
 
 <div class="app">
 
-  <!-- TOP -->
-  <div class="topbar">
-    <div class="logo">D<span>o</span>el</div>
-  </div>
+<!-- ================= HOME ================= -->
 
-  <!-- HOME TABS -->
-  <div class="homeTabs">
-    <button>Following</button>
-    <button class="active">Popular</button>
-    <button>Recent</button>
+<div id="homePage">
 
-    <div class="spacer"></div>
-
-    <!-- SEARCH BESIDE CREATE ROOM -->
-    <button class="searchBtn" onclick="toast('Search opened')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#079dcc" stroke-width="2.5">
-        <circle cx="11" cy="11" r="7"></circle>
-        <line x1="16.5" y1="16.5" x2="22" y2="22"></line>
-      </svg>
-    </button>
-
-    <!-- CREATE ROOM -->
-    <button class="createBtn" onclick="toast('Create Room opened')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#7658ed" stroke-width="2">
-        <path d="M4 10L12 4L20 10V20H4Z"></path>
-        <path d="M10 20V13H14V20"></path>
-      </svg>
-    </button>
-  </div>
-
-  <!-- EVENT SLIDER -->
-  <div class="eventBox">
-
-    <div class="eventSlide event1 active">
-      <h2>🎉 Celebration</h2>
-      <p>Join today's special celebration rooms</p>
+    <div class="topbar">
+        <div class="logo">D<span>o</span>el</div>
     </div>
 
-    <div class="eventSlide event2">
-      <h2>💜 Charm Event</h2>
-      <p>Meet new people and enjoy voice chat</p>
+    <div class="homeTabs">
+
+        <button onclick="showHomeTab(this)">
+            Following
+        </button>
+
+        <button class="active" onclick="showHomeTab(this)">
+            Popular
+        </button>
+
+        <button onclick="showHomeTab(this)">
+            Recent
+        </button>
+
+        <div class="flexSpace"></div>
+
+        <button class="searchBtn"
+                onclick="searchRooms()">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#079dcc"
+                 stroke-width="2.5">
+
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="16.5"
+                      y1="16.5"
+                      x2="22"
+                      y2="22"></line>
+
+            </svg>
+
+        </button>
+
+        <button class="createBtn"
+                onclick="createRoom()">
+
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#7657e9"
+                 stroke-width="2">
+
+                <path d="M4 10L12 4L20 10V20H4Z"></path>
+                <path d="M10 20V13H14V20"></path>
+
+            </svg>
+
+        </button>
+
     </div>
 
-    <div class="eventSlide event3">
-      <h2>🔥 Popular Night</h2>
-      <p>Popular rooms are live now</p>
+
+    <!-- EVENT SLIDER -->
+
+    <div class="eventBox">
+
+        <div class="eventSlide event1 active">
+            <h2>🎉 Celebration</h2>
+            <p>Join today's celebration rooms</p>
+        </div>
+
+        <div class="eventSlide event2">
+            <h2>💜 Charm Event</h2>
+            <p>Meet new friends in voice rooms</p>
+        </div>
+
+        <div class="eventSlide event3">
+            <h2>🔥 Popular Night</h2>
+            <p>Popular rooms are live now</p>
+        </div>
+
+        <div class="eventSlide event4">
+            <h2>🎤 Voice Party</h2>
+            <p>Talk, laugh and have fun</p>
+        </div>
+
+        <div class="eventSlide event5">
+            <h2>⭐ VIP Event</h2>
+            <p>Special rooms and activities</p>
+        </div>
+
+        <div class="eventSlide event6">
+            <h2>🏆 Ranking Event</h2>
+            <p>Check today's room ranking</p>
+        </div>
+
+        <div class="eventSlide event7">
+            <h2>🌍 Global Rooms</h2>
+            <p>Meet people from around the world</p>
+        </div>
+
     </div>
 
-    <div class="eventSlide event4">
-      <h2>🎤 Voice Party</h2>
-      <p>Talk, laugh and make new friends</p>
+
+    <!-- THREE BOXES -->
+
+    <div class="categoryThree">
+
+        <div class="categoryBox celebration"
+             onclick="openCategory('Celebration')">
+
+            🎉
+            <span>Celebration</span>
+            <small>Events & Rooms</small>
+
+        </div>
+
+        <div class="categoryBox charm"
+             onclick="openCategory('Charm')">
+
+            💜
+            <span>Charm</span>
+            <small>Charm Rooms</small>
+
+        </div>
+
+        <div class="categoryBox roomCategory"
+             onclick="openCategory('Room')">
+
+            🎤
+            <span>Room</span>
+            <small>Voice Rooms</small>
+
+        </div>
+
     </div>
 
-    <div class="eventSlide event5">
-      <h2>⭐ VIP Event</h2>
-      <p>Special rooms and activities</p>
+
+    <!-- POPULAR -->
+
+    <div class="sectionTitle">
+
+        <h2>Popular Rooms</h2>
+
+        <span>10 Demo Rooms</span>
+
     </div>
 
-    <div class="eventSlide event6">
-      <h2>🏆 Ranking Event</h2>
-      <p>Check today's room rankings</p>
-    </div>
-
-    <div class="eventSlide event7">
-      <h2>🌍 Global Rooms</h2>
-      <p>Meet users from different countries</p>
-    </div>
-
-  </div>
-
-  <!-- THREE BOXES -->
-  <div class="categoryThree">
-
-    <div class="categoryBox celebration"
-         onclick="openCategory('Celebration')">
-      🎉
-      <span>Celebration</span>
-      <small>Events & Rooms</small>
-    </div>
-
-    <div class="categoryBox charm"
-         onclick="openCategory('Charm')">
-      💜
-      <span>Charm</span>
-      <small>Charm Rooms</small>
-    </div>
-
-    <div class="categoryBox room"
-         onclick="openCategory('Room')">
-      🎤
-      <span>Room</span>
-      <small>Voice Rooms</small>
-    </div>
-
-  </div>
-
-  <!-- POPULAR ROOMS -->
-  <div class="sectionTitle">
-    <h2>Popular Rooms</h2>
-    <span>10 Demo Rooms</span>
-  </div>
-
-  <div class="roomGrid" id="roomGrid"></div>
+    <div class="roomGrid"
+         id="roomGrid"></div>
 
 </div>
 
 
-<!-- ROOM / CATEGORY MODAL -->
-<div class="modal" id="modal">
+<!-- ================= DISCOVER ================= -->
 
-  <div class="modalBox">
+<div class="page" id="discoverPage">
 
-    <div class="modalHead">
-      <h2 id="modalTitle">Room</h2>
-      <button class="closeBtn" onclick="closeModal()">×</button>
+    <h2>🌍 Discover</h2>
+
+    <div class="simpleCard"
+         onclick="toast('People search opened')">
+
+        <strong>👥 People</strong>
+        <p>Find users and make new friends</p>
+
     </div>
 
-    <div id="modalBody"></div>
+    <div class="simpleCard">
+        <strong>🌎 Countries</strong>
+        <p>Bangladesh • Saudi Arabia • UAE • Malaysia</p>
+    </div>
 
-  </div>
+    <div class="simpleCard">
+        <strong>🔥 Popular Users</strong>
+        <p>Discover active Doel users</p>
+    </div>
 
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- ================= VOICE PAGE ================= -->
+
+<div class="page" id="voicePage">
+
+    <h2>🎤 Voice Rooms</h2>
+
+    <div class="simpleCard"
+         onclick="openRoom(0)">
+
+        <strong>Doel Friends</strong>
+
+        <p>
+            Room ID: DOEL10001
+            • 🟢 8 Online
+        </p>
+
+    </div>
+
+    <div class="simpleCard"
+         onclick="openRoom(1)">
+
+        <strong>Music Night</strong>
+
+        <p>
+            Room ID: DOEL10002
+            • 🟢 12 Online
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MESSAGE ================= -->
+
+<div class="page" id="messagePage">
+
+    <h2>💬 Messages</h2>
+
+    <div class="simpleCard">
+        <strong>Rasel</strong>
+        <p>Welcome to Doel Voice Chat</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>Sadia</strong>
+        <p>Hello 👋</p>
+    </div>
+
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div class="page" id="profilePage">
+
+    <h2>👤 Profile</h2>
+
+    <div class="simpleCard">
+        <strong>Md Rasel</strong>
+        <p>User ID: DOEL78601</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>💰 Wallet</strong>
+        <p>Coins • Diamonds • Transaction History</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>🛍 Store</strong>
+        <p>Vehicles • Frames • Rings • Themes</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>👑 VIP / SVIP</strong>
+        <p>VIP privileges and special items</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>💑 CP / Couple</strong>
+        <p>Couple profile and CP level</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>👨‍👩‍👧 Family</strong>
+        <p>Family and members</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>🏆 Level</strong>
+        <p>User level and rewards</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>🎁 Props Warehouse</strong>
+        <p>Your frames, rings, vehicles and props</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>📨 Invite</strong>
+        <p>Invite friends and receive rewards</p>
+    </div>
+
+    <div class="simpleCard">
+        <strong>🏅 Ranking</strong>
+        <p>Wealth, charm and room ranking</p>
+    </div>
+
+    <div class="simpleCard"
+         onclick="toast('Settings opened')">
+
+        <strong>⚙ Settings</strong>
+        <p>Account, language, privacy and settings</p>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal"
+     id="mainModal">
+
+    <div class="modalBox">
+
+        <div class="modalHeader">
+
+            <h2 id="modalTitle">Doel</h2>
+
+            <button class="close"
+                    onclick="closeModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="modalBody"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= VOICE ROOM ================= -->
+
+<div class="voiceRoom"
+     id="voiceRoom">
+
+    <div class="voiceTop">
+
+        <div>
+
+            <div class="voiceTitle"
+                 id="voiceRoomName">
+                Doel Room
+            </div>
+
+            <div class="voiceId"
+                 id="voiceRoomId">
+                Room ID
+            </div>
+
+        </div>
+
+        <button class="exitVoice"
+                onclick="exitVoiceRoom()">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="voiceContent">
+
+        <div style="font-size:12px;opacity:.8;">
+            🟢 <span id="voiceOnline">0</span> Users Online
+        </div>
+
+        <div class="voiceSeats"
+             id="voiceSeats"></div>
+
+
+        <div class="voiceChat">
+
+            <p>💬 <b>Room Chat</b></p>
+
+            <p>Rasel: Hello everyone 👋</p>
+
+            <p>Sadia: Welcome to Doel ❤️</p>
+
+            <p>Nayeem: Let's have fun 🎤</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="voiceBottom">
+
+        <button class="voiceButton"
+                onclick="toast('Say Hi')">
+            👋
+        </button>
+
+        <button class="voiceButton"
+                onclick="toast('Microphone')">
+            🎤
+        </button>
+
+        <button class="voiceButton"
+                onclick="toast('Speaker')">
+            🔊
+        </button>
+
+        <button class="voiceButton"
+                onclick="toast('Emoji')">
+            😊
+        </button>
+
+        <button class="voiceButton giftButton"
+                onclick="toast('Gift opened')">
+            🎁
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
 <div class="bottomNav">
 
-  <div class="navItem active">
-    <div class="navIcon">⌂</div>
-    Home
-  </div>
+    <div class="navItem active"
+         onclick="navigate('home',this)">
 
-  <div class="navItem">
-    <div class="navIcon">🌍</div>
-    Discover
-  </div>
+        <div class="navIcon">⌂</div>
+        Home
 
-  <div class="navItem">
-    <div class="navIcon">🎤</div>
-    Voice
-  </div>
+    </div>
 
-  <div class="navItem">
-    <div class="navIcon">💬</div>
-    Message
-  </div>
+    <div class="navItem"
+         onclick="navigate('discover',this)">
 
-  <div class="navItem">
-    <div class="navIcon">👤</div>
-    Profile
-  </div>
+        <div class="navIcon">🌍</div>
+        Discover
+
+    </div>
+
+    <div class="navItem"
+         onclick="navigate('voice',this)">
+
+        <div class="navIcon">🎤</div>
+        Voice
+
+    </div>
+
+    <div class="navItem"
+         onclick="navigate('message',this)">
+
+        <div class="navIcon">💬</div>
+        Message
+
+    </div>
+
+    <div class="navItem"
+         onclick="navigate('profile',this)">
+
+        <div class="navIcon">👤</div>
+        Profile
+
+    </div>
 
 </div>
 
 
-<div class="toast" id="toastBox"></div>
+<!-- ================= TOAST ================= -->
+
+<div class="toast"
+     id="toastBox"></div>
 
 
 <script>
 
-/* =========================
-   EVENT AUTO SLIDER
-========================= */
-
-let currentEvent = 0;
-
-const events =
-document.querySelectorAll(".eventSlide");
-
-setInterval(function(){
-
-  events[currentEvent].classList.remove("active");
-
-  currentEvent++;
-
-  if(currentEvent >= events.length){
-    currentEvent = 0;
-  }
-
-  events[currentEvent].classList.add("active");
-
-},3500);
-
-
-/* =========================
-   DEMO ROOM DATA
-========================= */
-
-const rooms = [
-
-{
-  name:"Doel Friends",
-  id:"DOEL10001",
-  host:"Rasel",
-  hostId:"DOEL78601",
-  online:8,
-  image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Music Night",
-  id:"DOEL10002",
-  host:"Sadia",
-  hostId:"DOEL22451",
-  online:12,
-  image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Bangladesh Hangout",
-  id:"DOEL10003",
-  host:"Nayeem",
-  hostId:"DOEL33218",
-  online:15,
-  image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Friendship Zone",
-  id:"DOEL10004",
-  host:"Mim",
-  hostId:"DOEL45322",
-  online:6,
-  image:"https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Night Talk",
-  id:"DOEL10005",
-  host:"Arif",
-  hostId:"DOEL51221",
-  online:10,
-  image:"https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Love & Chat",
-  id:"DOEL10006",
-  host:"Jannat",
-  hostId:"DOEL62177",
-  online:9,
-  image:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Fun Unlimited",
-  id:"DOEL10007",
-  host:"Sakib",
-  hostId:"DOEL73122",
-  online:18,
-  image:"https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Global Friends",
-  id:"DOEL10008",
-  host:"Nadia",
-  hostId:"DOEL84411",
-  online:13,
-  image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Chill Corner",
-  id:"DOEL10009",
-  host:"Tanvir",
-  hostId:"DOEL95117",
-  online:7,
-  image:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80"
-},
-
-{
-  name:"Doel Super Room",
-  id:"DOEL10010",
-  host:"Tania",
-  hostId:"DOEL10888",
-  online:20,
-  image:"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80"
-}
-
-];
-
-
-/* =========================
+/* =====================================================
    DEMO USERS
-========================= */
+===================================================== */
 
 const users = [
 
 {
- name:"Rasel",
- id:"DOEL78601",
- image:"https://randomuser.me/api/portraits/men/32.jpg"
+    name:"Rasel",
+    id:"DOEL78601",
+    image:"https://randomuser.me/api/portraits/men/32.jpg"
 },
 
 {
- name:"Sadia",
- id:"DOEL22451",
- image:"https://randomuser.me/api/portraits/women/44.jpg"
+    name:"Sadia",
+    id:"DOEL22451",
+    image:"https://randomuser.me/api/portraits/women/44.jpg"
 },
 
 {
- name:"Nayeem",
- id:"DOEL33218",
- image:"https://randomuser.me/api/portraits/men/45.jpg"
+    name:"Nayeem",
+    id:"DOEL33218",
+    image:"https://randomuser.me/api/portraits/men/45.jpg"
 },
 
 {
- name:"Mim",
- id:"DOEL45322",
- image:"https://randomuser.me/api/portraits/women/65.jpg"
+    name:"Mim",
+    id:"DOEL45322",
+    image:"https://randomuser.me/api/portraits/women/65.jpg"
 },
 
 {
- name:"Arif",
- id:"DOEL51221",
- image:"https://randomuser.me/api/portraits/men/55.jpg"
+    name:"Arif",
+    id:"DOEL51221",
+    image:"https://randomuser.me/api/portraits/men/55.jpg"
 },
 
 {
- name:"Jannat",
- id:"DOEL62177",
- image:"https://randomuser.me/api/portraits/women/31.jpg"
+    name:"Jannat",
+    id:"DOEL62177",
+    image:"https://randomuser.me/api/portraits/women/31.jpg"
 },
 
 {
- name:"Sakib",
- id:"DOEL73122",
- image:"https://randomuser.me/api/portraits/men/72.jpg"
+    name:"Sakib",
+    id:"DOEL73122",
+    image:"https://randomuser.me/api/portraits/men/72.jpg"
 },
 
 {
- name:"Nadia",
- id:"DOEL84411",
- image:"https://randomuser.me/api/portraits/women/49.jpg"
+    name:"Nadia",
+    id:"DOEL84411",
+    image:"https://randomuser.me/api/portraits/women/49.jpg"
 },
 
 {
- name:"Tanvir",
- id:"DOEL95117",
- image:"https://randomuser.me/api/portraits/men/22.jpg"
+    name:"Tanvir",
+    id:"DOEL95117",
+    image:"https://randomuser.me/api/portraits/men/22.jpg"
 },
 
 {
- name:"Tania",
- id:"DOEL10888",
- image:"https://randomuser.me/api/portraits/women/28.jpg"
+    name:"Tania",
+    id:"DOEL10888",
+    image:"https://randomuser.me/api/portraits/women/28.jpg"
 }
 
 ];
 
 
-/* =========================
-   SHOW 10 POPULAR ROOMS
-========================= */
+/* =====================================================
+   10 DEMO ROOMS
+===================================================== */
+
+const rooms = [
+
+{
+    name:"Doel Friends",
+    id:"DOEL10001",
+    host:"Rasel",
+    online:8,
+    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Music Night",
+    id:"DOEL10002",
+    host:"Sadia",
+    online:12,
+    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Bangladesh Hangout",
+    id:"DOEL10003",
+    host:"Nayeem",
+    online:15,
+    image:"https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Friendship Zone",
+    id:"DOEL10004",
+    host:"Mim",
+    online:6,
+    image:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Night Talk",
+    id:"DOEL10005",
+    host:"Arif",
+    online:10,
+    image:"https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Love & Chat",
+    id:"DOEL10006",
+    host:"Jannat",
+    online:9,
+    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Fun Unlimited",
+    id:"DOEL10007",
+    host:"Sakib",
+    online:18,
+    image:"https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Global Friends",
+    id:"DOEL10008",
+    host:"Nadia",
+    online:13,
+    image:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Chill Corner",
+    id:"DOEL10009",
+    host:"Tanvir",
+    online:7,
+    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=700&q=80"
+},
+
+{
+    name:"Doel Super Room",
+    id:"DOEL10010",
+    host:"Tania",
+    online:20,
+    image:"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80"
+}
+
+];
+
+
+/* =====================================================
+   RENDER POPULAR ROOMS
+===================================================== */
 
 function renderRooms(){
 
-  const grid =
-  document.getElementById("roomGrid");
+    const grid =
+        document.getElementById("roomGrid");
 
-  grid.innerHTML = "";
+    grid.innerHTML = "";
 
-  rooms.forEach(function(room,index){
+    rooms.forEach(function(room,index){
 
-    const host = users[index];
+        const host = users[index];
 
-    grid.innerHTML += `
+        grid.innerHTML += `
 
-      <div class="roomCard"
-           onclick="openRoom(${index})">
+            <div class="roomCard"
+                 onclick="openRoom(${index})">
 
-        <div class="roomImage"
-             style="background-image:url('${room.image}')">
+                <div class="roomCover"
+                     style="background-image:url('${room.image}')">
 
-          <div class="onlineBadge">
-            🟢 ${room.online} Online
-          </div>
+                    <div class="onlineBadge">
+                        🟢 ${room.online} Online
+                    </div>
 
-          <div class="viewerBadge">
-            👥 ${room.online}
-          </div>
+                    <div class="peopleBadge">
+                        👥 ${room.online}
+                    </div>
 
-        </div>
+                </div>
 
-        <div class="roomInfo">
+                <div class="roomInfo">
 
-          <div class="roomName">
-            ${room.name}
-          </div>
+                    <div class="roomName">
+                        ${room.name}
+                    </div>
 
-          <div class="roomId">
-            Room ID: ${room.id}
-          </div>
+                    <div class="roomId">
+                        Room ID: ${room.id}
+                    </div>
 
-          <div class="hostLine">
+                    <div class="host">
 
-            <img class="hostAvatar"
-                 src="${host.image}">
+                        <img src="${host.image}">
 
-            <div class="hostName">
-              ${room.host} • ${room.hostId}
+                        <div class="hostText">
+                            ${host.name} • ${host.id}
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-          </div>
+        `;
 
-        </div>
-
-      </div>
-
-    `;
-
-  });
+    });
 
 }
 
 renderRooms();
 
 
-/* =========================
-   OPEN ROOM
-========================= */
+/* =====================================================
+   OPEN ROOM INFORMATION
+===================================================== */
 
 function openRoom(index){
 
-  const room = rooms[index];
+    const room = rooms[index];
 
-  document.getElementById("modalTitle").innerText =
-  room.name;
+    document.getElementById("modalTitle").innerText =
+        room.name;
 
-  let html = `
+    let html = `
 
-    <div class="roomHeader">
+        <div class="roomHeader">
 
-      <h2>${room.name}</h2>
+            <h2>${room.name}</h2>
 
-      <p>Room ID: ${room.id}</p>
+            <p>Room ID: ${room.id}</p>
 
-      <p>Host ID: ${room.hostId}</p>
+            <p>Host: ${room.host}</p>
 
-      <div class="onlineTotal">
-        🟢 ${room.online} Users Online
-      </div>
-
-    </div>
-
-    <h3 style="font-size:15px;margin-bottom:10px;">
-      Voice Seats
-    </h3>
-
-    <div class="seatGrid">
-  `;
-
-
-  /*
-     15 SEATS
-     Online users are shown first.
-     Remaining seats are Empty.
-  */
-
-  for(let i=0;i<15;i++){
-
-    if(i < Math.min(room.online,10)){
-
-      const user =
-      users[(index+i)%users.length];
-
-      html += `
-
-        <div class="seat online">
-
-          <img class="seatAvatar"
-               src="${user.image}">
-
-          <div class="seatName">
-            🟢 ${user.name}
-          </div>
-
-          <div class="seatId">
-            ${user.id}
-          </div>
+            <div class="onlineCount">
+                🟢 ${room.online} Users Online
+            </div>
 
         </div>
 
-      `;
-
-    }else{
-
-      html += `
-
-        <div class="seat">
-
-          <div class="emptyIcon">
-            +
-          </div>
-
-          <div class="emptyText">
-            Empty Seat
-          </div>
-
+        <div class="seatTitle">
+            Voice Seats
         </div>
 
-      `;
+        <div class="seatGrid">
+
+    `;
+
+
+    /* 15 seats */
+
+    for(let i=0;i<15;i++){
+
+        if(i < Math.min(room.online,10)){
+
+            const user =
+                users[(index+i)%users.length];
+
+            html += `
+
+                <div class="seat online">
+
+                    <img src="${user.image}">
+
+                    <div class="seatName">
+                        🟢 ${user.name}
+                    </div>
+
+                    <div class="seatId">
+                        ${user.id}
+                    </div>
+
+                </div>
+
+            `;
+
+        }else{
+
+            html += `
+
+                <div class="seat">
+
+                    <div class="emptyCircle">
+                        +
+                    </div>
+
+                    <div class="empty">
+                        Empty Seat
+                    </div>
+
+                </div>
+
+            `;
+
+        }
 
     }
 
-  }
 
-  html += `
-    </div>
+    html += `
 
-    <div class="roomActions">
+        </div>
 
-      <button onclick="toast('Room information')">
-        ℹ Info
-      </button>
+        <div class="roomActions">
 
-      <button class="join"
-              onclick="joinRoom('${room.id}')">
-        🎤 Enter Room
-      </button>
+            <button onclick="toast('Room ID: ${room.id}')">
+                ℹ Info
+            </button>
 
-    </div>
-  `;
+            <button class="enter"
+                    onclick="enterVoiceRoom(${index})">
+                🎤 Enter Room
+            </button>
 
-  document.getElementById("modalBody").innerHTML =
-  html;
+        </div>
 
-  document.getElementById("modal")
-  .classList.add("show");
+    `;
+
+
+    document.getElementById("modalBody").innerHTML =
+        html;
+
+    document.getElementById("mainModal")
+        .classList.add("show");
+}
+
+
+/* =====================================================
+   ENTER REAL DEMO VOICE ROOM
+===================================================== */
+
+function enterVoiceRoom(index){
+
+    const room = rooms[index];
+
+    closeModal();
+
+    document.getElementById("voiceRoomName").innerText =
+        room.name;
+
+    document.getElementById("voiceRoomId").innerText =
+        "Room ID: " + room.id;
+
+    document.getElementById("voiceOnline").innerText =
+        room.online;
+
+    let seats = "";
+
+    for(let i=0;i<9;i++){
+
+        const user =
+            users[(index+i)%users.length];
+
+        seats += `
+
+            <div class="voiceSeat">
+
+                <img src="${user.image}">
+
+                <div>
+                    🟢 ${user.name}
+                </div>
+
+                <div style="font-size:8px;opacity:.65;">
+                    ${user.id}
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+    document.getElementById("voiceSeats").innerHTML =
+        seats;
+
+    document.getElementById("voiceRoom")
+        .classList.add("show");
 
 }
 
 
-/* =========================
-   ENTER ROOM
-========================= */
+/* =====================================================
+   EXIT VOICE ROOM
+===================================================== */
 
-function joinRoom(roomId){
+function exitVoiceRoom(){
 
-  toast("Entering " + roomId);
+    document.getElementById("voiceRoom")
+        .classList.remove("show");
 
 }
 
 
-/* =========================
+/* =====================================================
    CATEGORY
-========================= */
+===================================================== */
 
 function openCategory(category){
 
-  document.getElementById("modalTitle").innerText =
-  category;
+    document.getElementById("modalTitle").innerText =
+        category;
 
-  let html = "";
+    let html = "";
 
-  const categoryRooms = rooms.slice(0,5);
+    /* Category rooms */
 
-  categoryRooms.forEach(function(room){
+    rooms.slice(0,6).forEach(function(room){
 
-    html += `
+        html += `
 
-      <div class="categoryRoom"
-           onclick="openRoomById('${room.id}')">
+            <div class="categoryRoom"
+                 onclick="openRoomById('${room.id}')">
 
-        <h3>🎤 ${room.name}</h3>
+                <h3>
+                    🎤 ${room.name}
+                </h3>
 
-        <p>
-          Room ID: ${room.id}
-          • 🟢 ${room.online} Online
-        </p>
+                <p>
+                    Room ID: ${room.id}
+                    • 🟢 ${room.online} Online
+                </p>
 
-      </div>
+            </div>
 
-    `;
+        `;
 
-  });
-
-
-  html += `
-    <div class="rankTitle">
-      🏆 ${category} Ranking
-    </div>
-  `;
+    });
 
 
-  for(let i=0;i<5;i++){
-
-    const user = users[i];
+    /* Ranking */
 
     html += `
 
-      <div class="rankRow">
-
-        <div class="rankNo">
-          ${i+1}
+        <div class="rankTitle">
+            🏆 ${category} Ranking
         </div>
-
-        <img class="rankAvatar"
-             src="${user.image}">
-
-        <div class="rankName">
-          ${user.name}<br>
-          <small>${user.id}</small>
-        </div>
-
-        <div class="rankScore">
-          ${(50-i*7)*1000}
-        </div>
-
-      </div>
 
     `;
 
-  }
+
+    users.slice(0,5).forEach(function(user,i){
+
+        html += `
+
+            <div class="rankRow">
+
+                <div class="rankNumber">
+                    ${i+1}
+                </div>
+
+                <img src="${user.image}">
+
+                <div class="rankUser">
+
+                    ${user.name}
+
+                    <br>
+
+                    <small>
+                        ${user.id}
+                    </small>
+
+                </div>
+
+                <div class="rankValue">
+                    ${(50-i*7)*1000}
+                </div>
+
+            </div>
+
+        `;
+
+    });
 
 
-  document.getElementById("modalBody").innerHTML =
-  html;
+    document.getElementById("modalBody").innerHTML =
+        html;
 
-  document.getElementById("modal")
-  .classList.add("show");
+    document.getElementById("mainModal")
+        .classList.add("show");
 
 }
 
+
+/* =====================================================
+   OPEN ROOM BY ID
+===================================================== */
 
 function openRoomById(roomId){
 
-  const index =
-  rooms.findIndex(r => r.id === roomId);
+    const index =
+        rooms.findIndex(function(room){
+            return room.id === roomId;
+        });
 
-  if(index >= 0){
-    openRoom(index);
-  }
+    if(index !== -1){
+        openRoom(index);
+    }
 
 }
 
 
-/* =========================
-   CLOSE
-========================= */
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
 
 function closeModal(){
 
-  document.getElementById("modal")
-  .classList.remove("show");
+    document.getElementById("mainModal")
+        .classList.remove("show");
 
 }
 
 
-/* =========================
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function navigate(page,element){
+
+    document.getElementById("homePage").style.display =
+        "none";
+
+    document.getElementById("discoverPage").classList.remove("show");
+    document.getElementById("voicePage").classList.remove("show");
+    document.getElementById("messagePage").classList.remove("show");
+    document.getElementById("profilePage").classList.remove("show");
+
+    if(page === "home"){
+
+        document.getElementById("homePage").style.display =
+            "block";
+
+    }
+
+    if(page === "discover"){
+        document.getElementById("discoverPage").classList.add("show");
+    }
+
+    if(page === "voice"){
+        document.getElementById("voicePage").classList.add("show");
+    }
+
+    if(page === "message"){
+        document.getElementById("messagePage").classList.add("show");
+    }
+
+    if(page === "profile"){
+        document.getElementById("profilePage").classList.add("show");
+    }
+
+
+    document.querySelectorAll(".navItem")
+        .forEach(function(item){
+            item.classList.remove("active");
+        });
+
+    element.classList.add("active");
+
+}
+
+
+/* =====================================================
+   HOME TABS
+===================================================== */
+
+function showHomeTab(button){
+
+    document.querySelectorAll(".homeTabs button")
+        .forEach(function(btn){
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchRooms(){
+
+    document.getElementById("modalTitle").innerText =
+        "Search";
+
+    document.getElementById("modalBody").innerHTML = `
+
+        <div style="padding:5px 0 15px;">
+
+            <input
+                id="searchInput"
+                placeholder="Search User ID / Room ID / Name"
+                style="
+                    width:100%;
+                    height:46px;
+                    border:1px solid #ddd;
+                    border-radius:12px;
+                    padding:0 13px;
+                    outline:none;
+                    font-size:12px;
+                "
+            >
+
+            <button
+                onclick="doSearch()"
+                style="
+                    width:100%;
+                    height:44px;
+                    margin-top:9px;
+                    border-radius:12px;
+                    background:linear-gradient(90deg,#10afe5,#7657eb);
+                    color:white;
+                    font-weight:bold;
+                ">
+                Search
+            </button>
+
+            <div id="searchResult"
+                 style="margin-top:12px;">
+            </div>
+
+        </div>
+
+    `;
+
+    document.getElementById("mainModal")
+        .classList.add("show");
+
+}
+
+
+/* =====================================================
+   SEARCH FUNCTION
+===================================================== */
+
+function doSearch(){
+
+    const value =
+        document.getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const result =
+        document.getElementById("searchResult");
+
+    if(!value){
+
+        result.innerHTML =
+            "<p style='font-size:11px;color:#999;'>Type something to search.</p>";
+
+        return;
+    }
+
+
+    const foundRooms =
+        rooms.filter(function(room){
+
+            return room.name.toLowerCase().includes(value)
+                || room.id.toLowerCase().includes(value)
+                || room.host.toLowerCase().includes(value);
+
+        });
+
+
+    const foundUsers =
+        users.filter(function(user){
+
+            return user.name.toLowerCase().includes(value)
+                || user.id.toLowerCase().includes(value);
+
+        });
+
+
+    let html = "";
+
+
+    foundRooms.forEach(function(room){
+
+        html += `
+
+            <div class="categoryRoom"
+                 onclick="openRoomById('${room.id}')">
+
+                <h3>🎤 ${room.name}</h3>
+
+                <p>
+                    ${room.id} • 🟢 ${room.online} Online
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+
+    foundUsers.forEach(function(user){
+
+        html += `
+
+            <div class="categoryRoom">
+
+                <h3>
+                    👤 ${user.name}
+                </h3>
+
+                <p>
+                    User ID: ${user.id}
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+
+    if(!html){
+
+        html =
+            "<p style='font-size:11px;color:#999;'>No result found.</p>";
+
+    }
+
+
+    result.innerHTML = html;
+
+}
+
+
+/* =====================================================
+   CREATE ROOM
+===================================================== */
+
+function createRoom(){
+
+    document.getElementById("modalTitle").innerText =
+        "Create Room";
+
+    document.getElementById("modalBody").innerHTML = `
+
+        <div class="simpleCard">
+
+            <strong>🎤 Create Voice Room</strong>
+
+            <p>
+                Demo mode: Room creation interface.
+            </p>
+
+        </div>
+
+        <button
+            onclick="toast('Demo room created')"
+            style="
+                width:100%;
+                height:45px;
+                border-radius:12px;
+                background:linear-gradient(90deg,#10afe5,#7657eb);
+                color:white;
+                font-weight:bold;
+            ">
+            Create Room
+        </button>
+
+    `;
+
+    document.getElementById("mainModal")
+        .classList.add("show");
+
+}
+
+
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
 
 function toast(message){
 
-  const box =
-  document.getElementById("toastBox");
+    const box =
+        document.getElementById("toastBox");
 
-  box.innerText = message;
+    box.innerText = message;
 
-  box.classList.add("show");
+    box.classList.add("show");
 
-  setTimeout(function(){
+    clearTimeout(window.toastTimer);
 
-    box.classList.remove("show");
+    window.toastTimer =
+        setTimeout(function(){
 
-  },1800);
+            box.classList.remove("show");
+
+        },1800);
 
 }
 
 
-/* CLOSE WHEN OUTSIDE */
-document.getElementById("modal")
-.addEventListener("click",function(e){
+/* =====================================================
+   CLOSE MODAL BY OUTSIDE CLICK
+===================================================== */
 
-  if(e.target === this){
-    closeModal();
-  }
+document.getElementById("mainModal")
+    .addEventListener("click",function(event){
 
-});
+        if(event.target === this){
+            closeModal();
+        }
+
+    });
+
+
+/* =====================================================
+   AUTO EVENT SLIDER
+===================================================== */
+
+let eventIndex = 0;
+
+const eventSlides =
+    document.querySelectorAll(".eventSlide");
+
+setInterval(function(){
+
+    eventSlides[eventIndex]
+        .classList.remove("active");
+
+    eventIndex++;
+
+    if(eventIndex >= eventSlides.length){
+        eventIndex = 0;
+    }
+
+    eventSlides[eventIndex]
+        .classList.add("active");
+
+},3500);
 
 </script>
 
