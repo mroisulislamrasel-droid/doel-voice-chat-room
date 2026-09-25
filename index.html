@@ -14,7 +14,7 @@
 }
 
 body{
-  background:#f5f7fc;
+  background:#f4f7fb;
   color:#202536;
 }
 
@@ -23,14 +23,12 @@ button{
   cursor:pointer;
 }
 
-.hidden{
-  display:none!important;
-}
+.hidden{display:none!important;}
 
 #app{
   max-width:430px;
-  margin:auto;
   min-height:100vh;
+  margin:auto;
   background:#fff;
   position:relative;
   overflow:hidden;
@@ -40,23 +38,23 @@ button{
 
 #welcome{
   min-height:100vh;
-  padding:25px 20px;
-  background:linear-gradient(180deg,#eafcff,#fff);
+  padding:24px 20px;
   text-align:center;
+  background:linear-gradient(180deg,#e9fbff,#ffffff);
 }
 
 .logo{
+  margin-top:8px;
   font-size:34px;
   font-weight:800;
-  color:#159bc4;
-  margin-top:10px;
+  color:#159fc3;
 }
 
 .logo small{
   display:block;
   font-size:12px;
-  color:#788294;
-  margin-top:4px;
+  color:#7b8494;
+  margin-top:3px;
 }
 
 .people{
@@ -67,16 +65,16 @@ button{
 
 .person{
   position:absolute;
+  bottom:0;
   width:115px;
   height:190px;
-  bottom:0;
 }
 
 .person .head{
   width:75px;
   height:75px;
   border-radius:50%;
-  background:#e4ad83;
+  background:#e3ad82;
   margin:auto;
   position:relative;
   z-index:2;
@@ -85,12 +83,12 @@ button{
 
 .person .hair{
   position:absolute;
+  top:-3px;
+  left:17px;
   width:78px;
   height:40px;
   border-radius:45px 45px 10px 10px;
   background:#30251f;
-  top:-3px;
-  left:17px;
   z-index:3;
 }
 
@@ -105,9 +103,9 @@ button{
 .p2{left:50%;transform:translateX(-50%);bottom:10px;}
 .p3{right:0;}
 
-.p1 .body{background:#6b7bea;}
-.p2 .body{background:#f09ac3;}
-.p3 .body{background:#49bfa4;}
+.p1 .body{background:#6879e9;}
+.p2 .body{background:#ed91be;}
+.p3 .body{background:#4abda1;}
 
 .bubble{
   position:absolute;
@@ -118,12 +116,12 @@ button{
   box-shadow:0 5px 18px #0001;
 }
 
-.b1{left:5px;top:20px;}
-.b2{right:0;top:55px;}
+.b1{left:3px;top:20px;}
+.b2{right:0;top:50px;}
 
 .bird{
   position:absolute;
-  bottom:35px;
+  bottom:32px;
   left:50%;
   transform:translateX(-50%);
   font-size:38px;
@@ -137,10 +135,10 @@ button{
 
 .loginBtn{
   width:100%;
-  height:48px;
+  min-height:46px;
   border-radius:13px;
-  margin:8px 0;
-  font-size:15px;
+  margin:7px 0;
+  font-size:14px;
   font-weight:600;
   background:#fff;
   box-shadow:0 3px 12px #0001;
@@ -150,13 +148,11 @@ button{
 .facebook{color:#1877f2;}
 
 .phone{
-  background:linear-gradient(90deg,#20b9d5,#7768ed)!important;
+  background:linear-gradient(90deg,#18b9d2,#7568ed)!important;
   color:#fff;
 }
 
-.guest{
-  color:#777;
-}
+.guest{color:#777;}
 
 /* ================= TOP ================= */
 
@@ -176,12 +172,13 @@ button{
 .brand{
   font-size:22px;
   font-weight:800;
-  color:#159bc4;
+  color:#159fc3;
 }
 
 .topSearch{
-  font-size:22px;
+  font-size:23px;
   background:none;
+  color:#394254;
 }
 
 /* ================= HOME TABS ================= */
@@ -189,29 +186,32 @@ button{
 .homeTabs{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
   padding:10px 12px;
   overflow-x:auto;
   white-space:nowrap;
   border-bottom:1px solid #eee;
+  scrollbar-width:none;
 }
+
+.homeTabs::-webkit-scrollbar{display:none;}
 
 .homeTabs button{
   background:#eef7fb;
-  color:#526174;
+  color:#536174;
   border-radius:18px;
-  padding:8px 13px;
+  padding:8px 12px;
   font-size:12px;
   font-weight:600;
 }
 
 .homeTabs button.active{
   background:linear-gradient(90deg,#18b9d2,#7568ed);
-  color:white;
+  color:#fff;
 }
 
 .homeSpacer{
-  width:8px;
+  width:7px;
   flex-shrink:0;
 }
 
@@ -227,8 +227,8 @@ button{
 }
 
 .roomIcon svg{
-  width:20px;
-  height:20px;
+  width:19px;
+  height:19px;
 }
 
 /* ================= CONTENT ================= */
@@ -238,52 +238,33 @@ button{
   padding-bottom:90px;
 }
 
-.banner{
-  background:linear-gradient(110deg,#dffaff,#eee8ff);
-  border-radius:18px;
-  padding:17px;
-  margin-bottom:15px;
-}
-
-.banner h2{
-  font-size:20px;
-  margin-bottom:5px;
-}
-
-.banner p{
-  color:#667085;
-  font-size:12px;
-}
-
 .sectionTitle{
   font-size:17px;
   font-weight:700;
   margin:16px 0 10px;
 }
 
-/* ================= EVENT SLIDER ================= */
+/* ================= AUTO EVENT SLIDER ================= */
 
-.eventSlider{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding:3px 2px 10px;
-  scrollbar-width:none;
+.eventWindow{
+  width:100%;
+  overflow:hidden;
+  border-radius:18px;
+  box-shadow:0 4px 16px #0002;
 }
 
-.eventSlider::-webkit-scrollbar{
-  display:none;
+.eventTrack{
+  display:flex;
+  width:700%;
+  transition:transform .7s ease;
 }
 
 .eventCard{
-  min-width:260px;
-  height:125px;
-  border-radius:18px;
-  overflow:hidden;
+  width:14.2857%;
+  height:145px;
+  flex-shrink:0;
   position:relative;
-  scroll-snap-align:start;
-  box-shadow:0 4px 14px #0002;
+  overflow:hidden;
 }
 
 .eventCard img{
@@ -295,40 +276,63 @@ button{
 .eventOverlay{
   position:absolute;
   inset:0;
-  padding:12px;
+  padding:13px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
+  color:#fff;
   background:linear-gradient(transparent,#000b);
-  color:white;
 }
 
 .eventOverlay b{
-  font-size:16px;
+  font-size:17px;
 }
 
 .eventOverlay span{
-  font-size:10px;
-  margin-top:3px;
+  font-size:11px;
+  margin-top:4px;
 }
 
-/* ================= ROOM CATEGORY ================= */
+.eventDots{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  margin-top:8px;
+}
 
-.categoryHeader{
+.eventDot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#ccd3df;
+}
+
+.eventDot.active{
+  width:18px;
+  border-radius:8px;
+  background:#18aecb;
+}
+
+/* ================= CATEGORY ================= */
+
+.category{
+  margin-top:20px;
+}
+
+.categoryTop{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top:20px;
-  margin-bottom:10px;
+  margin-bottom:9px;
 }
 
-.categoryHeader h3{
-  font-size:17px;
+.categoryTop h3{
+  font-size:18px;
 }
 
 .seeAll{
   background:none;
-  color:#159fc2;
+  color:#149dbd;
   font-size:11px;
 }
 
@@ -336,8 +340,8 @@ button{
   display:flex;
   gap:10px;
   overflow-x:auto;
-  padding-bottom:5px;
   scrollbar-width:none;
+  padding-bottom:4px;
 }
 
 .roomHorizontal::-webkit-scrollbar{
@@ -345,9 +349,9 @@ button{
 }
 
 .roomCard{
-  min-width:190px;
+  min-width:185px;
   background:#fff;
-  border-radius:16px;
+  border-radius:15px;
   overflow:hidden;
   border:1px solid #edf0f5;
   box-shadow:0 3px 12px #0000000d;
@@ -355,7 +359,7 @@ button{
 
 .roomCard img{
   width:100%;
-  height:105px;
+  height:102px;
   object-fit:cover;
 }
 
@@ -369,8 +373,8 @@ button{
 }
 
 .roomId{
-  color:#7c8594;
   font-size:10px;
+  color:#7c8594;
   margin-top:3px;
 }
 
@@ -379,61 +383,69 @@ button{
   margin-top:6px;
   padding:4px 7px;
   background:#e8faff;
-  color:#159cbd;
+  color:#149bbd;
   border-radius:10px;
   font-size:9px;
 }
 
-/* ================= USER / ROOM CARDS ================= */
+/* ================= RANKING ================= */
 
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.card{
-  background:white;
+.rankBox{
+  margin-top:10px;
+  background:#f8faff;
   border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 3px 15px #00000010;
-  border:1px solid #edf0f5;
+  padding:10px;
 }
 
-.cardImg{
-  height:145px;
-  width:100%;
-  object-fit:cover;
-}
-
-.cardBody{
-  padding:9px;
-}
-
-.name{
-  font-size:14px;
+.rankTitle{
+  font-size:13px;
   font-weight:700;
+  margin-bottom:8px;
 }
 
-.id{
-  color:#788294;
+.rankRow{
+  display:flex;
+  align-items:center;
+  padding:8px 5px;
+  border-bottom:1px solid #e9edf3;
+}
+
+.rankRow:last-child{
+  border-bottom:0;
+}
+
+.rankNo{
+  width:32px;
+  font-size:17px;
+  text-align:center;
+}
+
+.rankAvatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:0 9px;
+}
+
+.rankUser{
+  flex:1;
+}
+
+.rankUser b{
+  display:block;
+  font-size:12px;
+}
+
+.rankUser small{
+  color:#8790a0;
+  font-size:9px;
+}
+
+.rankScore{
   font-size:11px;
-  margin-top:3px;
-}
-
-.country{
-  font-size:11px;
-  margin-top:5px;
-}
-
-.roomTag{
-  display:inline-block;
-  margin-top:7px;
-  padding:4px 7px;
-  border-radius:10px;
-  background:#e8faff;
-  color:#149bbd;
-  font-size:10px;
+  color:#ed8d24;
+  font-weight:700;
 }
 
 /* ================= DISCOVER ================= */
@@ -442,6 +454,7 @@ button{
   display:flex;
   gap:7px;
   overflow-x:auto;
+  scrollbar-width:none;
   padding-bottom:5px;
 }
 
@@ -455,7 +468,28 @@ button{
 
 .countryBtn.active{
   background:#19afd0;
-  color:white;
+  color:#fff;
+}
+
+.searchBox{
+  display:flex;
+  gap:7px;
+}
+
+.searchBox input{
+  flex:1;
+  height:43px;
+  border:1px solid #ddd;
+  border-radius:13px;
+  padding:0 12px;
+  outline:none;
+}
+
+.searchBox button{
+  width:50px;
+  border-radius:13px;
+  background:#18aeca;
+  color:#fff;
 }
 
 .userList{
@@ -486,6 +520,17 @@ button{
   flex:1;
 }
 
+.name{
+  font-size:14px;
+  font-weight:700;
+}
+
+.id{
+  color:#788294;
+  font-size:11px;
+  margin-top:3px;
+}
+
 .followBtn{
   padding:7px 12px;
   border-radius:15px;
@@ -494,7 +539,104 @@ button{
   font-size:11px;
 }
 
-/* ================= BOTTOM NAV ================= */
+/* ================= GRID ================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 3px 15px #00000010;
+  border:1px solid #edf0f5;
+}
+
+.cardImg{
+  height:140px;
+  width:100%;
+  object-fit:cover;
+}
+
+.cardBody{
+  padding:9px;
+}
+
+.roomTag{
+  display:inline-block;
+  margin-top:7px;
+  padding:4px 7px;
+  border-radius:10px;
+  background:#e8faff;
+  color:#149bbd;
+  font-size:10px;
+}
+
+/* ================= PROFILE ================= */
+
+.profileHead{
+  text-align:center;
+  padding:15px 0;
+}
+
+.profilePhoto{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.profileName{
+  font-size:20px;
+  font-weight:700;
+  margin-top:7px;
+}
+
+.profileId{
+  font-size:12px;
+  color:#7b8494;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  margin:15px 0;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:17px;
+}
+
+.stat span{
+  font-size:11px;
+  color:#8992a3;
+}
+
+.profileMenu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.profileItem{
+  background:#f6f8fc;
+  border-radius:15px;
+  padding:14px 5px;
+  text-align:center;
+  font-size:10px;
+}
+
+.profileItem div{
+  font-size:23px;
+  margin-bottom:5px;
+}
+
+/* ================= BOTTOM ================= */
 
 .bottomNav{
   position:fixed;
@@ -626,7 +768,7 @@ button{
   border-radius:50%;
   margin-left:4px;
   background:#ffffff18;
-  color:white;
+  color:#fff;
 }
 
 .seats{
@@ -720,90 +862,6 @@ button{
   font-size:10px;
 }
 
-/* ================= SEARCH ================= */
-
-.searchBox{
-  display:flex;
-  gap:7px;
-}
-
-.searchBox input{
-  flex:1;
-  height:43px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  padding:0 12px;
-  outline:none;
-}
-
-.searchBox button{
-  width:50px;
-  border-radius:13px;
-  background:#18aeca;
-  color:#fff;
-}
-
-/* ================= PROFILE ================= */
-
-.profileHead{
-  text-align:center;
-  padding:15px 0;
-}
-
-.profilePhoto{
-  width:85px;
-  height:85px;
-  border-radius:50%;
-  object-fit:cover;
-}
-
-.profileName{
-  font-size:20px;
-  font-weight:700;
-  margin-top:7px;
-}
-
-.profileId{
-  font-size:12px;
-  color:#7b8494;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  margin:15px 0;
-  text-align:center;
-}
-
-.stat b{
-  display:block;
-  font-size:17px;
-}
-
-.stat span{
-  font-size:11px;
-  color:#8992a3;
-}
-
-.profileMenu{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
-.profileItem{
-  background:#f6f8fc;
-  border-radius:15px;
-  padding:14px 5px;
-  text-align:center;
-  font-size:10px;
-}
-
-.profileItem div{
-  font-size:23px;
-  margin-bottom:5px;
-}
-
 /* ================= TOAST ================= */
 
 #toast{
@@ -889,7 +947,7 @@ button{
   </div>
 
 
-  <!-- ================= HOME ================= -->
+  <!-- HOME -->
 
   <div id="homePage" class="page">
 
@@ -937,15 +995,13 @@ button{
     </div>
 
     <div class="content">
-
       <div id="homeContent"></div>
-
     </div>
 
   </div>
 
 
-  <!-- ================= VOICE ================= -->
+  <!-- VOICE -->
 
   <div id="voicePage" class="page hidden">
 
@@ -969,7 +1025,6 @@ button{
 
         </div>
 
-
         <div class="card"
              onclick="openRoom('Global Talk')">
 
@@ -984,7 +1039,6 @@ button{
 
         </div>
 
-
         <div class="card"
              onclick="openRoom('Saudi Lounge')">
 
@@ -998,7 +1052,6 @@ button{
           </div>
 
         </div>
-
 
         <div class="card"
              onclick="openRoom('Dubai Friends')">
@@ -1026,7 +1079,7 @@ button{
   </div>
 
 
-  <!-- ================= DISCOVER ================= -->
+  <!-- DISCOVER -->
 
   <div id="discoverPage" class="page hidden">
 
@@ -1043,7 +1096,6 @@ button{
         <button onclick="filterDiscover()">⌕</button>
 
       </div>
-
 
       <div class="sectionTitle">Countries</div>
 
@@ -1086,7 +1138,6 @@ button{
 
       </div>
 
-
       <div class="sectionTitle">People & IDs</div>
 
       <div id="discoverUsers"
@@ -1097,7 +1148,7 @@ button{
   </div>
 
 
-  <!-- ================= MESSAGE ================= -->
+  <!-- MESSAGE -->
 
   <div id="messagePage" class="page hidden">
 
@@ -1120,7 +1171,6 @@ button{
 
       </div>
 
-
       <div class="userRow"
            onclick="toast('Opening chat with Sara')">
 
@@ -1141,7 +1191,7 @@ button{
   </div>
 
 
-  <!-- ================= PROFILE ================= -->
+  <!-- PROFILE -->
 
   <div id="profilePage" class="page hidden">
 
@@ -1156,7 +1206,6 @@ button{
         <div class="profileId">Doel ID: 700001</div>
 
       </div>
-
 
       <div class="stats">
 
@@ -1177,71 +1226,57 @@ button{
 
       </div>
 
-
       <div class="profileMenu">
 
-        <div class="profileItem"
-             onclick="openModal('wallet')">
+        <div class="profileItem" onclick="openModal('wallet')">
           <div>💰</div>Wallet
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('store')">
+        <div class="profileItem" onclick="openModal('store')">
           <div>🛍️</div>Store
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('vip')">
+        <div class="profileItem" onclick="openModal('vip')">
           <div>👑</div>VIP / SVIP
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('cp')">
+        <div class="profileItem" onclick="openModal('cp')">
           <div>💞</div>CP
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('family')">
+        <div class="profileItem" onclick="openModal('family')">
           <div>👨‍👩‍👧</div>Family
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('level')">
+        <div class="profileItem" onclick="openModal('level')">
           <div>🏆</div>Level
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('props')">
+        <div class="profileItem" onclick="openModal('props')">
           <div>🎁</div>Props
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('invite')">
+        <div class="profileItem" onclick="openModal('invite')">
           <div>🤝</div>Invite
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('ranking')">
+        <div class="profileItem" onclick="openModal('ranking')">
           <div>🥇</div>Ranking
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('events')">
+        <div class="profileItem" onclick="openModal('events')">
           <div>🎉</div>Events
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('history')">
+        <div class="profileItem" onclick="openModal('history')">
           <div>🕘</div>History
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('notifications')">
+        <div class="profileItem" onclick="openModal('notifications')">
           <div>🔔</div>Notifications
         </div>
 
-        <div class="profileItem"
-             onclick="openModal('settings')">
+        <div class="profileItem" onclick="openModal('settings')">
           <div>⚙️</div>Settings
         </div>
 
@@ -1252,7 +1287,7 @@ button{
   </div>
 
 
-  <!-- ================= BOTTOM ================= -->
+  <!-- BOTTOM NAV -->
 
   <div class="bottomNav">
 
@@ -1296,7 +1331,7 @@ button{
 </section>
 
 
-<!-- ================= MODAL ================= -->
+<!-- MODAL -->
 
 <div id="modal"
      class="modal hidden"
@@ -1317,10 +1352,9 @@ button{
 </div>
 
 
-<!-- ================= ROOM ================= -->
+<!-- ROOM -->
 
-<div id="room"
-     class="room">
+<div id="room" class="room">
 
   <div class="roomTop">
 
@@ -1331,25 +1365,16 @@ button{
 
     <div class="roomHost">
 
-      <b id="roomTitle">
-        Bangladesh Friends
-      </b>
+      <b id="roomTitle">Bangladesh Friends</b>
 
-      <small>
-        Room ID: 10001 · LV 22
-      </small>
+      <small>Room ID: 10001 · LV 22</small>
 
     </div>
 
     <div class="roomBtns">
 
-      <button onclick="toast('Shared!')">
-        ↗
-      </button>
-
-      <button onclick="toast('Room settings')">
-        ⚙
-      </button>
+      <button onclick="toast('Shared!')">↗</button>
+      <button onclick="toast('Room settings')">⚙</button>
 
     </div>
 
@@ -1385,8 +1410,7 @@ button{
   </div>
 
 
-  <div id="roomChat"
-       class="roomChat">
+  <div id="roomChat" class="roomChat">
 
     <div>
       <span class="chatLine">
@@ -1411,21 +1435,13 @@ button{
 
   <div class="roomBottom">
 
-    <button onclick="toggleMic(this)">
-      🎙️
-    </button>
+    <button onclick="toggleMic(this)">🎙️</button>
 
-    <button onclick="toggleSpeaker(this)">
-      🔊
-    </button>
+    <button onclick="toggleSpeaker(this)">🔊</button>
 
-    <button onclick="toast('Emoji opened')">
-      😊
-    </button>
+    <button onclick="toast('Emoji opened')">😊</button>
 
-    <button onclick="toast('More options')">
-      •••
-    </button>
+    <button onclick="toast('More options')">•••</button>
 
     <button class="giftBtn"
             onclick="openModal('gift')">
@@ -1444,9 +1460,9 @@ button{
 
 <script>
 
-/* ================= USER DATA ================= */
+/* ================= DATA ================= */
 
-const users = [
+const users=[
 
 {
 name:"Rahim Hasan",
@@ -1530,37 +1546,24 @@ img:"https://randomuser.me/api/portraits/men/29.jpg"
 
 ];
 
-let currentCountry="All";
-
 
 /* ================= LOGIN ================= */
 
 function login(type){
 
-localStorage.setItem(
-"doel_logged_in",
-"yes"
-);
+localStorage.setItem("doel_logged_in","yes");
+localStorage.setItem("doel_login_type",type);
 
-localStorage.setItem(
-"doel_login_type",
-type
-);
-
-document
-.getElementById("welcome")
+document.getElementById("welcome")
 .classList.add("hidden");
 
-document
-.getElementById("mainApp")
+document.getElementById("mainApp")
 .classList.remove("hidden");
 
 renderHome("popular");
 renderDiscover();
 
-toast(
-type+" demo login successful"
-);
+toast(type+" demo login successful");
 
 }
 
@@ -1569,17 +1572,12 @@ type+" demo login successful"
 
 window.onload=function(){
 
-if(
-localStorage.getItem("doel_logged_in")
-==="yes"
-){
+if(localStorage.getItem("doel_logged_in")==="yes"){
 
-document
-.getElementById("welcome")
+document.getElementById("welcome")
 .classList.add("hidden");
 
-document
-.getElementById("mainApp")
+document.getElementById("mainApp")
 .classList.remove("hidden");
 
 }
@@ -1594,25 +1592,19 @@ renderDiscover();
 
 function homeTab(type){
 
-document
-.querySelectorAll(".homeTabs button")
-.forEach(
-b=>b.classList.remove("active")
-);
+document.querySelectorAll(".homeTabs button")
+.forEach(b=>b.classList.remove("active"));
 
 if(type==="following")
-document
-.getElementById("tabFollowing")
+document.getElementById("tabFollowing")
 .classList.add("active");
 
 if(type==="popular")
-document
-.getElementById("tabPopular")
+document.getElementById("tabPopular")
 .classList.add("active");
 
 if(type==="recent")
-document
-.getElementById("tabRecent")
+document.getElementById("tabRecent")
 .classList.add("active");
 
 renderHome(type);
@@ -1624,8 +1616,7 @@ renderHome(type);
 
 function renderHome(type){
 
-const box=
-document.getElementById("homeContent");
+const box=document.getElementById("homeContent");
 
 
 /* FOLLOWING */
@@ -1634,13 +1625,8 @@ if(type==="following"){
 
 box.innerHTML=`
 
-<div class="banner">
-<h2>Following</h2>
-<p>People and rooms you follow.</p>
-</div>
-
 <div class="sectionTitle">
-People You Follow
+Following
 </div>
 
 <div class="userList">
@@ -1664,11 +1650,6 @@ return;
 if(type==="recent"){
 
 box.innerHTML=`
-
-<div class="banner">
-<h2>Recent</h2>
-<p>Your recently visited demo rooms.</p>
-</div>
 
 <div class="sectionTitle">
 Recently Visited Rooms
@@ -1706,82 +1687,91 @@ return;
 }
 
 
-/* POPULAR */
+/* ================= POPULAR ================= */
 
 box.innerHTML=`
 
-<div class="banner">
-
-<h2>Welcome to Doel 👋</h2>
-
-<p>
-Meet people, discover events and join voice rooms.
-</p>
-
-</div>
-
-
-<!-- ================= EVENTS ================= -->
+<!-- AUTO EVENTS -->
 
 <div class="sectionTitle">
 Events
 </div>
 
-<div class="eventSlider">
+<div class="eventWindow">
+
+<div class="eventTrack"
+     id="eventTrack">
 
 ${eventCard(
-"🎉 Doel Grand Celebration",
-"Live event · Join now",
-"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800"
+"🎉 Grand Celebration",
+"Live Event",
+"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900"
 )}
 
 ${eventCard(
 "🎤 Music Night",
-"Tonight · Live",
-"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800"
+"Special Event",
+"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=900"
 )}
 
 ${eventCard(
 "🌎 Global Friends",
-"International event",
-"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800"
+"International Event",
+"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900"
 )}
 
 ${eventCard(
 "💬 Friendship Hour",
-"Meet new people",
-"https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800"
+"Meet New People",
+"https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=900"
 )}
 
 ${eventCard(
 "🏆 Doel Challenge",
-"Special challenge",
-"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800"
+"Challenge Event",
+"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=900"
 )}
 
 ${eventCard(
 "🌙 Night Voice Party",
-"Voice rooms · Live",
-"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800"
+"Live Tonight",
+"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=900"
 )}
 
 ${eventCard(
 "🎊 Weekend Festival",
-"Coming soon",
-"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=800"
+"Special Festival",
+"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=900"
 )}
 
 </div>
 
+</div>
 
-<!-- ================= CELEBRATION ================= -->
+<div class="eventDots"
+     id="eventDots">
 
-<div class="categoryHeader">
+<span class="eventDot active"></span>
+<span class="eventDot"></span>
+<span class="eventDot"></span>
+<span class="eventDot"></span>
+<span class="eventDot"></span>
+<span class="eventDot"></span>
+<span class="eventDot"></span>
+
+</div>
+
+
+<!-- CELEBRATION -->
+
+<div class="category">
+
+<div class="categoryTop">
 
 <h3>🎉 Celebration</h3>
 
 <button class="seeAll"
-onclick="toast('All Celebration rooms')">
+onclick="openCategory('Celebration')">
 See All
 </button>
 
@@ -1812,15 +1802,30 @@ ${roomCard(
 
 </div>
 
+${rankingBlock(
+"Celebration Ranking",
+[
+["🥇","Rahim Hasan","BD100245","98,200"],
+["🥈","Sara Khan","BD100382","86,500"],
+["🥉","Arif Khan","SA209871","72,300"],
+["4","Nusrat Jahan","BD100512","61,800"],
+["5","Ayesha Noor","SA209455","55,400"]
+]
+)}
 
-<!-- ================= CHARM ================= -->
+</div>
 
-<div class="categoryHeader">
+
+<!-- CHARM -->
+
+<div class="category">
+
+<div class="categoryTop">
 
 <h3>✨ Charm</h3>
 
 <button class="seeAll"
-onclick="toast('All Charm rooms')">
+onclick="openCategory('Charm')">
 See All
 </button>
 
@@ -1851,10 +1856,25 @@ ${roomCard(
 
 </div>
 
+${rankingBlock(
+"Charm Ranking",
+[
+["🥇","Nadia Rahman","BD501122","91,700"],
+["🥈","Omar Ahmed","AE501902","84,300"],
+["🥉","Sana Ali","AE501225","77,900"],
+["4","Hina Malik","PK420188","63,500"],
+["5","Priya Sharma","IN330188","58,600"]
+]
+)}
 
-<!-- ================= ROOM ================= -->
+</div>
 
-<div class="categoryHeader">
+
+<!-- ROOM -->
+
+<div class="category">
+
+<div class="categoryTop">
 
 <h3>🎙️ Room</h3>
 
@@ -1897,7 +1917,22 @@ ${roomCard(
 
 </div>
 
+${rankingBlock(
+"Room Ranking",
+[
+["🥇","Rahim Hasan","BD100245","105,200"],
+["🥈","Arif Khan","SA209871","93,800"],
+["🥉","Omar Ahmed","AE501902","81,600"],
+["4","Rahul Verma","IN330621","69,400"],
+["5","Emir Yilmaz","TR550921","57,700"]
+]
+)}
+
+</div>
+
 `;
+
+startEventSlider();
 
 }
 
@@ -1923,6 +1958,45 @@ onclick="toast('${name} opened')">
 </div>
 
 `;
+
+}
+
+
+/* ================= AUTO SLIDER ================= */
+
+let eventTimer=null;
+let eventIndex=0;
+
+function startEventSlider(){
+
+if(eventTimer)
+clearInterval(eventTimer);
+
+eventIndex=0;
+
+eventTimer=setInterval(()=>{
+
+const track=document.getElementById("eventTrack");
+
+if(!track)return;
+
+eventIndex++;
+
+if(eventIndex>=7)
+eventIndex=0;
+
+track.style.transform=
+"translateX(-"+(eventIndex*14.2857)+"%)";
+
+document.querySelectorAll(".eventDot")
+.forEach((dot,i)=>{
+dot.classList.toggle(
+"active",
+i===eventIndex
+);
+});
+
+},3500);
 
 }
 
@@ -1961,6 +2035,116 @@ Room ID: ${id}
 }
 
 
+/* ================= RANKING BLOCK ================= */
+
+function rankingBlock(title,data){
+
+return `
+
+<div class="rankBox">
+
+<div class="rankTitle">
+🏆 ${title}
+</div>
+
+${data.map((r,i)=>`
+
+<div class="rankRow">
+
+<div class="rankNo">
+${r[0]}
+</div>
+
+<img class="rankAvatar"
+src="${rankImage(i)}">
+
+<div class="rankUser">
+
+<b>${r[1]}</b>
+<small>ID: ${r[2]}</small>
+
+</div>
+
+<div class="rankScore">
+${r[3]}
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+`;
+
+}
+
+
+function rankImage(i){
+
+const imgs=[
+"https://randomuser.me/api/portraits/men/32.jpg",
+"https://randomuser.me/api/portraits/women/44.jpg",
+"https://randomuser.me/api/portraits/men/52.jpg",
+"https://randomuser.me/api/portraits/women/65.jpg",
+"https://randomuser.me/api/portraits/men/46.jpg"
+];
+
+return imgs[i];
+
+}
+
+
+/* ================= CATEGORY ================= */
+
+function openCategory(name){
+
+openModal("category");
+
+document.getElementById("modalTitle")
+.innerText=name;
+
+document.getElementById("modalBody")
+.innerHTML=`
+
+<div class="sectionTitle">
+${name} Rooms
+</div>
+
+<div class="grid">
+
+${roomCard(
+name+" Room 1",
+"30001",
+"120",
+"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600"
+)}
+
+${roomCard(
+name+" Room 2",
+"30002",
+"95",
+"https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600"
+)}
+
+</div>
+
+${rankingBlock(
+name+" Top Users",
+[
+["🥇","Top User One","DOEL001","99,900"],
+["🥈","Top User Two","DOEL002","88,800"],
+["🥉","Top User Three","DOEL003","77,700"],
+["4","Top User Four","DOEL004","66,600"],
+["5","Top User Five","DOEL005","55,500"]
+]
+)}
+
+`;
+
+}
+
+
 /* ================= USER ROW ================= */
 
 function userRow(u,following){
@@ -1992,7 +2176,7 @@ ${u.country}
 <button class="followBtn"
 onclick="event.stopPropagation();toggleFollow(this)">
 
-${following ? "Following" : "Follow"}
+${following?"Following":"Follow"}
 
 </button>
 
@@ -2005,6 +2189,8 @@ ${following ? "Following" : "Follow"}
 
 /* ================= DISCOVER ================= */
 
+let currentCountry="All";
+
 function renderDiscover(){
 
 const box=
@@ -2013,11 +2199,9 @@ document.getElementById("discoverUsers");
 let list=users;
 
 if(currentCountry!=="All"){
-
 list=users.filter(
 u=>u.country===currentCountry
 );
-
 }
 
 box.innerHTML=
@@ -2030,11 +2214,8 @@ function countryFilter(country,button){
 
 currentCountry=country;
 
-document
-.querySelectorAll(".countryBtn")
-.forEach(
-b=>b.classList.remove("active")
-);
+document.querySelectorAll(".countryBtn")
+.forEach(b=>b.classList.remove("active"));
 
 button.classList.add("active");
 
@@ -2046,33 +2227,30 @@ renderDiscover();
 function filterDiscover(){
 
 const q=
-document
-.getElementById("discoverSearch")
-.value
-.toLowerCase();
+document.getElementById("discoverSearch")
+.value.toLowerCase();
 
 let list=users.filter(u=>{
 
-const matchCountry=
+const countryOk=
 currentCountry==="All" ||
 u.country===currentCountry;
 
-const matchSearch=
+const searchOk=
 u.name.toLowerCase().includes(q) ||
 u.id.toLowerCase().includes(q) ||
 u.country.toLowerCase().includes(q);
 
-return matchCountry && matchSearch;
+return countryOk && searchOk;
 
 });
 
-document
-.getElementById("discoverUsers")
+document.getElementById("discoverUsers")
 .innerHTML=
 
 list.length
-? list.map(u=>userRow(u,false)).join("")
-: `<div style="text-align:center;padding:30px;color:#888">
+?list.map(u=>userRow(u,false)).join("")
+:`<div style="text-align:center;padding:30px;color:#888">
 No user found
 </div>`;
 
@@ -2083,17 +2261,11 @@ No user found
 
 function showPage(page){
 
-document
-.querySelectorAll(".page")
-.forEach(
-p=>p.classList.add("hidden")
-);
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.add("hidden"));
 
-document
-.querySelectorAll(".navBtn")
-.forEach(
-b=>b.classList.remove("active")
-);
+document.querySelectorAll(".navBtn")
+.forEach(b=>b.classList.remove("active"));
 
 const map={
 home:"homePage",
@@ -2103,17 +2275,18 @@ message:"messagePage",
 profile:"profilePage"
 };
 
-document
-.getElementById(map[page])
+document.getElementById(map[page])
 .classList.remove("hidden");
 
-document
-.getElementById(
+document.getElementById(
 "nav"+
 page.charAt(0).toUpperCase()+
 page.slice(1)
-)
-.classList.add("active");
+).classList.add("active");
+
+if(page==="home"){
+homeTab("popular");
+}
 
 }
 
@@ -2130,10 +2303,8 @@ openModal("search");
 function searchAll(){
 
 const q=
-document
-.getElementById("globalSearch")
-.value
-.toLowerCase();
+document.getElementById("globalSearch")
+.value.toLowerCase();
 
 const result=
 users.filter(u=>
@@ -2142,13 +2313,12 @@ u.id.toLowerCase().includes(q) ||
 u.country.toLowerCase().includes(q)
 );
 
-document
-.getElementById("searchResults")
+document.getElementById("searchResults")
 .innerHTML=
 
 result.length
-? result.map(u=>userRow(u,false)).join("")
-: `<p style="text-align:center;color:#888;padding:20px">
+?result.map(u=>userRow(u,false)).join("")
+:`<p style="text-align:center;color:#888;padding:20px">
 No result found
 </p>`;
 
@@ -2159,20 +2329,16 @@ No result found
 
 function openUser(id){
 
-const u=users.find(
-x=>x.id===id
-);
+const u=users.find(x=>x.id===id);
 
 if(!u)return;
 
 openModal("user");
 
-document
-.getElementById("modalTitle")
+document.getElementById("modalTitle")
 .innerText=u.name;
 
-document
-.getElementById("modalBody")
+document.getElementById("modalBody")
 .innerHTML=`
 
 <div style="text-align:center">
@@ -2213,12 +2379,10 @@ onclick="toast('Message opened')">
 
 function openRoom(name){
 
-document
-.getElementById("roomTitle")
+document.getElementById("roomTitle")
 .innerText=name;
 
-document
-.getElementById("room")
+document.getElementById("room")
 .classList.add("show");
 
 localStorage.setItem(
@@ -2231,8 +2395,7 @@ name
 
 function closeRoom(){
 
-document
-.getElementById("room")
+document.getElementById("room")
 .classList.remove("show");
 
 }
@@ -2240,19 +2403,17 @@ document
 
 function toggleMic(btn){
 
-btn.dataset.on=
-btn.dataset.on==="yes"
-?"no":"yes";
-
 if(btn.dataset.on==="yes"){
 
-btn.innerText="🔇";
-toast("Microphone muted");
+btn.dataset.on="no";
+btn.innerText="🎙️";
+toast("Microphone on");
 
 }else{
 
-btn.innerText="🎙️";
-toast("Microphone on");
+btn.dataset.on="yes";
+btn.innerText="🔇";
+toast("Microphone muted");
 
 }
 
@@ -2261,13 +2422,17 @@ toast("Microphone on");
 
 function toggleSpeaker(btn){
 
-btn.dataset.on=
-btn.dataset.on==="yes"
-?"no":"yes";
+if(btn.dataset.on==="yes"){
 
-btn.innerText=
-btn.dataset.on==="yes"
-?"🔇":"🔊";
+btn.dataset.on="no";
+btn.innerText="🔊";
+
+}else{
+
+btn.dataset.on="yes";
+btn.innerText="🔇";
+
+}
 
 }
 
@@ -2285,14 +2450,9 @@ openModal("create");
 
 function openModal(type){
 
-const modal=
-document.getElementById("modal");
-
-const title=
-document.getElementById("modalTitle");
-
-const body=
-document.getElementById("modalBody");
+const modal=document.getElementById("modal");
+const title=document.getElementById("modalTitle");
+const body=document.getElementById("modalBody");
 
 modal.classList.remove("hidden");
 
@@ -2308,9 +2468,7 @@ body.innerHTML=`
 <input id="globalSearch"
 placeholder="User ID, name, country...">
 
-<button onclick="searchAll()">
-⌕
-</button>
+<button onclick="searchAll()">⌕</button>
 
 </div>
 
@@ -2342,9 +2500,7 @@ border-radius:12px;
 
 <button class="loginBtn phone"
 onclick="createRoom()">
-
 🎙️ Create Voice Room
-
 </button>
 
 `;
@@ -2354,7 +2510,7 @@ return;
 }
 
 
-/* ================= GIFT ================= */
+/* GIFT ONLY INSIDE ROOM */
 
 if(type==="gift"){
 
@@ -2429,7 +2585,7 @@ return;
 }
 
 
-/* ================= WALLET ================= */
+/* WALLET */
 
 if(type==="wallet"){
 
@@ -2437,28 +2593,28 @@ title.innerText="Wallet";
 
 body.innerHTML=`
 
-<div class="banner">
+<div style="
+background:linear-gradient(110deg,#e5fbff,#eee8ff);
+padding:20px;
+border-radius:18px;
+text-align:center;
+">
 
-<h2>💰 32,732 Coins</h2>
-
-<p>
-Demo wallet balance
+<h2>💰 32,732</h2>
+<p style="color:#777;margin-top:5px">
+Coins
 </p>
 
 </div>
 
 <button class="loginBtn phone"
 onclick="toast('Recharge page opened')">
-
 Recharge Coins
-
 </button>
 
 <button class="loginBtn"
 onclick="toast('Transaction history opened')">
-
 Transaction History
-
 </button>
 
 `;
@@ -2468,7 +2624,7 @@ return;
 }
 
 
-/* ================= STORE ================= */
+/* STORE */
 
 if(type==="store"){
 
@@ -2480,38 +2636,32 @@ body.innerHTML=`
 
 <div class="menuItem"
 onclick="toast('Vehicles opened')">
-<div>🚗</div>
-Vehicles
+<div>🚗</div>Vehicles
 </div>
 
 <div class="menuItem"
 onclick="toast('Frames opened')">
-<div>🖼️</div>
-Frames
+<div>🖼️</div>Frames
 </div>
 
 <div class="menuItem"
 onclick="toast('Themes opened')">
-<div>🎨</div>
-Themes
+<div>🎨</div>Themes
 </div>
 
 <div class="menuItem"
 onclick="toast('Rings opened')">
-<div>💍</div>
-Rings
+<div>💍</div>Rings
 </div>
 
 <div class="menuItem"
 onclick="toast('Custom ID opened')">
-<div>🆔</div>
-Custom ID
+<div>🆔</div>Custom ID
 </div>
 
 <div class="menuItem"
 onclick="toast('Props opened')">
-<div>🎁</div>
-Props
+<div>🎁</div>Props
 </div>
 
 </div>
@@ -2523,10 +2673,9 @@ return;
 }
 
 
-/* ================= OTHER ================= */
+/* OTHER */
 
 const titles={
-
 vip:"VIP / SVIP",
 cp:"CP / Couple",
 family:"Family",
@@ -2538,11 +2687,9 @@ events:"Events",
 history:"History",
 notifications:"Notifications",
 settings:"Settings"
-
 };
 
-title.innerText=
-titles[type] || "Doel";
+title.innerText=titles[type]||"Doel";
 
 
 if(type==="vip"){
@@ -2551,35 +2698,12 @@ body.innerHTML=`
 
 <div class="menuGrid">
 
-<div class="menuItem">
-<div>👑</div>
-VIP 1
-</div>
-
-<div class="menuItem">
-<div>👑</div>
-VIP 2
-</div>
-
-<div class="menuItem">
-<div>👑</div>
-VIP 3
-</div>
-
-<div class="menuItem">
-<div>💎</div>
-SVIP 1
-</div>
-
-<div class="menuItem">
-<div>💎</div>
-SVIP 2
-</div>
-
-<div class="menuItem">
-<div>💎</div>
-SVIP 3
-</div>
+<div class="menuItem"><div>👑</div>VIP 1</div>
+<div class="menuItem"><div>👑</div>VIP 2</div>
+<div class="menuItem"><div>👑</div>VIP 3</div>
+<div class="menuItem"><div>💎</div>SVIP 1</div>
+<div class="menuItem"><div>💎</div>SVIP 2</div>
+<div class="menuItem"><div>💎</div>SVIP 3</div>
 
 </div>
 
@@ -2594,21 +2718,17 @@ if(type==="cp"){
 
 body.innerHTML=`
 
-<div class="banner">
+<div class="sectionTitle">
+💞 CP Center
+</div>
 
-<h2>💞 Find Your CP</h2>
-
-<p>
+<p style="color:#777;font-size:13px">
 Build your couple level and unlock exclusive effects.
 </p>
 
-</div>
-
 <button class="loginBtn phone"
 onclick="toast('CP proposal sent')">
-
 💞 Send CP Proposal
-
 </button>
 
 `;
@@ -2622,21 +2742,17 @@ if(type==="family"){
 
 body.innerHTML=`
 
-<div class="banner">
+<div class="sectionTitle">
+👨‍👩‍👧 Doel Family
+</div>
 
-<h2>👨‍👩‍👧 Doel Family</h2>
-
-<p>
+<p style="color:#777">
 Family members: 24
 </p>
 
-</div>
-
 <button class="loginBtn phone"
-onclick="toast('Family page opened')">
-
+onclick="toast('Family center opened')">
 Family Center
-
 </button>
 
 `;
@@ -2650,21 +2766,17 @@ if(type==="level"){
 
 body.innerHTML=`
 
-<div class="banner">
+<div class="sectionTitle">
+🏆 Level 18
+</div>
 
-<h2>🏆 Level 18</h2>
-
-<p>
+<p style="color:#777">
 XP: 18,420 / 20,000
 </p>
 
-</div>
-
 <button class="loginBtn"
 onclick="toast('Rewards opened')">
-
 View Level Rewards
-
 </button>
 
 `;
@@ -2680,35 +2792,12 @@ body.innerHTML=`
 
 <div class="menuGrid">
 
-<div class="menuItem">
-<div>🖼️</div>
-Frame
-</div>
-
-<div class="menuItem">
-<div>🚗</div>
-Vehicle
-</div>
-
-<div class="menuItem">
-<div>💍</div>
-Ring
-</div>
-
-<div class="menuItem">
-<div>🎨</div>
-Theme
-</div>
-
-<div class="menuItem">
-<div>🆔</div>
-Custom ID
-</div>
-
-<div class="menuItem">
-<div>✨</div>
-Entry Effect
-</div>
+<div class="menuItem"><div>🖼️</div>Frame</div>
+<div class="menuItem"><div>🚗</div>Vehicle</div>
+<div class="menuItem"><div>💍</div>Ring</div>
+<div class="menuItem"><div>🎨</div>Theme</div>
+<div class="menuItem"><div>🆔</div>Custom ID</div>
+<div class="menuItem"><div>✨</div>Entry Effect</div>
 
 </div>
 
@@ -2723,21 +2812,21 @@ if(type==="invite"){
 
 body.innerHTML=`
 
-<div class="banner">
+<div class="sectionTitle">
+🤝 Invite Friends
+</div>
 
-<h2>🤝 Invite Friends</h2>
-
-<p>
-Your invite code: DOEL700001
+<p style="color:#777">
+Your invite code:
 </p>
 
-</div>
+<h2 style="margin:8px 0">
+DOEL700001
+</h2>
 
 <button class="loginBtn phone"
 onclick="toast('Invite code copied')">
-
 Copy Invite Code
-
 </button>
 
 `;
@@ -2749,30 +2838,16 @@ return;
 
 if(type==="ranking"){
 
-body.innerHTML=`
-
-<div class="userRow">
-🥇 &nbsp; Rahim Hasan
-<span style="margin-left:auto">
-98,200
-</span>
-</div>
-
-<div class="userRow">
-🥈 &nbsp; Sara Khan
-<span style="margin-left:auto">
-86,500
-</span>
-</div>
-
-<div class="userRow">
-🥉 &nbsp; Arif Khan
-<span style="margin-left:auto">
-72,300
-</span>
-</div>
-
-`;
+body.innerHTML=rankingBlock(
+"Global Ranking",
+[
+["🥇","Rahim Hasan","BD100245","98,200"],
+["🥈","Sara Khan","BD100382","86,500"],
+["🥉","Arif Khan","SA209871","72,300"],
+["4","Nusrat Jahan","BD100512","61,800"],
+["5","Omar Ahmed","AE501902","55,400"]
+]
+);
 
 return;
 
@@ -2783,21 +2858,17 @@ if(type==="events"){
 
 body.innerHTML=`
 
-<div class="banner">
+<div class="sectionTitle">
+🎉 Doel Events
+</div>
 
-<h2>🎉 Doel Events</h2>
-
-<p>
+<p style="color:#777;font-size:13px">
 Daily voice room activities and community events.
 </p>
 
-</div>
-
 <button class="loginBtn phone"
 onclick="closeModal();homeTab('popular')">
-
 View Events
-
 </button>
 
 `;
@@ -2811,26 +2882,9 @@ if(type==="history"){
 
 body.innerHTML=`
 
-<div class="userRow">
-🕘 Bangladesh Friends
-<span style="margin-left:auto">
-Today
-</span>
-</div>
-
-<div class="userRow">
-🕘 Dubai Friends
-<span style="margin-left:auto">
-Yesterday
-</span>
-</div>
-
-<div class="userRow">
-🕘 Saudi Lounge
-<span style="margin-left:auto">
-2 days ago
-</span>
-</div>
+<div class="userRow">🕘 Bangladesh Friends <span style="margin-left:auto">Today</span></div>
+<div class="userRow">🕘 Dubai Friends <span style="margin-left:auto">Yesterday</span></div>
+<div class="userRow">🕘 Saudi Lounge <span style="margin-left:auto">2 days ago</span></div>
 
 `;
 
@@ -2843,17 +2897,9 @@ if(type==="notifications"){
 
 body.innerHTML=`
 
-<div class="userRow">
-🎁 Rahim sent you a gift
-</div>
-
-<div class="userRow">
-👋 Sara followed you
-</div>
-
-<div class="userRow">
-🎙️ You joined Bangladesh Friends
-</div>
+<div class="userRow">🎁 Rahim sent you a gift</div>
+<div class="userRow">👋 Sara followed you</div>
+<div class="userRow">🎙️ You joined Bangladesh Friends</div>
 
 `;
 
@@ -2870,38 +2916,32 @@ body.innerHTML=`
 
 <div class="menuItem"
 onclick="toast('Language settings')">
-<div>🌐</div>
-Language
+<div>🌐</div>Language
 </div>
 
 <div class="menuItem"
 onclick="toast('Privacy settings')">
-<div>🔒</div>
-Privacy
+<div>🔒</div>Privacy
 </div>
 
 <div class="menuItem"
 onclick="toast('Notification settings')">
-<div>🔔</div>
-Notifications
+<div>🔔</div>Notifications
 </div>
 
 <div class="menuItem"
 onclick="toast('Customer service')">
-<div>🎧</div>
-Customer Service
+<div>🎧</div>Customer Service
 </div>
 
 <div class="menuItem"
 onclick="toast('Feedback opened')">
-<div>📝</div>
-Feedback
+<div>📝</div>Feedback
 </div>
 
 <div class="menuItem"
 onclick="logout()">
-<div>🚪</div>
-Logout
+<div>🚪</div>Logout
 </div>
 
 </div>
@@ -2912,36 +2952,16 @@ return;
 
 }
 
-
-body.innerHTML=`
-
-<div class="banner">
-
-<h2>Doel</h2>
-
-<p>
-This section is ready for the next development stage.
-</p>
-
-</div>
-
-`;
-
 }
 
 
-/* ================= SEND GIFT ================= */
+/* ================= GIFT ================= */
 
 function sendGift(name,price){
 
 closeModal();
 
-toast(
-"🎁 "+name+
-" sent! Demo -"+
-price+
-" coins"
-);
+toast("🎁 "+name+" sent! Demo");
 
 }
 
@@ -2951,10 +2971,8 @@ price+
 function createRoom(){
 
 const name=
-document
-.getElementById("newRoomName")
-.value
-.trim();
+document.getElementById("newRoomName")
+.value.trim();
 
 if(!name){
 
@@ -2977,13 +2995,11 @@ function toggleFollow(btn){
 if(btn.innerText==="Follow"){
 
 btn.innerText="Following";
-
 toast("Following");
 
 }else{
 
 btn.innerText="Follow";
-
 toast("Unfollowed");
 
 }
@@ -2991,12 +3007,11 @@ toast("Unfollowed");
 }
 
 
-/* ================= CLOSE MODAL ================= */
+/* ================= CLOSE ================= */
 
 function closeModal(){
 
-document
-.getElementById("modal")
+document.getElementById("modal")
 .classList.add("hidden");
 
 }
@@ -3005,9 +3020,7 @@ document
 function closeModalOutside(event){
 
 if(event.target.id==="modal"){
-
 closeModal();
-
 }
 
 }
@@ -3019,21 +3032,16 @@ let toastTimer;
 
 function toast(message){
 
-const t=
-document.getElementById("toast");
+const t=document.getElementById("toast");
 
 t.innerText=message;
-
 t.style.display="block";
 
 clearTimeout(toastTimer);
 
-toastTimer=setTimeout(
-()=>{
+toastTimer=setTimeout(()=>{
 t.style.display="none";
-},
-1800
-);
+},1800);
 
 }
 
@@ -3042,9 +3050,7 @@ t.style.display="none";
 
 function logout(){
 
-localStorage.removeItem(
-"doel_logged_in"
-);
+localStorage.removeItem("doel_logged_in");
 
 location.reload();
 
