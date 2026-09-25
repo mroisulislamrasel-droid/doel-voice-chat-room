@@ -1,1 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doel Voice Chat Room</title>
 
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;
+  background:#080b16;
+  color:#fff;
+  min-height:100vh;
+}
+.app{
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
+  background:linear-gradient(180deg,#11162b,#080b16);
+  position:relative;
+  overflow:hidden;
+}
+header{
+  padding:22px 18px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:21px;
+  font-weight:bold;
+}
+.logoIcon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#7c4dff,#00c6ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+}
+.coins{
+  background:#1c2340;
+  padding:9px 13px;
+  border-radius:20px;
+  color:#ffd76a;
+  font-size:14px;
+}
+.page{padding:8px 18px 95px}
+h1{font-size:27px;margin:12px 0 6px}
+.sub{color:#8e96ad;font-size:14px;margin-bottom:22px}
+.search{
+  background:#181e35;
+  border:1px solid #252d4b;
+  border-radius:15px;
+  padding:14px;
+  color:#929ab2;
+  margin-bottom:20px;
+}
+.sectionTitle{
+  display:flex;
+  justify-content:space-between;
+  margin:20px 0 12px;
+  font-size:17px;
+  font-weight:bold;
+}
+.room{
+  background:#171d34;
+  border:1px solid #262e4b;
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:13px;
+}
+.roomTop{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#ff6a88,#7c4dff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+.roomName{font-weight:bold;font-size:16px}
+.online{font-size:12px;color:#6ee7b7;margin-top:5px}
+.join{
+  margin-left:auto;
+  background:#6c4cff;
+  border:0;
+  color:#fff;
+  padding:9px 15px;
+  border-radius:12px;
+  font-weight:bold;
+}
+.tags{margin-top:12px;color:#9da5bc;font-size:12px}
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:480px;
+  background:#10152a;
+  border-top:1px solid #242b46;
+  display:flex;
+  justify-content:space-around;
+  padding:11px 5px 13px;
+}
+.nav{
+  background:none;
+  border:0;
+  color:#747d98;
+  font-size:11px;
+}
+.nav.active{color:#9b7cff}
+.navIcon{font-size:20px;display:block;margin-bottom:4px}
+.hero{
+  background:linear-gradient(135deg,#27204f,#102d4a);
+  border-radius:22px;
+  padding:20px;
+  margin-top:12px;
+}
+.hero h2{font-size:22px;margin-bottom:8px}
+.hero p{color:#b5bdd1;font-size:13px;line-height:1.5}
+.primary{
+  width:100%;
+  border:0;
+  background:linear-gradient(90deg,#744cff,#00aeea);
+  color:white;
+  padding:14px;
+  border-radius:14px;
+  font-size:15px;
+  font-weight:bold;
+  margin-top:18px;
+}
+.profile{
+  text-align:center;
+  padding-top:18px;
+}
+.bigAvatar{
+  width:88px;
+  height:88px;
+  border-radius:28px;
+  margin:auto;
+  background:linear-gradient(135deg,#00c6ff,#7c4dff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+}
+.profile h2{margin-top:13px}
+.profile p{color:#8e96ad;margin-top:5px}
+.stats{
+  display:flex;
+  justify-content:space-around;
+  background:#171d34;
+  padding:18px 5px;
+  border-radius:18px;
+  margin:22px 0;
+}
+.stat b{display:block;font-size:18px}
+.stat span{font-size:11px;color:#8e96ad}
+.setting{
+  background:#171d34;
+  border-radius:15px;
+  padding:16px;
+  margin:10px 0;
+  display:flex;
+  justify-content:space-between;
+}
+.roomScreen{text-align:center}
+.roomBanner{
+  background:linear-gradient(135deg,#31205d,#123b54);
+  padding:25px 15px;
+  border-radius:0 0 25px 25px;
+}
+.roomBanner h2{margin:10px 0 5px}
+.roomBanner p{color:#aeb7cd;font-size:13px}
+.seats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin:25px 0;
+}
+.seat{
+  height:65px;
+  border-radius:20px;
+  background:#191f37;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  border:1px solid #28304d;
+}
+.seat.empty{color:#59627c}
+.chat{
+  background:#171d34;
+  border-radius:17px;
+  padding:15px;
+  text-align:left;
+}
+.chat p{font-size:13px;margin:10px 0;color:#b9c0d2}
+.chat b{color:#fff}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">
+    <div class="logoIcon">D</div>
+    <span>Doel</span>
+  </div>
+  <div class="coins">🪙 1,000</div>
+</header>
+
+<div id="content" class="page"></div>
+
+<div class="bottom">
+  <button class="nav active" onclick="showPage('home')">
+    <span class="navIcon">🏠</span>Home
+  </button>
+  <button class="nav" onclick="showPage('rooms')">
+    <span class="navIcon">🎙️</span>Rooms
+  </button>
+  <button class="nav" onclick="showPage('profile')">
+    <span class="navIcon">👤</span>Profile
+  </button>
+  <button class="nav" onclick="showPage('settings')">
+    <span class="navIcon">⚙️</span>Settings
+  </button>
+</div>
+
+</div>
+
+<script>
+
+const content=document.getElementById("content");
+
+function showPage(page){
+
+if(page==="home"){
+content.innerHTML=`
+<h1>Welcome to Doel 👋</h1>
+<div class="sub">Meet people. Talk. Make new friends.</div>
+
+<div class="search">🔍 Search rooms or people</div>
+
+<div class="hero">
+<h2>🎙️ Start Talking</h2>
+<p>Join a live voice room and connect with people from around the world.</p>
+<button class="primary" onclick="showPage('rooms')">Explore Voice Rooms</button>
+</div>
+
+<div class="sectionTitle">
+<span>🔥 Popular Rooms</span>
+<span style="color:#8d7cff;font-size:12px">See all</span>
+</div>
+
+<div class="room">
+<div class="roomTop">
+<div class="avatar">🎵</div>
+<div>
+<div class="roomName">Music Lovers</div>
+<div class="online">● 128 people online</div>
+</div>
+<button class="join" onclick="openRoom('Music Lovers')">Join</button>
+</div>
+<div class="tags">Music • Friends • International</div>
+</div>
+
+<div class="room">
+<div class="roomTop">
+<div class="avatar">🌎</div>
+<div>
+<div class="roomName">Global Friends</div>
+<div class="online">● 86 people online</div>
+</div>
+<button class="join" onclick="openRoom('Global Friends')">Join</button>
+</div>
+<div class="tags">Chat • Friendship • World</div>
+</div>
+`;
+}
+
+if(page==="rooms"){
+content.innerHTML=`
+<h1>Voice Rooms</h1>
+<div class="sub">Find a room and start talking</div>
+
+<div class="search">🔍 Search voice rooms</div>
+
+<div class="room">
+<div class="roomTop">
+<div class="avatar">🎵</div>
+<div>
+<div class="roomName">Music Lovers</div>
+<div class="online">● 128 online</div>
+</div>
+<button class="join" onclick="openRoom('Music Lovers')">Join</button>
+</div>
+<div class="tags">Music • English • Friendly</div>
+</div>
+
+<div class="room">
+<div class="roomTop">
+<div class="avatar">🌎</div>
+<div>
+<div class="roomName">Global Friends</div>
+<div class="online">● 86 online</div>
+</div>
+<button class="join" onclick="openRoom('Global Friends')">Join</button>
+</div>
+<div class="tags">International • Chat</div>
+</div>
+
+<div class="room">
+<div class="roomTop">
+<div class="avatar">💬</div>
+<div>
+<div class="roomName">Night Talk</div>
+<div class="online">● 54 online</div>
+</div>
+<button class="join" onclick="openRoom('Night Talk')">Join</button>
+</div>
+<div class="tags">Friends • Relax • Talk</div>
+</div>
+`;
+}
+
+if(page==="profile"){
+content.innerHTML=`
+<div class="profile">
+<div class="bigAvatar">👤</div>
+<h2>Doel User</h2>
+<p>@doel_user</p>
+
+<div class="stats">
+<div class="stat"><b>12</b><span>Friends</span></div>
+<div class="stat"><b>8</b><span>Rooms</span></div>
+<div class="stat"><b>1.2K</b><span>Followers</span></div>
+</div>
+
+<div class="setting">✏️ Edit Profile <span>›</span></div>
+<div class="setting">🎁 My Gifts <span>›</span></div>
+<div class="setting">🏆 My Level <span>›</span></div>
+</div>
+`;
+}
+
+if(page==="settings"){
+content.innerHTML=`
+<h1>Settings</h1>
+<div class="sub">Manage your Doel account</div>
+
+<div class="setting">🔔 Notifications <span>›</span></div>
+<div class="setting">🔒 Privacy <span>›</span></div>
+<div class="setting">🌐 Language <span>English ›</span></div>
+<div class="setting">🎙️ Voice Settings <span>›</span></div>
+<div class="setting">❓ Help Center <span>›</span></div>
+<div class="setting">ℹ️ About Doel <span>›</span></div>
+`;
+}
+
+showPage("home");
+
+function openRoom(name){
+content.innerHTML=`
+<div class="roomScreen">
+<div class="roomBanner">
+<div class="bigAvatar">🎙️</div>
+<h2>${name}</h2>
+<p>128 people • Live voice room</p>
+</div>
+
+<div class="seats">
+<div class="seat">👩</div>
+<div class="seat">👨</div>
+<div class="seat">👩</div>
+<div class="seat empty">＋</div>
+<div class="seat">👨</div>
+<div class="seat">👩</div>
+<div class="seat empty">＋</div>
+<div class="seat">👨</div>
+</div>
+
+<div class="chat">
+<strong>💬 Live Chat</strong>
+<p><b>Sarah:</b> Hello everyone! 👋</p>
+<p><b>Ali:</b> Nice to meet you!</p>
+<p><b>Doel User:</b> Hi friends ❤️</p>
+</div>
+
+<button class="primary" onclick="showPage('rooms')">🎙️ Join Voice Room</button>
+</div>
+`;
+}
+
+</script>
+
+</body>
+</html>
