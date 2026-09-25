@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Doel Voice Chat Room</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
 
 body{
-  font-family:Arial,sans-serif;
   background:#f5f7fc;
-  color:#172033;
-  max-width:480px;
-  margin:auto;
-  min-height:100vh;
+  color:#202536;
 }
 
 button{
@@ -22,1040 +23,994 @@ button{
   cursor:pointer;
 }
 
-.hidden{display:none!important}
+.hidden{display:none!important;}
 
-/* =========================
-   WELCOME
-========================= */
+#app{
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  background:#fff;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ================= WELCOME ================= */
 
 #welcome{
   min-height:100vh;
-  background:linear-gradient(160deg,#e9fbff,#fff,#f3efff);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+  padding:25px 20px;
+  background:linear-gradient(180deg,#eafcff,#fff);
+  text-align:center;
 }
 
 .logo{
-  width:72px;
-  height:72px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#20cfff,#7b61ff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  color:white;
-  box-shadow:0 12px 30px #8bdbea;
-}
-
-.brand{
-  font-size:30px;
+  font-size:34px;
   font-weight:800;
+  color:#159bc4;
   margin-top:10px;
 }
 
-.subtitle{
-  color:#697386;
-  margin:5px 0 25px;
+.logo small{
+  display:block;
+  font-size:12px;
+  color:#788294;
+  margin-top:4px;
 }
 
-/* PEOPLE */
-
 .people{
-  width:100%;
-  height:230px;
+  height:300px;
   position:relative;
-  margin-bottom:15px;
+  margin-top:15px;
 }
 
 .person{
   position:absolute;
-  bottom:10px;
-  width:100px;
-  height:155px;
-  border-radius:50px 50px 30px 30px;
-  background:linear-gradient(145deg,#fff,#dce8f5);
-  box-shadow:0 12px 25px #b8c5d8;
-  text-align:center;
+  width:115px;
+  height:190px;
+  bottom:0;
 }
 
 .person .head{
-  width:65px;
-  height:65px;
+  width:75px;
+  height:75px;
   border-radius:50%;
-  background:#d99b72;
-  margin:12px auto 5px;
+  background:#e4ad83;
+  margin:auto;
+  position:relative;
+  z-index:2;
+  border:4px solid #fff;
+}
+
+.person .hair{
+  position:absolute;
+  width:78px;
+  height:40px;
+  border-radius:45px 45px 10px 10px;
+  background:#30251f;
+  top:-3px;
+  left:17px;
+  z-index:3;
 }
 
 .person .body{
-  width:75px;
-  height:65px;
-  border-radius:35px 35px 20px 20px;
-  background:#4c78ff;
-  margin:auto;
+  width:105px;
+  height:110px;
+  border-radius:50px 50px 15px 15px;
+  margin:-3px auto 0;
 }
 
-.p1{
-  left:2%;
-  transform:rotate(-6deg);
-}
+.p1{left:0;}
+.p2{left:50%;transform:translateX(-50%);bottom:10px;}
+.p3{right:0;}
 
-.p2{
-  left:50%;
-  transform:translateX(-50%) translateY(-10px);
-}
+.p1 .body{background:#6b7bea;}
+.p2 .body{background:#f09ac3;}
+.p3 .body{background:#49bfa4;}
 
-.p3{
-  right:2%;
-  transform:rotate(6deg);
-}
-
-.p2 .body{background:#9a5de8}
-.p3 .body{background:#ff7095}
-
-.speech{
+.bubble{
   position:absolute;
   background:white;
   padding:8px 12px;
   border-radius:15px;
   font-size:12px;
-  box-shadow:0 5px 15px #ccd4df;
+  box-shadow:0 5px 18px #0001;
 }
 
-.s1{top:8px;left:2px}
-.s2{top:0;right:0}
+.b1{left:5px;top:20px;}
+.b2{right:0;top:55px;}
 
 .bird{
   position:absolute;
-  top:85px;
+  bottom:35px;
   left:50%;
   transform:translateX(-50%);
-  font-size:35px;
+  font-size:38px;
 }
 
-/* LOGIN */
-
-.login-box{
-  width:100%;
-  max-width:360px;
+.loginTitle{
+  font-size:21px;
+  font-weight:700;
+  margin:5px 0 15px;
 }
 
-.login-btn{
+.loginBtn{
   width:100%;
-  height:50px;
-  margin:7px 0;
-  border-radius:16px;
-  background:white;
-  box-shadow:0 4px 15px #dce2eb;
+  height:48px;
+  border-radius:13px;
+  margin:8px 0;
   font-size:15px;
   font-weight:600;
+  background:#fff;
+  box-shadow:0 3px 12px #0001;
 }
 
-.google{color:#4285f4}
-.facebook{color:#1877f2}
+.google{color:#4285f4;}
+.facebook{color:#1877f2;}
+.phone{background:linear-gradient(90deg,#20b9d5,#7768ed)!important;color:#fff;}
+.guest{color:#777;}
 
-.phone{
-  background:linear-gradient(90deg,#22c9e8,#7066ff);
-  color:white;
-}
-
-.guest{
-  background:#eef2f8;
-}
-
-/* =========================
-   APP
-========================= */
-
-#app{
-  min-height:100vh;
-  padding-bottom:75px;
-}
-
-/* TOP BAR */
+/* ================= TOP ================= */
 
 .topbar{
-  height:56px;
+  height:58px;
   display:flex;
   align-items:center;
-  padding:8px 14px;
-  background:white;
+  justify-content:space-between;
+  padding:0 15px;
+  border-bottom:1px solid #eee;
+  background:#fff;
   position:sticky;
   top:0;
   z-index:20;
-  border-bottom:1px solid #edf0f5;
 }
 
-.top-logo{
-  font-size:21px;
+.brand{
+  font-size:22px;
   font-weight:800;
-  color:#24bfe1;
+  color:#159bc4;
 }
 
-/* =========================
-   HOME TOP NAV
-========================= */
+.topSearch{
+  font-size:22px;
+}
 
-.home-nav{
+/* ================= HOME TOP ================= */
+
+.homeTabs{
   display:flex;
   align-items:center;
   gap:8px;
-  background:white;
-  padding:9px 12px;
+  padding:10px 12px;
   overflow-x:auto;
   white-space:nowrap;
-  border-bottom:1px solid #edf0f5;
+  border-bottom:1px solid #eee;
 }
 
-.home-nav::-webkit-scrollbar{
-  display:none;
+.homeTabs button{
+  background:#eef7fb;
+  color:#526174;
+  border-radius:18px;
+  padding:8px 13px;
+  font-size:12px;
+  font-weight:600;
 }
 
-.nav-tab{
-  padding:8px 12px;
-  border-radius:12px;
-  background:#f1f4f8;
-  font-size:13px;
-  font-weight:700;
-  color:#687286;
-  flex-shrink:0;
-}
-
-.nav-tab.active{
+.homeTabs button.active{
+  background:linear-gradient(90deg,#18b9d2,#7568ed);
   color:white;
-  background:linear-gradient(90deg,#24c8e5,#7166ff);
 }
 
-/* SPACE */
-
-.nav-space{
-  flex:1;
-  min-width:10px;
-}
-
-/* SEARCH BUTTON */
-
-.search-btn{
-  width:36px;
-  height:36px;
-  border-radius:11px;
-  background:#edf7fc;
-  color:#198eaf;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:17px;
+.homeSpacer{
+  width:8px;
   flex-shrink:0;
 }
 
-/* =========================
-   CUSTOM SMALL ROOM ICON
-========================= */
-
-.room-create-btn{
-  width:36px;
-  height:36px;
-  border-radius:11px;
-  background:#edf7fc;
+.smallSearch,
+.roomIcon{
+  width:34px!important;
+  height:34px!important;
+  padding:0!important;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
-  padding:0;
 }
 
-/* ছোট ঘরের মতো custom shape */
-
-.mini-room{
+.roomIcon svg{
   width:20px;
-  height:18px;
-  position:relative;
+  height:20px;
 }
 
-/* roof */
+/* ================= CONTENT ================= */
 
-.mini-room:before{
-  content:"";
-  position:absolute;
-  left:1px;
-  top:1px;
-  width:16px;
-  height:16px;
-  border-left:2.5px solid #219bb7;
-  border-top:2.5px solid #219bb7;
-  transform:rotate(45deg) scale(.72);
-  transform-origin:center;
-}
-
-/* house body */
-
-.mini-room:after{
-  content:"";
-  position:absolute;
-  left:3px;
-  top:8px;
-  width:14px;
-  height:9px;
-  border:2.5px solid #219bb7;
-  border-top:0;
-  border-radius:1px;
-}
-
-/* middle pillar / door */
-
-.mini-room-door{
-  position:absolute;
-  z-index:3;
-  left:8px;
-  top:9px;
-  width:4px;
-  height:8px;
-  border-left:2.5px solid #219bb7;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.page{
-  padding:14px;
+.content{
+  padding:12px;
+  padding-bottom:90px;
 }
 
 .banner{
-  min-height:105px;
-  border-radius:22px;
-  padding:18px;
-  background:linear-gradient(120deg,#22cce7,#7665ff);
-  color:white;
-  box-shadow:0 10px 25px #c9d7ee;
+  background:linear-gradient(110deg,#dffaff,#eee8ff);
+  border-radius:18px;
+  padding:17px;
   margin-bottom:15px;
 }
 
 .banner h2{
   font-size:20px;
-  margin-bottom:8px;
+  margin-bottom:5px;
 }
 
 .banner p{
+  color:#667085;
   font-size:12px;
-  opacity:.9;
 }
 
-.section-title{
-  display:flex;
-  align-items:center;
-  margin:18px 2px 10px;
-}
-
-.section-title h3{
+.sectionTitle{
   font-size:17px;
+  font-weight:700;
+  margin:16px 0 10px;
 }
 
-.section-title span{
-  margin-left:auto;
-  font-size:12px;
-  color:#758096;
-}
+/* ================= USER / ROOM CARDS ================= */
 
-.rooms{
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:10px;
 }
 
-.room-card{
+.card{
   background:white;
-  border-radius:19px;
-  padding:10px;
-  box-shadow:0 5px 18px #e1e5ed;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 3px 15px #00000010;
+  border:1px solid #edf0f5;
 }
 
-.room-img{
-  height:135px;
+.cardImg{
+  height:145px;
+  width:100%;
+  object-fit:cover;
+}
+
+.cardBody{
+  padding:9px;
+}
+
+.name{
+  font-size:14px;
+  font-weight:700;
+}
+
+.id{
+  color:#788294;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.country{
+  font-size:11px;
+  margin-top:5px;
+}
+
+.roomTag{
+  display:inline-block;
+  margin-top:7px;
+  padding:4px 7px;
+  border-radius:10px;
+  background:#e8faff;
+  color:#149bbd;
+  font-size:10px;
+}
+
+/* ================= DISCOVER ================= */
+
+.countryRow{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.countryBtn{
+  flex-shrink:0;
+  padding:8px 11px;
   border-radius:15px;
-  background:linear-gradient(145deg,#dff8ff,#dcd7ff);
+  background:#f0f3f8;
+  font-size:11px;
+}
+
+.countryBtn.active{
+  background:#19afd0;
+  color:white;
+}
+
+.userList{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.userRow{
   display:flex;
   align-items:center;
-  justify-content:center;
-  font-size:48px;
-  position:relative;
+  padding:10px;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 2px 12px #0000000d;
+  border:1px solid #edf0f4;
 }
 
-.live{
-  position:absolute;
-  top:8px;
-  left:8px;
-  background:#ff5277;
-  color:white;
-  border-radius:8px;
-  padding:4px 7px;
-  font-size:9px;
+.avatar{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-right:10px;
 }
 
-.room-name{
-  font-weight:bold;
-  font-size:13px;
-  margin-top:9px;
+.userInfo{
+  flex:1;
 }
 
-.room-id{
-  color:#8992a5;
-  font-size:10px;
-  margin-top:4px;
+.followBtn{
+  padding:7px 12px;
+  border-radius:15px;
+  background:#e8faff;
+  color:#129bbd;
+  font-size:11px;
 }
 
-.room-users{
-  font-size:10px;
-  color:#687386;
-  margin-top:7px;
-}
+/* ================= BOTTOM NAV ================= */
 
-/* =========================
-   BOTTOM
-========================= */
-
-.bottom{
+.bottomNav{
   position:fixed;
   bottom:0;
   left:50%;
   transform:translateX(-50%);
-  width:100%;
-  max-width:480px;
+  width:min(430px,100%);
   height:68px;
-  background:white;
-  border-top:1px solid #e8ebf1;
+  background:#fff;
+  border-top:1px solid #eee;
   display:grid;
   grid-template-columns:repeat(5,1fr);
   z-index:50;
 }
 
-.bottom button{
-  background:white;
-  color:#7b8496;
+.navBtn{
+  background:#fff;
+  color:#8992a3;
   font-size:10px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
 }
 
-.bottom button span{
+.navBtn div{
   font-size:21px;
+  margin-bottom:3px;
 }
 
-.bottom button.active{
-  color:#665eff;
+.navBtn.active{
+  color:#159fc2;
 }
 
-/* PAGES */
-
-.subpage{
-  display:none;
-}
-
-.subpage.active{
-  display:block;
-}
-
-/* LIST */
-
-.list-card{
-  background:white;
-  margin-bottom:10px;
-  border-radius:17px;
-  padding:13px;
-  display:flex;
-  align-items:center;
-  box-shadow:0 4px 15px #e4e8ef;
-}
-
-.avatar{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#63dff0,#7b63ff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:22px;
-}
-
-.list-info{
-  margin-left:11px;
-}
-
-.list-info b{
-  font-size:14px;
-}
-
-.list-info small{
-  display:block;
-  color:#7b8496;
-  margin-top:4px;
-}
-
-.list-action{
-  margin-left:auto;
-  border-radius:11px;
-  padding:8px 12px;
-  background:#eef7fb;
-  color:#279db8;
-  font-size:11px;
-  font-weight:bold;
-}
-
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
   inset:0;
   background:#0008;
-  display:none;
+  z-index:100;
+  display:flex;
   align-items:flex-end;
   justify-content:center;
-  z-index:100;
 }
 
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:100%;
-  max-width:480px;
-  max-height:85vh;
+.sheet{
+  width:min(430px,100%);
+  max-height:88vh;
   overflow:auto;
-  background:white;
-  border-radius:25px 25px 0 0;
+  background:#fff;
+  border-radius:22px 22px 0 0;
   padding:18px;
 }
 
-.modal-head{
+.sheetHead{
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  margin-bottom:16px;
-}
-
-.modal-head h3{
-  font-size:18px;
+  margin-bottom:15px;
 }
 
 .close{
-  margin-left:auto;
-  background:#f0f2f6;
-  border-radius:10px;
-  width:34px;
-  height:34px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:#f1f3f7;
 }
 
-.input{
-  width:100%;
-  height:48px;
-  border:1px solid #dfe4ec;
-  border-radius:14px;
-  padding:0 14px;
-  outline:none;
-  margin-bottom:10px;
-}
-
-.primary{
-  width:100%;
-  height:48px;
-  border-radius:14px;
-  color:white;
-  background:linear-gradient(90deg,#24c9e6,#7564ff);
-  font-weight:bold;
-}
-
-.menu-grid{
+.menuGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  gap:9px;
 }
 
-.menu-item{
-  background:#f6f8fb;
-  border-radius:15px;
+.menuItem{
+  background:#f5f8fc;
   padding:15px 5px;
+  border-radius:15px;
   text-align:center;
   font-size:11px;
 }
 
-.menu-item div{
-  font-size:24px;
-  margin-bottom:7px;
+.menuItem div{
+  font-size:25px;
+  margin-bottom:6px;
 }
 
-/* =========================
-   ROOM
-========================= */
+/* ================= ROOM ================= */
 
-#roomOverlay{
+.room{
   position:fixed;
   inset:0;
-  background:linear-gradient(180deg,#18284b,#34205d);
-  color:white;
-  z-index:200;
+  z-index:90;
+  background:linear-gradient(180deg,#162442,#07111f);
+  color:#fff;
   display:none;
   flex-direction:column;
 }
 
-.room-top{
-  padding:16px;
+.room.show{
+  display:flex;
+}
+
+.roomTop{
+  padding:14px;
   display:flex;
   align-items:center;
+  gap:10px;
 }
 
-.room-top button{
-  background:#ffffff20;
-  color:white;
-  width:38px;
-  height:38px;
-  border-radius:12px;
+.roomHost{
+  flex:1;
 }
 
-.room-title{
-  margin-left:10px;
-}
-
-.room-title b{
-  font-size:14px;
-}
-
-.room-title small{
+.roomHost b{
   display:block;
-  opacity:.7;
-  margin-top:4px;
+}
+
+.roomHost small{
+  color:#aebbd0;
+}
+
+.roomBtns button{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  margin-left:4px;
+  background:#ffffff18;
+  color:white;
 }
 
 .seats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:18px 10px;
-  padding:25px 15px;
+  padding:30px 18px;
 }
 
 .seat{
   text-align:center;
 }
 
-.seat-avatar{
-  width:57px;
-  height:57px;
+.seatImg{
+  width:58px;
+  height:58px;
   border-radius:50%;
-  background:linear-gradient(135deg,#52dff1,#7c63ff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:auto;
-  font-size:25px;
-  border:2px solid #ffffff55;
+  object-fit:cover;
+  border:2px solid #ffffff50;
 }
 
-.seat small{
-  display:block;
-  font-size:9px;
+.seat p{
+  font-size:10px;
   margin-top:5px;
 }
 
-.room-chat{
+.roomChat{
   flex:1;
   padding:15px;
   overflow:auto;
 }
 
-.chat-msg{
-  background:#0004;
-  display:table;
+.chatLine{
+  display:inline-block;
+  background:#0006;
+  border-radius:14px;
   padding:7px 10px;
-  border-radius:12px;
-  margin:5px 0;
-  font-size:11px;
+  margin:4px 0;
+  font-size:12px;
 }
 
-.room-controls{
-  padding:10px 12px 22px;
-}
-
-.room-input{
+.roomBottom{
+  padding:10px;
   display:flex;
   gap:7px;
-  margin-bottom:10px;
+  align-items:center;
+  background:#07111fcc;
 }
 
-.room-input input{
-  flex:1;
-  height:42px;
-  border-radius:13px;
-  border:0;
-  padding:0 12px;
+.roomBottom button{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#ffffff18;
+  color:#fff;
+  font-size:17px;
 }
 
-.room-actions{
+.roomBottom .giftBtn{
+  width:55px;
+  background:linear-gradient(90deg,#ff5e8a,#ff9d44);
+}
+
+/* ================= GIFT ================= */
+
+.giftGrid{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.gift{
+  text-align:center;
+  padding:10px 3px;
+  border-radius:12px;
+  background:#f7f8fc;
+}
+
+.giftIcon{
+  font-size:28px;
+}
+
+.gift small{
+  display:block;
+  margin-top:4px;
+  font-size:10px;
+}
+
+.giftPrice{
+  color:#f19a20;
+  font-size:10px;
+}
+
+/* ================= SEARCH ================= */
+
+.searchBox{
+  display:flex;
   gap:7px;
 }
 
-.room-actions button{
-  height:45px;
-  border-radius:14px;
-  background:#ffffff18;
-  color:white;
-  font-size:18px;
+.searchBox input{
+  flex:1;
+  height:43px;
+  border:1px solid #ddd;
+  border-radius:13px;
+  padding:0 12px;
+  outline:none;
+}
+
+.searchBox button{
+  width:50px;
+  border-radius:13px;
+  background:#18aeca;
+  color:#fff;
+}
+
+/* ================= PROFILE ================= */
+
+.profileHead{
+  text-align:center;
+  padding:15px 0;
+}
+
+.profilePhoto{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.profileName{
+  font-size:20px;
+  font-weight:700;
+  margin-top:7px;
+}
+
+.profileId{
+  font-size:12px;
+  color:#7b8494;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  margin:15px 0;
+  text-align:center;
+}
+
+.stat b{
+  display:block;
+  font-size:17px;
+}
+
+.stat span{
+  font-size:11px;
+  color:#8992a3;
+}
+
+.profileMenu{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.profileItem{
+  background:#f6f8fc;
+  border-radius:15px;
+  padding:14px 5px;
+  text-align:center;
+  font-size:10px;
+}
+
+.profileItem div{
+  font-size:23px;
+  margin-bottom:5px;
+}
+
+/* ================= TOAST ================= */
+
+#toast{
+  position:fixed;
+  left:50%;
+  bottom:82px;
+  transform:translateX(-50%);
+  background:#222c;
+  color:#fff;
+  padding:10px 16px;
+  border-radius:20px;
+  font-size:12px;
+  z-index:200;
+  display:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     WELCOME
-========================= -->
+<div id="app">
+
+<!-- ================= WELCOME ================= -->
 
 <section id="welcome">
 
-  <div class="logo">🐦</div>
-
-  <div class="brand">Doel</div>
-
-  <div class="subtitle">
-    Voice Chat Room
+  <div class="logo">
+    🐦 Doel
+    <small>Voice Chat Room</small>
   </div>
 
   <div class="people">
 
     <div class="person p1">
-      <div class="head"></div>
+      <div class="bubble b1">Hello! 👋</div>
+      <div class="head"><div class="hair"></div></div>
       <div class="body"></div>
     </div>
 
     <div class="person p2">
-      <div class="head"></div>
+      <div class="head"><div class="hair"></div></div>
       <div class="body"></div>
     </div>
 
     <div class="person p3">
-      <div class="head"></div>
+      <div class="bubble b2">Let's talk 😄</div>
+      <div class="head"><div class="hair"></div></div>
       <div class="body"></div>
     </div>
 
-    <div class="speech s1">
-      😂 Let's talk!
-    </div>
-
-    <div class="speech s2">
-      🎤 Hello Doel!
-    </div>
-
-    <div class="bird">
-      🐦
-    </div>
-
+    <div class="bird">🐦</div>
   </div>
 
-  <div class="login-box">
+  <div class="loginTitle">Welcome to Doel</div>
 
-    <button class="login-btn google" onclick="login()">
-      🔵 Continue with Google
-    </button>
+  <button class="loginBtn google" onclick="login('Google')">
+    🔵 Continue with Google
+  </button>
 
-    <button class="login-btn facebook" onclick="login()">
-      ⓕ Continue with Facebook
-    </button>
+  <button class="loginBtn facebook" onclick="login('Facebook')">
+    🔷 Continue with Facebook
+  </button>
 
-    <button class="login-btn phone" onclick="phoneLogin()">
-      📱 Continue with Phone
-    </button>
+  <button class="loginBtn phone" onclick="login('Phone')">
+    📱 Continue with Phone
+  </button>
 
-    <button class="login-btn guest" onclick="login()">
-      👤 Guest Demo
-    </button>
-
-  </div>
+  <button class="loginBtn guest" onclick="login('Guest')">
+    Continue as Guest
+  </button>
 
 </section>
 
 
-<!-- =========================
-     APP
-========================= -->
+<!-- ================= MAIN APP ================= -->
 
-<section id="app" class="hidden">
+<section id="mainApp" class="hidden">
 
-  <!-- TOP BAR -->
   <div class="topbar">
-    <div class="top-logo">
-      🐦 Doel
-    </div>
+    <div class="brand">🐦 Doel</div>
+    <button class="topSearch" onclick="openSearch()">⌕</button>
   </div>
 
 
-  <!-- =========================
-       HOME
-  ========================= -->
+  <!-- HOME -->
 
-  <div id="homePage" class="subpage active">
+  <div id="homePage" class="page">
 
-    <!-- HOME MENU -->
+    <div class="homeTabs">
 
-    <div class="home-nav">
-
-      <button
-        id="tabFollowing"
-        class="nav-tab active"
-        onclick="homeTab('following')">
+      <button id="tabFollowing" onclick="homeTab('following')">
         Following
       </button>
 
-      <button
-        id="tabPopular"
-        class="nav-tab"
-        onclick="homeTab('popular')">
+      <button id="tabPopular" class="active" onclick="homeTab('popular')">
         Popular
       </button>
 
-      <button
-        id="tabRecent"
-        class="nav-tab"
-        onclick="homeTab('recent')">
+      <button id="tabRecent" onclick="homeTab('recent')">
         Recent
       </button>
 
-      <div class="nav-space"></div>
+      <div class="homeSpacer"></div>
 
-      <!-- SEARCH -->
+      <button class="smallSearch" onclick="openSearch()">⌕</button>
 
-      <button
-        class="search-btn"
-        onclick="openSearch()">
-        🔍
-      </button>
-
-      <!-- SMALL ROOM / CREATE -->
-
-      <button
-        class="room-create-btn"
-        onclick="openModal('create')"
-        title="Create Room">
-
-        <div class="mini-room">
-          <div class="mini-room-door"></div>
-        </div>
-
+      <button class="roomIcon" onclick="openCreateRoom()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 10.5L12 4l8 6.5"/>
+          <path d="M6.5 10v9h11v-9"/>
+          <path d="M10 19v-5h4v5"/>
+        </svg>
       </button>
 
     </div>
 
-
-    <div class="page">
+    <div class="content">
 
       <div class="banner">
-
-        <h2>
-          Welcome to Doel 🎤
-        </h2>
-
-        <p>
-          Meet people, join voice rooms and make new friends.
-        </p>
-
+        <h2>Welcome to Doel 🎙️</h2>
+        <p>Meet people, join voice rooms and make new friends.</p>
       </div>
 
-
-      <div id="homeContent">
-
-        <div class="section-title">
-
-          <h3 id="homeTitle">
-            Following
-          </h3>
-
-          <span id="homeCount">
-            People you follow
-          </span>
-
-        </div>
-
-
-        <div class="rooms">
-
-          <div
-            class="room-card"
-            onclick="openRoom('Music Lovers')">
-
-            <div class="room-img">
-              🎤
-              <span class="live">
-                LIVE
-              </span>
-            </div>
-
-            <div class="room-name">
-              Music Lovers
-            </div>
-
-            <div class="room-id">
-              Room ID: 10001
-            </div>
-
-            <div class="room-users">
-              👥 128 people
-            </div>
-
-          </div>
-
-
-          <div
-            class="room-card"
-            onclick="openRoom('Friends Zone')">
-
-            <div class="room-img">
-              🗣️
-              <span class="live">
-                LIVE
-              </span>
-            </div>
-
-            <div class="room-name">
-              Friends Zone
-            </div>
-
-            <div class="room-id">
-              Room ID: 10002
-            </div>
-
-            <div class="room-users">
-              👥 86 people
-            </div>
-
-          </div>
-
-
-          <div
-            class="room-card"
-            onclick="openRoom('Bangladesh Talk')">
-
-            <div class="room-img">
-              🇧🇩
-              <span class="live">
-                LIVE
-              </span>
-            </div>
-
-            <div class="room-name">
-              Bangladesh Talk
-            </div>
-
-            <div class="room-id">
-              Room ID: 10003
-            </div>
-
-            <div class="room-users">
-              👥 214 people
-            </div>
-
-          </div>
-
-
-          <div
-            class="room-card"
-            onclick="openRoom('Night Party')">
-
-            <div class="room-img">
-              🎉
-              <span class="live">
-                LIVE
-              </span>
-            </div>
-
-            <div class="room-name">
-              Night Party
-            </div>
-
-            <div class="room-id">
-              Room ID: 10004
-            </div>
-
-            <div class="room-users">
-              👥 65 people
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
+      <div id="homeContent"></div>
 
     </div>
 
   </div>
 
 
-  <!-- =========================
-       VOICE
-  ========================= -->
+  <!-- VOICE -->
 
-  <div id="voicePage" class="subpage">
+  <div id="voicePage" class="page hidden">
 
-    <div class="page">
+    <div class="content">
 
-      <div class="section-title">
-        <h3>Voice Rooms</h3>
+      <div class="sectionTitle">Voice Rooms</div>
+
+      <div class="grid">
+
+        <div class="card" onclick="openRoom('Bangladesh Friends')">
+          <img class="cardImg"
+               src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600">
+          <div class="cardBody">
+            <div class="name">Bangladesh Friends</div>
+            <div class="id">Room ID: 10001</div>
+            <span class="roomTag">🎙️ 128 online</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openRoom('Global Talk')">
+          <img class="cardImg"
+               src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600">
+          <div class="cardBody">
+            <div class="name">Global Talk</div>
+            <div class="id">Room ID: 10002</div>
+            <span class="roomTag">🎙️ 95 online</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openRoom('Saudi Lounge')">
+          <img class="cardImg"
+               src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600">
+          <div class="cardBody">
+            <div class="name">Saudi Lounge</div>
+            <div class="id">Room ID: 10003</div>
+            <span class="roomTag">🎙️ 76 online</span>
+          </div>
+        </div>
+
+        <div class="card" onclick="openRoom('Dubai Friends')">
+          <img class="cardImg"
+               src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600">
+          <div class="cardBody">
+            <div class="name">Dubai Friends</div>
+            <div class="id">Room ID: 10004</div>
+            <span class="roomTag">🎙️ 64 online</span>
+          </div>
+        </div>
+
       </div>
 
-      <button
-        class="primary"
-        onclick="openModal('create')">
-        ➕ Create Voice Room
+      <button class="loginBtn phone" onclick="openCreateRoom()">
+        🎙️ Create Voice Room
       </button>
 
-      <br><br>
+    </div>
 
-      <div
-        class="list-card"
-        onclick="openRoom('Global Friends')">
+  </div>
 
-        <div class="avatar">
-          🎤
+
+  <!-- DISCOVER -->
+
+  <div id="discoverPage" class="page hidden">
+
+    <div class="content">
+
+      <div class="sectionTitle">Discover People</div>
+
+      <div class="searchBox">
+        <input id="discoverSearch"
+               placeholder="Search name, ID or country..."
+               oninput="filterDiscover()">
+        <button onclick="filterDiscover()">⌕</button>
+      </div>
+
+      <div class="sectionTitle">Countries</div>
+
+      <div class="countryRow">
+        <button class="countryBtn active" onclick="countryFilter('All',this)">🌎 All</button>
+        <button class="countryBtn" onclick="countryFilter('Bangladesh',this)">🇧🇩 Bangladesh</button>
+        <button class="countryBtn" onclick="countryFilter('Saudi Arabia',this)">🇸🇦 Saudi Arabia</button>
+        <button class="countryBtn" onclick="countryFilter('UAE',this)">🇦🇪 UAE</button>
+        <button class="countryBtn" onclick="countryFilter('India',this)">🇮🇳 India</button>
+        <button class="countryBtn" onclick="countryFilter('Pakistan',this)">🇵🇰 Pakistan</button>
+        <button class="countryBtn" onclick="countryFilter('Turkey',this)">🇹🇷 Turkey</button>
+      </div>
+
+      <div class="sectionTitle">People & IDs</div>
+
+      <div id="discoverUsers" class="userList"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MESSAGE -->
+
+  <div id="messagePage" class="page hidden">
+
+    <div class="content">
+
+      <div class="sectionTitle">Messages</div>
+
+      <div class="userRow" onclick="toast('Opening chat with Rahim')">
+        <img class="avatar"
+             src="https://randomuser.me/api/portraits/men/32.jpg">
+        <div class="userInfo">
+          <div class="name">Rahim Hasan</div>
+          <div class="id">Hi, welcome to Doel!</div>
         </div>
+        <small>2m</small>
+      </div>
 
-        <div class="list-info">
-          <b>Global Friends</b>
-          <small>
-            Room ID: 22001 · 156 online
-          </small>
+      <div class="userRow" onclick="toast('Opening chat with Sara')">
+        <img class="avatar"
+             src="https://randomuser.me/api/portraits/women/44.jpg">
+        <div class="userInfo">
+          <div class="name">Sara Khan</div>
+          <div class="id">Let's join a room.</div>
         </div>
+        <small>8m</small>
+      </div>
 
-        <div class="list-action">
-          JOIN
-        </div>
+    </div>
+
+  </div>
+
+
+  <!-- PROFILE -->
+
+  <div id="profilePage" class="page hidden">
+
+    <div class="content">
+
+      <div class="profileHead">
+
+        <img class="profilePhoto"
+             src="https://randomuser.me/api/portraits/men/75.jpg">
+
+        <div class="profileName">Md Rasel</div>
+        <div class="profileId">Doel ID: 700001</div>
 
       </div>
 
-
-      <div
-        class="list-card"
-        onclick="openRoom('Fun Zone')">
-
-        <div class="avatar">
-          🎵
+      <div class="stats">
+        <div class="stat">
+          <b>128</b>
+          <span>Following</span>
         </div>
 
-        <div class="list-info">
-          <b>Fun Zone</b>
-          <small>
-            Room ID: 22002 · 93 online
-          </small>
+        <div class="stat">
+          <b>2.4K</b>
+          <span>Fans</span>
         </div>
 
-        <div class="list-action">
-          JOIN
+        <div class="stat">
+          <b>LV 18</b>
+          <span>Level</span>
+        </div>
+      </div>
+
+      <div class="profileMenu">
+
+        <div class="profileItem" onclick="openModal('wallet')">
+          <div>💰</div>Wallet
+        </div>
+
+        <div class="profileItem" onclick="openModal('store')">
+          <div>🛍️</div>Store
+        </div>
+
+        <div class="profileItem" onclick="openModal('vip')">
+          <div>👑</div>VIP / SVIP
+        </div>
+
+        <div class="profileItem" onclick="openModal('cp')">
+          <div>💞</div>CP
+        </div>
+
+        <div class="profileItem" onclick="openModal('family')">
+          <div>👨‍👩‍👧</div>Family
+        </div>
+
+        <div class="profileItem" onclick="openModal('level')">
+          <div>🏆</div>Level
+        </div>
+
+        <div class="profileItem" onclick="openModal('props')">
+          <div>🎁</div>Props
+        </div>
+
+        <div class="profileItem" onclick="openModal('invite')">
+          <div>🤝</div>Invite
+        </div>
+
+        <div class="profileItem" onclick="openModal('ranking')">
+          <div>🥇</div>Ranking
+        </div>
+
+        <div class="profileItem" onclick="openModal('events')">
+          <div>🎉</div>Events
+        </div>
+
+        <div class="profileItem" onclick="openModal('history')">
+          <div>🕘</div>History
+        </div>
+
+        <div class="profileItem" onclick="openModal('notifications')">
+          <div>🔔</div>Notifications
+        </div>
+
+        <div class="profileItem" onclick="openModal('settings')">
+          <div>⚙️</div>Settings
         </div>
 
       </div>
@@ -1065,243 +1020,28 @@ button{
   </div>
 
 
-  <!-- =========================
-       DISCOVER
-  ========================= -->
+  <!-- BOTTOM NAV -->
 
-  <div id="discoverPage" class="subpage">
+  <div class="bottomNav">
 
-    <div class="page">
-
-      <div class="section-title">
-        <h3>Discover</h3>
-      </div>
-
-      <div class="menu-grid">
-
-        <div class="menu-item">
-          <div>🏆</div>
-          Ranking
-        </div>
-
-        <div class="menu-item">
-          <div>🎁</div>
-          Gifts
-        </div>
-
-        <div class="menu-item">
-          <div>🎮</div>
-          Games
-        </div>
-
-        <div class="menu-item">
-          <div>💎</div>
-          VIP
-        </div>
-
-        <div class="menu-item">
-          <div>❤️</div>
-          Love
-        </div>
-
-        <div class="menu-item">
-          <div>🎉</div>
-          Events
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       CHAT
-  ========================= -->
-
-  <div id="chatPage" class="subpage">
-
-    <div class="page">
-
-      <div class="section-title">
-        <h3>Messages</h3>
-      </div>
-
-      <div class="list-card">
-
-        <div class="avatar">
-          👩
-        </div>
-
-        <div class="list-info">
-          <b>Doel Friend</b>
-          <small>
-            Hello! Welcome to Doel 👋
-          </small>
-        </div>
-
-      </div>
-
-
-      <div class="list-card">
-
-        <div class="avatar">
-          👨
-        </div>
-
-        <div class="list-info">
-          <b>Music Friend</b>
-          <small>
-            See you in the room!
-          </small>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       PROFILE
-  ========================= -->
-
-  <div id="profilePage" class="subpage">
-
-    <div class="page">
-
-      <div class="list-card">
-
-        <div class="avatar">
-          👤
-        </div>
-
-        <div class="list-info">
-          <b>Doel User</b>
-          <small>
-            ID: 10000001 · LV 1
-          </small>
-        </div>
-
-      </div>
-
-
-      <div class="menu-grid">
-
-        <div
-          class="menu-item"
-          onclick="openModal('wallet')">
-          <div>🪙</div>
-          Wallet
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('gift')">
-          <div>🎁</div>
-          Gifts
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('store')">
-          <div>🛍️</div>
-          Store
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('level')">
-          <div>⭐</div>
-          Level
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('vip')">
-          <div>💎</div>
-          VIP
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('cp')">
-          <div>❤️</div>
-          CP Couple
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('family')">
-          <div>👨‍👩‍👧</div>
-          Family
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('props')">
-          <div>🎒</div>
-          Props
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('invite')">
-          <div>🎁</div>
-          Invite
-        </div>
-
-        <div
-          class="menu-item"
-          onclick="openModal('settings')">
-          <div>⚙️</div>
-          Settings
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       BOTTOM NAV
-  ========================= -->
-
-  <div class="bottom">
-
-    <button
-      class="active"
-      onclick="showPage('homePage',this)">
-      <span>🏠</span>
-      Home
+    <button class="navBtn active" id="navHome" onclick="showPage('home')">
+      <div>⌂</div>Home
     </button>
 
-    <button
-      onclick="showPage('voicePage',this)">
-      <span>🎤</span>
-      Voice
+    <button class="navBtn" id="navVoice" onclick="showPage('voice')">
+      <div>🎙️</div>Voice
     </button>
 
-    <button
-      onclick="showPage('discoverPage',this)">
-      <span>🌎</span>
-      Discover
+    <button class="navBtn" id="navDiscover" onclick="showPage('discover')">
+      <div>🌎</div>Discover
     </button>
 
-    <button
-      onclick="showPage('chatPage',this)">
-      <span>💬</span>
-      Message
+    <button class="navBtn" id="navMessage" onclick="showPage('message')">
+      <div>💬</div>Message
     </button>
 
-    <button
-      onclick="showPage('profilePage',this)">
-      <span>👤</span>
-      Profile
+    <button class="navBtn" id="navProfile" onclick="showPage('profile')">
+      <div>👤</div>Profile
     </button>
 
   </div>
@@ -1309,536 +1049,768 @@ button{
 </section>
 
 
-<!-- =========================
-     MODAL
-========================= -->
+<!-- ================= MODAL ================= -->
 
-<div
-  id="modal"
-  class="modal"
-  onclick="closeModal(event)">
+<div id="modal" class="modal hidden" onclick="closeModalOutside(event)">
 
-  <div
-    class="modal-box"
-    onclick="event.stopPropagation()">
+  <div class="sheet">
 
-    <div class="modal-head">
-
-      <h3 id="modalTitle">
-        Doel
-      </h3>
-
-      <button
-        class="close"
-        onclick="hideModal()">
-        ✕
-      </button>
-
+    <div class="sheetHead">
+      <h3 id="modalTitle">Doel</h3>
+      <button class="close" onclick="closeModal()">×</button>
     </div>
 
-    <div id="modalContent"></div>
+    <div id="modalBody"></div>
 
   </div>
 
 </div>
 
 
-<!-- =========================
-     VOICE ROOM
-========================= -->
+<!-- ================= ROOM ================= -->
 
-<div id="roomOverlay">
+<div id="room" class="room">
 
-  <div class="room-top">
+  <div class="roomTop">
 
-    <button onclick="closeRoom()">
-      ←
-    </button>
+    <button onclick="closeRoom()">←</button>
 
-    <div class="room-title">
+    <img class="avatar"
+         src="https://randomuser.me/api/portraits/men/32.jpg">
 
-      <b id="roomTitle">
-        Voice Room
-      </b>
-
-      <small id="roomId">
-        Room ID: 10001
-      </small>
-
+    <div class="roomHost">
+      <b id="roomTitle">Bangladesh Friends</b>
+      <small>Room ID: 10001 · LV 22</small>
     </div>
 
-    <button
-      style="margin-left:auto"
-      onclick="closeRoom()">
-      ✕
-    </button>
+    <div class="roomBtns">
+      <button onclick="toast('Shared!')">↗</button>
+      <button onclick="toast('Room settings')">⚙</button>
+    </div>
 
   </div>
-
 
   <div class="seats">
 
     <div class="seat">
-      <div class="seat-avatar">👩</div>
-      <small>Host</small>
+      <img class="seatImg" src="https://randomuser.me/api/portraits/men/32.jpg">
+      <p>Rahim</p>
     </div>
 
     <div class="seat">
-      <div class="seat-avatar">👨</div>
-      <small>Mike</small>
+      <img class="seatImg" src="https://randomuser.me/api/portraits/women/44.jpg">
+      <p>Sara</p>
     </div>
 
     <div class="seat">
-      <div class="seat-avatar">👩</div>
-      <small>Sara</small>
+      <img class="seatImg" src="https://randomuser.me/api/portraits/men/52.jpg">
+      <p>Arif</p>
     </div>
 
     <div class="seat">
-      <div class="seat-avatar">👨</div>
-      <small>Rasel</small>
-    </div>
-
-    <div class="seat">
-      <div class="seat-avatar">👩</div>
-      <small>Lina</small>
-    </div>
-
-    <div class="seat">
-      <div class="seat-avatar">👨</div>
-      <small>John</small>
-    </div>
-
-    <div class="seat">
-      <div class="seat-avatar">👩</div>
-      <small>Maya</small>
-    </div>
-
-    <div class="seat">
-      <div class="seat-avatar">➕</div>
-      <small>Empty</small>
+      <img class="seatImg" src="https://randomuser.me/api/portraits/women/65.jpg">
+      <p>Nadia</p>
     </div>
 
   </div>
 
+  <div id="roomChat" class="roomChat">
 
-  <div
-    class="room-chat"
-    id="roomChat">
-
-    <div class="chat-msg">
-      System: Welcome to the room 🎤
+    <div>
+      <span class="chatLine">Rahim: Welcome everyone 👋</span>
     </div>
 
-    <div class="chat-msg">
-      Sara: Hello everyone 👋
+    <div>
+      <span class="chatLine">Sara: Nice room 😊</span>
     </div>
 
-    <div class="chat-msg">
-      Mike: Welcome!
+    <div>
+      <span class="chatLine">Arif: Let's talk!</span>
     </div>
 
   </div>
 
+  <div class="roomBottom">
 
-  <div class="room-controls">
-
-    <div class="room-input">
-
-      <input
-        id="roomMessage"
-        placeholder="Say something...">
-
-      <button
-        class="icon-btn"
-        onclick="sendRoomMessage()">
-        ➤
-      </button>
-
-    </div>
-
-
-    <div class="room-actions">
-
-      <button
-        onclick="toast('Microphone toggled')">
-        🎙️
-      </button>
-
-      <button
-        onclick="toast('Speaker toggled')">
-        🔊
-      </button>
-
-      <button
-        onclick="toast('Emoji opened 😍')">
-        😊
-      </button>
-
-      <button
-        onclick="openModal('gift')">
-        🎁
-      </button>
-
-      <button
-        onclick="toast('More options')">
-        •••
-      </button>
-
-    </div>
+    <button onclick="toggleMic(this)">🎙️</button>
+    <button onclick="toggleSpeaker(this)">🔊</button>
+    <button onclick="toast('Emoji opened')">😊</button>
+    <button onclick="toast('More options')">•••</button>
+    <button class="giftBtn" onclick="openModal('gift')">🎁</button>
 
   </div>
+
+</div>
+
+
+<div id="toast"></div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   LOGIN
-========================= */
+/* ================= DATA ================= */
 
-function login(){
+const users = [
 
-  localStorage.setItem(
-    "doelLoggedIn",
-    "1"
-  );
+  {
+    name:"Rahim Hasan",
+    id:"BD100245",
+    country:"Bangladesh",
+    flag:"🇧🇩",
+    img:"https://randomuser.me/api/portraits/men/32.jpg"
+  },
 
-  document
-    .getElementById("welcome")
-    .classList.add("hidden");
+  {
+    name:"Nusrat Jahan",
+    id:"BD100382",
+    country:"Bangladesh",
+    flag:"🇧🇩",
+    img:"https://randomuser.me/api/portraits/women/44.jpg"
+  },
 
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-}
+  {
+    name:"Arif Khan",
+    id:"SA209871",
+    country:"Saudi Arabia",
+    flag:"🇸🇦",
+    img:"https://randomuser.me/api/portraits/men/52.jpg"
+  },
 
+  {
+    name:"Ayesha Noor",
+    id:"SA209455",
+    country:"Saudi Arabia",
+    flag:"🇸🇦",
+    img:"https://randomuser.me/api/portraits/women/65.jpg"
+  },
 
-function phoneLogin(){
+  {
+    name:"Sana Ali",
+    id:"AE501225",
+    country:"UAE",
+    flag:"🇦🇪",
+    img:"https://randomuser.me/api/portraits/women/68.jpg"
+  },
 
-  const phone =
-    prompt("Enter your phone number");
+  {
+    name:"Omar Ahmed",
+    id:"AE501902",
+    country:"UAE",
+    flag:"🇦🇪",
+    img:"https://randomuser.me/api/portraits/men/46.jpg"
+  },
 
-  if(phone){
-    login();
+  {
+    name:"Priya Sharma",
+    id:"IN330188",
+    country:"India",
+    flag:"🇮🇳",
+    img:"https://randomuser.me/api/portraits/women/50.jpg"
+  },
+
+  {
+    name:"Rahul Verma",
+    id:"IN330621",
+    country:"India",
+    flag:"🇮🇳",
+    img:"https://randomuser.me/api/portraits/men/41.jpg"
+  },
+
+  {
+    name:"Hina Malik",
+    id:"PK420188",
+    country:"Pakistan",
+    flag:"🇵🇰",
+    img:"https://randomuser.me/api/portraits/women/32.jpg"
+  },
+
+  {
+    name:"Emir Yilmaz",
+    id:"TR550921",
+    country:"Turkey",
+    flag:"🇹🇷",
+    img:"https://randomuser.me/api/portraits/men/29.jpg"
   }
 
-}
+];
 
 
-if(
-  localStorage.getItem(
-    "doelLoggedIn"
-  ) === "1"
-){
-
-  document
-    .getElementById("welcome")
-    .classList.add("hidden");
-
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-}
+let currentCountry = "All";
 
 
-/* =========================
-   LOGOUT
-========================= */
+/* ================= LOGIN ================= */
 
-function logout(){
+function login(type){
 
-  localStorage.removeItem(
-    "doelLoggedIn"
-  );
+  localStorage.setItem("doel_logged_in","yes");
+  localStorage.setItem("doel_login_type",type);
 
-  location.reload();
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("mainApp").classList.remove("hidden");
+
+  renderHome("popular");
+  renderDiscover();
+
+  toast(type + " demo login successful");
 
 }
 
 
-/* =========================
-   BOTTOM PAGE
-========================= */
+/* ================= START ================= */
 
-function showPage(page,btn){
+window.onload = function(){
 
-  document
-    .querySelectorAll(".subpage")
-    .forEach(p=>{
-      p.classList.remove("active");
-    });
+  if(localStorage.getItem("doel_logged_in") === "yes"){
 
-  document
-    .getElementById(page)
-    .classList.add("active");
+    document.getElementById("welcome").classList.add("hidden");
+    document.getElementById("mainApp").classList.remove("hidden");
 
-  document
-    .querySelectorAll(".bottom button")
-    .forEach(b=>{
-      b.classList.remove("active");
-    });
+  }
 
-  btn.classList.add("active");
+  renderHome("popular");
+  renderDiscover();
 
-}
+};
 
 
-/* =========================
-   HOME TABS
-========================= */
+/* ================= HOME TABS ================= */
 
 function homeTab(type){
 
-  document
-    .querySelectorAll(".nav-tab")
-    .forEach(b=>{
-      b.classList.remove("active");
-    });
+  document.querySelectorAll(".homeTabs button").forEach(b=>{
+    b.classList.remove("active");
+  });
 
+  if(type==="following"){
+    document.getElementById("tabFollowing").classList.add("active");
+  }
+
+  if(type==="popular"){
+    document.getElementById("tabPopular").classList.add("active");
+  }
+
+  if(type==="recent"){
+    document.getElementById("tabRecent").classList.add("active");
+  }
+
+  renderHome(type);
+}
+
+
+function renderHome(type){
+
+  const box = document.getElementById("homeContent");
 
   if(type==="following"){
 
-    document
-      .getElementById("tabFollowing")
-      .classList.add("active");
+    box.innerHTML = `
+      <div class="sectionTitle">People You Follow</div>
 
-    document
-      .getElementById("homeTitle")
-      .innerText="Following";
+      <div class="userList">
 
-    document
-      .getElementById("homeCount")
-      .innerText="People you follow";
+        ${userRow(users[0],true)}
+        ${userRow(users[1],true)}
+        ${userRow(users[4],true)}
+        ${userRow(users[7],true)}
 
-  }
+      </div>
+    `;
 
-
-  if(type==="popular"){
-
-    document
-      .getElementById("tabPopular")
-      .classList.add("active");
-
-    document
-      .getElementById("homeTitle")
-      .innerText="Popular";
-
-    document
-      .getElementById("homeCount")
-      .innerText="Popular users & rooms";
-
+    return;
   }
 
 
   if(type==="recent"){
 
-    document
-      .getElementById("tabRecent")
-      .classList.add("active");
+    box.innerHTML = `
+      <div class="sectionTitle">Recently Visited</div>
 
-    document
-      .getElementById("homeTitle")
-      .innerText="Recent";
+      <div class="grid">
 
-    document
-      .getElementById("homeCount")
-      .innerText="Recently visited";
-
-  }
-
-
-  toast(
-    type.charAt(0).toUpperCase()
-    +type.slice(1)
-    +" selected"
-  );
-
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function openSearch(){
-
-  document
-    .getElementById("modalTitle")
-    .innerText="Search Doel";
-
-
-  document
-    .getElementById("modalContent")
-    .innerHTML=`
-
-      <input
-        class="input"
-        id="searchInput"
-        placeholder="User ID / Username / Room ID">
-
-      <button
-        class="primary"
-        onclick="doSearch()">
-        🔍 Search
-      </button>
-
-      <br><br>
-
-      <div class="list-card">
-
-        <div class="avatar">
-          🔍
+        <div class="card" onclick="openRoom('Bangladesh Friends')">
+          <img class="cardImg"
+          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600">
+          <div class="cardBody">
+            <div class="name">Bangladesh Friends</div>
+            <div class="id">Room ID: 10001</div>
+            <span class="roomTag">Recently visited</span>
+          </div>
         </div>
 
-        <div class="list-info">
+        <div class="card" onclick="openRoom('Dubai Friends')">
+          <img class="cardImg"
+          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600">
+          <div class="cardBody">
+            <div class="name">Dubai Friends</div>
+            <div class="id">Room ID: 10004</div>
+            <span class="roomTag">Recently visited</span>
+          </div>
+        </div>
 
-          <b>
-            Search User or Room
-          </b>
-
-          <small>
-            Search by ID, username or room ID
-          </small>
-
+        <div class="card" onclick="openRoom('Saudi Lounge')">
+          <img class="cardImg"
+          src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600">
+          <div class="cardBody">
+            <div class="name">Saudi Lounge</div>
+            <div class="id">Room ID: 10003</div>
+            <span class="roomTag">Recently visited</span>
+          </div>
         </div>
 
       </div>
-
-  `;
-
-
-  document
-    .getElementById("modal")
-    .classList.add("show");
-
-}
-
-
-function doSearch(){
-
-  const value =
-    document
-      .getElementById("searchInput")
-      .value
-      .trim();
-
-  if(!value){
-
-    toast(
-      "Please enter User ID, Username or Room ID"
-    );
+    `;
 
     return;
   }
 
-  toast(
-    "Searching: "+value
-  );
+
+  box.innerHTML = `
+    <div class="sectionTitle">Popular Rooms & People</div>
+
+    <div class="grid">
+
+      <div class="card" onclick="openRoom('Bangladesh Friends')">
+        <img class="cardImg"
+        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600">
+
+        <div class="cardBody">
+          <div class="name">Bangladesh Friends</div>
+          <div class="id">Room ID: 10001</div>
+          <div class="country">🇧🇩 Bangladesh</div>
+          <span class="roomTag">🔥 128 online</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="openRoom('Global Talk')">
+        <img class="cardImg"
+        src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600">
+
+        <div class="cardBody">
+          <div class="name">Global Talk</div>
+          <div class="id">Room ID: 10002</div>
+          <div class="country">🌎 International</div>
+          <span class="roomTag">🔥 95 online</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="openRoom('Saudi Lounge')">
+        <img class="cardImg"
+        src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600">
+
+        <div class="cardBody">
+          <div class="name">Saudi Lounge</div>
+          <div class="id">Room ID: 10003</div>
+          <div class="country">🇸🇦 Saudi Arabia</div>
+          <span class="roomTag">🔥 76 online</span>
+        </div>
+      </div>
+
+      <div class="card" onclick="openRoom('Dubai Friends')">
+        <img class="cardImg"
+        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600">
+
+        <div class="cardBody">
+          <div class="name">Dubai Friends</div>
+          <div class="id">Room ID: 10004</div>
+          <div class="country">🇦🇪 UAE</div>
+          <span class="roomTag">🔥 64 online</span>
+        </div>
+      </div>
+
+    </div>
+  `;
 
 }
 
 
-/* =========================
-   MODALS
-========================= */
+function userRow(u,following){
+
+  return `
+    <div class="userRow" onclick="openUser('${u.id}')">
+
+      <img class="avatar" src="${u.img}">
+
+      <div class="userInfo">
+        <div class="name">${u.flag} ${u.name}</div>
+        <div class="id">ID: ${u.id}</div>
+        <div class="id">${u.country}</div>
+      </div>
+
+      <button class="followBtn"
+              onclick="event.stopPropagation();toggleFollow(this)">
+        ${following ? "Following" : "Follow"}
+      </button>
+
+    </div>
+  `;
+
+}
+
+
+/* ================= DISCOVER ================= */
+
+function renderDiscover(){
+
+  const box = document.getElementById("discoverUsers");
+
+  let list = users;
+
+  if(currentCountry !== "All"){
+    list = users.filter(u => u.country === currentCountry);
+  }
+
+  box.innerHTML = list.map(u=>userRow(u,false)).join("");
+
+}
+
+
+function countryFilter(country,button){
+
+  currentCountry = country;
+
+  document.querySelectorAll(".countryBtn")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderDiscover();
+
+}
+
+
+function filterDiscover(){
+
+  const q =
+    document.getElementById("discoverSearch")
+    .value
+    .toLowerCase();
+
+  let list = users.filter(u => {
+
+    const matchCountry =
+      currentCountry === "All" ||
+      u.country === currentCountry;
+
+    const matchSearch =
+      u.name.toLowerCase().includes(q) ||
+      u.id.toLowerCase().includes(q) ||
+      u.country.toLowerCase().includes(q);
+
+    return matchCountry && matchSearch;
+
+  });
+
+  document.getElementById("discoverUsers").innerHTML =
+    list.length
+    ? list.map(u=>userRow(u,false)).join("")
+    : `<div style="text-align:center;padding:30px;color:#888">
+        No user found
+       </div>`;
+
+}
+
+
+/* ================= PAGE NAV ================= */
+
+function showPage(page){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.add("hidden"));
+
+  document.querySelectorAll(".navBtn")
+    .forEach(b=>b.classList.remove("active"));
+
+  const map = {
+    home:"homePage",
+    voice:"voicePage",
+    discover:"discoverPage",
+    message:"messagePage",
+    profile:"profilePage"
+  };
+
+  document.getElementById(map[page])
+    .classList.remove("hidden");
+
+  document.getElementById(
+    "nav"+page.charAt(0).toUpperCase()+page.slice(1)
+  ).classList.add("active");
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function openSearch(){
+
+  openModal("search");
+
+}
+
+
+function searchAll(){
+
+  const q =
+    document.getElementById("globalSearch")
+    .value
+    .toLowerCase();
+
+  const result = users.filter(u=>
+    u.name.toLowerCase().includes(q) ||
+    u.id.toLowerCase().includes(q) ||
+    u.country.toLowerCase().includes(q)
+  );
+
+  document.getElementById("searchResults").innerHTML =
+    result.length
+    ? result.map(u=>userRow(u,false)).join("")
+    : `<p style="text-align:center;color:#888;padding:20px">
+       No result found
+       </p>`;
+
+}
+
+
+/* ================= USER ================= */
+
+function openUser(id){
+
+  const u = users.find(x=>x.id===id);
+
+  if(!u)return;
+
+  openModal("user");
+
+  document.getElementById("modalTitle").innerText = u.name;
+
+  document.getElementById("modalBody").innerHTML = `
+
+    <div style="text-align:center">
+
+      <img class="profilePhoto" src="${u.img}">
+
+      <h3 style="margin-top:8px">${u.flag} ${u.name}</h3>
+
+      <p style="color:#777;margin:5px">
+        ID: ${u.id}
+      </p>
+
+      <p style="color:#777">
+        ${u.country}
+      </p>
+
+      <button class="loginBtn phone"
+              onclick="toast('Follow request sent')">
+        Follow
+      </button>
+
+      <button class="loginBtn"
+              onclick="toast('Message opened')">
+        💬 Message
+      </button>
+
+    </div>
+  `;
+
+}
+
+
+/* ================= ROOM ================= */
+
+function openRoom(name){
+
+  document.getElementById("roomTitle").innerText = name;
+
+  document.getElementById("room").classList.add("show");
+
+  localStorage.setItem("doel_recent_room",name);
+
+}
+
+
+function closeRoom(){
+
+  document.getElementById("room").classList.remove("show");
+
+}
+
+
+function toggleMic(btn){
+
+  btn.dataset.on = btn.dataset.on === "yes" ? "no" : "yes";
+
+  if(btn.dataset.on==="yes"){
+    btn.innerText="🔇";
+    toast("Microphone muted");
+  }else{
+    btn.innerText="🎙️";
+    toast("Microphone on");
+  }
+
+}
+
+
+function toggleSpeaker(btn){
+
+  btn.dataset.on = btn.dataset.on === "yes" ? "no" : "yes";
+
+  btn.innerText =
+    btn.dataset.on==="yes" ? "🔇" : "🔊";
+
+}
+
+
+/* ================= CREATE ROOM ================= */
+
+function openCreateRoom(){
+
+  openModal("create");
+
+}
+
+
+/* ================= MODALS ================= */
 
 function openModal(type){
 
-  const title =
-    document.getElementById(
-      "modalTitle"
-    );
+  const modal = document.getElementById("modal");
 
-  const content =
-    document.getElementById(
-      "modalContent"
-    );
+  const title = document.getElementById("modalTitle");
+
+  const body = document.getElementById("modalBody");
+
+  modal.classList.remove("hidden");
 
 
-  if(type==="wallet"){
+  if(type==="search"){
 
-    title.innerText="My Wallet";
+    title.innerText="Search";
 
-    content.innerHTML=`
+    body.innerHTML=`
 
-      <div class="list-card">
-
-        <div class="avatar">
-          🪙
-        </div>
-
-        <div class="list-info">
-
-          <b>
-            32732 Coins
-          </b>
-
-          <small>
-            Available balance
-          </small>
-
-        </div>
-
+      <div class="searchBox">
+        <input id="globalSearch"
+               placeholder="User ID, name, room ID...">
+        <button onclick="searchAll()">⌕</button>
       </div>
 
-      <button
-        class="primary"
-        onclick="toast('Recharge system coming next')">
-        ➕ Recharge Coins
+      <div id="searchResults"
+           style="margin-top:12px"></div>
+    `;
+
+    return;
+  }
+
+
+  if(type==="create"){
+
+    title.innerText="Create Room";
+
+    body.innerHTML=`
+
+      <input id="newRoomName"
+             placeholder="Room name"
+             style="width:100%;height:45px;padding:10px;border:1px solid #ddd;border-radius:12px">
+
+      <button class="loginBtn phone"
+              onclick="createRoom()">
+        🎙️ Create Voice Room
       </button>
 
     `;
 
+    return;
   }
 
 
   if(type==="gift"){
 
-    title.innerText="Gift Center";
+    title.innerText="Send Gift";
 
-    const gifts=[
-      ["🌹","Rose",10],
-      ["❤️","Heart",50],
-      ["🥚","Golden Egg",100],
-      ["💎","Diamond",500],
-      ["🏎️","Super Car",1000],
-      ["🪙","Gold Bar",5000],
-      ["👑","Crown",10000],
-      ["🏰","Castle",50000]
-    ];
+    body.innerHTML=`
 
+      <div class="giftGrid">
 
-    content.innerHTML=`
+        <div class="gift" onclick="sendGift('Golden Veil',100)">
+          <div class="giftIcon">🌹</div>
+          <small>Golden Veil</small>
+          <div class="giftPrice">100 coins</div>
+        </div>
 
-      <div class="menu-grid">
+        <div class="gift" onclick="sendGift('Gold Bar',500)">
+          <div class="giftIcon">🪙</div>
+          <small>Gold Bar</small>
+          <div class="giftPrice">500 coins</div>
+        </div>
 
-        ${gifts.map(g=>`
+        <div class="gift" onclick="sendGift('Golden Egg',1000)">
+          <div class="giftIcon">🥚</div>
+          <small>Golden Egg</small>
+          <div class="giftPrice">1000 coins</div>
+        </div>
 
-          <div
-            class="menu-item"
-            onclick="sendGift('${g[1]}',${g[2]})">
+        <div class="gift" onclick="sendGift('Supercar',5000)">
+          <div class="giftIcon">🚗</div>
+          <small>Supercar</small>
+          <div class="giftPrice">5000 coins</div>
+        </div>
 
-            <div>
-              ${g[0]}
-            </div>
+        <div class="gift" onclick="sendGift('Money Machine',8000)">
+          <div class="giftIcon">💰</div>
+          <small>Money Machine</small>
+          <div class="giftPrice">8000 coins</div>
+        </div>
 
-            ${g[1]}
-            <br>
+        <div class="gift" onclick="sendGift('Golden Ship',10000)">
+          <div class="giftIcon">🚢</div>
+          <small>Golden Ship</small>
+          <div class="giftPrice">10000 coins</div>
+        </div>
 
-            <b>
-              🪙 ${g[2]}
-            </b>
+        <div class="gift" onclick="sendGift('Cash Cow',20000)">
+          <div class="giftIcon">🐄</div>
+          <small>Cash Cow</small>
+          <div class="giftPrice">20000 coins</div>
+        </div>
 
-          </div>
-
-        `).join("")}
+        <div class="gift" onclick="sendGift('Voucher',300)">
+          <div class="giftIcon">🎟️</div>
+          <small>Voucher</small>
+          <div class="giftPrice">300 coins</div>
+        </div>
 
       </div>
+    `;
+
+    return;
+  }
+
+
+  if(type==="wallet"){
+
+    title.innerText="Wallet";
+
+    body.innerHTML=`
+
+      <div class="banner">
+        <h2>💰 32,732 Coins</h2>
+        <p>Demo wallet balance</p>
+      </div>
+
+      <button class="loginBtn phone"
+              onclick="toast('Recharge page opened')">
+        Recharge Coins
+      </button>
+
+      <button class="loginBtn"
+              onclick="toast('Transaction history opened')">
+        Transaction History
+      </button>
 
     `;
 
+    return;
   }
 
 
@@ -1846,579 +1818,430 @@ function openModal(type){
 
     title.innerText="Store";
 
-    content.innerHTML=`
+    body.innerHTML=`
 
-      <div class="menu-grid">
+      <div class="menuGrid">
 
-        <div class="menu-item">
-          <div>🚗</div>
-          Vehicles
+        <div class="menuItem" onclick="toast('Vehicles opened')">
+          <div>🚗</div>Vehicles
         </div>
 
-        <div class="menu-item">
-          <div>🖼️</div>
-          Frames
+        <div class="menuItem" onclick="toast('Frames opened')">
+          <div>🖼️</div>Frames
         </div>
 
-        <div class="menu-item">
-          <div>💍</div>
-          Rings
+        <div class="menuItem" onclick="toast('Themes opened')">
+          <div>🎨</div>Themes
         </div>
 
-        <div class="menu-item">
-          <div>🎨</div>
-          Themes
+        <div class="menuItem" onclick="toast('Rings opened')">
+          <div>💍</div>Rings
         </div>
 
-        <div class="menu-item">
-          <div>🆔</div>
-          Custom ID
+        <div class="menuItem" onclick="toast('Custom ID opened')">
+          <div>🆔</div>Custom ID
         </div>
 
-        <div class="menu-item">
-          <div>✨</div>
-          Effects
+        <div class="menuItem" onclick="toast('Props opened')">
+          <div>🎁</div>Props
         </div>
 
       </div>
-
     `;
-
-  }
-
-
-  if(type==="vip"){
-
-    title.innerText="VIP / SVIP";
-
-    content.innerHTML=`
-
-      <div class="list-card">
-
-        <div class="avatar">
-          💎
-        </div>
-
-        <div class="list-info">
-
-          <b>VIP</b>
-
-          <small>
-            Special gifts and privileges
-          </small>
-
-        </div>
-
-      </div>
-
-
-      <div class="list-card">
-
-        <div class="avatar">
-          👑
-        </div>
-
-        <div class="list-info">
-
-          <b>SVIP</b>
-
-          <small>
-            Premium room privileges
-          </small>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="cp"){
-
-    title.innerText="Love / CP";
-
-    content.innerHTML=`
-
-      <div class="list-card">
-
-        <div class="avatar">
-          ❤️
-        </div>
-
-        <div class="list-info">
-
-          <b>CP Couple</b>
-
-          <small>
-            Create a couple and build CP level
-          </small>
-
-        </div>
-
-      </div>
-
-      <button
-        class="primary"
-        onclick="toast('CP proposal opened')">
-        ❤️ Propose
-      </button>
-
-    `;
-
-  }
-
-
-  if(type==="family"){
-
-    title.innerText="Family";
-
-    content.innerHTML=`
-
-      <div class="list-card">
-
-        <div class="avatar">
-          👨‍👩‍👧
-        </div>
-
-        <div class="list-info">
-
-          <b>My Family</b>
-
-          <small>
-            Create or join a Doel family
-          </small>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="level"){
-
-    title.innerText="My Level";
-
-    content.innerHTML=`
-
-      <div class="list-card">
-
-        <div class="avatar">
-          ⭐
-        </div>
-
-        <div class="list-info">
-
-          <b>LV 1</b>
-
-          <small>
-            XP 0 / 100
-          </small>
-
-        </div>
-
-      </div>
-
-      <div class="list-card">
-
-        <div class="list-info">
-
-          <b>
-            Level Rewards
-          </b>
-
-          <small>
-            Frames, badges, vehicles and effects.
-          </small>
-
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="props"){
-
-    title.innerText="Prop Warehouse";
-
-    content.innerHTML=`
-
-      <div class="menu-grid">
-
-        <div class="menu-item">
-          <div>🎨</div>
-          Themes
-        </div>
-
-        <div class="menu-item">
-          <div>🆔</div>
-          Custom ID
-        </div>
-
-        <div class="menu-item">
-          <div>💍</div>
-          Ring
-        </div>
-
-        <div class="menu-item">
-          <div>🖼️</div>
-          Frame
-        </div>
-
-        <div class="menu-item">
-          <div>✨</div>
-          Entry Effect
-        </div>
-
-        <div class="menu-item">
-          <div>🎁</div>
-          Gift Effect
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-
-  if(type==="invite"){
-
-    title.innerText="Invite & Earn";
-
-    content.innerHTML=`
-
-      <div class="list-card">
-
-        <div class="avatar">
-          🎁
-        </div>
-
-        <div class="list-info">
-
-          <b>
-            Your Invite Code
-          </b>
-
-          <small>
-            DOEL10000001
-          </small>
-
-        </div>
-
-      </div>
-
-      <button
-        class="primary"
-        onclick="toast('Invite code copied')">
-        📋 Copy Invite Code
-      </button>
-
-    `;
-
-  }
-
-
-  if(type==="settings"){
-
-    title.innerText="Settings";
-
-    content.innerHTML=`
-
-      <div class="list-card">
-
-        <div class="avatar">
-          🌐
-        </div>
-
-        <div class="list-info">
-
-          <b>
-            Language
-          </b>
-
-          <small>
-            English
-          </small>
-
-        </div>
-
-      </div>
-
-
-      <div class="list-card">
-
-        <div class="avatar">
-          🔒
-        </div>
-
-        <div class="list-info">
-
-          <b>
-            Privacy
-          </b>
-
-          <small>
-            Account and privacy settings
-          </small>
-
-        </div>
-
-      </div>
-
-
-      <button
-        class="primary"
-        onclick="logout()">
-        Logout
-      </button>
-
-    `;
-
-  }
-
-
-  if(type==="create"){
-
-    title.innerText="Create Voice Room";
-
-    content.innerHTML=`
-
-      <input
-        class="input"
-        id="newRoomName"
-        placeholder="Room name">
-
-      <input
-        class="input"
-        id="newRoomTopic"
-        placeholder="Room topic">
-
-      <button
-        class="primary"
-        onclick="createRoom()">
-        🎤 Create My Room
-      </button>
-
-    `;
-
-  }
-
-
-  document
-    .getElementById("modal")
-    .classList.add("show");
-
-}
-
-
-/* =========================
-   MODAL CLOSE
-========================= */
-
-function hideModal(){
-
-  document
-    .getElementById("modal")
-    .classList
-    .remove("show");
-
-}
-
-
-function closeModal(e){
-
-  if(
-    e.target.id==="modal"
-  ){
-    hideModal();
-  }
-
-}
-
-
-/* =========================
-   SEND GIFT
-========================= */
-
-function sendGift(name,price){
-
-  toast(
-    "🎁 "+name+" sent!"
-  );
-
-}
-
-
-/* =========================
-   CREATE ROOM
-========================= */
-
-function createRoom(){
-
-  const name =
-    document
-      .getElementById("newRoomName")
-      .value
-      .trim();
-
-
-  if(!name){
-
-    toast(
-      "Enter a room name"
-    );
 
     return;
   }
 
 
-  hideModal();
+  const titles = {
+
+    vip:"VIP / SVIP",
+    cp:"CP / Couple",
+    family:"Family",
+    level:"Level & Rewards",
+    props:"Prop Warehouse",
+    invite:"Invite & Rewards",
+    ranking:"Ranking",
+    events:"Events",
+    history:"History",
+    notifications:"Notifications",
+    settings:"Settings"
+
+  };
+
+
+  title.innerText = titles[type] || "Doel";
+
+
+  if(type==="vip"){
+
+    body.innerHTML=`
+
+      <div class="menuGrid">
+
+        <div class="menuItem">
+          <div>👑</div>VIP 1
+        </div>
+
+        <div class="menuItem">
+          <div>👑</div>VIP 2
+        </div>
+
+        <div class="menuItem">
+          <div>👑</div>VIP 3
+        </div>
+
+        <div class="menuItem">
+          <div>💎</div>SVIP 1
+        </div>
+
+        <div class="menuItem">
+          <div>💎</div>SVIP 2
+        </div>
+
+        <div class="menuItem">
+          <div>💎</div>SVIP 3
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if(type==="cp"){
+
+    body.innerHTML=`
+
+      <div class="banner">
+        <h2>💞 Find Your CP</h2>
+        <p>Build your couple level and unlock exclusive effects.</p>
+      </div>
+
+      <button class="loginBtn phone"
+              onclick="toast('CP proposal sent')">
+        💞 Send CP Proposal
+      </button>
+
+    `;
+
+    return;
+  }
+
+
+  if(type==="family"){
+
+    body.innerHTML=`
+
+      <div class="banner">
+        <h2>👨‍👩‍👧 Doel Family</h2>
+        <p>Family members: 24</p>
+      </div>
+
+      <button class="loginBtn phone"
+              onclick="toast('Family page opened')">
+        Family Center
+      </button>
+    `;
+
+    return;
+  }
+
+
+  if(type==="level"){
+
+    body.innerHTML=`
+
+      <div class="banner">
+        <h2>🏆 Level 18</h2>
+        <p>XP: 18,420 / 20,000</p>
+      </div>
+
+      <button class="loginBtn"
+              onclick="toast('Rewards opened')">
+        View Level Rewards
+      </button>
+
+    `;
+
+    return;
+  }
+
+
+  if(type==="props"){
+
+    body.innerHTML=`
+
+      <div class="menuGrid">
+
+        <div class="menuItem"><div>🖼️</div>Frame</div>
+        <div class="menuItem"><div>🚗</div>Vehicle</div>
+        <div class="menuItem"><div>💍</div>Ring</div>
+        <div class="menuItem"><div>🎨</div>Theme</div>
+        <div class="menuItem"><div>🆔</div>Custom ID</div>
+        <div class="menuItem"><div>✨</div>Entry Effect</div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if(type==="invite"){
+
+    body.innerHTML=`
+
+      <div class="banner">
+        <h2>🤝 Invite Friends</h2>
+        <p>Your invite code: DOEL700001</p>
+      </div>
+
+      <button class="loginBtn phone"
+              onclick="toast('Invite code copied')">
+        Copy Invite Code
+      </button>
+
+    `;
+
+    return;
+  }
+
+
+  if(type==="ranking"){
+
+    body.innerHTML=`
+
+      <div class="userRow">
+        🥇 &nbsp; Rahim Hasan
+        <span style="margin-left:auto">98,200</span>
+      </div>
+
+      <div class="userRow">
+        🥈 &nbsp; Sara Khan
+        <span style="margin-left:auto">86,500</span>
+      </div>
+
+      <div class="userRow">
+        🥉 &nbsp; Arif Khan
+        <span style="margin-left:auto">72,300</span>
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  if(type==="events"){
+
+    body.innerHTML=`
+
+      <div class="banner">
+        <h2>🎉 Doel Events</h2>
+        <p>Daily voice room activities and community events.</p>
+      </div>
+
+      <button class="loginBtn phone"
+              onclick="toast('Event opened')">
+        View Event
+      </button>
+    `;
+
+    return;
+  }
+
+
+  if(type==="history"){
+
+    body.innerHTML=`
+
+      <div class="userRow">
+        🕘 Bangladesh Friends
+        <span style="margin-left:auto">Today</span>
+      </div>
+
+      <div class="userRow">
+        🕘 Dubai Friends
+        <span style="margin-left:auto">Yesterday</span>
+      </div>
+
+      <div class="userRow">
+        🕘 Saudi Lounge
+        <span style="margin-left:auto">2 days ago</span>
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  if(type==="notifications"){
+
+    body.innerHTML=`
+
+      <div class="userRow">🎁 Rahim sent you a gift</div>
+      <div class="userRow">👋 Sara followed you</div>
+      <div class="userRow">🎙️ You joined Bangladesh Friends</div>
+
+    `;
+
+    return;
+  }
+
+
+  if(type==="settings"){
+
+    body.innerHTML=`
+
+      <div class="menuGrid">
+
+        <div class="menuItem"
+             onclick="toast('Language settings')">
+          <div>🌐</div>Language
+        </div>
+
+        <div class="menuItem"
+             onclick="toast('Privacy settings')">
+          <div>🔒</div>Privacy
+        </div>
+
+        <div class="menuItem"
+             onclick="toast('Notification settings')">
+          <div>🔔</div>Notifications
+        </div>
+
+        <div class="menuItem"
+             onclick="toast('Customer service')">
+          <div>🎧</div>Customer Service
+        </div>
+
+        <div class="menuItem"
+             onclick="toast('Feedback opened')">
+          <div>📝</div>Feedback
+        </div>
+
+        <div class="menuItem"
+             onclick="logout()">
+          <div>🚪</div>Logout
+        </div>
+
+      </div>
+    `;
+
+    return;
+  }
+
+
+  body.innerHTML=`
+    <div class="banner">
+      <h2>Doel</h2>
+      <p>This section is ready for the next development stage.</p>
+    </div>
+  `;
+
+}
+
+
+/* ================= GIFT ================= */
+
+function sendGift(name,price){
+
+  closeModal();
+
+  toast("🎁 "+name+" sent! Demo -" + price + " coins");
+
+}
+
+
+/* ================= CREATE ================= */
+
+function createRoom(){
+
+  const name =
+    document.getElementById("newRoomName").value.trim();
+
+  if(!name){
+
+    toast("Please enter room name");
+    return;
+
+  }
+
+  closeModal();
 
   openRoom(name);
 
 }
 
 
-/* =========================
-   OPEN ROOM
-========================= */
+/* ================= FOLLOW ================= */
 
-function openRoom(name){
+function toggleFollow(btn){
 
-  document
-    .getElementById("roomTitle")
-    .innerText=name;
+  if(btn.innerText==="Follow"){
 
+    btn.innerText="Following";
+    toast("Following");
 
-  const randomId =
-    Math.floor(
-      10000+
-      Math.random()*89999
-    );
+  }else{
 
+    btn.innerText="Follow";
+    toast("Unfollowed");
 
-  document
-    .getElementById("roomId")
-    .innerText=
-      "Room ID: "+randomId;
-
-
-  document
-    .getElementById("roomOverlay")
-    .style.display="flex";
+  }
 
 }
 
 
-function closeRoom(){
+/* ================= MODAL CLOSE ================= */
 
-  document
-    .getElementById("roomOverlay")
-    .style.display="none";
+function closeModal(){
 
-}
-
-
-/* =========================
-   ROOM CHAT
-========================= */
-
-function sendRoomMessage(){
-
-  const input =
-    document
-      .getElementById("roomMessage");
-
-  const msg =
-    input.value.trim();
-
-
-  if(!msg)return;
-
-
-  const chat =
-    document
-      .getElementById("roomChat");
-
-
-  const div =
-    document.createElement("div");
-
-
-  div.className="chat-msg";
-
-  div.innerText=
-    "You: "+msg;
-
-
-  chat.appendChild(div);
-
-  input.value="";
-
-  chat.scrollTop=
-    chat.scrollHeight;
+  document.getElementById("modal")
+    .classList.add("hidden");
 
 }
 
 
-/* =========================
-   TOAST / TIP
-========================= */
+function closeModalOutside(event){
+
+  if(event.target.id==="modal"){
+    closeModal();
+  }
+
+}
+
+
+/* ================= TOAST ================= */
+
+let toastTimer;
 
 function toast(message){
 
-  const old =
-    document.getElementById(
-      "doelToast"
-    );
-
-  if(old){
-    old.remove();
-  }
-
-
-  const t =
-    document.createElement("div");
-
-
-  t.id="doelToast";
+  const t=document.getElementById("toast");
 
   t.innerText=message;
+  t.style.display="block";
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    t.style.display="none";
+  },1800);
+
+}
 
 
-  t.style.position="fixed";
-  t.style.bottom="85px";
-  t.style.left="50%";
-  t.style.transform=
-    "translateX(-50%)";
-  t.style.background="#172033";
-  t.style.color="white";
-  t.style.padding="11px 17px";
-  t.style.borderRadius="14px";
-  t.style.fontSize="12px";
-  t.style.zIndex="9999";
-  t.style.boxShadow=
-    "0 8px 25px #0004";
+/* ================= LOGOUT ================= */
 
+function logout(){
 
-  document.body.appendChild(t);
+  localStorage.removeItem("doel_logged_in");
 
-
-  setTimeout(()=>{
-
-    if(t){
-      t.remove();
-    }
-
-  },2200);
+  location.reload();
 
 }
 
