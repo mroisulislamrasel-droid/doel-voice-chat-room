@@ -1,132 +1,950 @@
-/* =====================================================
-ROOM DATA
-===================================================== */
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR Chat</title>
 
-/*
-  POPULAR
-  এখানে আপনার মূল Popular rooms থাকবে।
-*/
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f6fa;
+  color:#222;
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.top-tabs{
+  height:58px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  gap:18px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid #eee;
+}
+
+.tab{
+  font-size:15px;
+  font-weight:600;
+  color:#999;
+  padding:18px 0;
+}
+
+.tab.active{
+  color:#111;
+  border-bottom:3px solid #111;
+}
+
+.top-icon{
+  margin-left:auto;
+  display:flex;
+  gap:10px;
+}
+
+.icon-btn{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#f2f3f7;
+  font-size:19px;
+}
+
+.create-btn{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#111;
+  color:#fff;
+  font-size:23px;
+}
+
+/* EVENT */
+
+.event-slider{
+  margin:12px;
+  height:130px;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+}
+
+.slide{
+  height:100%;
+  display:none;
+  padding:22px;
+  color:#fff;
+  background:linear-gradient(135deg,#6c5ce7,#a855f7);
+}
+
+.slide.active{
+  display:block;
+}
+
+.slide h2{
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+.slide p{
+  font-size:13px;
+  opacity:.9;
+}
+
+.dots{
+  position:absolute;
+  bottom:10px;
+  left:20px;
+  display:flex;
+  gap:5px;
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ffffff88;
+}
+
+.dot.active{
+  background:#fff;
+  width:18px;
+  border-radius:5px;
+}
+
+/* SECTION */
+
+.section{
+  padding:5px 12px;
+}
+
+.section-title{
+  font-size:18px;
+  font-weight:700;
+  margin:10px 0;
+}
+
+.category-row{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.category{
+  min-width:105px;
+  background:#fff;
+  border-radius:15px;
+  padding:15px 10px;
+  text-align:center;
+  box-shadow:0 2px 8px #00000008;
+}
+
+.category-icon{
+  font-size:27px;
+  margin-bottom:7px;
+}
+
+.category-name{
+  font-size:12px;
+  font-weight:600;
+}
+
+/* ROOM CARD */
+
+.rooms{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding-bottom:90px;
+}
+
+.room-card{
+  background:#fff;
+  border-radius:16px;
+  padding:12px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  box-shadow:0 2px 8px #00000008;
+  cursor:pointer;
+}
+
+.room-avatar{
+  width:58px;
+  height:58px;
+  border-radius:16px;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  flex-shrink:0;
+}
+
+.room-info{
+  flex:1;
+  min-width:0;
+}
+
+.room-name{
+  font-weight:700;
+  font-size:15px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.room-id{
+  font-size:11px;
+  color:#999;
+  margin-top:4px;
+}
+
+.room-meta{
+  font-size:12px;
+  color:#777;
+  margin-top:5px;
+}
+
+.room-right{
+  text-align:center;
+}
+
+.user-count{
+  font-size:12px;
+  color:#777;
+  margin-bottom:5px;
+}
+
+.gift{
+  font-size:20px;
+}
+
+/* EMPTY */
+
+.empty{
+  background:#fff;
+  border-radius:18px;
+  padding:45px 20px;
+  text-align:center;
+  color:#999;
+}
+
+.empty-icon{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.empty h3{
+  color:#444;
+  margin-bottom:7px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:430px;
+  height:68px;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top:1px solid #eee;
+  z-index:30;
+}
+
+.nav-item{
+  text-align:center;
+  color:#999;
+  font-size:11px;
+}
+
+.nav-item span{
+  display:block;
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav-item.active{
+  color:#111;
+}
+
+/* SEARCH MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#f5f6fa;
+  z-index:100;
+  display:none;
+  max-width:430px;
+  margin:auto;
+}
+
+.modal.show{
+  display:block;
+}
+
+.search-head{
+  height:60px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  gap:10px;
+}
+
+.search-input{
+  flex:1;
+  height:40px;
+  border:0;
+  background:#f1f2f6;
+  border-radius:20px;
+  padding:0 16px;
+  outline:none;
+  font-size:14px;
+}
+
+.close{
+  font-size:25px;
+  background:none;
+}
+
+.search-results{
+  padding:12px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:85px;
+  transform:translateX(-50%);
+  background:#222;
+  color:#fff;
+  padding:11px 18px;
+  border-radius:22px;
+  font-size:13px;
+  display:none;
+  z-index:200;
+}
+
+/* ================= ROOM PAGE ================= */
+
+.room-page{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#151527,#25243f);
+  color:#fff;
+  z-index:150;
+  display:none;
+  max-width:430px;
+  margin:auto;
+  overflow:hidden;
+}
+
+.room-page.show{
+  display:block;
+}
+
+.room-top{
+  height:65px;
+  display:flex;
+  align-items:center;
+  padding:0 13px;
+  gap:10px;
+}
+
+.back-btn{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#ffffff18;
+  color:#fff;
+  font-size:22px;
+}
+
+.room-title-area{
+  flex:1;
+  min-width:0;
+}
+
+.room-title{
+  font-size:16px;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.room-sub{
+  font-size:11px;
+  color:#aaa;
+  margin-top:3px;
+}
+
+.room-menu{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#ffffff18;
+  color:#fff;
+  font-size:20px;
+}
+
+/* ROOM NOTICE */
+
+.room-notice{
+  margin:5px 14px 15px;
+  padding:10px 13px;
+  border-radius:13px;
+  background:#ffffff0e;
+  color:#ccc;
+  font-size:11px;
+  text-align:center;
+}
+
+/* SEATS */
+
+.seats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px 8px;
+  padding:15px 14px;
+  max-height:360px;
+  overflow-y:auto;
+}
+
+.seat{
+  text-align:center;
+}
+
+.seat-avatar{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#ff8a65,#ffca28);
+  font-size:28px;
+  border:2px solid #ffffff22;
+  position:relative;
+}
+
+.mic{
+  position:absolute;
+  right:-2px;
+  bottom:-2px;
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  background:#4caf50;
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.seat-name{
+  font-size:10px;
+  color:#ddd;
+  margin-top:7px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+/* CHAT */
+
+.chat-area{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:82px;
+  height:180px;
+  padding:10px 14px;
+  overflow-y:auto;
+}
+
+.chat-msg{
+  margin:6px 0;
+  font-size:12px;
+  color:#ddd;
+}
+
+.chat-msg b{
+  color:#fff;
+}
+
+.system-msg{
+  color:#aaa;
+}
+
+/* ROOM BOTTOM */
+
+.room-bottom{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:78px;
+  background:#11111d;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px;
+}
+
+.room-control{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#ffffff12;
+  color:#fff;
+  font-size:20px;
+}
+
+.room-control.active{
+  background:#fff;
+  color:#111;
+}
+
+.chat-input{
+  flex:1;
+  height:42px;
+  border-radius:22px;
+  border:0;
+  background:#ffffff12;
+  color:#fff;
+  padding:0 15px;
+  outline:none;
+}
+
+.gift-btn{
+  background:linear-gradient(135deg,#ff4081,#ff9800);
+}
+
+/* GIFT POPUP */
+
+.gift-panel{
+  position:absolute;
+  bottom:78px;
+  left:10px;
+  right:10px;
+  background:#222136;
+  border-radius:20px;
+  padding:15px;
+  display:none;
+}
+
+.gift-panel.show{
+  display:block;
+}
+
+.gifts{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.gift-item{
+  background:#ffffff0b;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  color:#fff;
+}
+
+.gift-item div{
+  font-size:27px;
+}
+
+.gift-item small{
+  font-size:10px;
+  color:#bbb;
+}
+
+/* FOLLOW BUTTON */
+
+.follow-room{
+  background:#ff4f8b;
+  color:#fff;
+  border-radius:18px;
+  padding:7px 12px;
+  font-size:11px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP -->
+<div class="top-tabs">
+  <div class="tab" onclick="changeHomeTab('following',this)">Following</div>
+  <div class="tab active" onclick="changeHomeTab('popular',this)">Popular</div>
+  <div class="tab" onclick="changeHomeTab('recent',this)">Recent</div>
+
+  <div class="top-icon">
+    <button class="icon-btn" onclick="openSearch()">⌕</button>
+    <button class="create-btn" onclick="createRoom()">+</button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="homePage">
+
+  <div class="event-slider">
+
+    <div class="slide active">
+      <h2>Light Up The World</h2>
+      <p>Join the room and make new friends.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Recharge Bonus</h2>
+      <p>Special rewards are waiting for you.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Golden Gift</h2>
+      <p>Send beautiful gifts to your friends.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Charm Festival</h2>
+      <p>Enjoy the festival together.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Friendship Week</h2>
+      <p>Meet people from around the world.</p>
+    </div>
+
+    <div class="slide">
+      <h2>Lucky Gift</h2>
+      <p>Lucky moments are coming.</p>
+    </div>
+
+    <div class="slide">
+      <h2>MR Chat Festival</h2>
+      <p>Let's talk, laugh and enjoy together.</p>
+    </div>
+
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Ranking</div>
+
+    <div class="category-row">
+
+      <div class="category" onclick="showToast('Contribution Ranking')">
+        <div class="category-icon">💎</div>
+        <div class="category-name">Contribution</div>
+      </div>
+
+      <div class="category" onclick="showToast('Charm Ranking')">
+        <div class="category-icon">💖</div>
+        <div class="category-name">Charm</div>
+      </div>
+
+      <div class="category" onclick="showToast('Room Ranking')">
+        <div class="category-icon">🏆</div>
+        <div class="category-name">Room</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title" id="listTitle">Popular Rooms</div>
+    <div class="rooms" id="roomsList"></div>
+  </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+
+  <div class="nav-item active">
+    <span>⌂</span>
+    Home
+  </div>
+
+  <div class="nav-item">
+    <span>◉</span>
+    Discover
+  </div>
+
+  <div class="nav-item">
+    <span>🎙</span>
+    Voice
+  </div>
+
+  <div class="nav-item">
+    <span>💬</span>
+    Message
+  </div>
+
+  <div class="nav-item">
+    <span>👤</span>
+    Profile
+  </div>
+
+</div>
+
+<!-- SEARCH -->
+<div class="modal" id="searchModal">
+
+  <div class="search-head">
+    <button class="close" onclick="closeSearch()">‹</button>
+
+    <input
+      class="search-input"
+      id="searchInput"
+      placeholder="Search room or ID..."
+      oninput="searchRooms()"
+    >
+  </div>
+
+  <div class="search-results">
+    <div class="rooms" id="searchResults"></div>
+  </div>
+
+</div>
+
+<!-- REAL ROOM PAGE -->
+<div class="room-page" id="roomPage">
+
+  <div class="room-top">
+
+    <button class="back-btn" onclick="leaveRoom()">‹</button>
+
+    <div class="room-title-area">
+      <div class="room-title" id="roomTitle">Room</div>
+      <div class="room-sub" id="roomSub">ID: MR10001</div>
+    </div>
+
+    <button class="follow-room" id="followButton" onclick="toggleFollowCurrent()">
+      Follow
+    </button>
+
+    <button class="room-menu" onclick="showToast('Room Menu')">
+      ⋮
+    </button>
+
+  </div>
+
+  <div class="room-notice">
+    🎙 Welcome to the voice room — Be friendly and respectful.
+  </div>
+
+  <div class="seats" id="seats"></div>
+
+  <div class="chat-area" id="chatArea">
+
+    <div class="chat-msg system-msg">
+      Welcome to the room.
+    </div>
+
+    <div class="chat-msg">
+      <b>System:</b> You joined the room.
+    </div>
+
+  </div>
+
+  <div class="gift-panel" id="giftPanel">
+
+    <div class="gifts">
+
+      <button class="gift-item" onclick="sendGift('🌹')">
+        <div>🌹</div>
+        <small>Rose</small>
+      </button>
+
+      <button class="gift-item" onclick="sendGift('❤️')">
+        <div>❤️</div>
+        <small>Love</small>
+      </button>
+
+      <button class="gift-item" onclick="sendGift('🚀')">
+        <div>🚀</div>
+        <small>Rocket</small>
+      </button>
+
+      <button class="gift-item" onclick="sendGift('🎁')">
+        <div>🎁</div>
+        <small>Gift</small>
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="room-bottom">
+
+    <button
+      class="room-control active"
+      id="micButton"
+      onclick="toggleMic()"
+    >🎙</button>
+
+    <input
+      class="chat-input"
+      id="chatInput"
+      placeholder="Say something..."
+      onkeydown="chatKey(event)"
+    >
+
+    <button
+      class="room-control"
+      onclick="toggleGift()"
+    >🎁</button>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* =========================
+   POPULAR ROOMS
+========================= */
 
 const popularRooms = [
 
   {
     id:"MR10001",
-    owner:"RAKOB+FULL",
     name:"RAKOB+FULL",
+    owner:"RAKOB+FULL",
     country:"🇲🇾",
     users:16,
-    photo:"photo1",
-    gift:"🚀"
+    emoji:"🚀"
   },
 
   {
     id:"MR10002",
-    owner:"মানুষ বড় বেইমান",
     name:"মানুষ বড় বেইমান",
+    owner:"মানুষ বড় বেইমান",
     country:"🇧🇩",
     users:19,
-    photo:"photo2",
-    gift:"🚀"
+    emoji:"🚀"
   },
 
   {
     id:"MR10003",
-    owner:"Ms Asif",
     name:"ভালোবাসার মানুষ",
+    owner:"Ms Asif",
     country:"🇧🇩",
     users:4,
-    photo:"photo3",
-    gift:"🚀"
+    emoji:"🚀"
   },
 
   {
     id:"MR10004",
-    owner:"Imran SK",
     name:"IMRAN SK",
+    owner:"Imran SK",
     country:"🇮🇳",
     users:4,
-    photo:"photo4",
-    gift:"🚀"
+    emoji:"🚀"
   },
 
   {
     id:"MR10005",
-    owner:"MR Hridoy",
     name:"MR Hridoy",
+    owner:"MR Hridoy",
     country:"🇦🇪",
     users:2,
-    photo:"photo5",
-    gift:"🚀"
+    emoji:"🚀"
   },
 
   {
     id:"MR10006",
-    owner:"Mafiya",
     name:"প্রেম নগর হাইস",
+    owner:"Mafiya",
     country:"🇸🇦",
     users:6,
-    photo:"photo6",
-    gift:"🚀"
+    emoji:"🚀"
   },
 
   {
     id:"MR10007",
-    owner:"New World",
     name:"সবাই আসুন",
+    owner:"New World",
     country:"🇧🇩",
     users:8,
-    photo:"photo7",
-    gift:"🎁"
+    emoji:"🎁"
   },
 
   {
     id:"MR10008",
-    owner:"Feel",
     name:"Feel Room",
+    owner:"Feel",
     country:"🇦🇪",
     users:12,
-    photo:"photo8",
-    gift:"🚀"
+    emoji:"🚀"
   }
 
 ];
 
 
-/* =====================================================
-FOLLOWING
-===================================================== */
-
-/*
-  শুরুতে কোনো Follow করা Room নেই।
-
-  এখানে শুধু User যেগুলো Follow করবে
-  সেগুলো JavaScript দিয়ে যোগ হবে।
-*/
+/* =========================
+   FOLLOWING
+========================= */
 
 let followingRooms =
-  JSON.parse(
-    localStorage.getItem("mrchat_following")
-  ) || [];
+  JSON.parse(localStorage.getItem("mrchat_following") || "[]");
 
 
-/* =====================================================
-RECENT
-===================================================== */
-
-/*
-  User যেসব Room Visit করবে
-  শুধু সেগুলো এখানে থাকবে।
-*/
+/* =========================
+   RECENT
+========================= */
 
 let recentRooms =
-  JSON.parse(
-    localStorage.getItem("mrchat_recent")
-  ) || [];
+  JSON.parse(localStorage.getItem("mrchat_recent") || "[]");
 
 
-/* =====================================================
-SAVE FOLLOWING
-===================================================== */
+let currentTab = "popular";
+let currentRoom = null;
+
+
+/* =========================
+   SAVE
+========================= */
 
 function saveFollowing(){
 
@@ -138,10 +956,6 @@ function saveFollowing(){
 }
 
 
-/* =====================================================
-SAVE RECENT
-===================================================== */
-
 function saveRecent(){
 
   localStorage.setItem(
@@ -152,9 +966,9 @@ function saveRecent(){
 }
 
 
-/* =====================================================
-GET ALL AVAILABLE ROOMS
-===================================================== */
+/* =========================
+   ALL ROOMS
+========================= */
 
 function getAllRooms(){
 
@@ -162,516 +976,470 @@ function getAllRooms(){
     ...popularRooms,
     ...followingRooms,
     ...recentRooms
-  ];
-
-}
-
-
-/* =====================================================
-FIND ROOM
-===================================================== */
-
-function findRoom(id){
-
-  return getAllRooms().find(
-    room => room.id === id
+  ].filter(
+    (room,index,array)=>
+      array.findIndex(x=>x.id===room.id)===index
   );
 
 }
 
 
-/* =====================================================
-HOME TAB
-===================================================== */
+function findRoom(id){
 
-let currentHomeTab = "popular";
-
-
-function changeHomeTab(tab,button){
-
-  currentHomeTab = tab;
-
-  document
-    .querySelectorAll(".tab")
-    .forEach(x=>{
-      x.classList.remove("active");
-    });
-
-  button.classList.add("active");
-
-
-  const title =
-    document.getElementById("homeRoomTitle");
-
-
-  if(tab === "following"){
-
-    title.innerText = "Following";
-
-  }
-
-  else if(tab === "recent"){
-
-    title.innerText = "Recent";
-
-  }
-
-  else{
-
-    title.innerText = "Popular";
-
-  }
-
-
-  renderRooms(tab);
+  return getAllRooms().find(room=>room.id===id);
 
 }
 
 
-/* =====================================================
-GET ROOMS FOR TAB
-===================================================== */
+/* =========================
+   TAB
+========================= */
 
-function getRoomsForTab(tab){
+function changeHomeTab(tab,element){
 
-  if(tab === "following"){
+  currentTab = tab;
 
+  document.querySelectorAll(".tab")
+    .forEach(x=>x.classList.remove("active"));
+
+  element.classList.add("active");
+
+  if(tab==="popular"){
+
+    document.getElementById("listTitle").innerText =
+      "Popular Rooms";
+
+  }
+
+  if(tab==="following"){
+
+    document.getElementById("listTitle").innerText =
+      "Following Rooms";
+
+  }
+
+  if(tab==="recent"){
+
+    document.getElementById("listTitle").innerText =
+      "Recent Rooms";
+
+  }
+
+  renderRooms();
+
+}
+
+
+/* =========================
+   GET TAB ROOMS
+========================= */
+
+function getRoomsForTab(){
+
+  if(currentTab==="following"){
     return followingRooms;
-
   }
 
-
-  if(tab === "recent"){
-
+  if(currentTab==="recent"){
     return recentRooms;
-
   }
-
 
   return popularRooms;
 
 }
 
 
-/* =====================================================
-RENDER ROOMS
-===================================================== */
+/* =========================
+   RENDER
+========================= */
 
-function renderRooms(tab){
+function renderRooms(){
 
-  const container =
-    document.getElementById("rooms");
+  const list =
+    document.getElementById("roomsList");
 
+  const rooms =
+    getRoomsForTab();
 
-  const data =
-    getRoomsForTab(tab);
+  list.innerHTML="";
 
+  if(rooms.length===0){
 
-  document
-    .getElementById("roomTotal")
-    .innerText =
-      data.length + " rooms";
+    list.innerHTML=`
 
+      <div class="empty">
 
-  if(!data.length){
+        <div class="empty-icon">
+          ${currentTab==="following" ? "❤️" : "🕘"}
+        </div>
 
-    container.innerHTML = `
+        <h3>
+          ${currentTab==="following"
+            ? "No Following Rooms"
+            : "No Recent Rooms"}
+        </h3>
 
-      <div style="
-        grid-column:1/-1;
-        background:#fff;
-        border-radius:15px;
-        padding:35px 20px;
-        text-align:center;
-        color:#999;
-      ">
-
-        ${
-          tab === "following"
-          ? "You are not following any room yet."
-          : "You haven't visited any room yet."
-        }
+        <p>
+          ${
+            currentTab==="following"
+            ? "Follow a room and it will appear here."
+            : "Rooms you enter will appear here."
+          }
+        </p>
 
       </div>
 
     `;
 
     return;
-
   }
 
 
-  container.innerHTML =
-    data.map(room => `
+  rooms.forEach(room=>{
 
-      <div
-        class="room"
-        onclick="enterRoom('${room.id}')"
-      >
+    list.appendChild(createRoomCard(room));
 
-        <div class="room-owner">
+  });
 
-          <div class="owner-dot">
-
-            ${
-              room.country === "🇧🇩"
-              ? "♂"
-              : "♀"
-            }
-
-          </div>
-
-          ${room.owner}
-
-        </div>
+}
 
 
-        <div
-          class="room-card ${room.photo}"
-        >
+/* =========================
+   ROOM CARD
+========================= */
 
-          <div class="room-photo">
+function createRoomCard(room){
 
-            ${getRoomEmoji(room)}
+  const card =
+    document.createElement("div");
 
-          </div>
+  card.className="room-card";
+
+  card.onclick=()=>enterRoom(room.id);
+
+  card.innerHTML=`
+
+    <div class="room-avatar">
+      ${room.emoji || "🎙"}
+    </div>
+
+    <div class="room-info">
+
+      <div class="room-name">
+        ${room.name}
+      </div>
+
+      <div class="room-id">
+        ID: ${room.id}
+      </div>
+
+      <div class="room-meta">
+        ${room.country || "🌍"} ${room.owner}
+      </div>
+
+    </div>
+
+    <div class="room-right">
+
+      <div class="user-count">
+        👥 ${room.users}
+      </div>
+
+      <div class="gift">
+        ${room.emoji || "🎁"}
+      </div>
+
+    </div>
+
+  `;
+
+  return card;
+
+}
 
 
-          <div class="room-gift">
+/* =========================
+   ENTER ROOM
+========================= */
 
-            ${room.gift}
+function enterRoom(id){
 
-          </div>
+  const room=findRoom(id);
+
+  if(!room){
+
+    showToast("Room not found");
+
+    return;
+
+  }
+
+  currentRoom=room;
+
+  /* RECENT-এ আগে থাকলে সরানো */
+  recentRooms =
+    recentRooms.filter(x=>x.id!==room.id);
+
+  /* একদম উপরে যোগ */
+  recentRooms.unshift(room);
+
+  /* সর্বোচ্চ 20 */
+  recentRooms =
+    recentRooms.slice(0,20);
+
+  saveRecent();
+
+  openRoomPage(room);
+
+}
 
 
-          <div class="room-top-badge">
+/* =========================
+   OPEN ROOM
+========================= */
 
-            ♫ ${room.users}
+function openRoomPage(room){
 
-          </div>
+  document.getElementById("roomTitle").innerText =
+    room.name;
+
+  document.getElementById("roomSub").innerText =
+    "ID: " + room.id +
+    "  •  👥 " + room.users;
+
+  updateFollowButton();
+
+  createSeats(room);
+
+  document.getElementById("roomPage")
+    .classList.add("show");
+
+}
 
 
-          <div class="room-bottom">
+/* =========================
+   SEATS
+========================= */
 
-            <div class="room-name">
+function createSeats(room){
 
-              ${room.name}
+  const seats =
+    document.getElementById("seats");
 
-            </div>
+  seats.innerHTML="";
 
+  const names=[
+    room.owner,
+    "Rasel",
+    "Friend",
+    "User",
+    "Love",
+    "New User",
+    "Bangladesh",
+    "Guest"
+  ];
 
-            <div class="room-country">
+  names.forEach((name,index)=>{
 
-              ${room.country}
-              &nbsp;
-              ID: ${room.id}
+    const seat=
+      document.createElement("div");
 
-            </div>
+    seat.className="seat";
 
-          </div>
+    seat.innerHTML=`
 
+      <div class="seat-avatar">
+
+        ${
+          index===0
+          ? "👑"
+          : ["👤","😊","😎","🥰","🤗","🙋","🙂"][index-1] || "👤"
+        }
+
+        <div class="mic">
+          🎙
         </div>
 
       </div>
 
-    `).join("");
+      <div class="seat-name">
+        ${name}
+      </div>
+
+    `;
+
+    seats.appendChild(seat);
+
+  });
 
 }
 
 
-/* =====================================================
-ROOM EMOJI
-===================================================== */
+/* =========================
+   LEAVE ROOM
+========================= */
 
-function getRoomEmoji(room){
+function leaveRoom(){
 
-  const map = {
+  document.getElementById("roomPage")
+    .classList.remove("show");
 
-    MR10001:"👩🏻‍❤️‍👨🏻",
-    MR10002:"👩🏻",
-    MR10003:"😎",
-    MR10004:"🧑🏻",
-    MR10005:"👨🏻",
-    MR10006:"👩🏻‍🦰",
-    MR10007:"👫",
-    MR10008:"🕺"
+  currentRoom=null;
 
-  };
-
-
-  return map[room.id] || "👤";
+  renderRooms();
 
 }
 
 
-/* =====================================================
-ENTER ROOM
-===================================================== */
-
-function enterRoom(id){
-
-  const room =
-    findRoom(id);
-
-
-  if(!room){
-
-    showToast("Room not found");
-
-    return;
-
-  }
-
-
-  /*
-    RECENT SYSTEM
-
-    নতুন Room হলে Recent-এ যোগ হবে।
-
-    পুরোনো Room হলে আগে সরিয়ে
-    আবার প্রথমে যোগ হবে।
-  */
-
-  recentRooms =
-    recentRooms.filter(
-      x => x.id !== room.id
-    );
-
-
-  recentRooms.unshift(room);
-
-
-  /*
-    Recent সর্বোচ্চ 20টি Room রাখবে।
-  */
-
-  recentRooms =
-    recentRooms.slice(0,20);
-
-
-  saveRecent();
-
-
-  closeSearch();
-
-
-  /*
-    বর্তমানে আমরা Demo হিসেবে Toast দেখাচ্ছি।
-    পরের ধাপে এখানে আসল Voice Room খুলবে।
-  */
-
-  showToast(
-    "Entering " +
-    room.name +
-    " • " +
-    room.id
-  );
-
-}
-
-
-/* =====================================================
-FOLLOW ROOM
-===================================================== */
+/* =========================
+   FOLLOW
+========================= */
 
 function followRoom(id){
 
-  const room =
-    findRoom(id);
+  const room=findRoom(id);
 
+  if(!room) return;
 
-  if(!room){
+  const exists=
+    followingRooms.some(x=>x.id===id);
 
-    showToast("Room not found");
+  if(!exists){
 
-    return;
+    followingRooms.unshift(room);
 
-  }
+    saveFollowing();
 
-
-  const alreadyFollowing =
-    followingRooms.some(
-      x => x.id === room.id
-    );
-
-
-  if(alreadyFollowing){
-
-    showToast("Already following");
-
-    return;
+    showToast("Following " + room.name);
 
   }
 
-
-  followingRooms.push(room);
-
-
-  saveFollowing();
-
-
-  /*
-    যদি বর্তমানে Following tab খোলা থাকে,
-    সঙ্গে সঙ্গে নতুন Room দেখাবে।
-  */
-
-  if(currentHomeTab === "following"){
-
-    renderRooms("following");
-
+  if(currentTab==="following"){
+    renderRooms();
   }
-
-
-  showToast(
-    "Following " + room.name
-  );
 
 }
 
-
-/* =====================================================
-UNFOLLOW ROOM
-===================================================== */
 
 function unfollowRoom(id){
 
   followingRooms =
-    followingRooms.filter(
-      room => room.id !== id
-    );
-
+    followingRooms.filter(x=>x.id!==id);
 
   saveFollowing();
 
-
-  if(currentHomeTab === "following"){
-
-    renderRooms("following");
-
-  }
-
-
   showToast("Unfollowed");
+
+  if(currentTab==="following"){
+    renderRooms();
+  }
 
 }
 
 
-/* =====================================================
-SEARCH
-===================================================== */
+function isFollowing(id){
+
+  return followingRooms.some(
+    x=>x.id===id
+  );
+
+}
+
+
+function updateFollowButton(){
+
+  const btn=
+    document.getElementById("followButton");
+
+  if(!currentRoom) return;
+
+  if(isFollowing(currentRoom.id)){
+
+    btn.innerText="Following";
+
+  }else{
+
+    btn.innerText="Follow";
+
+  }
+
+}
+
+
+function toggleFollowCurrent(){
+
+  if(!currentRoom) return;
+
+  if(isFollowing(currentRoom.id)){
+
+    unfollowRoom(currentRoom.id);
+
+  }else{
+
+    followRoom(currentRoom.id);
+
+  }
+
+  updateFollowButton();
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
 
 function openSearch(){
 
-  document
-    .getElementById("searchModal")
+  document.getElementById("searchModal")
     .classList.add("show");
 
-
-  document
-    .getElementById("searchInput")
+  document.getElementById("searchInput")
     .focus();
+
+  searchRooms();
 
 }
 
 
 function closeSearch(){
 
-  document
-    .getElementById("searchModal")
+  document.getElementById("searchModal")
     .classList.remove("show");
 
 }
 
 
-/* =====================================================
-SEARCH ROOMS
-===================================================== */
-
 function searchRooms(){
 
-  const q =
-    document
-      .getElementById("searchInput")
+  const value=
+    document.getElementById("searchInput")
       .value
       .toLowerCase()
       .trim();
 
+  const result=
+    document.getElementById("searchResults");
 
-  /*
-    Search Popular + Following + Recent
-    থেকে করবে।
+  result.innerHTML="";
 
-    Duplicate ID বাদ দেওয়া হবে।
-  */
+  const rooms=getAllRooms();
 
-  const all = [
-    ...popularRooms,
-    ...followingRooms,
-    ...recentRooms
-  ];
-
-
-  const unique = [];
-
-
-  all.forEach(room => {
-
-    if(
-      !unique.some(
-        x => x.id === room.id
-      )
-    ){
-
-      unique.push(room);
-
-    }
-
-  });
-
-
-  const results =
-    unique.filter(room =>
-
-      room.id
-        .toLowerCase()
-        .includes(q)
-
-      ||
-
-      room.name
-        .toLowerCase()
-        .includes(q)
-
+  const filtered=
+    rooms.filter(room=>
+      room.name.toLowerCase().includes(value) ||
+      room.id.toLowerCase().includes(value) ||
+      room.owner.toLowerCase().includes(value)
     );
 
+  if(filtered.length===0){
 
-  const box =
-    document.getElementById(
-      "searchResults"
-    );
+    result.innerHTML=`
 
-
-  if(!q){
-
-    box.innerHTML = "";
-
-    return;
-
-  }
-
-
-  if(!results.length){
-
-    box.innerHTML = `
-
-      <div style="
-        padding:20px;
-        text-align:center;
-        color:#888;
-      ">
-
-        No room found
-
+      <div class="empty">
+        <div class="empty-icon">🔍</div>
+        <h3>No room found</h3>
+        <p>Try another room name or ID.</p>
       </div>
 
     `;
@@ -680,115 +1448,236 @@ function searchRooms(){
 
   }
 
+  filtered.forEach(room=>{
 
-  box.innerHTML =
-    results.map(room => `
+    result.appendChild(
+      createRoomCard(room)
+    );
 
-      <div
-        class="search-result"
-        onclick="enterRoom('${room.id}')"
-      >
-
-        <strong>
-          ${room.name}
-        </strong>
-
-        <br>
-
-        <small>
-
-          ${room.id}
-          •
-          ${room.users} online
-
-        </small>
-
-      </div>
-
-    `).join("");
+  });
 
 }
 
 
-/* =====================================================
-CREATE ROOM
-===================================================== */
+/* =========================
+   CREATE ROOM
+========================= */
 
 function createRoom(){
 
-  showToast("Create Room");
+  const name=
+    prompt("Enter your room name:");
+
+  if(!name) return;
+
+  const id=
+    "MR" +
+    Math.floor(
+      100000 +
+      Math.random()*899999
+    );
+
+  const newRoom={
+
+    id:id,
+    name:name,
+    owner:"You",
+    country:"🌍",
+    users:1,
+    emoji:"🎙"
+
+  };
+
+  /* নতুন রুমকে Following-এ না দিয়ে
+     Recent-এও দেওয়া হচ্ছে না।
+     শুধু Popular-এও নয়। */
+
+  showToast(
+    "Room created: " + id
+  );
+
+  /* ডেমো হিসেবে রুমটি ওপেন হবে */
+  currentRoom=newRoom;
+
+  openRoomPage(newRoom);
 
 }
 
 
-/* =====================================================
-RANKING
-===================================================== */
+/* =========================
+   MIC
+========================= */
 
-function openRanking(type){
+let micOn=true;
 
-  document
-    .getElementById(
-      "modalRankingTitle"
-    )
-    .innerText =
-      type + " Ranking";
+function toggleMic(){
 
+  micOn=!micOn;
 
-  document
-    .getElementById(
-      "rankingModal"
-    )
-    .classList.add("show");
+  const btn=
+    document.getElementById("micButton");
+
+  if(micOn){
+
+    btn.innerText="🎙";
+    btn.classList.add("active");
+
+    addChat(
+      "System",
+      "Microphone turned ON"
+    );
+
+  }else{
+
+    btn.innerText="🔇";
+    btn.classList.remove("active");
+
+    addChat(
+      "System",
+      "Microphone turned OFF"
+    );
+
+  }
 
 }
 
 
-function closeRanking(){
+/* =========================
+   CHAT
+========================= */
 
-  document
-    .getElementById(
-      "rankingModal"
-    )
+function chatKey(event){
+
+  if(event.key!=="Enter") return;
+
+  const input=
+    document.getElementById("chatInput");
+
+  const message=
+    input.value.trim();
+
+  if(!message) return;
+
+  addChat("Rasel",message);
+
+  input.value="";
+
+}
+
+
+function addChat(name,message){
+
+  const area=
+    document.getElementById("chatArea");
+
+  const div=
+    document.createElement("div");
+
+  div.className="chat-msg";
+
+  div.innerHTML=
+    "<b>"+name+":</b> "+message;
+
+  area.appendChild(div);
+
+  area.scrollTop=area.scrollHeight;
+
+}
+
+
+/* =========================
+   GIFT
+========================= */
+
+function toggleGift(){
+
+  document.getElementById("giftPanel")
+    .classList.toggle("show");
+
+}
+
+
+function sendGift(gift){
+
+  document.getElementById("giftPanel")
     .classList.remove("show");
 
+  addChat(
+    "Rasel",
+    "sent " + gift
+  );
+
+  showToast(
+    "Gift sent " + gift
+  );
+
 }
 
 
-/* =====================================================
-TOAST
-===================================================== */
-
-let toastTimer;
-
+/* =========================
+   TOAST
+========================= */
 
 function showToast(message){
 
-  const toast =
+  const toast=
     document.getElementById("toast");
 
+  toast.innerText=message;
 
-  toast.innerText = message;
+  toast.style.display="block";
 
+  clearTimeout(window.toastTimer);
 
-  toast.classList.add("show");
-
-
-  clearTimeout(toastTimer);
-
-
-  toastTimer =
+  window.toastTimer=
     setTimeout(()=>{
 
-      toast.classList.remove("show");
+      toast.style.display="none";
 
-    },1800);
+    },2000);
 
 }
 
 
-/* =====================================================
-INITIAL
-===================================================== */
+/* =========================
+   SLIDER
+========================= */
 
-renderRooms("popular");
+let slideIndex=0;
+
+setInterval(()=>{
+
+  const slides=
+    document.querySelectorAll(".slide");
+
+  const dots=
+    document.querySelectorAll(".dot");
+
+  slides[slideIndex]
+    .classList.remove("active");
+
+  dots[slideIndex]
+    .classList.remove("active");
+
+  slideIndex=
+    (slideIndex+1)%slides.length;
+
+  slides[slideIndex]
+    .classList.add("active");
+
+  dots[slideIndex]
+    .classList.add("active");
+
+},3000);
+
+
+/* =========================
+   START
+========================= */
+
+renderRooms();
+
+</script>
+
+</body>
+</html>
