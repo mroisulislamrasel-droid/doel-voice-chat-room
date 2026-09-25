@@ -2,448 +2,317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Doel Voice Chat Room</title>
 
 <style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0;
- -webkit-tap-highlight-color:transparent;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
- font-family:Arial,Helvetica,sans-serif;
+ font-family:Arial,sans-serif;
  background:#f5f8ff;
  color:#182033;
 }
-
-button{
- border:0;
- cursor:pointer;
-}
-
+button,input{font-family:inherit}
+button{border:0;cursor:pointer}
+.page{display:none;padding:14px}
+.page.active{display:block}
 .hidden{display:none!important}
 
-/* ================= WELCOME ================= */
-
+/* WELCOME */
 #welcome{
  min-height:100vh;
- background:linear-gradient(160deg,#e8fbff,#f8f4ff,#fff);
- display:flex;
- flex-direction:column;
- align-items:center;
- padding:18px;
- overflow:hidden;
+ background:linear-gradient(150deg,#e9fbff,#f5f0ff,#fff);
+ text-align:center;
+ padding:15px;
 }
-
 .people{
- width:100%;
- height:300px;
+ height:285px;
  position:relative;
+ max-width:430px;
+ margin:auto;
 }
-
 .person{
  position:absolute;
- bottom:10px;
- width:110px;
- height:220px;
- animation:float 3s ease-in-out infinite;
+ bottom:8px;
+ width:105px;
+ animation:float 3s infinite ease-in-out;
 }
-
-.p1{left:3%}
-.p2{left:36%;animation-delay:.7s}
-.p3{right:3%;animation-delay:1.3s}
-
+.p1{left:2%}.p2{left:37%;animation-delay:.6s}.p3{right:2%;animation-delay:1.2s}
 .head{
- width:82px;
- height:82px;
- border-radius:50%;
- background:#e5ae82;
+ width:78px;height:78px;
  margin:auto;
+ border-radius:50%;
+ background:#e3aa7d;
  position:relative;
 }
-
 .hair{
  position:absolute;
- width:88px;
- height:42px;
- background:#29252b;
- border-radius:60px 60px 20px 20px;
- top:-5px;
- left:-3px;
+ top:-5px;left:-3px;
+ width:84px;height:40px;
+ border-radius:50px 50px 15px 15px;
+ background:#28252b;
 }
-
 .eye{
  position:absolute;
- width:6px;
- height:6px;
- border-radius:50%;
- background:#222;
- top:40px;
+ top:39px;
+ width:6px;height:6px;
+ background:#222;border-radius:50%;
 }
-
-.e1{left:25px}
-.e2{right:25px}
-
+.e1{left:24px}.e2{right:24px}
 .mouth{
  position:absolute;
- width:23px;
- height:10px;
- border-bottom:4px solid #8c3f48;
+ top:57px;left:28px;
+ width:22px;height:10px;
+ border-bottom:4px solid #8b3f48;
  border-radius:50%;
- left:29px;
- top:58px;
 }
-
 .body{
- width:100px;
- height:125px;
- border-radius:40px 40px 15px 15px;
- margin:10px auto;
- background:linear-gradient(160deg,#00c9d8,#7657ff);
+ width:96px;height:120px;
+ margin:9px auto;
+ border-radius:38px 38px 15px 15px;
+ background:linear-gradient(150deg,#00c9d8,#7657ff);
 }
-
-.p2 .body{
- background:linear-gradient(160deg,#ff76a7,#ffad63);
-}
-
-.p3 .body{
- background:linear-gradient(160deg,#775cff,#00bfd0);
-}
-
+.p2 .body{background:linear-gradient(150deg,#ff6fa8,#ffad60)}
+.p3 .body{background:linear-gradient(150deg,#795cff,#00bfd0)}
 .bubble{
  position:absolute;
- background:white;
- padding:8px 12px;
- border-radius:17px;
- box-shadow:0 8px 25px #0002;
- font-size:12px;
- animation:bubble 3s infinite;
+ background:#fff;
+ padding:8px 11px;
+ border-radius:16px;
+ box-shadow:0 6px 20px #0002;
+ font-size:11px;
 }
-
-.b1{top:35px;left:0}
-.b2{top:10px;right:0}
-.b3{top:110px;left:30%}
-
+.b1{left:0;top:35px}.b2{right:0;top:10px}.b3{left:30%;top:100px}
 .bird{
  position:absolute;
- bottom:5px;
- left:50%;
+ left:50%;bottom:2px;
  transform:translateX(-50%);
- font-size:48px;
+ font-size:45px;
  animation:bird 2s infinite;
 }
-
-@keyframes float{
- 50%{transform:translateY(-10px)}
-}
-
-@keyframes bubble{
- 50%{transform:translateY(-5px)}
-}
-
-@keyframes bird{
- 50%{transform:translateY(-10px)}
-}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes bird{50%{transform:translateY(-12px)}}
 
 .logo{
- width:68px;
- height:68px;
- border-radius:23px;
+ width:67px;height:67px;
+ margin:auto;
+ border-radius:22px;
  background:linear-gradient(135deg,#00c9d8,#7657ff);
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:38px;
- box-shadow:0 15px 35px #7b67ff40;
+ display:flex;align-items:center;justify-content:center;
+ font-size:37px;
 }
-
-.brand{
- font-size:29px;
- font-weight:900;
- margin-top:8px;
-}
-
-.tagline{
- color:#68728a;
- margin:4px 0 12px;
-}
-
-.login{
- width:100%;
- max-width:380px;
-}
-
+.brand{font-size:29px;font-weight:900;margin-top:7px}
+.tagline{color:#737c91;margin:4px 0 13px}
+.login{max-width:380px;margin:auto}
 .login button{
- width:100%;
- height:49px;
- margin-top:9px;
- border-radius:16px;
- font-weight:bold;
- font-size:14px;
-}
-
-.google{
- background:white;
- box-shadow:0 5px 20px #0001;
-}
-
-.facebook{
- background:#1877f2;
- color:white;
-}
-
-.phone{
- background:linear-gradient(90deg,#00c9d8,#7657ff);
- color:white;
-}
-
-.guest{
- background:#edf0f7;
-}
-
-
-/* ================= APP ================= */
-
-#app{
- display:none;
- min-height:100vh;
- padding-bottom:76px;
-}
-
-.top{
- position:sticky;
- top:0;
- z-index:20;
- background:white;
- padding:13px;
- box-shadow:0 2px 15px #0000000d;
-}
-
-.topbar{
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-
-.topbrand{
- font-size:23px;
- font-weight:900;
-}
-
-.wallet{
- background:#eefcff;
- color:#007c8a;
- padding:8px 11px;
+ width:100%;height:49px;
+ margin:7px 0;
  border-radius:15px;
  font-weight:bold;
+}
+.google{background:#fff;box-shadow:0 4px 15px #0001}
+.facebook{background:#1877f2;color:white}
+.phone{background:linear-gradient(90deg,#00c9d8,#7657ff);color:#fff}
+.guest{background:#e9edf5}
+
+
+/* APP */
+#app{display:none;min-height:100vh;padding-bottom:72px}
+.top{
+ position:sticky;top:0;z-index:20;
+ background:#fff;padding:12px;
+ box-shadow:0 2px 15px #0001;
+}
+.topbar{
+ display:flex;justify-content:space-between;align-items:center
+}
+.topbrand{font-size:23px;font-weight:900}
+.top-actions{display:flex;gap:7px}
+.topbtn{
+ background:#f0f4ff;
+ padding:8px 10px;
+ border-radius:13px;
+ font-size:15px;
+}
+.wallet{
+ background:#eafcff;
+ color:#007f8c;
+ padding:8px 11px;
+ border-radius:14px;
  font-size:12px;
-}
-
-.tabs{
- display:flex;
- gap:21px;
- margin-top:15px;
- overflow:auto;
-}
-
-.tabs span{
- white-space:nowrap;
- font-size:13px;
- color:#777;
-}
-
-.tabs .active{
- color:#735cff;
  font-weight:bold;
 }
-
-.page{
- display:none;
- padding:14px;
+.tabs{
+ display:flex;
+ gap:20px;
+ overflow:auto;
+ margin-top:14px;
 }
-
-.page.active{
- display:block;
+.tabs span{
+ white-space:nowrap;
+ color:#777;
+ font-size:13px;
 }
-
-
-/* ================= HOME ================= */
+.tabs .active{color:#735cff;font-weight:bold}
 
 .banner{
  height:140px;
- border-radius:22px;
  padding:20px;
+ border-radius:21px;
+ color:#fff;
  background:linear-gradient(120deg,#00c9d8,#7657ff);
- color:white;
- margin-bottom:15px;
+ margin-bottom:14px;
 }
-
-.banner h2{
- font-size:22px;
- margin-bottom:8px;
-}
-
-.banner p{
- font-size:13px;
- opacity:.9;
-}
+.banner h2{font-size:22px;margin-bottom:8px}
+.banner p{font-size:13px;opacity:.9}
 
 .search{
- width:100%;
- height:46px;
- border:0;
- border-radius:15px;
+ width:100%;height:45px;
+ border:0;border-radius:15px;
  padding:0 15px;
- background:white;
- box-shadow:0 4px 18px #0000000b;
+ background:#fff;
+ box-shadow:0 4px 15px #0001;
 }
-
 .section-title{
  display:flex;
  justify-content:space-between;
  align-items:center;
  margin:17px 0 10px;
 }
-
-.section-title h3{
- font-size:17px;
-}
-
-.section-title span{
- font-size:12px;
- color:#7657ff;
-}
+.section-title h3{font-size:17px}
+.section-title span{font-size:12px;color:#735cff}
 
 .rooms{
  display:grid;
  grid-template-columns:1fr 1fr;
+ gap:11px;
+}
+.room{
+ background:#fff;
+ border-radius:17px;
+ overflow:hidden;
+ box-shadow:0 4px 15px #0001;
+}
+.roompic{
+ height:120px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:43px;
+ background:linear-gradient(135deg,#baf5ff,#c9baff);
+}
+.roominfo{padding:10px}
+.roomname{font-size:13px;font-weight:bold}
+.roommeta{font-size:10px;color:#7c8390;margin-top:5px}
+
+
+/* CARD */
+.card{
+ background:#fff;
+ border-radius:18px;
+ padding:14px;
+ margin-bottom:10px;
+ box-shadow:0 4px 14px #0001;
+}
+.user-card{
+ display:flex;
+ align-items:center;
  gap:12px;
 }
-
-.room{
- background:white;
- border-radius:18px;
- overflow:hidden;
- box-shadow:0 5px 18px #0001;
+.avatar{
+ width:52px;height:52px;
+ flex-shrink:0;
+ border-radius:50%;
+ display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(135deg,#00c9d8,#7657ff);
+ font-size:25px;
 }
-
-.roompic{
- height:125px;
- background:linear-gradient(135deg,#b8f6ff,#c8baff);
- display:flex;
- justify-content:center;
- align-items:center;
- font-size:43px;
+.info{flex:1}
+.info b{font-size:14px}
+.info small{
+ display:block;
+ color:#818897;
+ margin-top:4px;
+ font-size:11px;
 }
-
-.roominfo{
- padding:10px;
-}
-
-.roomname{
- font-size:13px;
+.join{
+ background:#735cff;color:#fff;
+ padding:9px 13px;
+ border-radius:12px;
  font-weight:bold;
 }
 
-.roommeta{
- font-size:11px;
- color:#7b8190;
- margin-top:5px;
+
+/* GRID */
+.feature-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:9px;
 }
-
-
-/* ================= CARDS ================= */
-
-.voice-card{
- background:white;
- border-radius:18px;
- padding:13px;
- margin-bottom:11px;
- display:flex;
- align-items:center;
- gap:12px;
- box-shadow:0 4px 15px #0000000a;
-}
-
-.avatar{
- width:52px;
- height:52px;
- border-radius:50%;
- background:linear-gradient(135deg,#00c9d8,#7657ff);
- display:flex;
- justify-content:center;
- align-items:center;
- font-size:25px;
-}
-
-.vinfo{
- flex:1;
-}
-
-.vinfo b{
- font-size:14px;
-}
-
-.vinfo small{
- display:block;
- color:#858b99;
- margin-top:5px;
-}
-
-.join{
- background:#7657ff;
- color:white;
- padding:9px 13px;
- border-radius:13px;
-}
-
-
-/* ================= PROFILE ================= */
-
-.profile-head{
+.feature{
+ background:#fff;
+ border-radius:15px;
+ padding:12px 4px;
  text-align:center;
- background:white;
- border-radius:22px;
- padding:23px 15px;
+ box-shadow:0 3px 12px #0001;
+}
+.feature div{font-size:23px}
+.feature small{
+ display:block;
+ margin-top:5px;
+ font-size:9px;
 }
 
-.bigavatar{
- width:88px;
- height:88px;
- border-radius:50%;
- margin:auto;
- background:linear-gradient(135deg,#00c9d8,#7657ff);
+
+/* BOTTOM */
+.bottom{
+ position:fixed;
+ bottom:0;left:0;right:0;
+ height:68px;
+ background:#fff;
  display:flex;
+ justify-content:space-around;
  align-items:center;
- justify-content:center;
- font-size:40px;
+ box-shadow:0 -4px 18px #0002;
+ z-index:80;
 }
+.nav{
+ text-align:center;
+ color:#858b98;
+ font-size:10px;
+}
+.nav div{font-size:22px;margin-bottom:2px}
+.nav.active{color:#735cff}
 
+
+/* PROFILE */
+.profile-head{
+ background:#fff;
+ border-radius:22px;
+ text-align:center;
+ padding:23px 12px;
+}
+.bigavatar{
+ width:90px;height:90px;
+ margin:auto;
+ border-radius:50%;
+ background:linear-gradient(135deg,#00c9d8,#7657ff);
+ display:flex;align-items:center;justify-content:center;
+ font-size:42px;
+}
 .stats{
  display:flex;
  justify-content:space-around;
  margin-top:18px;
 }
-
-.stats b{
- display:block;
-}
-
-.stats span{
- font-size:11px;
- color:#8a90a0;
-}
-
+.stats b{display:block}
+.stats span{font-size:10px;color:#858b98}
 .menu{
- background:white;
- border-radius:20px;
- margin-top:14px;
+ background:#fff;
+ border-radius:19px;
  overflow:hidden;
+ margin-top:13px;
 }
-
 .menu-item{
  padding:16px;
  border-bottom:1px solid #f0f1f5;
@@ -451,143 +320,47 @@ button{
  justify-content:space-between;
  font-size:14px;
 }
+.menu-item:last-child{border:0}
 
 
-/* ================= BOTTOM ================= */
-
-.bottom{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- height:68px;
- background:white;
- display:flex;
- justify-content:space-around;
- align-items:center;
- box-shadow:0 -4px 20px #00000012;
- z-index:50;
-}
-
-.nav{
- text-align:center;
- font-size:10px;
- color:#858b98;
-}
-
-.nav div{
- font-size:22px;
- margin-bottom:3px;
-}
-
-.nav.active{
- color:#735cff;
-}
-
-
-/* ================= ECONOMY ================= */
-
+/* BALANCE */
 .balance{
  background:linear-gradient(120deg,#00c9d8,#7657ff);
- color:white;
- border-radius:22px;
- padding:22px;
- margin-bottom:15px;
+ color:#fff;
+ padding:20px;
+ border-radius:21px;
 }
-
-.balance-title{
- font-size:13px;
- opacity:.9;
-}
-
 .balance-row{
  display:flex;
- justify-content:space-between;
+ gap:10px;
  margin-top:15px;
 }
-
 .balance-box{
- background:#ffffff20;
- border-radius:15px;
+ flex:1;
  padding:13px;
- width:48%;
+ border-radius:14px;
+ background:#ffffff20;
 }
-
-.balance-box b{
- display:block;
- font-size:19px;
-}
-
-.balance-box small{
- font-size:11px;
- opacity:.85;
-}
-
+.balance-box b{display:block;font-size:19px}
+.balance-box small{font-size:10px}
 .action-grid{
  display:grid;
  grid-template-columns:repeat(4,1fr);
- gap:10px;
- margin-bottom:18px;
+ gap:9px;
+ margin:14px 0;
 }
-
 .action{
- background:white;
- border-radius:16px;
- padding:13px 4px;
- text-align:center;
- box-shadow:0 4px 14px #0000000b;
-}
-
-.action div{
- font-size:24px;
-}
-
-.action small{
- display:block;
- margin-top:6px;
- font-size:10px;
-}
-
-.gift-grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:10px;
-}
-
-.gift-box{
- background:white;
- border-radius:16px;
+ background:#fff;
+ border-radius:15px;
  padding:12px 3px;
  text-align:center;
- box-shadow:0 4px 14px #0000000b;
+ box-shadow:0 3px 12px #0001;
 }
-
-.gift-icon{
- font-size:31px;
-}
-
-.gift-box b{
- display:block;
- font-size:11px;
- margin-top:5px;
-}
-
-.gift-box small{
- font-size:10px;
- color:#777;
-}
-
-.primary{
- background:linear-gradient(90deg,#00c9d8,#7657ff);
- color:white;
- padding:11px 18px;
- border-radius:14px;
- font-weight:bold;
-}
+.action div{font-size:22px}
+.action small{font-size:9px}
 
 
-/* ================= MODAL ================= */
-
+/* MODAL */
 .modal{
  display:none;
  position:fixed;
@@ -596,265 +369,260 @@ button{
  z-index:200;
  align-items:flex-end;
 }
-
 .modal-content{
  width:100%;
- background:#fff;
- border-radius:25px 25px 0 0;
- padding:20px;
- max-height:85vh;
+ max-height:88vh;
  overflow:auto;
+ background:#fff;
+ border-radius:24px 24px 0 0;
+ padding:19px;
 }
-
 .modal-title{
  display:flex;
  justify-content:space-between;
- margin-bottom:18px;
+ align-items:center;
  font-size:18px;
  font-weight:bold;
+ margin-bottom:17px;
 }
-
-.close{
- font-size:20px;
-}
-
+.close{font-size:20px}
 .pack{
  display:flex;
- justify-content:space-between;
  align-items:center;
- background:#f6f8fc;
- padding:15px;
- border-radius:16px;
- margin-bottom:10px;
-}
-
-.pack button{
- background:#735cff;
- color:white;
- padding:9px 15px;
- border-radius:12px;
-}
-
-.history{
- background:white;
+ justify-content:space-between;
+ background:#f5f7fb;
  padding:14px;
- border-radius:15px;
- margin-bottom:8px;
- box-shadow:0 3px 10px #0001;
- display:flex;
- justify-content:space-between;
-}
-
-.vip{
- background:linear-gradient(120deg,#24164d,#7138a8);
- color:white;
- border-radius:20px;
- padding:20px;
- margin-bottom:12px;
-}
-
-.vip h2{
- margin-bottom:8px;
-}
-
-.rank{
- display:flex;
- align-items:center;
- gap:12px;
- background:white;
- padding:13px;
  border-radius:15px;
  margin-bottom:9px;
 }
+.pack button{
+ background:#735cff;color:#fff;
+ padding:9px 14px;
+ border-radius:11px;
+}
+.gift-grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:9px;
+}
+.gift-box{
+ background:#f6f8fc;
+ padding:12px 3px;
+ border-radius:15px;
+ text-align:center;
+}
+.gift-icon{font-size:29px}
+.gift-box b{display:block;font-size:10px;margin-top:5px}
+.gift-box small{font-size:9px;color:#777}
 
-.rank-number{
- font-weight:bold;
- font-size:18px;
- width:25px;
+
+/* LEVEL */
+.level-card{
+ background:linear-gradient(120deg,#29215b,#7450c9);
+ color:white;
+ padding:20px;
+ border-radius:21px;
+}
+.progress{
+ height:9px;
+ background:#ffffff30;
+ border-radius:20px;
+ margin:13px 0 7px;
+ overflow:hidden;
+}
+.progress i{
+ display:block;
+ height:100%;
+ width:65%;
+ background:#fff;
+ border-radius:20px;
 }
 
-.rank-avatar{
- width:45px;
- height:45px;
- border-radius:50%;
- background:#e8edff;
+
+/* RANK */
+.rank{
  display:flex;
  align-items:center;
- justify-content:center;
- font-size:23px;
+ gap:10px;
+ background:#fff;
+ padding:12px;
+ border-radius:15px;
+ margin-bottom:8px;
+ box-shadow:0 3px 10px #0001;
 }
+.ranknum{width:23px;font-weight:bold}
+.rankavatar{
+ width:44px;height:44px;
+ border-radius:50%;
+ background:#edf0ff;
+ display:flex;align-items:center;justify-content:center;
+ font-size:21px;
+}
+.rankinfo{flex:1}
 
 
-/* ================= ROOM ================= */
-
+/* ROOM */
 #room{
  display:none;
  position:fixed;
  inset:0;
- z-index:100;
- color:white;
- background:linear-gradient(160deg,#14172f,#44317c,#092e48);
+ z-index:150;
+ color:#fff;
+ background:linear-gradient(160deg,#11152e,#44317c,#083449);
 }
-
 .roomtop{
- padding:16px;
+ padding:15px;
  display:flex;
  justify-content:space-between;
 }
-
 .roomhost{
  background:#ffffff18;
- padding:8px 12px;
- border-radius:15px;
+ border-radius:14px;
+ padding:8px 11px;
 }
-
-.roomid{
- font-size:10px;
- opacity:.7;
-}
-
+.roomid{font-size:9px;opacity:.7}
 .seats{
  display:grid;
  grid-template-columns:repeat(4,1fr);
  gap:15px;
- padding:28px 14px;
+ padding:25px 12px;
 }
-
-.seat{
- text-align:center;
-}
-
+.seat{text-align:center}
 .seatcircle{
- width:58px;
- height:58px;
+ width:58px;height:58px;
  margin:auto;
  border-radius:50%;
+ border:2px solid #ffffff50;
  background:#ffffff20;
- border:2px solid #ffffff55;
  display:flex;
- justify-content:center;
  align-items:center;
+ justify-content:center;
  font-size:26px;
 }
-
 .seat small{
  display:block;
- margin-top:5px;
- font-size:10px;
+ font-size:9px;
+ margin-top:4px;
 }
-
 .roomchat{
  position:absolute;
- left:14px;
- right:14px;
- bottom:140px;
- max-height:180px;
+ left:13px;right:13px;
+ bottom:145px;
+ max-height:170px;
  overflow:auto;
 }
-
 .chatmsg{
- background:#00000040;
- padding:7px 10px;
- border-radius:12px;
- margin-top:6px;
  width:max-content;
  max-width:85%;
- font-size:12px;
+ background:#0005;
+ border-radius:12px;
+ padding:7px 10px;
+ margin-top:5px;
+ font-size:11px;
 }
-
 .roomcontrols{
  position:absolute;
- bottom:14px;
- left:12px;
- right:12px;
+ left:11px;right:11px;bottom:13px;
 }
-
 .roominput{
- display:flex;
- gap:8px;
- margin-bottom:10px;
+ display:flex;gap:7px;margin-bottom:9px;
 }
-
 .roominput input{
- flex:1;
- height:43px;
- border:0;
- border-radius:20px;
- padding:0 15px;
+ flex:1;height:42px;
+ border:0;border-radius:20px;
+ padding:0 14px;
 }
-
 .roominput button{
- width:45px;
- border-radius:50%;
- background:#ffffff22;
- color:white;
+ width:43px;border-radius:50%;
+ background:#ffffff25;color:#fff;
 }
-
 .controls{
  display:flex;
  justify-content:space-around;
 }
-
 .control{
- width:47px;
- height:47px;
+ width:46px;height:46px;
  border-radius:50%;
  background:#ffffff20;
- display:flex;
- justify-content:center;
- align-items:center;
+ display:flex;align-items:center;justify-content:center;
  font-size:20px;
 }
-
 .gift{
- background:linear-gradient(135deg,#ff62a1,#ff9d55);
+ background:linear-gradient(135deg,#ff5f9f,#ff9e53);
 }
 
 
-/* ================= GIFT PANEL ================= */
-
+/* ROOM GIFT */
 #giftPanel{
  display:none;
  position:absolute;
- bottom:0;
- left:0;
- right:0;
- background:white;
+ left:0;right:0;bottom:0;
  color:#222;
- border-radius:25px 25px 0 0;
- padding:20px;
+ background:#fff;
+ border-radius:23px 23px 0 0;
+ padding:19px;
 }
 
-.gifts{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:12px;
+
+/* TOAST */
+#toast{
+ position:fixed;
+ left:50%;
+ bottom:85px;
+ transform:translateX(-50%);
+ background:#222;
+ color:#fff;
+ padding:11px 17px;
+ border-radius:20px;
+ font-size:12px;
+ display:none;
+ z-index:500;
+ white-space:nowrap;
 }
 
-.giftitem{
- text-align:center;
- background:#f7f8fc;
- padding:11px 3px;
- border-radius:15px;
+
+/* SETTINGS */
+.switch{
+ width:45px;height:25px;
+ border-radius:20px;
+ background:#dce0e9;
+ position:relative;
+}
+.switch i{
+ position:absolute;
+ width:21px;height:21px;
+ background:white;
+ border-radius:50%;
+ top:2px;left:2px;
+ transition:.2s;
+}
+.switch.on{background:#735cff}
+.switch.on i{left:22px}
+
+
+/* ROOM HOST MENU */
+.host-action{
+ background:#f5f7fb;
+ padding:14px;
+ border-radius:14px;
+ margin-bottom:9px;
 }
 
-.giftitem .gifticon{
- font-size:29px;
-}
 
-.giftitem small{
- display:block;
- font-size:10px;
- margin-top:4px;
+/* MOBILE */
+@media(max-width:360px){
+ .person{transform:scale(.85)}
+ .p2{left:35%}
 }
 </style>
 </head>
+
 
 <body>
 
 
 <!-- =====================================================
-                     WELCOME
+                       WELCOME
 ===================================================== -->
 
 <section id="welcome">
@@ -915,7 +683,7 @@ button{
 
 
 <!-- =====================================================
-                       APP
+                         APP
 ===================================================== -->
 
 <section id="app">
@@ -923,11 +691,19 @@ button{
 <header class="top">
 
  <div class="topbar">
+
   <div class="topbrand">DOEL 🐦</div>
 
-  <div class="wallet" onclick="openWallet()">
-   🪙 <span id="topCoins">32,732</span>
+  <div class="top-actions">
+
+   <button class="topbtn" onclick="openNotifications()">🔔</button>
+
+   <div class="wallet" onclick="openWallet()">
+    🪙 <span id="topCoins">32,732</span>
+   </div>
+
   </div>
+
  </div>
 
  <div class="tabs">
@@ -951,11 +727,15 @@ button{
   <p>Meet people, join voice rooms and enjoy together.</p>
  </div>
 
- <input class="search" placeholder="🔍 Search user, room or ID">
+ <input
+  class="search"
+  placeholder="🔍 Search user, room or ID"
+  onkeydown="searchEnter(event)"
+ >
 
  <div class="section-title">
   <h3>🔥 Popular Rooms</h3>
-  <span>View All</span>
+  <span onclick="page('voice',document.querySelectorAll('.nav')[1])">View All</span>
  </div>
 
  <div class="rooms">
@@ -994,31 +774,43 @@ button{
 
  </div>
 
+
  <div class="section-title">
-  <h3>🎁 Doel Economy</h3>
-  <span onclick="openWallet()">Open</span>
+  <h3>✨ Explore Doel</h3>
  </div>
 
- <div class="action-grid">
+ <div class="feature-grid">
 
-  <div class="action" onclick="openWallet()">
-   <div>💰</div>
-   <small>Wallet</small>
+  <div class="feature" onclick="openGifts()">
+   <div>🎁</div><small>Gifts</small>
   </div>
 
-  <div class="action" onclick="openGifts()">
-   <div>🎁</div>
-   <small>Gifts</small>
+  <div class="feature" onclick="openWallet()">
+   <div>💰</div><small>Wallet</small>
   </div>
 
-  <div class="action" onclick="openStore()">
-   <div>🛍️</div>
-   <small>Store</small>
+  <div class="feature" onclick="openStore()">
+   <div>🛍️</div><small>Store</small>
   </div>
 
-  <div class="action" onclick="openRanking()">
-   <div>🏆</div>
-   <small>Ranking</small>
+  <div class="feature" onclick="openRanking()">
+   <div>🏆</div><small>Ranking</small>
+  </div>
+
+  <div class="feature" onclick="openFamily()">
+   <div>👨‍👩‍👧</div><small>Family</small>
+  </div>
+
+  <div class="feature" onclick="openCP()">
+   <div>💑</div><small>CP</small>
+  </div>
+
+  <div class="feature" onclick="openEvents()">
+   <div>🎉</div><small>Events</small>
+  </div>
+
+  <div class="feature" onclick="openInvite()">
+   <div>🎟️</div><small>Invite</small>
   </div>
 
  </div>
@@ -1033,34 +825,43 @@ button{
 
  <div class="section-title">
   <h3>🎤 Voice Rooms</h3>
-  <span>Create Room +</span>
+  <span onclick="createRoom()">＋ Create Room</span>
  </div>
 
- <div class="voice-card">
+ <div class="card user-card">
   <div class="avatar">👨</div>
-  <div class="vinfo">
+  <div class="info">
    <b>Rasel's Room</b>
-   <small>👥 328 people • 🎤 8 seats</small>
+   <small>👥 328 people • 🎤 8 seats • 🇧🇩</small>
   </div>
   <button class="join" onclick="openRoom('Rasel Room')">Join</button>
  </div>
 
- <div class="voice-card">
+ <div class="card user-card">
   <div class="avatar">👩</div>
-  <div class="vinfo">
+  <div class="info">
    <b>Friends Forever</b>
-   <small>👥 211 people • 🎤 10 seats</small>
+   <small>👥 211 people • 🎤 10 seats • 🌎</small>
   </div>
   <button class="join" onclick="openRoom('Friends Forever')">Join</button>
  </div>
 
- <div class="voice-card">
+ <div class="card user-card">
   <div class="avatar">🎧</div>
-  <div class="vinfo">
+  <div class="info">
    <b>Music Lounge</b>
-   <small>👥 167 people • 🎤 12 seats</small>
+   <small>👥 167 people • 🎤 12 seats • 🇦🇪</small>
   </div>
   <button class="join" onclick="openRoom('Music Lounge')">Join</button>
+ </div>
+
+ <div class="card user-card">
+  <div class="avatar">🌙</div>
+  <div class="info">
+   <b>Night Talk</b>
+   <small>👥 96 people • 🎤 8 seats • 🇸🇦</small>
+  </div>
+  <button class="join" onclick="openRoom('Night Talk')">Join</button>
  </div>
 
 </div>
@@ -1076,13 +877,17 @@ button{
   <p>Explore people, rooms, gifts, games and events.</p>
  </div>
 
- <div class="voice-card" onclick="openGifts()">🎁 &nbsp; Gift Center <span>›</span></div>
- <div class="voice-card" onclick="openRanking()">🏆 &nbsp; Rankings <span>›</span></div>
- <div class="voice-card" onclick="openStore()">🛍️ &nbsp; Store <span>›</span></div>
- <div class="voice-card">🎮 &nbsp; Games & PK <span>›</span></div>
- <div class="voice-card">💑 &nbsp; CP / Couple <span>›</span></div>
- <div class="voice-card">👨‍👩‍👧 &nbsp; Family <span>›</span></div>
- <div class="voice-card">🎉 &nbsp; Events <span>›</span></div>
+ <div class="section-title">
+  <h3>Explore</h3>
+ </div>
+
+ <div class="card" onclick="openGifts()">🎁 Gift Center <span style="float:right">›</span></div>
+ <div class="card" onclick="openRanking()">🏆 Rankings <span style="float:right">›</span></div>
+ <div class="card" onclick="openStore()">🛍️ Store <span style="float:right">›</span></div>
+ <div class="card" onclick="openFamily()">👨‍👩‍👧 Family <span style="float:right">›</span></div>
+ <div class="card" onclick="openCP()">💑 CP / Couple <span style="float:right">›</span></div>
+ <div class="card" onclick="openEvents()">🎉 Events <span style="float:right">›</span></div>
+ <div class="card" onclick="openInvite()">🎟️ Invite Friends <span style="float:right">›</span></div>
 
 </div>
 
@@ -1094,24 +899,34 @@ button{
 
  <div class="section-title">
   <h3>💬 Messages</h3>
+  <span>＋</span>
  </div>
 
- <div class="voice-card">
+ <div class="card user-card" onclick="openUser('Sarah')">
   <div class="avatar">👩</div>
-  <div class="vinfo">
+  <div class="info">
    <b>Sarah</b>
    <small>Hey! How are you?</small>
   </div>
   <small>2m</small>
  </div>
 
- <div class="voice-card">
+ <div class="card user-card" onclick="openUser('Ahmed')">
   <div class="avatar">👨</div>
-  <div class="vinfo">
+  <div class="info">
    <b>Ahmed</b>
    <small>Join my room 🎤</small>
   </div>
   <small>8m</small>
+ </div>
+
+ <div class="card user-card" onclick="openUser('Nadia')">
+  <div class="avatar">👩</div>
+  <div class="info">
+   <b>Nadia</b>
+   <small>Sent you a gift 🎁</small>
+  </div>
+  <small>20m</small>
  </div>
 
 </div>
@@ -1126,10 +941,11 @@ button{
 
   <div class="bigavatar">👨</div>
 
-  <h2 style="margin-top:10px">Md Rasel</h2>
+  <h2 style="margin-top:9px">Md Rasel</h2>
   <small>ID: 10001234</small>
 
   <div class="stats">
+
    <div>
     <b>328</b>
     <span>Following</span>
@@ -1144,6 +960,7 @@ button{
     <b>LV 18</b>
     <span>Level</span>
    </div>
+
   </div>
 
  </div>
@@ -1163,6 +980,10 @@ button{
    🛍️ Store <span>›</span>
   </div>
 
+  <div class="menu-item" onclick="openLevel()">
+   🏅 Level & XP <span>›</span>
+  </div>
+
   <div class="menu-item" onclick="openVIP()">
    👑 VIP / SVIP <span>›</span>
   </div>
@@ -1171,23 +992,23 @@ button{
    💑 CP / Couple <span>›</span>
   </div>
 
-  <div class="menu-item">
+  <div class="menu-item" onclick="openFamily()">
    👨‍👩‍👧 Family <span>›</span>
   </div>
 
-  <div class="menu-item">
-   🏅 Medal & Badge <span>›</span>
-  </div>
-
-  <div class="menu-item">
+  <div class="menu-item" onclick="openProps()">
    🎒 Prop Warehouse <span>›</span>
   </div>
 
-  <div class="menu-item">
-   🎮 Games <span>›</span>
+  <div class="menu-item" onclick="openInvite()">
+   🎟️ Invite & Earn <span>›</span>
   </div>
 
-  <div class="menu-item">
+  <div class="menu-item" onclick="openNotifications()">
+   🔔 Notifications <span>›</span>
+  </div>
+
+  <div class="menu-item" onclick="openSettings()">
    ⚙️ Settings <span>›</span>
   </div>
 
@@ -1201,7 +1022,7 @@ button{
 
 
 
-<!-- ================= BOTTOM NAV ================= -->
+<!-- ================= BOTTOM ================= -->
 
 <nav class="bottom">
 
@@ -1232,7 +1053,7 @@ button{
 
 
 <!-- =====================================================
-                    WALLET MODAL
+                       WALLET
 ===================================================== -->
 
 <div class="modal" id="walletModal">
@@ -1246,7 +1067,7 @@ button{
 
   <div class="balance">
 
-   <div class="balance-title">Your Balance</div>
+   <small>Your Balance</small>
 
    <div class="balance-row">
 
@@ -1273,7 +1094,7 @@ button{
 
    <div class="action" onclick="openGifts()">
     <div>🎁</div>
-    <small>Send Gift</small>
+    <small>Gifts</small>
    </div>
 
    <div class="action" onclick="openHistory()">
@@ -1281,7 +1102,7 @@ button{
     <small>History</small>
    </div>
 
-   <div class="action">
+   <div class="action" onclick="exchangeCoins()">
     <div>💎</div>
     <small>Exchange</small>
    </div>
@@ -1294,53 +1115,39 @@ button{
 
 
 
-<!-- =====================================================
-                  RECHARGE MODAL
-===================================================== -->
+<!-- RECHARGE -->
 
 <div class="modal" id="rechargeModal">
 
  <div class="modal-content">
 
   <div class="modal-title">
-   <span>🪙 Recharge Coins</span>
+   <span>🪙 Recharge</span>
    <span class="close" onclick="closeModal('rechargeModal')">✕</span>
   </div>
 
   <div class="pack">
-   <div>
-    <b>1,000 Coins</b><br>
-    <small>Starter Pack</small>
-   </div>
+   <div><b>1,000 Coins</b><br><small>Starter</small></div>
    <button onclick="demoRecharge(1000)">Select</button>
   </div>
 
   <div class="pack">
-   <div>
-    <b>5,000 Coins</b><br>
-    <small>Popular</small>
-   </div>
+   <div><b>5,000 Coins</b><br><small>Popular</small></div>
    <button onclick="demoRecharge(5000)">Select</button>
   </div>
 
   <div class="pack">
-   <div>
-    <b>10,000 Coins</b><br>
-    <small>Value Pack</small>
-   </div>
+   <div><b>10,000 Coins</b><br><small>Value</small></div>
    <button onclick="demoRecharge(10000)">Select</button>
   </div>
 
   <div class="pack">
-   <div>
-    <b>50,000 Coins</b><br>
-    <small>Premium Pack</small>
-   </div>
+   <div><b>50,000 Coins</b><br><small>Premium</small></div>
    <button onclick="demoRecharge(50000)">Select</button>
   </div>
 
-  <p style="font-size:11px;color:#777;margin-top:12px">
-   Demo mode: no real payment is processed.
+  <p style="font-size:10px;color:#777;margin-top:10px">
+   Demo only. No real payment is processed.
   </p>
 
  </div>
@@ -1349,16 +1156,14 @@ button{
 
 
 
-<!-- =====================================================
-                    GIFT CENTER
-===================================================== -->
+<!-- GIFTS -->
 
 <div class="modal" id="giftModal">
 
  <div class="modal-content">
 
   <div class="modal-title">
-   <span>🎁 Doel Gift Center</span>
+   <span>🎁 Doel Gifts</span>
    <span class="close" onclick="closeModal('giftModal')">✕</span>
   </div>
 
@@ -1366,50 +1171,42 @@ button{
 
    <div class="gift-box" onclick="buyGift('Rose',10)">
     <div class="gift-icon">🌹</div>
-    <b>Rose</b>
-    <small>10 🪙</small>
+    <b>Rose</b><small>10 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Heart',50)">
     <div class="gift-icon">💖</div>
-    <b>Heart</b>
-    <small>50 🪙</small>
+    <b>Heart</b><small>50 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Golden Egg',100)">
     <div class="gift-icon">🥚</div>
-    <b>Golden Egg</b>
-    <small>100 🪙</small>
+    <b>Golden Egg</b><small>100 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Diamond',500)">
     <div class="gift-icon">💎</div>
-    <b>Diamond</b>
-    <small>500 🪙</small>
+    <b>Diamond</b><small>500 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Super Car',1000)">
     <div class="gift-icon">🏎️</div>
-    <b>Super Car</b>
-    <small>1K 🪙</small>
+    <b>Super Car</b><small>1K 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Gold Bar',5000)">
     <div class="gift-icon">🪙</div>
-    <b>Gold Bar</b>
-    <small>5K 🪙</small>
+    <b>Gold Bar</b><small>5K 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Crown',10000)">
     <div class="gift-icon">👑</div>
-    <b>Crown</b>
-    <small>10K 🪙</small>
+    <b>Crown</b><small>10K 🪙</small>
    </div>
 
    <div class="gift-box" onclick="buyGift('Castle',50000)">
     <div class="gift-icon">🏰</div>
-    <b>Castle</b>
-    <small>50K 🪙</small>
+    <b>Castle</b><small>50K 🪙</small>
    </div>
 
   </div>
@@ -1420,36 +1217,30 @@ button{
 
 
 
-<!-- =====================================================
-                    HISTORY
-===================================================== -->
+<!-- HISTORY -->
 
 <div class="modal" id="historyModal">
 
  <div class="modal-content">
 
   <div class="modal-title">
-   <span>📜 Transaction History</span>
+   <span>📜 History</span>
    <span class="close" onclick="closeModal('historyModal')">✕</span>
   </div>
 
-  <div id="historyList">
+  <div class="card">
+   🎁 Rose sent
+   <span style="float:right">-10 🪙</span>
+  </div>
 
-   <div class="history">
-    <span>🎁 Rose sent</span>
-    <b>-10 🪙</b>
-   </div>
+  <div class="card">
+   🎁 Heart received
+   <span style="float:right">+50 💎</span>
+  </div>
 
-   <div class="history">
-    <span>🎁 Heart received</span>
-    <b>+50 💎</b>
-   </div>
-
-   <div class="history">
-    <span>🪙 Demo recharge</span>
-    <b>+1,000</b>
-   </div>
-
+  <div class="card">
+   🪙 Demo recharge
+   <span style="float:right">+1,000</span>
   </div>
 
  </div>
@@ -1458,9 +1249,7 @@ button{
 
 
 
-<!-- =====================================================
-                     STORE
-===================================================== -->
+<!-- STORE -->
 
 <div class="modal" id="storeModal">
 
@@ -1471,63 +1260,36 @@ button{
    <span class="close" onclick="closeModal('storeModal')">✕</span>
   </div>
 
-  <div class="section-title">
-   <h3>🚗 Vehicles</h3>
-  </div>
+  <div class="section-title"><h3>🚗 Vehicles</h3></div>
 
   <div class="gift-grid">
 
-   <div class="gift-box">
-    <div class="gift-icon">🚗</div>
-    <b>Sky Car</b>
-    <small>7 Days</small>
-   </div>
-
-   <div class="gift-box">
-    <div class="gift-icon">🏎️</div>
-    <b>Speed Car</b>
-    <small>7 Days</small>
-   </div>
-
-   <div class="gift-box">
-    <div class="gift-icon">🚀</div>
-    <b>Rocket</b>
-    <small>30 Days</small>
-   </div>
-
-   <div class="gift-box">
-    <div class="gift-icon">🛸</div>
-    <b>Galaxy</b>
-    <small>30 Days</small>
-   </div>
+   <div class="gift-box"><div class="gift-icon">🚗</div><b>Sky Car</b><small>7 Days</small></div>
+   <div class="gift-box"><div class="gift-icon">🏎️</div><b>Speed Car</b><small>7 Days</small></div>
+   <div class="gift-box"><div class="gift-icon">🚀</div><b>Rocket</b><small>30 Days</small></div>
+   <div class="gift-box"><div class="gift-icon">🛸</div><b>Galaxy</b><small>30 Days</small></div>
 
   </div>
 
-  <div class="section-title">
-   <h3>🖼️ Frames</h3>
-  </div>
+  <div class="section-title"><h3>🖼️ Frames</h3></div>
 
   <div class="gift-grid">
 
-   <div class="gift-box">
-    <div class="gift-icon">💠</div>
-    <b>Ocean Frame</b>
-   </div>
+   <div class="gift-box"><div class="gift-icon">💠</div><b>Ocean</b><small>7 Days</small></div>
+   <div class="gift-box"><div class="gift-icon">✨</div><b>Star</b><small>7 Days</small></div>
+   <div class="gift-box"><div class="gift-icon">🌈</div><b>Rainbow</b><small>30 Days</small></div>
+   <div class="gift-box"><div class="gift-icon">🔥</div><b>Fire</b><small>30 Days</small></div>
 
-   <div class="gift-box">
-    <div class="gift-icon">✨</div>
-    <b>Star Frame</b>
-   </div>
+  </div>
 
-   <div class="gift-box">
-    <div class="gift-icon">🌈</div>
-    <b>Rainbow Frame</b>
-   </div>
+  <div class="section-title"><h3>💍 Rings</h3></div>
 
-   <div class="gift-box">
-    <div class="gift-icon">🔥</div>
-    <b>Fire Frame</b>
-   </div>
+  <div class="gift-grid">
+
+   <div class="gift-box"><div class="gift-icon">💍</div><b>Love Ring</b></div>
+   <div class="gift-box"><div class="gift-icon">💎</div><b>Diamond Ring</b></div>
+   <div class="gift-box"><div class="gift-icon">👑</div><b>Royal Ring</b></div>
+   <div class="gift-box"><div class="gift-icon">🌟</div><b>Star Ring</b></div>
 
   </div>
 
@@ -1537,9 +1299,7 @@ button{
 
 
 
-<!-- =====================================================
-                     VIP
-===================================================== -->
+<!-- VIP -->
 
 <div class="modal" id="vipModal">
 
@@ -1550,24 +1310,38 @@ button{
    <span class="close" onclick="closeModal('vipModal')">✕</span>
   </div>
 
-  <div class="vip">
+  <div class="level-card">
    <h2>👑 VIP 1</h2>
-   <p>Exclusive badge • Entry effect • Special chat effect</p>
+   <p style="font-size:12px;margin-top:7px">
+    Badge • Entry Effect • Special Chat
+   </p>
   </div>
 
-  <div class="vip">
+  <br>
+
+  <div class="level-card">
    <h2>💎 SVIP 1</h2>
-   <p>Premium gifts • Special frame • Exclusive privileges</p>
+   <p style="font-size:12px;margin-top:7px">
+    Premium Frame • Special Gifts • Exclusive Effects
+   </p>
   </div>
 
-  <div class="vip">
+  <br>
+
+  <div class="level-card">
    <h2>💎 SVIP 2</h2>
-   <p>Advanced effects • Premium identity • Special benefits</p>
+   <p style="font-size:12px;margin-top:7px">
+    Advanced Identity • Premium Effects
+   </p>
   </div>
 
-  <div class="vip">
+  <br>
+
+  <div class="level-card">
    <h2>💎 SVIP 3</h2>
-   <p>Elite identity • Premium effects • Exclusive items</p>
+   <p style="font-size:12px;margin-top:7px">
+    Elite Identity • Exclusive Items
+   </p>
   </div>
 
  </div>
@@ -1576,9 +1350,7 @@ button{
 
 
 
-<!-- =====================================================
-                     CP
-===================================================== -->
+<!-- CP -->
 
 <div class="modal" id="cpModal">
 
@@ -1591,27 +1363,133 @@ button{
 
   <div class="banner">
    <h2>💖 Couple System</h2>
-   <p>Build your CP level together and unlock special items.</p>
+   <p>Build your CP level together.</p>
   </div>
 
-  <div class="voice-card">
-   💍 &nbsp; Proposal
-   <span>›</span>
+  <div class="card">💍 Proposal <span style="float:right">›</span></div>
+  <div class="card">❤️ CP Level <span style="float:right">LV 0</span></div>
+  <div class="card">🎁 Couple Gifts <span style="float:right">›</span></div>
+  <div class="card">🏠 CP House <span style="float:right">›</span></div>
+
+ </div>
+
+</div>
+
+
+
+<!-- FAMILY -->
+
+<div class="modal" id="familyModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>👨‍👩‍👧 Doel Family</span>
+   <span class="close" onclick="closeModal('familyModal')">✕</span>
   </div>
 
-  <div class="voice-card">
-   ❤️ &nbsp; CP Level
-   <span>LV 0</span>
+  <div class="banner">
+   <h2>🏠 Family</h2>
+   <p>Create or join a Doel family.</p>
   </div>
 
-  <div class="voice-card">
-   🎁 &nbsp; Couple Gifts
-   <span>›</span>
+  <div class="card">
+   👑 Family Leader
+   <span style="float:right">›</span>
   </div>
 
-  <div class="voice-card">
-   🏠 &nbsp; CP House
-   <span>›</span>
+  <div class="card">
+   👥 Family Members
+   <span style="float:right">12</span>
+  </div>
+
+  <div class="card">
+   🏆 Family Level
+   <span style="float:right">LV 5</span>
+  </div>
+
+  <div class="card">
+   🎁 Family Gifts
+   <span style="float:right">›</span>
+  </div>
+
+  <div class="card">
+   📊 Family Contribution
+   <span style="float:right">›</span>
+  </div>
+
+  <button class="primary"
+   style="width:100%;margin-top:5px"
+   onclick="createFamily()">
+   ＋ Create Family
+  </button>
+
+ </div>
+
+</div>
+
+
+
+<!-- LEVEL -->
+
+<div class="modal" id="levelModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>🏅 Level & XP</span>
+   <span class="close" onclick="closeModal('levelModal')">✕</span>
+  </div>
+
+  <div class="level-card">
+
+   <h2>LV 18</h2>
+
+   <p style="margin-top:7px;font-size:12px">
+    6,500 / 10,000 XP
+   </p>
+
+   <div class="progress">
+    <i></i>
+   </div>
+
+   <small>Next Level: LV 19</small>
+
+  </div>
+
+  <br>
+
+  <div class="card">🏅 Level Badge <span style="float:right">LV 18</span></div>
+  <div class="card">🎁 Level Reward <span style="float:right">Available</span></div>
+  <div class="card">🚗 Vehicle Reward <span style="float:right">Locked</span></div>
+  <div class="card">✨ Frame Reward <span style="float:right">Locked</span></div>
+
+ </div>
+
+</div>
+
+
+
+<!-- PROPS -->
+
+<div class="modal" id="propsModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>🎒 Prop Warehouse</span>
+   <span class="close" onclick="closeModal('propsModal')">✕</span>
+  </div>
+
+  <div class="gift-grid">
+
+   <div class="gift-box"><div class="gift-icon">🖼️</div><b>Frame</b><small>Use</small></div>
+   <div class="gift-box"><div class="gift-icon">🚗</div><b>Vehicle</b><small>Use</small></div>
+   <div class="gift-box"><div class="gift-icon">💍</div><b>Ring</b><small>Use</small></div>
+   <div class="gift-box"><div class="gift-icon">✨</div><b>Effect</b><small>Use</small></div>
+   <div class="gift-box"><div class="gift-icon">🎨</div><b>Theme</b><small>Use</small></div>
+   <div class="gift-box"><div class="gift-icon">🏷️</div><b>Custom ID</b><small>Use</small></div>
+
   </div>
 
  </div>
@@ -1620,54 +1498,155 @@ button{
 
 
 
-<!-- =====================================================
-                     RANKING
-===================================================== -->
+<!-- INVITE -->
+
+<div class="modal" id="inviteModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>🎟️ Invite & Earn</span>
+   <span class="close" onclick="closeModal('inviteModal')">✕</span>
+  </div>
+
+  <div class="banner">
+   <h2>Invite Friends</h2>
+   <p>Invite new users and earn rewards.</p>
+  </div>
+
+  <div class="card">
+   <b>Your Invite Code</b>
+   <div style="margin-top:9px;font-size:22px;font-weight:bold">
+    DOEL1234
+   </div>
+  </div>
+
+  <div class="card">
+   👥 Invited Users
+   <span style="float:right">0</span>
+  </div>
+
+  <div class="card">
+   🪙 Total Rewards
+   <span style="float:right">0 Coins</span>
+  </div>
+
+  <button class="primary"
+   style="width:100%"
+   onclick="shareInvite()">
+   📤 Share Invite
+  </button>
+
+ </div>
+
+</div>
+
+
+
+<!-- EVENTS -->
+
+<div class="modal" id="eventsModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>🎉 Events</span>
+   <span class="close" onclick="closeModal('eventsModal')">✕</span>
+  </div>
+
+  <div class="card">
+   🎁 <b>Daily Gift Event</b>
+   <small style="display:block;color:#777;margin-top:6px">
+    Send gifts and collect event points.
+   </small>
+  </div>
+
+  <div class="card">
+   🏆 <b>Weekly Ranking</b>
+   <small style="display:block;color:#777;margin-top:6px">
+    Compete for weekly rewards.
+   </small>
+  </div>
+
+  <div class="card">
+   🎤 <b>Voice Room Event</b>
+   <small style="display:block;color:#777;margin-top:6px">
+    Join rooms and complete tasks.
+   </small>
+  </div>
+
+  <div class="card">
+   🎟️ <b>Login Reward</b>
+   <small style="display:block;color:#777;margin-top:6px">
+    Daily login rewards available.
+   </small>
+  </div>
+
+ </div>
+
+</div>
+
+
+
+<!-- RANKING -->
 
 <div class="modal" id="rankingModal">
 
  <div class="modal-content">
 
   <div class="modal-title">
-   <span>🏆 Rankings</span>
+   <span>🏆 Ranking</span>
    <span class="close" onclick="closeModal('rankingModal')">✕</span>
   </div>
 
-  <div class="tabs" style="margin-bottom:15px">
+  <div class="tabs">
    <span class="active">Wealth</span>
    <span>Gift</span>
    <span>Host</span>
    <span>Family</span>
+   <span>CP</span>
   </div>
 
+  <br>
+
   <div class="rank">
-   <div class="rank-number">1</div>
-   <div class="rank-avatar">👑</div>
-   <div style="flex:1">
-    <b>Royal User</b><br>
+   <div class="ranknum">1</div>
+   <div class="rankavatar">👑</div>
+   <div class="rankinfo">
+    <b>Royal User</b>
     <small>LV 35</small>
    </div>
    <b>950K</b>
   </div>
 
   <div class="rank">
-   <div class="rank-number">2</div>
-   <div class="rank-avatar">👩</div>
-   <div style="flex:1">
-    <b>Sarah</b><br>
+   <div class="ranknum">2</div>
+   <div class="rankavatar">👩</div>
+   <div class="rankinfo">
+    <b>Sarah</b>
     <small>LV 29</small>
    </div>
    <b>720K</b>
   </div>
 
   <div class="rank">
-   <div class="rank-number">3</div>
-   <div class="rank-avatar">👨</div>
-   <div style="flex:1">
-    <b>Ahmed</b><br>
+   <div class="ranknum">3</div>
+   <div class="rankavatar">👨</div>
+   <div class="rankinfo">
+    <b>Ahmed</b>
     <small>LV 26</small>
    </div>
    <b>580K</b>
+  </div>
+
+  <div class="rank">
+   <div class="ranknum">4</div>
+   <div class="rankavatar">👩</div>
+   <div class="rankinfo">
+    <b>Nadia</b>
+    <small>LV 24</small>
+   </div>
+   <b>430K</b>
   </div>
 
  </div>
@@ -1676,9 +1655,218 @@ button{
 
 
 
-<!-- =====================================================
-                     VOICE ROOM
-===================================================== -->
+<!-- NOTIFICATIONS -->
+
+<div class="modal" id="notificationModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>🔔 Notifications</span>
+   <span class="close" onclick="closeModal('notificationModal')">✕</span>
+  </div>
+
+  <div class="card">
+   🎁 <b>Sarah sent you a gift</b>
+   <small style="display:block;color:#777;margin-top:4px">2 minutes ago</small>
+  </div>
+
+  <div class="card">
+   🎤 <b>Ahmed invited you to a room</b>
+   <small style="display:block;color:#777;margin-top:4px">10 minutes ago</small>
+  </div>
+
+  <div class="card">
+   🏆 <b>You reached Level 18</b>
+   <small style="display:block;color:#777;margin-top:4px">Today</small>
+  </div>
+
+ </div>
+
+</div>
+
+
+
+<!-- SETTINGS -->
+
+<div class="modal" id="settingsModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>⚙️ Settings</span>
+   <span class="close" onclick="closeModal('settingsModal')">✕</span>
+  </div>
+
+  <div class="card">
+   🔔 Notifications
+   <span class="switch on" onclick="toggleSwitch(this)"><i></i></span>
+  </div>
+
+  <div class="card">
+   🔊 Sound
+   <span class="switch on" onclick="toggleSwitch(this)"><i></i></span>
+  </div>
+
+  <div class="card">
+   🌙 Dark Mode
+   <span class="switch" onclick="toggleSwitch(this)"><i></i></span>
+  </div>
+
+  <div class="card">
+   🌎 Language
+   <span style="float:right">English ›</span>
+  </div>
+
+  <div class="card">
+   🔒 Privacy
+   <span style="float:right">›</span>
+  </div>
+
+  <div class="card">
+   🚫 Block List
+   <span style="float:right">›</span>
+  </div>
+
+  <div class="card">
+   🛡️ Account Security
+   <span style="float:right">›</span>
+  </div>
+
+  <div class="card">
+   💬 Customer Service
+   <span style="float:right">›</span>
+  </div>
+
+  <div class="card">
+   📝 Feedback
+   <span style="float:right">›</span>
+  </div>
+
+  <div class="card">
+   ⚠️ Report a Problem
+   <span style="float:right">›</span>
+  </div>
+
+ </div>
+
+</div>
+
+
+
+<!-- USER -->
+
+<div class="modal" id="userModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>👤 User Profile</span>
+   <span class="close" onclick="closeModal('userModal')">✕</span>
+  </div>
+
+  <div style="text-align:center">
+
+   <div class="bigavatar">👩</div>
+
+   <h2 id="userName" style="margin-top:9px">Sarah</h2>
+
+   <small>ID: 10002345 • LV 25</small>
+
+  </div>
+
+  <div class="action-grid" style="margin-top:20px">
+
+   <div class="action">
+    <div>❤️</div><small>Follow</small>
+   </div>
+
+   <div class="action">
+    <div>💬</div><small>Message</small>
+   </div>
+
+   <div class="action" onclick="openGifts()">
+    <div>🎁</div><small>Gift</small>
+   </div>
+
+   <div class="action">
+    <div>🚫</div><small>Block</small>
+   </div>
+
+  </div>
+
+  <div class="card">
+   🏅 Level <span style="float:right">LV 25</span>
+  </div>
+
+  <div class="card">
+   👑 VIP <span style="float:right">VIP 2</span>
+  </div>
+
+  <div class="card">
+   💑 CP <span style="float:right">Available</span>
+  </div>
+
+  <div class="card">
+   ⚠️ Report User <span style="float:right">›</span>
+  </div>
+
+ </div>
+
+</div>
+
+
+
+<!-- CREATE ROOM -->
+
+<div class="modal" id="createRoomModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>＋ Create Voice Room</span>
+   <span class="close" onclick="closeModal('createRoomModal')">✕</span>
+  </div>
+
+  <input id="newRoomName"
+   class="search"
+   placeholder="Room name">
+
+  <br><br>
+
+  <div class="card">
+   🎨 Room Theme
+   <span style="float:right">Default ›</span>
+  </div>
+
+  <div class="card">
+   🎤 Mic Seats
+   <span style="float:right">8 ›</span>
+  </div>
+
+  <div class="card">
+   🔒 Room Privacy
+   <span style="float:right">Public ›</span>
+  </div>
+
+  <div class="card">
+   🛡️ Room Security
+   <span style="float:right">Standard ›</span>
+  </div>
+
+  <button class="primary"
+   style="width:100%;margin-top:7px"
+   onclick="finishCreateRoom()">
+   Create Room
+  </button>
+
+ </div>
+
+</div>
+
+
+
+<!-- ROOM -->
 
 <section id="room">
 
@@ -1689,7 +1877,7 @@ button{
    <span class="roomid">Room ID: 10023456</span>
   </div>
 
-  <div onclick="closeRoom()" style="font-size:25px">✕</div>
+  <div onclick="closeRoom()" style="font-size:24px">✕</div>
 
  </div>
 
@@ -1752,7 +1940,8 @@ button{
 
   <div class="roominput">
 
-   <input id="messageInput" placeholder="Say something...">
+   <input id="messageInput"
+    placeholder="Say something...">
 
    <button onclick="sendMessage()">➤</button>
 
@@ -1760,51 +1949,61 @@ button{
 
   <div class="controls">
 
-   <div class="control" onclick="toggleMic()" id="mic">🎤</div>
+   <div class="control"
+    onclick="toggleMic()"
+    id="mic">🎤</div>
 
    <div class="control">🔊</div>
 
    <div class="control">😊</div>
 
-   <div class="control">⋯</div>
+   <div class="control"
+    onclick="openRoomMenu()">⋯</div>
 
-   <div class="control gift" onclick="showRoomGifts()">🎁</div>
+   <div class="control gift"
+    onclick="showRoomGifts()">🎁</div>
 
   </div>
 
  </div>
 
 
+ <!-- ROOM GIFTS -->
+
  <div id="giftPanel">
 
   <div style="display:flex;justify-content:space-between;margin-bottom:15px">
-   <b>🎁 Gifts</b>
+   <b>🎁 Send Gift</b>
    <span onclick="hideRoomGifts()">✕</span>
   </div>
 
   <div class="gifts">
 
-   <div class="giftitem" onclick="sendRoomGift('Rose',10)">
-    <div class="gifticon">🌹</div>
-    <small>Rose</small>
+   <div class="gift-box"
+    onclick="sendRoomGift('Rose',10)">
+    <div class="gift-icon">🌹</div>
+    <b>Rose</b>
     <small>10 🪙</small>
    </div>
 
-   <div class="giftitem" onclick="sendRoomGift('Heart',50)">
-    <div class="gifticon">💖</div>
-    <small>Heart</small>
+   <div class="gift-box"
+    onclick="sendRoomGift('Heart',50)">
+    <div class="gift-icon">💖</div>
+    <b>Heart</b>
     <small>50 🪙</small>
    </div>
 
-   <div class="giftitem" onclick="sendRoomGift('Golden Egg',100)">
-    <div class="gifticon">🥚</div>
-    <small>Golden Egg</small>
+   <div class="gift-box"
+    onclick="sendRoomGift('Golden Egg',100)">
+    <div class="gift-icon">🥚</div>
+    <b>Golden Egg</b>
     <small>100 🪙</small>
    </div>
 
-   <div class="giftitem" onclick="sendRoomGift('Super Car',1000)">
-    <div class="gifticon">🏎️</div>
-    <small>Super Car</small>
+   <div class="gift-box"
+    onclick="sendRoomGift('Super Car',1000)">
+    <div class="gift-icon">🏎️</div>
+    <b>Super Car</b>
     <small>1K 🪙</small>
    </div>
 
@@ -1813,6 +2012,34 @@ button{
  </div>
 
 </section>
+
+
+
+<!-- ROOM MENU -->
+
+<div class="modal" id="roomMenuModal">
+
+ <div class="modal-content">
+
+  <div class="modal-title">
+   <span>⋯ Room Menu</span>
+   <span class="close" onclick="closeModal('roomMenuModal')">✕</span>
+  </div>
+
+  <div class="host-action">👥 Room Members</div>
+  <div class="host-action">🔗 Share Room</div>
+  <div class="host-action">❤️ Follow Host</div>
+  <div class="host-action">🚫 Block User</div>
+  <div class="host-action">⚠️ Report Room</div>
+  <div class="host-action">🔒 Room Settings</div>
+
+ </div>
+
+</div>
+
+
+
+<div id="toast"></div>
 
 
 
@@ -1857,8 +2084,8 @@ function phoneLogin(){
 function logout(){
 
  localStorage.removeItem("doel_logged");
-
  location.reload();
+
 }
 
 
@@ -1900,28 +2127,32 @@ function updateBalance(){
 
 function page(name,el){
 
- document.querySelectorAll(".page").forEach(p=>{
-  p.classList.remove("active");
- });
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
 
- document.getElementById(name).classList.add("active");
+ document.getElementById(name)
+ .classList.add("active");
 
- document.querySelectorAll(".nav").forEach(n=>{
-  n.classList.remove("active");
- });
+ document.querySelectorAll(".nav")
+ .forEach(n=>n.classList.remove("active"));
 
- el.classList.add("active");
+ if(el)el.classList.add("active");
+
 }
 
 
-/* ================= MODALS ================= */
+/* ================= MODAL ================= */
 
 function openModal(id){
+
  document.getElementById(id).style.display="flex";
+
 }
 
 function closeModal(id){
+
  document.getElementById(id).style.display="none";
+
 }
 
 
@@ -1930,33 +2161,52 @@ function closeModal(id){
 function openWallet(){
 
  updateBalance();
-
  openModal("walletModal");
 
 }
 
-
-/* ================= RECHARGE ================= */
-
 function openRecharge(){
 
  closeModal("walletModal");
-
  openModal("rechargeModal");
 
 }
 
 function demoRecharge(amount){
 
- coins += amount;
+ coins+=amount;
 
  updateBalance();
 
- alert("Demo recharge successful!\n+"+
-       amount.toLocaleString()+
-       " coins");
+ toast("+"+amount.toLocaleString()+" Coins added (Demo)");
 
  closeModal("rechargeModal");
+
+}
+
+function exchangeCoins(){
+
+ if(coins<1000){
+
+  toast("Minimum 1,000 coins required");
+  return;
+
+ }
+
+ let amount=Math.floor(coins/1000);
+
+ coins-=amount*1000;
+ diamonds+=amount;
+
+ updateBalance();
+
+ toast("Exchange completed: +"+amount+" Diamonds");
+
+}
+
+function openHistory(){
+
+ openModal("historyModal");
 
 }
 
@@ -1971,26 +2221,20 @@ function openGifts(){
 
 function buyGift(name,price){
 
- if(coins < price){
+ if(coins<price){
 
-  alert("Not enough coins!");
-
+  toast("Not enough Coins");
   return;
+
  }
 
- coins -= price;
+ coins-=price;
 
  updateBalance();
 
- alert("🎁 "+name+" sent!\n-"+price+" coins");
+ toast("🎁 "+name+" sent!");
 
  closeModal("giftModal");
-
-}
-
-function openHistory(){
-
- openModal("historyModal");
 
 }
 
@@ -2022,11 +2266,147 @@ function openCP(){
 }
 
 
+/* ================= FAMILY ================= */
+
+function openFamily(){
+
+ openModal("familyModal");
+
+}
+
+function createFamily(){
+
+ toast("Family creation page opened");
+
+}
+
+
+/* ================= LEVEL ================= */
+
+function openLevel(){
+
+ openModal("levelModal");
+
+}
+
+
+/* ================= PROPS ================= */
+
+function openProps(){
+
+ openModal("propsModal");
+
+}
+
+
+/* ================= INVITE ================= */
+
+function openInvite(){
+
+ openModal("inviteModal");
+
+}
+
+function shareInvite(){
+
+ toast("Invite link copied");
+
+}
+
+
+/* ================= EVENTS ================= */
+
+function openEvents(){
+
+ openModal("eventsModal");
+
+}
+
+
 /* ================= RANKING ================= */
 
 function openRanking(){
 
  openModal("rankingModal");
+
+}
+
+
+/* ================= NOTIFICATIONS ================= */
+
+function openNotifications(){
+
+ openModal("notificationModal");
+
+}
+
+
+/* ================= SETTINGS ================= */
+
+function openSettings(){
+
+ openModal("settingsModal");
+
+}
+
+function toggleSwitch(el){
+
+ el.classList.toggle("on");
+
+}
+
+
+/* ================= USER ================= */
+
+function openUser(name){
+
+ document.getElementById("userName").innerText=name;
+
+ openModal("userModal");
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchEnter(event){
+
+ if(event.key==="Enter"){
+
+  let value=event.target.value.trim();
+
+  if(!value)return;
+
+  toast("Searching: "+value);
+
+ }
+
+}
+
+
+/* ================= CREATE ROOM ================= */
+
+function createRoom(){
+
+ openModal("createRoomModal");
+
+}
+
+function finishCreateRoom(){
+
+ let name=
+ document.getElementById("newRoomName").value.trim();
+
+ if(!name){
+
+  toast("Enter a room name");
+  return;
+
+ }
+
+ closeModal("createRoomModal");
+
+ openRoom(name);
 
 }
 
@@ -2059,10 +2439,12 @@ function toggleMic(){
  if(mic.innerText==="🎤"){
 
   mic.innerText="🔇";
+  toast("Microphone muted");
 
  }else{
 
   mic.innerText="🎤";
+  toast("Microphone on");
 
  }
 
@@ -2073,7 +2455,8 @@ function toggleMic(){
 
 function sendMessage(){
 
- let input=document.getElementById("messageInput");
+ let input=
+ document.getElementById("messageInput");
 
  let text=input.value.trim();
 
@@ -2082,47 +2465,73 @@ function sendMessage(){
  let msg=document.createElement("div");
 
  msg.className="chatmsg";
-
  msg.innerText="You: "+text;
 
- document.getElementById("roomChat").appendChild(msg);
+ document.getElementById("roomChat")
+ .appendChild(msg);
 
  input.value="";
 
 }
 
 
-/* ================= ROOM GIFTS ================= */
+/* ================= ROOM GIFT ================= */
 
 function showRoomGifts(){
 
- document.getElementById("giftPanel").style.display="block";
+ document.getElementById("giftPanel")
+ .style.display="block";
 
 }
 
 function hideRoomGifts(){
 
- document.getElementById("giftPanel").style.display="none";
+ document.getElementById("giftPanel")
+ .style.display="none";
 
 }
 
 function sendRoomGift(name,price){
 
- if(coins < price){
+ if(coins<price){
 
-  alert("Not enough coins!");
-
+  toast("Not enough Coins");
   return;
 
  }
 
- coins -= price;
+ coins-=price;
 
  updateBalance();
 
- alert("🎁 "+name+" sent!\n-"+price+" coins");
+ toast("🎁 "+name+" sent!");
 
  hideRoomGifts();
+
+}
+
+
+/* ================= ROOM MENU ================= */
+
+function openRoomMenu(){
+
+ openModal("roomMenuModal");
+
+}
+
+
+/* ================= TOAST ================= */
+
+function toast(message){
+
+ let t=document.getElementById("toast");
+
+ t.innerText=message;
+ t.style.display="block";
+
+ setTimeout(()=>{
+  t.style.display="none";
+ },2200);
 
 }
 
