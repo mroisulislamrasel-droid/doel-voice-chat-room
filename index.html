@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0,
-               maximum-scale=1.0, user-scalable=no">
+      maximum-scale=1.0,user-scalable=no">
 
 <title>MR</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -17,15 +18,14 @@
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f7f7fb;
-    color:#202020;
+    font-family:Arial,sans-serif;
+    background:#f7f7fa;
+    color:#222;
 }
 
 button{
     border:0;
     background:none;
-    cursor:pointer;
 }
 
 .app{
@@ -34,20 +34,20 @@ button{
     min-height:100vh;
     margin:auto;
     background:#fff;
-    position:relative;
-    padding-bottom:76px;
+    padding-bottom:80px;
 }
 
+
 /* =========================
-   TOP
+   TOP BAR
 ========================= */
 
 .top{
     height:58px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:0 14px;
+    padding:0 10px;
+    gap:14px;
     background:#fff;
     position:sticky;
     top:0;
@@ -56,16 +56,18 @@ button{
 
 .tabs{
     display:flex;
-    gap:24px;
     align-items:center;
+    gap:17px;
+    flex:1;
 }
 
 .tab{
-    font-size:16px;
+    font-size:14px;
     color:#777;
     font-weight:600;
+    padding:18px 0;
     position:relative;
-    padding:18px 0 15px;
+    white-space:nowrap;
 }
 
 .tab.active{
@@ -76,88 +78,109 @@ button{
     content:"";
     position:absolute;
     left:50%;
+    bottom:8px;
     transform:translateX(-50%);
-    bottom:7px;
-    width:22px;
+    width:20px;
     height:3px;
-    border-radius:5px;
-    background:#ff4f8b;
+    border-radius:10px;
+    background:#ff4c86;
 }
 
-.top-actions{
-    display:flex;
-    gap:13px;
-}
 
-.icon-btn{
-    width:34px;
-    height:34px;
+/* SEARCH */
+
+.search-btn{
+    width:32px;
+    height:32px;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:20px;
+    font-size:19px;
 }
 
+
+/* CREATE ROOM ICON */
+
+.create-room-btn{
+    width:30px;
+    height:30px;
+    border:2px solid #555;
+    border-radius:8px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.create-room-btn:before{
+    content:"";
+    position:absolute;
+    top:-5px;
+    left:7px;
+    width:12px;
+    height:6px;
+    border:2px solid #555;
+    border-bottom:0;
+    border-radius:5px 5px 0 0;
+}
+
+.create-room-btn span{
+    font-size:18px;
+    line-height:1;
+    font-weight:bold;
+}
+
+
 /* =========================
-   BANNER
+   CELEBRATION / EVENT
 ========================= */
 
-.banner{
+.celebration{
     margin:6px 12px 14px;
-    height:142px;
-    border-radius:14px;
+    height:140px;
+    border-radius:15px;
     overflow:hidden;
     position:relative;
     background:
-        linear-gradient(110deg,#ff5a9d,#ff9b57,#ffd05c);
+      linear-gradient(110deg,
+      #ff4f91,
+      #ff7b72,
+      #ffc04d);
 }
 
-.banner:before{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    background:rgba(255,255,255,.18);
-    right:-50px;
-    top:-50px;
+.celebration-content{
+    padding:20px;
+    color:white;
 }
 
-.banner-content{
-    position:relative;
-    z-index:2;
-    padding:23px 20px;
-    color:#fff;
+.celebration-small{
+    font-size:11px;
+    margin-bottom:6px;
+    opacity:.9;
 }
 
-.banner-small{
-    font-size:12px;
-    opacity:.95;
-    margin-bottom:7px;
-}
-
-.banner-title{
+.celebration-title{
     font-size:25px;
     font-weight:800;
-    margin-bottom:7px;
 }
 
-.banner-text{
-    font-size:13px;
-    opacity:.95;
-}
-
-.banner-btn{
-    display:inline-block;
-    margin-top:12px;
-    background:#fff;
-    color:#ff4f82;
-    padding:7px 16px;
-    border-radius:18px;
+.celebration-text{
+    margin-top:7px;
     font-size:12px;
+}
+
+.celebration-btn{
+    margin-top:12px;
+    background:white;
+    color:#ff4f86;
+    padding:7px 15px;
+    border-radius:20px;
+    font-size:11px;
     font-weight:bold;
 }
+
 
 /* =========================
    RANKING
@@ -166,35 +189,36 @@ button{
 .rank-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px;
+    gap:9px;
     padding:0 12px 16px;
 }
 
-.rank-card{
-    border-radius:13px;
-    padding:12px 7px;
-    text-align:center;
+.rank{
     background:#fff5f8;
+    border-radius:13px;
+    padding:12px 5px;
+    text-align:center;
 }
 
 .rank-icon{
-    font-size:25px;
-    margin-bottom:5px;
+    font-size:23px;
 }
 
 .rank-title{
-    font-size:12px;
-    font-weight:700;
+    margin-top:4px;
+    font-size:11px;
+    font-weight:bold;
 }
 
 .rank-sub{
-    font-size:10px;
+    margin-top:2px;
+    font-size:9px;
     color:#999;
-    margin-top:3px;
 }
 
+
 /* =========================
-   SECTION
+   ROOM SECTION
 ========================= */
 
 .section{
@@ -209,52 +233,58 @@ button{
 }
 
 .section-title{
-    font-size:18px;
+    font-size:17px;
     font-weight:800;
 }
 
-.section-more{
-    color:#999;
-    font-size:12px;
-}
 
 /* =========================
-   ROOM CARD
+   ROOM LIST
 ========================= */
 
 .rooms{
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:9px;
 }
+
+
+/* ROOM CARD */
 
 .room{
-    background:#fff;
-    border:1px solid #f0f0f0;
-    border-radius:13px;
-    padding:10px;
     display:flex;
     align-items:center;
-    gap:11px;
-    box-shadow:0 2px 10px rgba(0,0,0,.035);
+    padding:9px;
+    border-radius:13px;
+    background:#fff;
+    border:1px solid #eeeeee;
+    box-shadow:0 2px 9px rgba(0,0,0,.035);
+    cursor:pointer;
 }
 
+
+/* ছোট গোল ছবি */
+
 .room-avatar{
-    width:60px;
-    height:60px;
-    flex-shrink:0;
-    border-radius:12px;
+    width:52px;
+    height:52px;
+    min-width:52px;
+    border-radius:50%;
     object-fit:cover;
     background:#eee;
+    border:2px solid #fff;
+    box-shadow:0 1px 5px rgba(0,0,0,.12);
 }
+
 
 .room-info{
     min-width:0;
     flex:1;
+    margin-left:10px;
 }
 
 .room-name{
-    font-size:14px;
+    font-size:13px;
     font-weight:700;
     white-space:nowrap;
     overflow:hidden;
@@ -262,34 +292,37 @@ button{
 }
 
 .room-id{
-    color:#999;
-    font-size:10px;
+    font-size:9px;
+    color:#aaa;
     margin-top:3px;
 }
 
 .room-owner{
-    font-size:11px;
+    font-size:10px;
     color:#777;
-    margin-top:5px;
+    margin-top:4px;
 }
 
 .room-bottom{
     display:flex;
     align-items:center;
     gap:6px;
-    margin-top:5px;
+    margin-top:4px;
 }
 
 .country{
-    font-size:13px;
+    font-size:12px;
 }
 
 .users{
     color:#999;
-    font-size:10px;
+    font-size:9px;
 }
 
-.room-actions{
+
+/* right side */
+
+.room-right{
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -297,53 +330,53 @@ button{
 }
 
 .gift{
-    font-size:22px;
+    font-size:20px;
 }
 
 .follow-btn{
-    font-size:11px;
-    color:#ff4f87;
-    border:1px solid #ff4f87;
-    border-radius:14px;
     padding:4px 9px;
+    border-radius:15px;
+    border:1px solid #ff4f86;
+    color:#ff4f86;
+    font-size:9px;
 }
 
 .follow-btn.followed{
-    color:#fff;
-    background:#ff4f87;
+    color:white;
+    background:#ff4f86;
 }
 
-/* =========================
-   EMPTY
-========================= */
+
+/* EMPTY */
 
 .empty{
     text-align:center;
-    padding:45px 15px;
+    padding:45px 10px;
     color:#aaa;
 }
 
 .empty-icon{
-    font-size:42px;
-    margin-bottom:10px;
+    font-size:38px;
+    margin-bottom:8px;
 }
 
 .empty-text{
-    font-size:14px;
+    font-size:13px;
 }
+
 
 /* =========================
    BOTTOM NAV
 ========================= */
 
-.bottom-nav{
+.bottom{
     position:fixed;
     bottom:0;
     left:50%;
     transform:translateX(-50%);
     width:100%;
     max-width:520px;
-    height:72px;
+    height:70px;
     background:#fff;
     border-top:1px solid #eee;
     display:grid;
@@ -351,32 +384,33 @@ button{
     z-index:100;
 }
 
-.nav-item{
+.bottom-item{
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:4px;
+    gap:3px;
     color:#999;
-    font-size:10px;
+    font-size:9px;
 }
 
-.nav-icon{
-    font-size:22px;
+.bottom-item.active{
+    color:#ff4f86;
 }
 
-.nav-item.active{
-    color:#ff4f87;
+.bottom-icon{
+    font-size:21px;
 }
+
 
 /* =========================
-   MODALS
+   SEARCH
 ========================= */
 
 .overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.48);
+    background:rgba(0,0,0,.45);
     display:none;
     align-items:flex-end;
     justify-content:center;
@@ -390,41 +424,40 @@ button{
 .sheet{
     width:100%;
     max-width:520px;
+    max-height:85vh;
+    overflow:auto;
     background:#fff;
     border-radius:22px 22px 0 0;
     padding:18px;
-    max-height:85vh;
-    overflow:auto;
 }
 
 .sheet-head{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:18px;
+    justify-content:space-between;
+    margin-bottom:15px;
 }
 
 .sheet-title{
-    font-size:19px;
+    font-size:18px;
     font-weight:800;
 }
 
 .close{
-    width:34px;
-    height:34px;
+    width:32px;
+    height:32px;
     border-radius:50%;
-    background:#f4f4f4;
-    font-size:18px;
+    background:#f2f2f2;
+    font-size:19px;
 }
 
 .search-box{
+    background:#f5f5f7;
+    border-radius:13px;
     display:flex;
     align-items:center;
-    gap:10px;
-    background:#f5f5f7;
-    border-radius:14px;
-    padding:11px 13px;
-    margin-bottom:15px;
+    padding:10px 12px;
+    gap:8px;
 }
 
 .search-box input{
@@ -432,21 +465,21 @@ button{
     outline:none;
     background:none;
     width:100%;
-    font-size:14px;
+    font-size:13px;
 }
 
 .search-result{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:11px 0;
+    gap:10px;
+    padding:10px 0;
     border-bottom:1px solid #eee;
 }
 
 .search-result img{
-    width:50px;
-    height:50px;
-    border-radius:11px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
     object-fit:cover;
 }
 
@@ -455,15 +488,16 @@ button{
 }
 
 .search-name{
+    font-size:13px;
     font-weight:bold;
-    font-size:14px;
 }
 
 .search-id{
+    font-size:9px;
     color:#999;
-    font-size:10px;
     margin-top:3px;
 }
+
 
 /* =========================
    ROOM SCREEN
@@ -473,11 +507,13 @@ button{
     position:fixed;
     inset:0;
     background:
-        radial-gradient(circle at 20% 20%,#57377b,#171527 45%,#0d0d15);
+      radial-gradient(circle at 20% 10%,
+      #5a3978,
+      #191725 45%,
+      #0d0d13);
     color:white;
     display:none;
-    z-index:300;
-    overflow:hidden;
+    z-index:500;
 }
 
 .room-screen.show{
@@ -499,28 +535,29 @@ button{
 }
 
 .back{
-    font-size:26px;
+    color:white;
+    font-size:30px;
 }
 
-.room-title-live{
-    font-size:15px;
-    font-weight:700;
+.live-title{
+    font-size:14px;
+    font-weight:bold;
 }
 
-.room-online{
-    color:#bbb;
-    font-size:10px;
+.live-users{
+    font-size:9px;
+    color:#aaa;
+    margin-top:2px;
 }
 
-.room-main{
+.room-content{
     padding:10px 14px;
 }
 
 .host{
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-bottom:16px;
+    gap:9px;
 }
 
 .host img{
@@ -528,25 +565,25 @@ button{
     height:48px;
     border-radius:50%;
     object-fit:cover;
-    border:2px solid #ff78a8;
+    border:2px solid #ff72a3;
 }
 
 .host-name{
-    font-size:14px;
+    font-size:13px;
     font-weight:bold;
 }
 
 .host-id{
     color:#aaa;
-    font-size:10px;
+    font-size:9px;
     margin-top:3px;
 }
 
 .seats{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:12px 8px;
-    margin-top:25px;
+    gap:18px 7px;
+    margin-top:30px;
 }
 
 .seat{
@@ -554,16 +591,12 @@ button{
 }
 
 .seat-avatar{
-    width:52px;
-    height:52px;
-    border-radius:50%;
-    background:#29263a;
+    width:50px;
+    height:50px;
     margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
+    border-radius:50%;
     overflow:hidden;
+    background:#29273a;
 }
 
 .seat-avatar img{
@@ -573,270 +606,318 @@ button{
 }
 
 .seat-name{
-    margin-top:5px;
+    font-size:8px;
     color:#ddd;
-    font-size:9px;
+    margin-top:5px;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.room-bottom{
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    padding:12px 14px 20px;
-    background:linear-gradient(transparent,rgba(0,0,0,.65));
-}
-
-.chat-area{
-    height:95px;
-    overflow:hidden;
-    margin-bottom:8px;
-}
-
-.chat-line{
-    font-size:11px;
-    margin:7px 0;
-    color:#eee;
-}
-
-.chat-line b{
-    color:#ff9abc;
-}
-
 .room-controls{
+    position:absolute;
+    bottom:20px;
+    left:14px;
+    right:14px;
     display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    gap:10px;
+    grid-template-columns:repeat(4,1fr);
+    gap:9px;
 }
 
-.room-control{
-    height:48px;
+.control{
+    height:46px;
     border-radius:25px;
     background:rgba(255,255,255,.13);
     color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
+    font-size:20px;
 }
 
-.room-control span{
-    font-size:10px;
-    margin-left:4px;
+.control.on{
+    background:#ff4f86;
 }
 
-.mic-on{
-    background:#ff4f87;
-}
 
-/* =========================
-   CREATE ROOM
-========================= */
+/* toast */
 
-.create-options{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.create-option{
-    padding:20px 10px;
-    border-radius:14px;
-    background:#fff5f8;
-    text-align:center;
-}
-
-.create-option div:first-child{
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.create-option strong{
-    font-size:13px;
+#toast{
+    position:fixed;
+    left:50%;
+    bottom:90px;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.82);
+    color:white;
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:11px;
+    z-index:9999;
+    display:none;
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
-    <!-- TOP -->
-    <header class="top">
 
-        <div class="tabs">
+<!-- =================================
+     TOP
+================================= -->
 
-            <button class="tab active"
-                    onclick="changeTab('popular',this)">
-                Popular
-            </button>
+<div class="top">
 
-            <button class="tab"
-                    onclick="changeTab('following',this)">
-                Following
-            </button>
+    <!-- FOLLOWING FIRST -->
 
-            <button class="tab"
-                    onclick="changeTab('recent',this)">
-                Recent
-            </button>
+    <div class="tabs">
 
-        </div>
-
-        <div class="top-actions">
-
-            <button class="icon-btn"
-                    onclick="openSearch()">
-                🔍
-            </button>
-
-            <button class="icon-btn"
-                    onclick="openCreate()">
-                ＋
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <!-- BANNER -->
-    <section class="banner">
-
-        <div class="banner-content">
-
-            <div class="banner-small">
-                MR VOICE PARTY
-            </div>
-
-            <div class="banner-title">
-                Meet New Friends
-            </div>
-
-            <div class="banner-text">
-                Talk • Sing • Play • Have Fun
-            </div>
-
-            <button class="banner-btn"
-                    onclick="showToast('Welcome to MR')">
-                Join Now
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- RANKING -->
-    <section class="rank-grid">
-
-        <button class="rank-card"
-                onclick="showToast('Contribution Ranking')">
-            <div class="rank-icon">🏆</div>
-            <div class="rank-title">Contribution</div>
-            <div class="rank-sub">Ranking</div>
+        <button
+            class="tab"
+            onclick="changeTab('following',this)">
+            Following
         </button>
 
-        <button class="rank-card"
-                onclick="showToast('Charm Ranking')">
-            <div class="rank-icon">💎</div>
-            <div class="rank-title">Charm Ranking</div>
-            <div class="rank-sub">Ranking</div>
+        <button
+            class="tab active"
+            onclick="changeTab('popular',this)">
+            Popular
         </button>
 
-        <button class="rank-card"
-                onclick="showToast('Room Ranking')">
-            <div class="rank-icon">👑</div>
-            <div class="rank-title">Room Ranking</div>
-            <div class="rank-sub">Ranking</div>
+        <button
+            class="tab"
+            onclick="changeTab('recent',this)">
+            Recent
         </button>
 
-    </section>
+    </div>
 
 
-    <!-- ROOMS -->
-    <section class="section">
+    <!-- SEARCH -->
 
-        <div class="section-head">
+    <button
+        class="search-btn"
+        onclick="openSearch()">
+        🔍
+    </button>
 
-            <div class="section-title"
-                 id="roomSectionTitle">
-                Popular Rooms
-            </div>
 
-            <button class="section-more"
-                    onclick="openSearch()">
-                More ›
-            </button>
+    <!-- CREATE ROOM -->
 
-        </div>
+    <button
+        class="create-room-btn"
+        onclick="openCreate()">
 
-        <div class="rooms" id="rooms"></div>
+        <span>+</span>
 
-    </section>
+    </button>
 
 </div>
 
 
-<!-- BOTTOM NAV -->
 
-<nav class="bottom-nav">
+<!-- =================================
+     CELEBRATION
+================================= -->
 
-    <button class="nav-item active"
-            onclick="navHome(this)">
-        <div class="nav-icon">⌂</div>
+<div class="celebration">
+
+    <div class="celebration-content">
+
+        <div class="celebration-small">
+            MR SPECIAL EVENT
+        </div>
+
+        <div class="celebration-title">
+            Celebration
+        </div>
+
+        <div class="celebration-text">
+            Talk • Sing • Play • Make Friends
+        </div>
+
+        <button
+            class="celebration-btn"
+            onclick="toast('Welcome to MR')">
+
+            Join Now
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================
+     RANKING
+================================= -->
+
+<div class="rank-grid">
+
+    <button class="rank"
+            onclick="toast('Contribution Ranking')">
+
+        <div class="rank-icon">🏆</div>
+
+        <div class="rank-title">
+            Contribution
+        </div>
+
+        <div class="rank-sub">
+            Ranking
+        </div>
+
+    </button>
+
+
+    <button class="rank"
+            onclick="toast('Charm Ranking')">
+
+        <div class="rank-icon">💎</div>
+
+        <div class="rank-title">
+            Charm Ranking
+        </div>
+
+        <div class="rank-sub">
+            Ranking
+        </div>
+
+    </button>
+
+
+    <button class="rank"
+            onclick="toast('Room Ranking')">
+
+        <div class="rank-icon">👑</div>
+
+        <div class="rank-title">
+            Room Ranking
+        </div>
+
+        <div class="rank-sub">
+            Ranking
+        </div>
+
+    </button>
+
+</div>
+
+
+
+<!-- =================================
+     ROOM LIST
+================================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div
+            class="section-title"
+            id="sectionTitle">
+            Popular Rooms
+        </div>
+
+    </div>
+
+
+    <div
+        class="rooms"
+        id="rooms">
+    </div>
+
+</section>
+
+</div>
+
+
+
+<!-- =================================
+     BOTTOM
+================================= -->
+
+<div class="bottom">
+
+    <button
+        class="bottom-item active"
+        onclick="setBottom(this)">
+
+        <div class="bottom-icon">⌂</div>
         <div>Home</div>
+
     </button>
 
-    <button class="nav-item"
-            onclick="showToast('Discover')">
-        <div class="nav-icon">◎</div>
+
+    <button
+        class="bottom-item"
+        onclick="toast('Discover')">
+
+        <div class="bottom-icon">◎</div>
         <div>Discover</div>
+
     </button>
 
-    <button class="nav-item"
-            onclick="openCreate()">
-        <div class="nav-icon">🎙</div>
+
+    <button
+        class="bottom-item"
+        onclick="openCreate()">
+
+        <div class="bottom-icon">🎙</div>
         <div>Voice</div>
+
     </button>
 
-    <button class="nav-item"
-            onclick="showToast('Messages')">
-        <div class="nav-icon">💬</div>
+
+    <button
+        class="bottom-item"
+        onclick="toast('Messages')">
+
+        <div class="bottom-icon">💬</div>
         <div>Message</div>
+
     </button>
 
-    <button class="nav-item"
-            onclick="showToast('Profile')">
-        <div class="nav-icon">👤</div>
+
+    <button
+        class="bottom-item"
+        onclick="toast('Profile')">
+
+        <div class="bottom-icon">👤</div>
         <div>Profile</div>
+
     </button>
 
-</nav>
+</div>
 
 
-<!-- SEARCH -->
 
-<div class="overlay" id="searchOverlay">
+<!-- =================================
+     SEARCH MODAL
+================================= -->
+
+<div
+    class="overlay"
+    id="searchOverlay">
 
     <div class="sheet">
 
         <div class="sheet-head">
 
             <div class="sheet-title">
-                Search
+                Search Room
             </div>
 
-            <button class="close"
-                    onclick="closeSearch()">
+            <button
+                class="close"
+                onclick="closeSearch()">
                 ×
             </button>
 
         </div>
+
 
         <div class="search-box">
 
@@ -844,12 +925,12 @@ button{
 
             <input
                 id="searchInput"
-                type="text"
-                placeholder="Search room or room ID..."
+                placeholder="Room name / ID"
                 oninput="searchRooms(this.value)"
             >
 
         </div>
+
 
         <div id="searchResults"></div>
 
@@ -858,9 +939,14 @@ button{
 </div>
 
 
-<!-- CREATE -->
 
-<div class="overlay" id="createOverlay">
+<!-- =================================
+     CREATE ROOM
+================================= -->
+
+<div
+    class="overlay"
+    id="createOverlay">
 
     <div class="sheet">
 
@@ -870,44 +956,53 @@ button{
                 Create Room
             </div>
 
-            <button class="close"
-                    onclick="closeCreate()">
+            <button
+                class="close"
+                onclick="closeCreate()">
                 ×
             </button>
 
         </div>
 
-        <div class="create-options">
 
-            <button class="create-option"
-                    onclick="createRoom('Voice Room')">
+        <div class="rank-grid">
 
-                <div>🎙</div>
-                <strong>Voice Room</strong>
+            <button
+                class="rank"
+                onclick="createRoom('Voice Room')">
 
-            </button>
-
-            <button class="create-option"
-                    onclick="createRoom('Music Room')">
-
-                <div>🎵</div>
-                <strong>Music Room</strong>
+                <div class="rank-icon">🎙</div>
+                <div class="rank-title">Voice Room</div>
 
             </button>
 
-            <button class="create-option"
-                    onclick="createRoom('Game Room')">
 
-                <div>🎮</div>
-                <strong>Game Room</strong>
+            <button
+                class="rank"
+                onclick="createRoom('Music Room')">
+
+                <div class="rank-icon">🎵</div>
+                <div class="rank-title">Music Room</div>
 
             </button>
 
-            <button class="create-option"
-                    onclick="createRoom('Party Room')">
 
-                <div>🎉</div>
-                <strong>Party Room</strong>
+            <button
+                class="rank"
+                onclick="createRoom('Game Room')">
+
+                <div class="rank-icon">🎮</div>
+                <div class="rank-title">Game Room</div>
+
+            </button>
+
+
+            <button
+                class="rank"
+                onclick="createRoom('Party Room')">
+
+                <div class="rank-icon">🎉</div>
+                <div class="rank-title">Party Room</div>
 
             </button>
 
@@ -918,29 +1013,37 @@ button{
 </div>
 
 
-<!-- REAL ROOM UI -->
 
-<div class="room-screen"
-     id="roomScreen">
+<!-- =================================
+     ROOM SCREEN
+================================= -->
+
+<div
+    class="room-screen"
+    id="roomScreen">
+
 
     <div class="room-top">
 
         <div class="room-top-left">
 
-            <button class="back"
-                    onclick="leaveRoom()">
+            <button
+                class="back"
+                onclick="leaveRoom()">
                 ‹
             </button>
 
             <div>
 
-                <div class="room-title-live"
-                     id="liveRoomName">
+                <div
+                    class="live-title"
+                    id="liveTitle">
                     MR Room
                 </div>
 
-                <div class="room-online"
-                     id="liveRoomUsers">
+                <div
+                    class="live-users"
+                    id="liveUsers">
                     0 people
                 </div>
 
@@ -948,30 +1051,30 @@ button{
 
         </div>
 
-        <button onclick="showToast('Room shared')">
-            ↗
-        </button>
+        <div>⋮</div>
 
     </div>
 
 
-    <div class="room-main">
+    <div class="room-content">
 
         <div class="host">
 
-            <img id="hostAvatar"
-                 src="https://i.pravatar.cc/150?img=12">
+            <img
+                id="hostPhoto"
+                src=""
+            >
 
             <div>
 
-                <div class="host-name"
-                     id="hostName">
-                    Room Owner
+                <div
+                    class="host-name"
+                    id="hostName">
                 </div>
 
-                <div class="host-id"
-                     id="hostId">
-                    MR00000
+                <div
+                    class="host-id"
+                    id="hostId">
                 </div>
 
             </div>
@@ -979,165 +1082,162 @@ button{
         </div>
 
 
-        <div class="seats"
-             id="seats"></div>
+        <div
+            class="seats"
+            id="seats">
+        </div>
 
     </div>
 
 
-    <div class="room-bottom">
+    <div class="room-controls">
 
-        <div class="chat-area"
-             id="chatArea">
+        <button
+            class="control"
+            id="mic"
+            onclick="toggleMic()">
+            🎙
+        </button>
 
-            <div class="chat-line">
-                <b>MR System:</b>
-                Welcome to the room
-            </div>
+        <button
+            class="control"
+            onclick="toast('Chat')">
+            💬
+        </button>
 
-            <div class="chat-line">
-                <b>Everyone:</b>
-                Have fun 🎉
-            </div>
+        <button
+            class="control"
+            onclick="toast('Gift')">
+            🎁
+        </button>
 
-        </div>
-
-        <div class="room-controls">
-
-            <button class="room-control"
-                    id="micButton"
-                    onclick="toggleMic()">
-                🎙
-            </button>
-
-            <button class="room-control"
-                    onclick="showToast('Chat')">
-                💬
-            </button>
-
-            <button class="room-control"
-                    onclick="sendGift()">
-                🎁
-            </button>
-
-            <button class="room-control"
-                    onclick="leaveRoom()">
-                🚪
-            </button>
-
-        </div>
+        <button
+            class="control"
+            onclick="leaveRoom()">
+            🚪
+        </button>
 
     </div>
 
 </div>
 
 
+
+<div id="toast"></div>
+
+
+
 <script>
 
-/* =====================================================
-   POPULAR ROOMS
-   These are fixed.
-   Popular does NOT automatically become Following/Recent.
-===================================================== */
+/* ============================================
+   POPULAR
+   শুধুমাত্র এই room-গুলো Popular-এ থাকবে
+============================================ */
 
 const popularRooms = [
 
-    {
-        id:"MR10001",
-        owner:"RAKOB+FULL",
-        name:"RAKOB+FULL",
-        country:"🇲🇾",
-        users:16,
-        photo:"https://i.pravatar.cc/150?img=12",
-        gift:"🚀"
-    },
+{
+    id:"MR10001",
+    owner:"RAKOB+FULL",
+    name:"RAKOB+FULL",
+    country:"🇲🇾",
+    users:16,
+    photo:"https://i.pravatar.cc/150?img=12",
+    gift:"🚀"
+},
 
-    {
-        id:"MR10002",
-        owner:"মানুষ বড় বেইমান",
-        name:"মানুষ বড় বেইমান",
-        country:"🇧🇩",
-        users:19,
-        photo:"https://i.pravatar.cc/150?img=32",
-        gift:"🚀"
-    },
+{
+    id:"MR10002",
+    owner:"মানুষ বড় বেইমান",
+    name:"মানুষ বড় বেইমান",
+    country:"🇧🇩",
+    users:19,
+    photo:"https://i.pravatar.cc/150?img=32",
+    gift:"🚀"
+},
 
-    {
-        id:"MR10003",
-        owner:"Ms Asif",
-        name:"ভালোবাসার মানুষ",
-        country:"🇧🇩",
-        users:4,
-        photo:"https://i.pravatar.cc/150?img=47",
-        gift:"🚀"
-    },
+{
+    id:"MR10003",
+    owner:"Ms Asif",
+    name:"ভালোবাসার মানুষ",
+    country:"🇧🇩",
+    users:4,
+    photo:"https://i.pravatar.cc/150?img=47",
+    gift:"🚀"
+},
 
-    {
-        id:"MR10004",
-        owner:"Imran SK",
-        name:"IMRAN SK",
-        country:"🇮🇳",
-        users:4,
-        photo:"https://i.pravatar.cc/150?img=51",
-        gift:"🚀"
-    },
+{
+    id:"MR10004",
+    owner:"Imran SK",
+    name:"IMRAN SK",
+    country:"🇮🇳",
+    users:4,
+    photo:"https://i.pravatar.cc/150?img=51",
+    gift:"🚀"
+},
 
-    {
-        id:"MR10005",
-        owner:"MR Hridoy",
-        name:"MR Hridoy",
-        country:"🇦🇪",
-        users:2,
-        photo:"https://i.pravatar.cc/150?img=13",
-        gift:"🚀"
-    },
+{
+    id:"MR10005",
+    owner:"MR Hridoy",
+    name:"MR Hridoy",
+    country:"🇦🇪",
+    users:2,
+    photo:"https://i.pravatar.cc/150?img=13",
+    gift:"🚀"
+},
 
-    {
-        id:"MR10006",
-        owner:"Mafiya",
-        name:"প্রেম নগর হাইস",
-        country:"🇸🇦",
-        users:6,
-        photo:"https://i.pravatar.cc/150?img=44",
-        gift:"🚀"
-    },
+{
+    id:"MR10006",
+    owner:"Mafiya",
+    name:"প্রেম নগর হাইস",
+    country:"🇸🇦",
+    users:6,
+    photo:"https://i.pravatar.cc/150?img=44",
+    gift:"🚀"
+},
 
-    {
-        id:"MR10007",
-        owner:"New World",
-        name:"সবাই আসুন",
-        country:"🇧🇩",
-        users:8,
-        photo:"https://i.pravatar.cc/150?img=25",
-        gift:"🎁"
-    },
+{
+    id:"MR10007",
+    owner:"New World",
+    name:"সবাই আসুন",
+    country:"🇧🇩",
+    users:8,
+    photo:"https://i.pravatar.cc/150?img=25",
+    gift:"🎁"
+},
 
-    {
-        id:"MR10008",
-        owner:"Feel",
-        name:"Feel Room",
-        country:"🇦🇪",
-        users:12,
-        photo:"https://i.pravatar.cc/150?img=36",
-        gift:"🚀"
-    }
+{
+    id:"MR10008",
+    owner:"Feel",
+    name:"Feel Room",
+    country:"🇦🇪",
+    users:12,
+    photo:"https://i.pravatar.cc/150?img=36",
+    gift:"🚀"
+}
 
 ];
 
 
-/* =====================================================
-   FOLLOWING + RECENT
-   Start EMPTY.
-===================================================== */
+/* ============================================
+   FOLLOWING
+   শুরুতে EMPTY
+============================================ */
 
 let followingIds =
     JSON.parse(
-        localStorage.getItem("mrchat_following") || "[]"
+        localStorage.getItem("MR_following") || "[]"
     );
+
+
+/* ============================================
+   RECENT
+   শুরুতে EMPTY
+============================================ */
 
 let recentIds =
     JSON.parse(
-        localStorage.getItem("mrchat_recent") || "[]"
+        localStorage.getItem("MR_recent") || "[]"
     );
 
 
@@ -1145,59 +1245,24 @@ let currentTab = "popular";
 let currentRoom = null;
 
 
-/* =====================================================
-   SAVE
-===================================================== */
-
-function saveFollowing(){
-
-    localStorage.setItem(
-        "mrchat_following",
-        JSON.stringify(followingIds)
-    );
-
-}
-
-
-function saveRecent(){
-
-    localStorage.setItem(
-        "mrchat_recent",
-        JSON.stringify(recentIds)
-    );
-
-}
-
-
-/* =====================================================
-   ALL ROOMS
-===================================================== */
-
-function getAllRooms(){
-
-    return [...popularRooms];
-
-}
-
-
-/* =====================================================
-   FIND ROOM
-===================================================== */
+/* ============================================
+   FIND POPULAR ROOM
+============================================ */
 
 function findRoom(id){
 
-    return getAllRooms().find(
+    return popularRooms.find(
         room => room.id === id
     );
 
 }
 
 
-/* =====================================================
-   FOLLOWING
-===================================================== */
+/* ============================================
+   FOLLOWING ROOMS
+============================================ */
 
-function getFollowingRooms(){
+function getFollowing(){
 
     return followingIds
         .map(id => findRoom(id))
@@ -1206,11 +1271,11 @@ function getFollowingRooms(){
 }
 
 
-/* =====================================================
-   RECENT
-===================================================== */
+/* ============================================
+   RECENT ROOMS
+============================================ */
 
-function getRecentRooms(){
+function getRecent(){
 
     return recentIds
         .map(id => findRoom(id))
@@ -1219,99 +1284,103 @@ function getRecentRooms(){
 }
 
 
-/* =====================================================
+/* ============================================
    CHANGE TAB
-===================================================== */
+============================================ */
 
-function changeTab(tab, element){
+function changeTab(tab,button){
 
     currentTab = tab;
 
     document
         .querySelectorAll(".tab")
-        .forEach(btn => btn.classList.remove("active"));
+        .forEach(
+            x => x.classList.remove("active")
+        );
 
-    element.classList.add("active");
+    button.classList.add("active");
 
-    renderRooms();
-
-}
-
-
-/* =====================================================
-   GET ROOMS
-===================================================== */
-
-function getRoomsForCurrentTab(){
-
-    if(currentTab === "popular"){
-
-        return popularRooms;
-
-    }
-
-    if(currentTab === "following"){
-
-        return getFollowingRooms();
-
-    }
-
-    if(currentTab === "recent"){
-
-        return getRecentRooms();
-
-    }
-
-    return [];
+    render();
 
 }
 
 
-/* =====================================================
+/* ============================================
    RENDER
-===================================================== */
+============================================ */
 
-function renderRooms(){
+function render(){
 
     const container =
         document.getElementById("rooms");
 
     const title =
-        document.getElementById("roomSectionTitle");
+        document.getElementById("sectionTitle");
 
-    let rooms =
-        getRoomsForCurrentTab();
 
+    let rooms = [];
+
+
+    /* POPULAR */
 
     if(currentTab === "popular"){
-        title.innerText = "Popular Rooms";
+
+        rooms = popularRooms;
+
+        title.innerText =
+            "Popular Rooms";
+
     }
+
+
+    /* FOLLOWING ONLY */
 
     if(currentTab === "following"){
-        title.innerText = "Following";
+
+        rooms = getFollowing();
+
+        title.innerText =
+            "Following";
+
     }
+
+
+    /* RECENT ONLY */
 
     if(currentTab === "recent"){
-        title.innerText = "Recent";
+
+        rooms = getRecent();
+
+        title.innerText =
+            "Recent";
+
     }
 
 
-    if(!rooms.length){
+    /* EMPTY */
+
+    if(rooms.length === 0){
 
         container.innerHTML = `
 
             <div class="empty">
 
                 <div class="empty-icon">
-                    ${currentTab === "following" ? "♡" : "🕘"}
+
+                    ${
+                        currentTab === "following"
+                        ? "♡"
+                        : "🕘"
+                    }
+
                 </div>
 
                 <div class="empty-text">
 
                     ${
                         currentTab === "following"
-                        ? "You are not following any room yet."
-                        : "You haven't entered any room yet."
+                        ? "কোনো Follow করা room নেই"
+                        : "এখনও কোনো room visit করা হয়নি"
                     }
 
                 </div>
@@ -1326,24 +1395,29 @@ function renderRooms(){
 
 
     container.innerHTML =
-        rooms.map(room => roomHTML(room)).join("");
+        rooms.map(roomCard).join("");
 
 }
 
 
-/* =====================================================
-   ROOM HTML
-===================================================== */
+/* ============================================
+   ROOM CARD
+============================================ */
 
-function roomHTML(room){
+function roomCard(room){
 
     const followed =
         followingIds.includes(room.id);
 
+
     return `
 
-        <div class="room"
-             onclick="enterRoom('${room.id}')">
+        <div
+            class="room"
+            onclick="enterRoom('${room.id}')">
+
+
+            <!-- ছোট গোল USER IMAGE -->
 
             <img
                 class="room-avatar"
@@ -1351,10 +1425,11 @@ function roomHTML(room){
                 alt=""
             >
 
+
             <div class="room-info">
 
                 <div class="room-name">
-                    ${escapeHTML(room.name)}
+                    ${safe(room.name)}
                 </div>
 
                 <div class="room-id">
@@ -1362,7 +1437,7 @@ function roomHTML(room){
                 </div>
 
                 <div class="room-owner">
-                    ${escapeHTML(room.owner)}
+                    ${safe(room.owner)}
                 </div>
 
                 <div class="room-bottom">
@@ -1379,18 +1454,27 @@ function roomHTML(room){
 
             </div>
 
-            <div class="room-actions"
-                 onclick="event.stopPropagation()">
+
+            <div
+                class="room-right"
+                onclick="event.stopPropagation()">
+
 
                 <div class="gift">
                     ${room.gift}
                 </div>
 
+
                 <button
-                    class="follow-btn ${followed ? "followed" : ""}"
+                    class="follow-btn
+                    ${followed ? "followed" : ""}"
                     onclick="toggleFollow('${room.id}')">
 
-                    ${followed ? "Following" : "Follow"}
+                    ${
+                        followed
+                        ? "Following"
+                        : "Follow"
+                    }
 
                 </button>
 
@@ -1403,9 +1487,9 @@ function roomHTML(room){
 }
 
 
-/* =====================================================
+/* ============================================
    FOLLOW / UNFOLLOW
-===================================================== */
+============================================ */
 
 function toggleFollow(id){
 
@@ -1413,55 +1497,65 @@ function toggleFollow(id){
 
         followingIds =
             followingIds.filter(
-                roomId => roomId !== id
+                x => x !== id
             );
 
-        showToast("Unfollowed");
+        toast("Unfollowed");
 
     }else{
 
         followingIds.unshift(id);
 
-        showToast("Following");
+        toast("Following");
 
     }
 
-    saveFollowing();
 
-    renderRooms();
+    localStorage.setItem(
+        "MR_following",
+        JSON.stringify(followingIds)
+    );
+
+
+    render();
 
 }
 
 
-/* =====================================================
+/* ============================================
    ENTER ROOM
-   Automatically adds to Recent.
-   Duplicate removed.
-===================================================== */
+============================================ */
 
 function enterRoom(id){
 
-    const room =
-        findRoom(id);
+    const room = findRoom(id);
 
     if(!room) return;
 
 
+    /* পুরোনো duplicate বাদ */
+
     recentIds =
         recentIds.filter(
-            roomId => roomId !== id
+            x => x !== id
         );
 
+
+    /* সর্বশেষ visit সবার উপরে */
 
     recentIds.unshift(id);
 
 
-    /* Keep maximum 30 recent rooms */
+    /* সর্বোচ্চ 30টি */
 
     recentIds =
         recentIds.slice(0,30);
 
-    saveRecent();
+
+    localStorage.setItem(
+        "MR_recent",
+        JSON.stringify(recentIds)
+    );
 
 
     openRoom(room);
@@ -1469,69 +1563,53 @@ function enterRoom(id){
 }
 
 
-/* =====================================================
-   OPEN REAL ROOM UI
-===================================================== */
+/* ============================================
+   OPEN ROOM
+============================================ */
 
 function openRoom(room){
 
     currentRoom = room;
 
-    document.getElementById("liveRoomName")
+
+    document.getElementById("liveTitle")
         .innerText = room.name;
 
-    document.getElementById("liveRoomUsers")
+
+    document.getElementById("liveUsers")
         .innerText = room.users + " people";
+
 
     document.getElementById("hostName")
         .innerText = room.owner;
 
+
     document.getElementById("hostId")
         .innerText = room.id;
 
-    document.getElementById("hostAvatar")
+
+    document.getElementById("hostPhoto")
         .src = room.photo;
 
 
-    createSeats(room);
+    let seats = "";
 
 
-    document
-        .getElementById("roomScreen")
-        .classList.add("show");
+    for(let i=0;i<Math.min(room.users,15);i++){
 
-}
-
-
-/* =====================================================
-   ROOM SEATS
-===================================================== */
-
-function createSeats(room){
-
-    const seats =
-        document.getElementById("seats");
-
-    let html = "";
-
-    const count =
-        Math.min(Math.max(room.users,1),15);
-
-
-    for(let i=0;i<count;i++){
-
-        const avatar =
+        let image =
             "https://i.pravatar.cc/150?img=" +
-            ((i+3)%70 + 1);
+            ((i+5)%70+1);
 
-        html += `
+
+        seats += `
 
             <div class="seat">
 
                 <div class="seat-avatar">
 
                     <img
-                        src="${avatar}"
+                        src="${image}"
                         alt=""
                     >
 
@@ -1541,7 +1619,7 @@ function createSeats(room){
 
                     ${
                         i === 0
-                        ? room.owner
+                        ? safe(room.owner)
                         : "User " + (i+1)
                     }
 
@@ -1554,14 +1632,20 @@ function createSeats(room){
     }
 
 
-    seats.innerHTML = html;
+    document.getElementById("seats")
+        .innerHTML = seats;
+
+
+    document
+        .getElementById("roomScreen")
+        .classList.add("show");
 
 }
 
 
-/* =====================================================
-   LEAVE ROOM
-===================================================== */
+/* ============================================
+   LEAVE
+============================================ */
 
 function leaveRoom(){
 
@@ -1571,57 +1655,12 @@ function leaveRoom(){
 
     currentRoom = null;
 
-    renderRooms();
-
 }
 
 
-/* =====================================================
-   MIC
-===================================================== */
-
-let micOn = false;
-
-function toggleMic(){
-
-    micOn = !micOn;
-
-    const button =
-        document.getElementById("micButton");
-
-    if(micOn){
-
-        button.classList.add("mic-on");
-
-        showToast("Microphone ON");
-
-    }else{
-
-        button.classList.remove("mic-on");
-
-        showToast("Microphone OFF");
-
-    }
-
-}
-
-
-/* =====================================================
-   GIFT
-===================================================== */
-
-function sendGift(){
-
-    if(!currentRoom) return;
-
-    showToast("🎁 Gift sent to " + currentRoom.owner);
-
-}
-
-
-/* =====================================================
+/* ============================================
    SEARCH
-===================================================== */
+============================================ */
 
 function openSearch(){
 
@@ -1650,35 +1689,10 @@ function closeSearch(){
 function searchRooms(value){
 
     value =
-        value.trim().toLowerCase();
+        value.toLowerCase().trim();
 
 
-    /*
-      Search combines Popular,
-      Following and Recent,
-      but duplicates are removed.
-    */
-
-    const map = new Map();
-
-
-    popularRooms.forEach(
-        room => map.set(room.id,room)
-    );
-
-
-    getFollowingRooms().forEach(
-        room => map.set(room.id,room)
-    );
-
-
-    getRecentRooms().forEach(
-        room => map.set(room.id,room)
-    );
-
-
-    let rooms =
-        [...map.values()];
+    let rooms = popularRooms;
 
 
     if(value){
@@ -1686,17 +1700,20 @@ function searchRooms(value){
         rooms =
             rooms.filter(room =>
 
-                room.name.toLowerCase()
+                room.name
+                    .toLowerCase()
                     .includes(value)
 
                 ||
 
-                room.owner.toLowerCase()
+                room.owner
+                    .toLowerCase()
                     .includes(value)
 
                 ||
 
-                room.id.toLowerCase()
+                room.id
+                    .toLowerCase()
                     .includes(value)
 
             );
@@ -1711,11 +1728,9 @@ function searchRooms(value){
     if(!rooms.length){
 
         result.innerHTML = `
-
             <div class="empty">
-                No room found
+                কোনো room পাওয়া যায়নি
             </div>
-
         `;
 
         return;
@@ -1738,11 +1753,11 @@ function searchRooms(value){
                 <div class="search-info">
 
                     <div class="search-name">
-                        ${escapeHTML(room.name)}
+                        ${safe(room.name)}
                     </div>
 
                     <div class="search-id">
-                        ${room.id} • 👥 ${room.users}
+                        ${room.id}
                     </div>
 
                 </div>
@@ -1767,9 +1782,9 @@ function searchEnter(id){
 }
 
 
-/* =====================================================
+/* ============================================
    CREATE ROOM
-===================================================== */
+============================================ */
 
 function openCreate(){
 
@@ -1793,90 +1808,89 @@ function createRoom(type){
 
     closeCreate();
 
-    showToast(type + " creation will be connected to server.");
+    toast(
+        type +
+        " তৈরি করার server system পরে যুক্ত হবে"
+    );
 
 }
 
 
-/* =====================================================
-   NAV HOME
-===================================================== */
+/* ============================================
+   MIC
+============================================ */
 
-function navHome(button){
+let micOn = false;
+
+function toggleMic(){
+
+    micOn = !micOn;
+
+    const mic =
+        document.getElementById("mic");
+
+
+    mic.classList.toggle(
+        "on",
+        micOn
+    );
+
+
+    toast(
+        micOn
+        ? "Microphone ON"
+        : "Microphone OFF"
+    );
+
+}
+
+
+/* ============================================
+   BOTTOM
+============================================ */
+
+function setBottom(button){
 
     document
-        .querySelectorAll(".nav-item")
+        .querySelectorAll(".bottom-item")
         .forEach(
-            item => item.classList.remove("active")
+            x => x.classList.remove("active")
         );
 
     button.classList.add("active");
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
 }
 
 
-/* =====================================================
-   TOAST
-===================================================== */
+/* ============================================
+   CREATE / TOAST
+============================================ */
 
-let toastTimer;
+function toast(message){
 
-function showToast(message){
-
-    let toast =
+    const box =
         document.getElementById("toast");
 
 
-    if(!toast){
+    box.innerText = message;
 
-        toast =
-            document.createElement("div");
-
-        toast.id = "toast";
-
-        toast.style.position = "fixed";
-        toast.style.left = "50%";
-        toast.style.bottom = "90px";
-        toast.style.transform = "translateX(-50%)";
-        toast.style.background = "rgba(0,0,0,.82)";
-        toast.style.color = "#fff";
-        toast.style.padding = "10px 17px";
-        toast.style.borderRadius = "20px";
-        toast.style.fontSize = "12px";
-        toast.style.zIndex = "9999";
-
-        document.body.appendChild(toast);
-
-    }
+    box.style.display = "block";
 
 
-    toast.innerText = message;
+    setTimeout(() => {
 
-    toast.style.display = "block";
+        box.style.display = "none";
 
-
-    clearTimeout(toastTimer);
-
-    toastTimer =
-        setTimeout(() => {
-
-            toast.style.display = "none";
-
-        },1800);
+    },1700);
 
 }
 
 
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+/* ============================================
+   SAFE TEXT
+============================================ */
 
-function escapeHTML(text){
+function safe(text){
 
     return String(text)
         .replace(/&/g,"&amp;")
@@ -1888,11 +1902,11 @@ function escapeHTML(text){
 }
 
 
-/* =====================================================
-   INITIAL LOAD
-===================================================== */
+/* ============================================
+   START
+============================================ */
 
-renderRooms();
+render();
 
 </script>
 
