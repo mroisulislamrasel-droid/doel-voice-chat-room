@@ -39,60 +39,13 @@ button{
   padding-bottom:68px;
 }
 
-/* ================= HEADER ================= */
-
-.header{
-  height:68px;
-  background:linear-gradient(#c9f7ff,#eefcff);
-  display:flex;
-  align-items:flex-end;
-  padding:0 18px 10px;
-}
-
-.header-inner{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.logo-name{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.logo{
-  width:37px;
-  height:37px;
-  border-radius:12px;
-  background:linear-gradient(145deg,#11d5eb,#6572ed);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:19px;
-  font-weight:900;
-  box-shadow:0 5px 12px #5d9fe833;
-}
-
-.app-name{
-  font-size:20px;
-  font-weight:800;
-  color:#333b72;
-}
-
-.header-search{
-  display:none;
-}
-
 /* ================= HOME ================= */
 
 .home{
   background:#f4f7fb;
 }
 
-/* TOP TABS */
+/* ================= TOP TABS ================= */
 
 .tabs{
   height:62px;
@@ -101,6 +54,10 @@ button{
   align-items:center;
   padding:0 18px;
   gap:25px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 1px 5px #00000008;
 }
 
 .tab{
@@ -153,7 +110,7 @@ button{
 /* ================= EVENT ================= */
 
 .event-wrap{
-  padding:0 18px 13px;
+  padding:13px 18px;
   background:#f4fbfd;
 }
 
@@ -469,7 +426,7 @@ button{
   margin-top:4px;
 }
 
-/* ================= STAR SECTION ================= */
+/* ================= STAR ================= */
 
 .star-section{
   margin-top:18px;
@@ -866,9 +823,11 @@ button{
 }
 
 @media(max-width:360px){
+
   .tabs{
     gap:17px;
     padding-left:14px;
+    padding-right:14px;
   }
 
   .categories,
@@ -884,7 +843,9 @@ button{
   .room-card{
     height:180px;
   }
+
 }
+
 </style>
 </head>
 
@@ -900,20 +861,10 @@ HOME
 
 <div class="home">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-inner">
+  <!-- TOP BAR
+       MR LOGO + MR CHAT REMOVED
+  -->
 
-      <div class="logo-name">
-        <div class="logo">MR</div>
-        <div class="app-name">MR Chat</div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- FOLLOWING / POPULAR / RECENT -->
   <div class="tabs">
 
     <button
@@ -954,6 +905,7 @@ HOME
 
 
   <!-- EVENT SLIDER -->
+
   <div class="event-wrap">
 
     <div class="event-slider">
@@ -1292,7 +1244,6 @@ PROFILE
 
     </div>
 
-
     <div class="card" onclick="showToast('Wallet')">
       💰 &nbsp; Wallet
     </div>
@@ -1375,8 +1326,7 @@ BOTTOM NAV
 RANKING MODAL
 ===================================================== -->
 
-<div id="rankingModal"
-     class="modal">
+<div id="rankingModal" class="modal">
 
   <div class="modal-box">
 
@@ -1432,8 +1382,7 @@ RANKING MODAL
 SEARCH MODAL
 ===================================================== -->
 
-<div id="searchModal"
-     class="modal">
+<div id="searchModal" class="modal">
 
   <div class="modal-box">
 
@@ -1452,7 +1401,7 @@ SEARCH MODAL
       id="searchInput"
       class="search-input"
       placeholder="Search room or Room ID"
-      oninput="searchRooms()">
+      oninput="searchRooms">
 
     <div id="searchResults"></div>
 
@@ -1465,10 +1414,6 @@ SEARCH MODAL
 
 
 <script>
-
-/* =====================================================
-ROOM DATA
-===================================================== */
 
 const roomsData = {
 
@@ -1647,10 +1592,6 @@ gift:"🚀"
 };
 
 
-/* =====================================================
-HOME TAB
-===================================================== */
-
 let currentHomeTab="popular";
 
 function changeHomeTab(tab,button){
@@ -1663,34 +1604,17 @@ function changeHomeTab(tab,button){
 
   button.classList.add("active");
 
-  const title =
-    document.getElementById("homeRoomTitle");
-
-  if(tab==="following"){
-    title.innerText="Following";
-  }
-
-  if(tab==="popular"){
-    title.innerText="Popular";
-  }
-
-  if(tab==="recent"){
-    title.innerText="Recent";
-  }
+  document.getElementById("homeRoomTitle").innerText=
+    tab==="following" ? "Following" :
+    tab==="recent" ? "Recent" : "Popular";
 
   renderRooms(tab);
 }
 
 
-/* =====================================================
-RENDER ROOMS
-===================================================== */
-
 function renderRooms(tab){
 
-  const container=
-    document.getElementById("rooms");
-
+  const container=document.getElementById("rooms");
   const data=roomsData[tab];
 
   document.getElementById("roomTotal")
@@ -1763,25 +1687,15 @@ function getRoomEmoji(room){
 }
 
 
-/* =====================================================
-EVENT SLIDER
-===================================================== */
-
 let eventIndex=0;
 
 setInterval(()=>{
 
-  const events=
-    document.querySelectorAll(".event");
+  const events=document.querySelectorAll(".event");
+  const dots=document.querySelectorAll(".dot");
 
-  const dots=
-    document.querySelectorAll(".dot");
-
-  events[eventIndex]
-    .classList.remove("active");
-
-  dots[eventIndex]
-    .classList.remove("active");
+  events[eventIndex].classList.remove("active");
+  dots[eventIndex].classList.remove("active");
 
   eventIndex++;
 
@@ -1789,26 +1703,17 @@ setInterval(()=>{
     eventIndex=0;
   }
 
-  events[eventIndex]
-    .classList.add("active");
-
-  dots[eventIndex]
-    .classList.add("active");
+  events[eventIndex].classList.add("active");
+  dots[eventIndex].classList.add("active");
 
 },3500);
 
-
-/* =====================================================
-PAGE NAVIGATION
-===================================================== */
 
 function showPage(id,button){
 
   document
     .querySelectorAll(".page")
-    .forEach(page=>{
-      page.classList.remove("active");
-    });
+    .forEach(page=>page.classList.remove("active"));
 
   document
     .getElementById(id)
@@ -1816,19 +1721,13 @@ function showPage(id,button){
 
   document
     .querySelectorAll(".nav")
-    .forEach(nav=>{
-      nav.classList.remove("active");
-    });
+    .forEach(nav=>nav.classList.remove("active"));
 
   button.classList.add("active");
 
   window.scrollTo(0,0);
 }
 
-
-/* =====================================================
-SEARCH
-===================================================== */
 
 function openSearch(){
 
@@ -1854,12 +1753,11 @@ function closeSearch(){
 
 function searchRooms(){
 
-  const q=
-    document
-      .getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
+  const q=document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
 
   const all=[
     ...roomsData.popular,
@@ -1867,19 +1765,15 @@ function searchRooms(){
     ...roomsData.recent
   ];
 
-  const results=
-    all.filter(room=>
-      room.id.toLowerCase().includes(q) ||
-      room.name.toLowerCase().includes(q)
-    );
+  const results=all.filter(room=>
+    room.id.toLowerCase().includes(q) ||
+    room.name.toLowerCase().includes(q)
+  );
 
-  const box=
-    document.getElementById("searchResults");
+  const box=document.getElementById("searchResults");
 
   if(!q){
-
     box.innerHTML="";
-
     return;
   }
 
@@ -1898,32 +1792,27 @@ function searchRooms(){
     return;
   }
 
-  box.innerHTML=
-    results.map(room=>`
+  box.innerHTML=results.map(room=>`
 
-      <div
-        class="search-result"
-        onclick="enterRoom('${room.id}')">
+    <div
+      class="search-result"
+      onclick="enterRoom('${room.id}')">
 
-        <strong>${room.name}</strong>
+      <strong>${room.name}</strong>
 
-        <br>
+      <br>
 
-        <small>
-          ${room.id}
-          • ${room.users} online
-        </small>
+      <small>
+        ${room.id}
+        • ${room.users} online
+      </small>
 
-      </div>
+    </div>
 
-    `).join("");
+  `).join("");
 
 }
 
-
-/* =====================================================
-ENTER ROOM
-===================================================== */
 
 function enterRoom(id){
 
@@ -1933,8 +1822,7 @@ function enterRoom(id){
     ...roomsData.recent
   ];
 
-  const room=
-    all.find(x=>x.id===id);
+  const room=all.find(x=>x.id===id);
 
   if(!room)return;
 
@@ -1948,20 +1836,12 @@ function enterRoom(id){
 }
 
 
-/* =====================================================
-CREATE ROOM
-===================================================== */
-
 function createRoom(){
 
   showToast("Create Room");
 
 }
 
-
-/* =====================================================
-RANKING
-===================================================== */
 
 function openRanking(type){
 
@@ -1985,16 +1865,11 @@ function closeRanking(){
 }
 
 
-/* =====================================================
-TOAST
-===================================================== */
-
 let toastTimer;
 
 function showToast(message){
 
-  const toast=
-    document.getElementById("toast");
+  const toast=document.getElementById("toast");
 
   toast.innerText=message;
 
@@ -2003,17 +1878,11 @@ function showToast(message){
   clearTimeout(toastTimer);
 
   toastTimer=setTimeout(()=>{
-
     toast.classList.remove("show");
-
   },1800);
 
 }
 
-
-/* =====================================================
-INITIAL
-===================================================== */
 
 renderRooms("popular");
 
