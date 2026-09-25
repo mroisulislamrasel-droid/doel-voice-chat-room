@@ -6,211 +6,368 @@
 <title>Doel Voice Chat Room</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   font-family:Arial,sans-serif;
-  background:#080b16;
-  color:#fff;
+  background:#0b1020;
+  color:white;
   min-height:100vh;
 }
+
 .app{
-  max-width:480px;
+  max-width:500px;
   margin:auto;
   min-height:100vh;
-  background:linear-gradient(180deg,#11162b,#080b16);
+  background:linear-gradient(180deg,#111936,#080c18);
   position:relative;
-  overflow:hidden;
+  padding-bottom:75px;
 }
+
 header{
-  padding:22px 18px 14px;
+  padding:18px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
+
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:21px;
-  font-weight:bold;
-}
-.logoIcon{
-  width:42px;
-  height:42px;
+  width:45px;
+  height:45px;
   border-radius:14px;
-  background:linear-gradient(135deg,#7c4dff,#00c6ff);
+  background:linear-gradient(135deg,#7c5cff,#35d6ff);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:23px;
-}
-.coins{
-  background:#1c2340;
-  padding:9px 13px;
-  border-radius:20px;
-  color:#ffd76a;
-  font-size:14px;
-}
-.page{padding:8px 18px 95px}
-h1{font-size:27px;margin:12px 0 6px}
-.sub{color:#8e96ad;font-size:14px;margin-bottom:22px}
-.search{
-  background:#181e35;
-  border:1px solid #252d4b;
-  border-radius:15px;
-  padding:14px;
-  color:#929ab2;
-  margin-bottom:20px;
-}
-.sectionTitle{
-  display:flex;
-  justify-content:space-between;
-  margin:20px 0 12px;
-  font-size:17px;
+  font-size:25px;
   font-weight:bold;
 }
-.room{
-  background:#171d34;
-  border:1px solid #262e4b;
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:13px;
+
+.balance{
+  background:#1b2442;
+  padding:10px 15px;
+  border-radius:20px;
+  color:#ffd45a;
 }
-.roomTop{
-  display:flex;
-  gap:12px;
-  align-items:center;
+
+.page{
+  display:none;
+  padding:10px 18px 30px;
 }
-.avatar{
-  width:48px;
-  height:48px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#ff6a88,#7c4dff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+
+.page.active{
+  display:block;
+}
+
+.hero{
+  padding:25px 0;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#aeb8d4;
+  line-height:1.6;
+}
+
+.section-title{
+  margin:20px 0 12px;
   font-size:20px;
 }
-.roomName{font-weight:bold;font-size:16px}
-.online{font-size:12px;color:#6ee7b7;margin-top:5px}
-.join{
-  margin-left:auto;
-  background:#6c4cff;
-  border:0;
-  color:#fff;
-  padding:9px 15px;
+
+.room-card{
+  background:#171f39;
+  border:1px solid #283354;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.room-card:active{
+  transform:scale(.98);
+}
+
+.room-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.room-icon{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#6d5dfc,#22c7e8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.room-info h3{
+  margin-bottom:5px;
+}
+
+.room-info p{
+  color:#9da8c5;
+  font-size:13px;
+}
+
+.join-btn,
+.primary-btn{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:14px;
+  margin-top:14px;
+  background:linear-gradient(90deg,#7257ff,#28c9e8);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.primary-btn:active,
+.join-btn:active{
+  transform:scale(.98);
+}
+
+.profile-box,
+.setting-box{
+  background:#171f39;
+  border:1px solid #283354;
+  border-radius:18px;
+  padding:20px;
+  margin-top:15px;
+}
+
+.avatar{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#7257ff,#25d4e8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  margin:auto;
+}
+
+.profile-name{
+  text-align:center;
+  margin-top:12px;
+  font-size:22px;
+}
+
+.profile-id{
+  text-align:center;
+  color:#8e99b8;
+  margin-top:5px;
+}
+
+.setting-item{
+  padding:16px 5px;
+  border-bottom:1px solid #2a3454;
+  cursor:pointer;
+}
+
+.setting-item:last-child{
+  border-bottom:none;
+}
+
+.room-screen{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#090d19;
+  z-index:20;
+}
+
+.room-screen.active{
+  display:block;
+}
+
+.room-header{
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  border-bottom:1px solid #252e4b;
+}
+
+.back-btn{
+  border:none;
+  background:#1a2340;
+  color:white;
+  width:42px;
+  height:42px;
   border-radius:12px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.room-title{
+  font-size:19px;
   font-weight:bold;
 }
-.tags{margin-top:12px;color:#9da5bc;font-size:12px}
-.bottom{
+
+.seats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:30px 20px;
+}
+
+.seat{
+  text-align:center;
+}
+
+.seat-avatar{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#202b4a;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  border:2px solid #39466d;
+}
+
+.seat-name{
+  margin-top:8px;
+  color:#c7cee2;
+  font-size:13px;
+}
+
+.chat{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:75px;
+  top:390px;
+  padding:15px 18px;
+  overflow:auto;
+}
+
+.message{
+  background:#171f39;
+  padding:10px 13px;
+  border-radius:12px;
+  margin-bottom:8px;
+  width:max-content;
+  max-width:85%;
+}
+
+.message span{
+  color:#7fceff;
+  font-size:12px;
+  display:block;
+  margin-bottom:3px;
+}
+
+.chat-input{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  padding:12px;
+  background:#11172a;
+  display:flex;
+  gap:8px;
+}
+
+.chat-input input{
+  flex:1;
+  background:#202943;
+  border:none;
+  outline:none;
+  border-radius:12px;
+  padding:12px;
+  color:white;
+}
+
+.send-btn{
+  border:none;
+  background:#735cff;
+  color:white;
+  border-radius:12px;
+  padding:0 18px;
+  cursor:pointer;
+}
+
+.mic-btn{
+  position:absolute;
+  bottom:90px;
+  right:18px;
+  width:58px;
+  height:58px;
+  border:none;
+  border-radius:50%;
+  background:#735cff;
+  color:white;
+  font-size:25px;
+  cursor:pointer;
+  z-index:3;
+}
+
+.mic-btn.on{
+  background:#e94b70;
+}
+
+.bottom-nav{
   position:fixed;
   bottom:0;
   left:50%;
   transform:translateX(-50%);
   width:100%;
-  max-width:480px;
-  background:#10152a;
-  border-top:1px solid #242b46;
+  max-width:500px;
+  height:70px;
+  background:#11172a;
+  border-top:1px solid #293354;
   display:flex;
   justify-content:space-around;
-  padding:11px 5px 13px;
+  align-items:center;
+  z-index:10;
 }
-.nav{
+
+.nav-btn{
+  border:none;
   background:none;
-  border:0;
-  color:#747d98;
-  font-size:11px;
+  color:#7f89a8;
+  font-size:12px;
+  cursor:pointer;
 }
-.nav.active{color:#9b7cff}
-.navIcon{font-size:20px;display:block;margin-bottom:4px}
-.hero{
-  background:linear-gradient(135deg,#27204f,#102d4a);
-  border-radius:22px;
-  padding:20px;
-  margin-top:12px;
+
+.nav-btn .icon{
+  display:block;
+  font-size:22px;
+  margin-bottom:4px;
 }
-.hero h2{font-size:22px;margin-bottom:8px}
-.hero p{color:#b5bdd1;font-size:13px;line-height:1.5}
-.primary{
-  width:100%;
-  border:0;
-  background:linear-gradient(90deg,#744cff,#00aeea);
-  color:white;
-  padding:14px;
-  border-radius:14px;
-  font-size:15px;
-  font-weight:bold;
-  margin-top:18px;
+
+.nav-btn.active{
+  color:#63d7ff;
 }
-.profile{
-  text-align:center;
-  padding-top:18px;
-}
-.bigAvatar{
-  width:88px;
-  height:88px;
-  border-radius:28px;
-  margin:auto;
-  background:linear-gradient(135deg,#00c6ff,#7c4dff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-}
-.profile h2{margin-top:13px}
-.profile p{color:#8e96ad;margin-top:5px}
-.stats{
-  display:flex;
-  justify-content:space-around;
-  background:#171d34;
-  padding:18px 5px;
-  border-radius:18px;
-  margin:22px 0;
-}
-.stat b{display:block;font-size:18px}
-.stat span{font-size:11px;color:#8e96ad}
-.setting{
-  background:#171d34;
-  border-radius:15px;
-  padding:16px;
-  margin:10px 0;
-  display:flex;
-  justify-content:space-between;
-}
-.roomScreen{text-align:center}
-.roomBanner{
-  background:linear-gradient(135deg,#31205d,#123b54);
-  padding:25px 15px;
-  border-radius:0 0 25px 25px;
-}
-.roomBanner h2{margin:10px 0 5px}
-.roomBanner p{color:#aeb7cd;font-size:13px}
-.seats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin:25px 0;
-}
-.seat{
-  height:65px;
-  border-radius:20px;
-  background:#191f37;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  border:1px solid #28304d;
-}
-.seat.empty{color:#59627c}
-.chat{
-  background:#171d34;
-  border-radius:17px;
+
+.notice{
+  background:#17213b;
+  border:1px solid #2b3a62;
   padding:15px;
-  text-align:left;
+  border-radius:15px;
+  margin-top:20px;
+  color:#b9c3db;
+  line-height:1.5;
 }
-.chat p{font-size:13px;margin:10px 0;color:#b9c0d2}
-.chat b{color:#fff}
 </style>
 </head>
 
@@ -219,193 +376,380 @@ h1{font-size:27px;margin:12px 0 6px}
 <div class="app">
 
 <header>
-  <div class="logo">
-    <div class="logoIcon">D</div>
-    <span>Doel</span>
-  </div>
-  <div class="coins">🪙 1,000</div>
+  <div class="logo">D</div>
+  <div class="balance">🪙 1,000</div>
 </header>
 
-<div id="content" class="page"></div>
+<!-- HOME -->
+<section id="home" class="page active">
 
-<div class="bottom">
-  <button class="nav active" onclick="showPage('home')">
-    <span class="navIcon">🏠</span>Home
+  <div class="hero">
+    <h1>Welcome to Doel</h1>
+    <p>Meet people, join voice rooms and enjoy conversations with friends around the world.</p>
+  </div>
+
+  <h2 class="section-title">Popular Rooms</h2>
+
+  <div class="room-card" onclick="openRoom('Bangladesh Friends')">
+    <div class="room-top">
+      <div class="room-icon">🇧🇩</div>
+      <div class="room-info">
+        <h3>Bangladesh Friends</h3>
+        <p>👥 128 people online</p>
+      </div>
+    </div>
+    <button class="join-btn">Join Room</button>
+  </div>
+
+  <div class="room-card" onclick="openRoom('Middle East Lounge')">
+    <div class="room-top">
+      <div class="room-icon">🌍</div>
+      <div class="room-info">
+        <h3>Middle East Lounge</h3>
+        <p>👥 86 people online</p>
+      </div>
+    </div>
+    <button class="join-btn">Join Room</button>
+  </div>
+
+  <div class="room-card" onclick="openRoom('International Chat')">
+    <div class="room-top">
+      <div class="room-icon">🌎</div>
+      <div class="room-info">
+        <h3>International Chat</h3>
+        <p>👥 214 people online</p>
+      </div>
+    </div>
+    <button class="join-btn">Join Room</button>
+  </div>
+
+</section>
+
+
+<!-- ROOMS -->
+<section id="rooms" class="page">
+
+  <h1>Voice Rooms</h1>
+
+  <div class="room-card" onclick="openRoom('Music Room')">
+    <div class="room-top">
+      <div class="room-icon">🎵</div>
+      <div class="room-info">
+        <h3>Music Room</h3>
+        <p>🎤 Live conversation</p>
+      </div>
+    </div>
+    <button class="join-btn">Join Room</button>
+  </div>
+
+  <div class="room-card" onclick="openRoom('Friendship Room')">
+    <div class="room-top">
+      <div class="room-icon">❤️</div>
+      <div class="room-info">
+        <h3>Friendship Room</h3>
+        <p>👥 Meet new friends</p>
+      </div>
+    </div>
+    <button class="join-btn">Join Room</button>
+  </div>
+
+  <div class="room-card" onclick="openRoom('Global Room')">
+    <div class="room-top">
+      <div class="room-icon">🌐</div>
+      <div class="room-info">
+        <h3>Global Room</h3>
+        <p>🌍 International users</p>
+      </div>
+    </div>
+    <button class="join-btn">Join Room</button>
+  </div>
+
+</section>
+
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+
+  <h1>My Profile</h1>
+
+  <div class="profile-box">
+    <div class="avatar">👤</div>
+    <div class="profile-name">Doel User</div>
+    <div class="profile-id">ID: 100001</div>
+
+    <button class="primary-btn" onclick="editProfile()">
+      Edit Profile
+    </button>
+  </div>
+
+  <div class="notice">
+    🪙 Coins: <b>1,000</b><br>
+    🎤 Voice Rooms: 12<br>
+    👥 Followers: 0
+  </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+
+  <h1>Settings</h1>
+
+  <div class="setting-box">
+
+    <div class="setting-item" onclick="alert('Language settings coming soon')">
+      🌐 Language
+    </div>
+
+    <div class="setting-item" onclick="alert('Notifications settings coming soon')">
+      🔔 Notifications
+    </div>
+
+    <div class="setting-item" onclick="alert('Privacy settings coming soon')">
+      🔒 Privacy
+    </div>
+
+    <div class="setting-item" onclick="alert('Help Center coming soon')">
+      ❓ Help Center
+    </div>
+
+    <div class="setting-item" onclick="alert('Doel Voice Chat Room\\nVersion 1.0')">
+      ℹ️ About Doel
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+  <button class="nav-btn active" onclick="showPage('home',this)">
+    <span class="icon">🏠</span>
+    Home
   </button>
-  <button class="nav" onclick="showPage('rooms')">
-    <span class="navIcon">🎙️</span>Rooms
+
+  <button class="nav-btn" onclick="showPage('rooms',this)">
+    <span class="icon">🎤</span>
+    Rooms
   </button>
-  <button class="nav" onclick="showPage('profile')">
-    <span class="navIcon">👤</span>Profile
+
+  <button class="nav-btn" onclick="showPage('profile',this)">
+    <span class="icon">👤</span>
+    Profile
   </button>
-  <button class="nav" onclick="showPage('settings')">
-    <span class="navIcon">⚙️</span>Settings
+
+  <button class="nav-btn" onclick="showPage('settings',this)">
+    <span class="icon">⚙️</span>
+    Settings
   </button>
+
+</nav>
+
 </div>
 
+
+<!-- ROOM SCREEN -->
+
+<div id="roomScreen" class="room-screen">
+
+  <div class="room-header">
+
+    <button class="back-btn" onclick="closeRoom()">←</button>
+
+    <div>
+      <div id="roomTitle" class="room-title">Voice Room</div>
+      <small style="color:#8e99b8">👥 128 online</small>
+    </div>
+
+  </div>
+
+  <div class="seats">
+
+    <div class="seat">
+      <div class="seat-avatar">👨</div>
+      <div class="seat-name">Rasel</div>
+    </div>
+
+    <div class="seat">
+      <div class="seat-avatar">👩</div>
+      <div class="seat-name">Nusrat</div>
+    </div>
+
+    <div class="seat">
+      <div class="seat-avatar">👨</div>
+      <div class="seat-name">Karim</div>
+    </div>
+
+    <div class="seat">
+      <div class="seat-avatar">👩</div>
+      <div class="seat-name">Maya</div>
+    </div>
+
+    <div class="seat">
+      <div class="seat-avatar">👨</div>
+      <div class="seat-name">Ahmed</div>
+    </div>
+
+    <div class="seat">
+      <div class="seat-avatar">➕</div>
+      <div class="seat-name">Empty Seat</div>
+    </div>
+
+  </div>
+
+
+  <div id="chat" class="chat">
+
+    <div class="message">
+      <span>Rasel</span>
+      Hello everyone! 👋
+    </div>
+
+    <div class="message">
+      <span>Nusrat</span>
+      Welcome to Doel ❤️
+    </div>
+
+  </div>
+
+
+  <button id="micBtn" class="mic-btn" onclick="toggleMic()">
+    🎤
+  </button>
+
+
+  <div class="chat-input">
+
+    <input
+      id="messageInput"
+      type="text"
+      placeholder="Write a message..."
+      onkeydown="if(event.key==='Enter') sendMessage()"
+    >
+
+    <button class="send-btn" onclick="sendMessage()">
+      Send
+    </button>
+
+  </div>
+
 </div>
+
 
 <script>
 
-const content=document.getElementById("content");
+function showPage(pageId, button){
 
-function showPage(page){
+  document.querySelectorAll('.page').forEach(function(page){
+    page.classList.remove('active');
+  });
 
-if(page==="home"){
-content.innerHTML=`
-<h1>Welcome to Doel 👋</h1>
-<div class="sub">Meet people. Talk. Make new friends.</div>
+  document.getElementById(pageId).classList.add('active');
 
-<div class="search">🔍 Search rooms or people</div>
+  document.querySelectorAll('.nav-btn').forEach(function(btn){
+    btn.classList.remove('active');
+  });
 
-<div class="hero">
-<h2>🎙️ Start Talking</h2>
-<p>Join a live voice room and connect with people from around the world.</p>
-<button class="primary" onclick="showPage('rooms')">Explore Voice Rooms</button>
-</div>
+  button.classList.add('active');
 
-<div class="sectionTitle">
-<span>🔥 Popular Rooms</span>
-<span style="color:#8d7cff;font-size:12px">See all</span>
-</div>
-
-<div class="room">
-<div class="roomTop">
-<div class="avatar">🎵</div>
-<div>
-<div class="roomName">Music Lovers</div>
-<div class="online">● 128 people online</div>
-</div>
-<button class="join" onclick="openRoom('Music Lovers')">Join</button>
-</div>
-<div class="tags">Music • Friends • International</div>
-</div>
-
-<div class="room">
-<div class="roomTop">
-<div class="avatar">🌎</div>
-<div>
-<div class="roomName">Global Friends</div>
-<div class="online">● 86 people online</div>
-</div>
-<button class="join" onclick="openRoom('Global Friends')">Join</button>
-</div>
-<div class="tags">Chat • Friendship • World</div>
-</div>
-`;
+  window.scrollTo(0,0);
 }
 
-if(page==="rooms"){
-content.innerHTML=`
-<h1>Voice Rooms</h1>
-<div class="sub">Find a room and start talking</div>
 
-<div class="search">🔍 Search voice rooms</div>
+function openRoom(roomName){
 
-<div class="room">
-<div class="roomTop">
-<div class="avatar">🎵</div>
-<div>
-<div class="roomName">Music Lovers</div>
-<div class="online">● 128 online</div>
-</div>
-<button class="join" onclick="openRoom('Music Lovers')">Join</button>
-</div>
-<div class="tags">Music • English • Friendly</div>
-</div>
+  document.getElementById('roomTitle').textContent = roomName;
 
-<div class="room">
-<div class="roomTop">
-<div class="avatar">🌎</div>
-<div>
-<div class="roomName">Global Friends</div>
-<div class="online">● 86 online</div>
-</div>
-<button class="join" onclick="openRoom('Global Friends')">Join</button>
-</div>
-<div class="tags">International • Chat</div>
-</div>
+  document.getElementById('roomScreen').classList.add('active');
 
-<div class="room">
-<div class="roomTop">
-<div class="avatar">💬</div>
-<div>
-<div class="roomName">Night Talk</div>
-<div class="online">● 54 online</div>
-</div>
-<button class="join" onclick="openRoom('Night Talk')">Join</button>
-</div>
-<div class="tags">Friends • Relax • Talk</div>
-</div>
-`;
 }
 
-if(page==="profile"){
-content.innerHTML=`
-<div class="profile">
-<div class="bigAvatar">👤</div>
-<h2>Doel User</h2>
-<p>@doel_user</p>
 
-<div class="stats">
-<div class="stat"><b>12</b><span>Friends</span></div>
-<div class="stat"><b>8</b><span>Rooms</span></div>
-<div class="stat"><b>1.2K</b><span>Followers</span></div>
-</div>
+function closeRoom(){
 
-<div class="setting">✏️ Edit Profile <span>›</span></div>
-<div class="setting">🎁 My Gifts <span>›</span></div>
-<div class="setting">🏆 My Level <span>›</span></div>
-</div>
-`;
+  document.getElementById('roomScreen').classList.remove('active');
+
 }
 
-if(page==="settings"){
-content.innerHTML=`
-<h1>Settings</h1>
-<div class="sub">Manage your Doel account</div>
 
-<div class="setting">🔔 Notifications <span>›</span></div>
-<div class="setting">🔒 Privacy <span>›</span></div>
-<div class="setting">🌐 Language <span>English ›</span></div>
-<div class="setting">🎙️ Voice Settings <span>›</span></div>
-<div class="setting">❓ Help Center <span>›</span></div>
-<div class="setting">ℹ️ About Doel <span>›</span></div>
-`;
+function toggleMic(){
+
+  const mic = document.getElementById('micBtn');
+
+  mic.classList.toggle('on');
+
+  if(mic.classList.contains('on')){
+
+    mic.textContent = '🔴';
+
+    alert('Microphone is ON');
+
+  }else{
+
+    mic.textContent = '🎤';
+
+    alert('Microphone is OFF');
+
+  }
+
 }
 
-showPage("home");
 
-function openRoom(name){
-content.innerHTML=`
-<div class="roomScreen">
-<div class="roomBanner">
-<div class="bigAvatar">🎙️</div>
-<h2>${name}</h2>
-<p>128 people • Live voice room</p>
-</div>
+function sendMessage(){
 
-<div class="seats">
-<div class="seat">👩</div>
-<div class="seat">👨</div>
-<div class="seat">👩</div>
-<div class="seat empty">＋</div>
-<div class="seat">👨</div>
-<div class="seat">👩</div>
-<div class="seat empty">＋</div>
-<div class="seat">👨</div>
-</div>
+  const input = document.getElementById('messageInput');
 
-<div class="chat">
-<strong>💬 Live Chat</strong>
-<p><b>Sarah:</b> Hello everyone! 👋</p>
-<p><b>Ali:</b> Nice to meet you!</p>
-<p><b>Doel User:</b> Hi friends ❤️</p>
-</div>
+  const text = input.value.trim();
 
-<button class="primary" onclick="showPage('rooms')">🎙️ Join Voice Room</button>
-</div>
-`;
+  if(text === '') return;
+
+  const message = document.createElement('div');
+
+  message.className = 'message';
+
+  message.innerHTML =
+    '<span>You</span>' +
+    escapeHtml(text);
+
+  document.getElementById('chat').appendChild(message);
+
+  input.value = '';
+
+  const chat = document.getElementById('chat');
+
+  chat.scrollTop = chat.scrollHeight;
+
+}
+
+
+function escapeHtml(text){
+
+  const div = document.createElement('div');
+
+  div.textContent = text;
+
+  return div.innerHTML;
+
+}
+
+
+function editProfile(){
+
+  const name = prompt(
+    'Enter your name:',
+    'Doel User'
+  );
+
+  if(name && name.trim() !== ''){
+
+    document.querySelector('.profile-name').textContent =
+      name.trim();
+
+  }
+
 }
 
 </script>
