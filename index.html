@@ -2,2543 +2,1317 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Doel Voice Chat Room</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{
- font-family:Arial,sans-serif;
- background:#f5f8ff;
- color:#182033;
+  font-family:Arial,sans-serif;
+  background:#f5f7fc;
+  color:#172033;
+  max-width:480px;
+  margin:auto;
+  min-height:100vh;
 }
-button,input{font-family:inherit}
 button{border:0;cursor:pointer}
-.page{display:none;padding:14px}
-.page.active{display:block}
 .hidden{display:none!important}
 
 /* WELCOME */
 #welcome{
- min-height:100vh;
- background:linear-gradient(150deg,#e9fbff,#f5f0ff,#fff);
- text-align:center;
- padding:15px;
+  min-height:100vh;
+  background:linear-gradient(160deg,#e9fbff,#fff,#f3efff);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
+.logo{
+  width:72px;height:72px;border-radius:24px;
+  background:linear-gradient(135deg,#20cfff,#7b61ff);
+  display:flex;align-items:center;justify-content:center;
+  font-size:38px;color:white;
+  box-shadow:0 12px 30px #8bdbea;
+}
+.brand{font-size:30px;font-weight:800;margin-top:10px}
+.subtitle{color:#697386;margin:5px 0 25px}
+
+/* PEOPLE */
 .people{
- height:285px;
- position:relative;
- max-width:430px;
- margin:auto;
+  width:100%;
+  height:230px;
+  position:relative;
+  margin-bottom:15px;
 }
 .person{
- position:absolute;
- bottom:8px;
- width:105px;
- animation:float 3s infinite ease-in-out;
+  position:absolute;
+  bottom:10px;
+  width:100px;height:155px;
+  border-radius:50px 50px 30px 30px;
+  background:linear-gradient(145deg,#fff,#dce8f5);
+  box-shadow:0 12px 25px #b8c5d8;
+  text-align:center;
 }
-.p1{left:2%}.p2{left:37%;animation-delay:.6s}.p3{right:2%;animation-delay:1.2s}
-.head{
- width:78px;height:78px;
- margin:auto;
- border-radius:50%;
- background:#e3aa7d;
- position:relative;
+.person .head{
+  width:65px;height:65px;
+  border-radius:50%;
+  background:#d99b72;
+  margin:12px auto 5px;
+  position:relative;
 }
-.hair{
- position:absolute;
- top:-5px;left:-3px;
- width:84px;height:40px;
- border-radius:50px 50px 15px 15px;
- background:#28252b;
+.person .body{
+  width:75px;height:65px;
+  border-radius:35px 35px 20px 20px;
+  background:#4c78ff;
+  margin:auto;
 }
-.eye{
- position:absolute;
- top:39px;
- width:6px;height:6px;
- background:#222;border-radius:50%;
+.p1{left:2%;transform:rotate(-6deg)}
+.p2{left:50%;transform:translateX(-50%) translateY(-10px)}
+.p3{right:2%;transform:rotate(6deg)}
+.p2 .body{background:#9a5de8}
+.p3 .body{background:#ff7095}
+.speech{
+  position:absolute;
+  background:white;
+  padding:8px 12px;
+  border-radius:15px;
+  font-size:12px;
+  box-shadow:0 5px 15px #ccd4df;
 }
-.e1{left:24px}.e2{right:24px}
-.mouth{
- position:absolute;
- top:57px;left:28px;
- width:22px;height:10px;
- border-bottom:4px solid #8b3f48;
- border-radius:50%;
-}
-.body{
- width:96px;height:120px;
- margin:9px auto;
- border-radius:38px 38px 15px 15px;
- background:linear-gradient(150deg,#00c9d8,#7657ff);
-}
-.p2 .body{background:linear-gradient(150deg,#ff6fa8,#ffad60)}
-.p3 .body{background:linear-gradient(150deg,#795cff,#00bfd0)}
-.bubble{
- position:absolute;
- background:#fff;
- padding:8px 11px;
- border-radius:16px;
- box-shadow:0 6px 20px #0002;
- font-size:11px;
-}
-.b1{left:0;top:35px}.b2{right:0;top:10px}.b3{left:30%;top:100px}
+.s1{top:8px;left:2px}
+.s2{top:0;right:0}
 .bird{
- position:absolute;
- left:50%;bottom:2px;
- transform:translateX(-50%);
- font-size:45px;
- animation:bird 2s infinite;
+  position:absolute;
+  top:85px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:35px;
 }
-@keyframes float{50%{transform:translateY(-10px)}}
-@keyframes bird{50%{transform:translateY(-12px)}}
 
-.logo{
- width:67px;height:67px;
- margin:auto;
- border-radius:22px;
- background:linear-gradient(135deg,#00c9d8,#7657ff);
- display:flex;align-items:center;justify-content:center;
- font-size:37px;
+/* LOGIN */
+.login-box{width:100%;max-width:360px}
+.login-btn{
+  width:100%;
+  height:50px;
+  margin:7px 0;
+  border-radius:16px;
+  background:white;
+  box-shadow:0 4px 15px #dce2eb;
+  font-size:15px;
+  font-weight:600;
 }
-.brand{font-size:29px;font-weight:900;margin-top:7px}
-.tagline{color:#737c91;margin:4px 0 13px}
-.login{max-width:380px;margin:auto}
-.login button{
- width:100%;height:49px;
- margin:7px 0;
- border-radius:15px;
- font-weight:bold;
-}
-.google{background:#fff;box-shadow:0 4px 15px #0001}
-.facebook{background:#1877f2;color:white}
-.phone{background:linear-gradient(90deg,#00c9d8,#7657ff);color:#fff}
-.guest{background:#e9edf5}
-
+.google{color:#4285f4}
+.facebook{color:#1877f2}
+.phone{background:linear-gradient(90deg,#22c9e8,#7066ff);color:white}
+.guest{background:#eef2f8}
 
 /* APP */
-#app{display:none;min-height:100vh;padding-bottom:72px}
-.top{
- position:sticky;top:0;z-index:20;
- background:#fff;padding:12px;
- box-shadow:0 2px 15px #0001;
-}
+#app{min-height:100vh;padding-bottom:75px}
+
 .topbar{
- display:flex;justify-content:space-between;align-items:center
+  height:62px;
+  display:flex;
+  align-items:center;
+  padding:10px 14px;
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid #edf0f5;
 }
-.topbrand{font-size:23px;font-weight:900}
-.top-actions{display:flex;gap:7px}
-.topbtn{
- background:#f0f4ff;
- padding:8px 10px;
- border-radius:13px;
- font-size:15px;
+.top-logo{
+  font-size:21px;
+  font-weight:800;
+  color:#24bfe1;
 }
-.wallet{
- background:#eafcff;
- color:#007f8c;
- padding:8px 11px;
- border-radius:14px;
- font-size:12px;
- font-weight:bold;
+.top-right{
+  margin-left:auto;
+  display:flex;
+  gap:8px;
+  align-items:center;
 }
-.tabs{
- display:flex;
- gap:20px;
- overflow:auto;
- margin-top:14px;
+.icon-btn{
+  width:38px;height:38px;
+  border-radius:13px;
+  background:#f0f7fb;
+  font-size:18px;
 }
-.tabs span{
- white-space:nowrap;
- color:#777;
- font-size:13px;
+.coin{
+  background:#fff4cf;
+  border-radius:15px;
+  padding:8px 11px;
+  font-size:12px;
+  font-weight:bold;
 }
-.tabs .active{color:#735cff;font-weight:bold}
 
+/* HOME TOP NAV */
+.home-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:white;
+  padding:10px 12px;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+.home-nav::-webkit-scrollbar{display:none}
+
+.nav-tab{
+  padding:9px 13px;
+  border-radius:13px;
+  background:#f1f4f8;
+  font-size:13px;
+  font-weight:700;
+  color:#687286;
+}
+.nav-tab.active{
+  color:white;
+  background:linear-gradient(90deg,#24c8e5,#7166ff);
+}
+
+/* SPACE BEFORE SEARCH */
+.nav-space{
+  flex:1;
+  min-width:12px;
+}
+.search-btn,.create-btn{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  font-size:18px;
+}
+.search-btn{background:#edf7fc;color:#198eaf}
+.create-btn{
+  background:linear-gradient(135deg,#27cce5,#7765ff);
+  color:white;
+}
+
+/* CONTENT */
+.page{padding:14px}
 .banner{
- height:140px;
- padding:20px;
- border-radius:21px;
- color:#fff;
- background:linear-gradient(120deg,#00c9d8,#7657ff);
- margin-bottom:14px;
+  min-height:105px;
+  border-radius:22px;
+  padding:18px;
+  background:linear-gradient(120deg,#22cce7,#7665ff);
+  color:white;
+  box-shadow:0 10px 25px #c9d7ee;
+  margin-bottom:15px;
 }
-.banner h2{font-size:22px;margin-bottom:8px}
-.banner p{font-size:13px;opacity:.9}
+.banner h2{font-size:20px;margin-bottom:8px}
+.banner p{font-size:12px;opacity:.9}
 
-.search{
- width:100%;height:45px;
- border:0;border-radius:15px;
- padding:0 15px;
- background:#fff;
- box-shadow:0 4px 15px #0001;
-}
 .section-title{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin:17px 0 10px;
+  display:flex;
+  align-items:center;
+  margin:18px 2px 10px;
 }
 .section-title h3{font-size:17px}
-.section-title span{font-size:12px;color:#735cff}
+.section-title span{
+  margin-left:auto;
+  font-size:12px;
+  color:#758096;
+}
 
 .rooms{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:11px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
-.room{
- background:#fff;
- border-radius:17px;
- overflow:hidden;
- box-shadow:0 4px 15px #0001;
+.room-card{
+  background:white;
+  border-radius:19px;
+  padding:10px;
+  box-shadow:0 5px 18px #e1e5ed;
 }
-.roompic{
- height:120px;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:43px;
- background:linear-gradient(135deg,#baf5ff,#c9baff);
+.room-img{
+  height:135px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#dff8ff,#dcd7ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  position:relative;
 }
-.roominfo{padding:10px}
-.roomname{font-size:13px;font-weight:bold}
-.roommeta{font-size:10px;color:#7c8390;margin-top:5px}
-
-
-/* CARD */
-.card{
- background:#fff;
- border-radius:18px;
- padding:14px;
- margin-bottom:10px;
- box-shadow:0 4px 14px #0001;
+.live{
+  position:absolute;
+  top:8px;left:8px;
+  background:#ff5277;
+  color:white;
+  border-radius:8px;
+  padding:4px 7px;
+  font-size:9px;
 }
-.user-card{
- display:flex;
- align-items:center;
- gap:12px;
+.room-name{
+  font-weight:bold;
+  font-size:13px;
+  margin-top:9px;
 }
-.avatar{
- width:52px;height:52px;
- flex-shrink:0;
- border-radius:50%;
- display:flex;align-items:center;justify-content:center;
- background:linear-gradient(135deg,#00c9d8,#7657ff);
- font-size:25px;
+.room-id{
+  color:#8992a5;
+  font-size:10px;
+  margin-top:4px;
 }
-.info{flex:1}
-.info b{font-size:14px}
-.info small{
- display:block;
- color:#818897;
- margin-top:4px;
- font-size:11px;
+.room-users{
+  font-size:10px;
+  color:#687386;
+  margin-top:7px;
 }
-.join{
- background:#735cff;color:#fff;
- padding:9px 13px;
- border-radius:12px;
- font-weight:bold;
-}
-
-
-/* GRID */
-.feature-grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:9px;
-}
-.feature{
- background:#fff;
- border-radius:15px;
- padding:12px 4px;
- text-align:center;
- box-shadow:0 3px 12px #0001;
-}
-.feature div{font-size:23px}
-.feature small{
- display:block;
- margin-top:5px;
- font-size:9px;
-}
-
 
 /* BOTTOM */
 .bottom{
- position:fixed;
- bottom:0;left:0;right:0;
- height:68px;
- background:#fff;
- display:flex;
- justify-content:space-around;
- align-items:center;
- box-shadow:0 -4px 18px #0002;
- z-index:80;
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:480px;
+  height:68px;
+  background:white;
+  border-top:1px solid #e8ebf1;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  z-index:50;
 }
-.nav{
- text-align:center;
- color:#858b98;
- font-size:10px;
+.bottom button{
+  background:white;
+  color:#7b8496;
+  font-size:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
 }
-.nav div{font-size:22px;margin-bottom:2px}
-.nav.active{color:#735cff}
+.bottom button span{font-size:21px}
+.bottom button.active{color:#665eff}
 
+/* PAGES */
+.subpage{display:none}
+.subpage.active{display:block}
 
-/* PROFILE */
-.profile-head{
- background:#fff;
- border-radius:22px;
- text-align:center;
- padding:23px 12px;
+.list-card{
+  background:white;
+  margin-bottom:10px;
+  border-radius:17px;
+  padding:13px;
+  display:flex;
+  align-items:center;
+  box-shadow:0 4px 15px #e4e8ef;
 }
-.bigavatar{
- width:90px;height:90px;
- margin:auto;
- border-radius:50%;
- background:linear-gradient(135deg,#00c9d8,#7657ff);
- display:flex;align-items:center;justify-content:center;
- font-size:42px;
+.avatar{
+  width:48px;height:48px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#63dff0,#7b63ff);
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:22px;
 }
-.stats{
- display:flex;
- justify-content:space-around;
- margin-top:18px;
+.list-info{margin-left:11px}
+.list-info b{font-size:14px}
+.list-info small{display:block;color:#7b8496;margin-top:4px}
+.list-action{
+  margin-left:auto;
+  border-radius:11px;
+  padding:8px 12px;
+  background:#eef7fb;
+  color:#279db8;
+  font-size:11px;
+  font-weight:bold;
 }
-.stats b{display:block}
-.stats span{font-size:10px;color:#858b98}
-.menu{
- background:#fff;
- border-radius:19px;
- overflow:hidden;
- margin-top:13px;
-}
-.menu-item{
- padding:16px;
- border-bottom:1px solid #f0f1f5;
- display:flex;
- justify-content:space-between;
- font-size:14px;
-}
-.menu-item:last-child{border:0}
-
-
-/* BALANCE */
-.balance{
- background:linear-gradient(120deg,#00c9d8,#7657ff);
- color:#fff;
- padding:20px;
- border-radius:21px;
-}
-.balance-row{
- display:flex;
- gap:10px;
- margin-top:15px;
-}
-.balance-box{
- flex:1;
- padding:13px;
- border-radius:14px;
- background:#ffffff20;
-}
-.balance-box b{display:block;font-size:19px}
-.balance-box small{font-size:10px}
-.action-grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:9px;
- margin:14px 0;
-}
-.action{
- background:#fff;
- border-radius:15px;
- padding:12px 3px;
- text-align:center;
- box-shadow:0 3px 12px #0001;
-}
-.action div{font-size:22px}
-.action small{font-size:9px}
-
 
 /* MODAL */
 .modal{
- display:none;
- position:fixed;
- inset:0;
- background:#0008;
- z-index:200;
- align-items:flex-end;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:100;
 }
-.modal-content{
- width:100%;
- max-height:88vh;
- overflow:auto;
- background:#fff;
- border-radius:24px 24px 0 0;
- padding:19px;
+.modal.show{display:flex}
+.modal-box{
+  width:100%;
+  max-width:480px;
+  max-height:85vh;
+  overflow:auto;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:18px;
 }
-.modal-title{
- display:flex;
- justify-content:space-between;
- align-items:center;
- font-size:18px;
- font-weight:bold;
- margin-bottom:17px;
+.modal-head{
+  display:flex;
+  align-items:center;
+  margin-bottom:16px;
 }
-.close{font-size:20px}
-.pack{
- display:flex;
- align-items:center;
- justify-content:space-between;
- background:#f5f7fb;
- padding:14px;
- border-radius:15px;
- margin-bottom:9px;
+.modal-head h3{font-size:18px}
+.close{
+  margin-left:auto;
+  background:#f0f2f6;
+  border-radius:10px;
+  width:34px;height:34px;
 }
-.pack button{
- background:#735cff;color:#fff;
- padding:9px 14px;
- border-radius:11px;
+.input{
+  width:100%;
+  height:48px;
+  border:1px solid #dfe4ec;
+  border-radius:14px;
+  padding:0 14px;
+  outline:none;
+  margin-bottom:10px;
 }
-.gift-grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:9px;
+.primary{
+  width:100%;
+  height:48px;
+  border-radius:14px;
+  color:white;
+  background:linear-gradient(90deg,#24c9e6,#7564ff);
+  font-weight:bold;
 }
-.gift-box{
- background:#f6f8fc;
- padding:12px 3px;
- border-radius:15px;
- text-align:center;
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
-.gift-icon{font-size:29px}
-.gift-box b{display:block;font-size:10px;margin-top:5px}
-.gift-box small{font-size:9px;color:#777}
-
-
-/* LEVEL */
-.level-card{
- background:linear-gradient(120deg,#29215b,#7450c9);
- color:white;
- padding:20px;
- border-radius:21px;
+.menu-item{
+  background:#f6f8fb;
+  border-radius:15px;
+  padding:15px 5px;
+  text-align:center;
+  font-size:11px;
 }
-.progress{
- height:9px;
- background:#ffffff30;
- border-radius:20px;
- margin:13px 0 7px;
- overflow:hidden;
-}
-.progress i{
- display:block;
- height:100%;
- width:65%;
- background:#fff;
- border-radius:20px;
-}
-
-
-/* RANK */
-.rank{
- display:flex;
- align-items:center;
- gap:10px;
- background:#fff;
- padding:12px;
- border-radius:15px;
- margin-bottom:8px;
- box-shadow:0 3px 10px #0001;
-}
-.ranknum{width:23px;font-weight:bold}
-.rankavatar{
- width:44px;height:44px;
- border-radius:50%;
- background:#edf0ff;
- display:flex;align-items:center;justify-content:center;
- font-size:21px;
-}
-.rankinfo{flex:1}
-
+.menu-item div{font-size:24px;margin-bottom:7px}
 
 /* ROOM */
-#room{
- display:none;
- position:fixed;
- inset:0;
- z-index:150;
- color:#fff;
- background:linear-gradient(160deg,#11152e,#44317c,#083449);
+#roomOverlay{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#18284b,#34205d);
+  color:white;
+  z-index:200;
+  display:none;
+  flex-direction:column;
 }
-.roomtop{
- padding:15px;
- display:flex;
- justify-content:space-between;
+.room-top{
+  padding:16px;
+  display:flex;
+  align-items:center;
 }
-.roomhost{
- background:#ffffff18;
- border-radius:14px;
- padding:8px 11px;
+.room-top button{
+  background:#ffffff20;
+  color:white;
+  width:38px;height:38px;
+  border-radius:12px;
 }
-.roomid{font-size:9px;opacity:.7}
+.room-title{margin-left:10px}
+.room-title b{font-size:14px}
+.room-title small{display:block;opacity:.7;margin-top:4px}
 .seats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:15px;
- padding:25px 12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px 10px;
+  padding:25px 15px;
 }
 .seat{text-align:center}
-.seatcircle{
- width:58px;height:58px;
- margin:auto;
- border-radius:50%;
- border:2px solid #ffffff50;
- background:#ffffff20;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:26px;
+.seat-avatar{
+  width:57px;height:57px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#52dff1,#7c63ff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-size:25px;
+  border:2px solid #ffffff55;
 }
-.seat small{
- display:block;
- font-size:9px;
- margin-top:4px;
+.seat small{display:block;font-size:9px;margin-top:5px}
+.room-chat{
+  flex:1;
+  padding:15px;
+  overflow:auto;
 }
-.roomchat{
- position:absolute;
- left:13px;right:13px;
- bottom:145px;
- max-height:170px;
- overflow:auto;
+.chat-msg{
+  background:#0004;
+  display:table;
+  padding:7px 10px;
+  border-radius:12px;
+  margin:5px 0;
+  font-size:11px;
 }
-.chatmsg{
- width:max-content;
- max-width:85%;
- background:#0005;
- border-radius:12px;
- padding:7px 10px;
- margin-top:5px;
- font-size:11px;
+.room-controls{
+  padding:10px 12px 22px;
 }
-.roomcontrols{
- position:absolute;
- left:11px;right:11px;bottom:13px;
+.room-input{
+  display:flex;
+  gap:7px;
+  margin-bottom:10px;
 }
-.roominput{
- display:flex;gap:7px;margin-bottom:9px;
+.room-input input{
+  flex:1;
+  height:42px;
+  border-radius:13px;
+  border:0;
+  padding:0 12px;
 }
-.roominput input{
- flex:1;height:42px;
- border:0;border-radius:20px;
- padding:0 14px;
+.room-actions{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
 }
-.roominput button{
- width:43px;border-radius:50%;
- background:#ffffff25;color:#fff;
-}
-.controls{
- display:flex;
- justify-content:space-around;
-}
-.control{
- width:46px;height:46px;
- border-radius:50%;
- background:#ffffff20;
- display:flex;align-items:center;justify-content:center;
- font-size:20px;
-}
-.gift{
- background:linear-gradient(135deg,#ff5f9f,#ff9e53);
-}
-
-
-/* ROOM GIFT */
-#giftPanel{
- display:none;
- position:absolute;
- left:0;right:0;bottom:0;
- color:#222;
- background:#fff;
- border-radius:23px 23px 0 0;
- padding:19px;
-}
-
-
-/* TOAST */
-#toast{
- position:fixed;
- left:50%;
- bottom:85px;
- transform:translateX(-50%);
- background:#222;
- color:#fff;
- padding:11px 17px;
- border-radius:20px;
- font-size:12px;
- display:none;
- z-index:500;
- white-space:nowrap;
-}
-
-
-/* SETTINGS */
-.switch{
- width:45px;height:25px;
- border-radius:20px;
- background:#dce0e9;
- position:relative;
-}
-.switch i{
- position:absolute;
- width:21px;height:21px;
- background:white;
- border-radius:50%;
- top:2px;left:2px;
- transition:.2s;
-}
-.switch.on{background:#735cff}
-.switch.on i{left:22px}
-
-
-/* ROOM HOST MENU */
-.host-action{
- background:#f5f7fb;
- padding:14px;
- border-radius:14px;
- margin-bottom:9px;
-}
-
-
-/* MOBILE */
-@media(max-width:360px){
- .person{transform:scale(.85)}
- .p2{left:35%}
+.room-actions button{
+  height:45px;
+  border-radius:14px;
+  background:#ffffff18;
+  color:white;
+  font-size:18px;
 }
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-                       WELCOME
-===================================================== -->
-
+<!-- WELCOME -->
 <section id="welcome">
+  <div class="logo">🐦</div>
+  <div class="brand">Doel</div>
+  <div class="subtitle">Voice Chat Room</div>
 
- <div class="people">
+  <div class="people">
+    <div class="person p1">
+      <div class="head"></div>
+      <div class="body"></div>
+    </div>
 
-  <div class="bubble b1">😂 Haha!</div>
-  <div class="bubble b2">❤️ Hello!</div>
-  <div class="bubble b3">🎤 Let's talk!</div>
+    <div class="person p2">
+      <div class="head"></div>
+      <div class="body"></div>
+    </div>
 
-  <div class="person p1">
-   <div class="head">
-    <div class="hair"></div>
-    <i class="eye e1"></i>
-    <i class="eye e2"></i>
-    <div class="mouth"></div>
-   </div>
-   <div class="body"></div>
+    <div class="person p3">
+      <div class="head"></div>
+      <div class="body"></div>
+    </div>
+
+    <div class="speech s1">😂 Let's talk!</div>
+    <div class="speech s2">🎤 Hello Doel!</div>
+    <div class="bird">🐦</div>
   </div>
 
-  <div class="person p2">
-   <div class="head">
-    <div class="hair"></div>
-    <i class="eye e1"></i>
-    <i class="eye e2"></i>
-    <div class="mouth"></div>
-   </div>
-   <div class="body"></div>
+  <div class="login-box">
+    <button class="login-btn google" onclick="login()">🔵 Continue with Google</button>
+    <button class="login-btn facebook" onclick="login()">ⓕ Continue with Facebook</button>
+    <button class="login-btn phone" onclick="phoneLogin()">📱 Continue with Phone</button>
+    <button class="login-btn guest" onclick="login()">👤 Guest Demo</button>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="app" class="hidden">
+
+  <div class="topbar">
+    <div class="top-logo">🐦 Doel</div>
+    <div class="top-right">
+      <div class="coin">🪙 <span id="coinTop">32732</span></div>
+      <button class="icon-btn" onclick="openModal('notifications')">🔔</button>
+    </div>
   </div>
 
-  <div class="person p3">
-   <div class="head">
-    <div class="hair"></div>
-    <i class="eye e1"></i>
-    <i class="eye e2"></i>
-    <div class="mouth"></div>
-   </div>
-   <div class="body"></div>
+  <!-- HOME -->
+  <div id="homePage" class="subpage active">
+
+    <!-- নতুন HOME TOP MENU -->
+    <div class="home-nav">
+
+      <button id="tabFollowing"
+              class="nav-tab active"
+              onclick="homeTab('following')">
+        Following
+      </button>
+
+      <button id="tabPopular"
+              class="nav-tab"
+              onclick="homeTab('popular')">
+        Popular
+      </button>
+
+      <button id="tabRecent"
+              class="nav-tab"
+              onclick="homeTab('recent')">
+        Recent
+      </button>
+
+      <div class="nav-space"></div>
+
+      <button class="search-btn"
+              onclick="openSearch()"
+              title="Search">
+        🔍
+      </button>
+
+      <button class="create-btn"
+              onclick="openModal('create')"
+              title="Create Room">
+        ➕
+      </button>
+
+    </div>
+
+    <div class="page">
+
+      <div class="banner">
+        <h2>Welcome to Doel 🎤</h2>
+        <p>Meet people, join voice rooms and make new friends.</p>
+      </div>
+
+      <div id="homeContent">
+
+        <div class="section-title">
+          <h3 id="homeTitle">Following</h3>
+          <span id="homeCount">Your Following</span>
+        </div>
+
+        <div class="rooms" id="homeRooms">
+
+          <div class="room-card" onclick="openRoom('Music Lovers')">
+            <div class="room-img">
+              🎤
+              <span class="live">LIVE</span>
+            </div>
+            <div class="room-name">Music Lovers</div>
+            <div class="room-id">Room ID: 10001</div>
+            <div class="room-users">👥 128 people</div>
+          </div>
+
+          <div class="room-card" onclick="openRoom('Friends Zone')">
+            <div class="room-img">
+              🗣️
+              <span class="live">LIVE</span>
+            </div>
+            <div class="room-name">Friends Zone</div>
+            <div class="room-id">Room ID: 10002</div>
+            <div class="room-users">👥 86 people</div>
+          </div>
+
+          <div class="room-card" onclick="openRoom('Bangladesh Talk')">
+            <div class="room-img">
+              🇧🇩
+              <span class="live">LIVE</span>
+            </div>
+            <div class="room-name">Bangladesh Talk</div>
+            <div class="room-id">Room ID: 10003</div>
+            <div class="room-users">👥 214 people</div>
+          </div>
+
+          <div class="room-card" onclick="openRoom('Night Party')">
+            <div class="room-img">
+              🎉
+              <span class="live">LIVE</span>
+            </div>
+            <div class="room-name">Night Party</div>
+            <div class="room-id">Room ID: 10004</div>
+            <div class="room-users">👥 65 people</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
   </div>
 
-  <div class="bird">🐦</div>
+  <!-- VOICE -->
+  <div id="voicePage" class="subpage">
+    <div class="page">
+      <div class="section-title">
+        <h3>Voice Rooms</h3>
+      </div>
 
- </div>
+      <button class="primary" onclick="openModal('create')">
+        ➕ Create Voice Room
+      </button>
 
- <div class="logo">🐦</div>
- <div class="brand">DOEL</div>
- <div class="tagline">Talk • Meet • Enjoy</div>
+      <br><br>
 
- <div class="login">
-  <button class="google" onclick="login()">🌐 Continue with Google</button>
-  <button class="facebook" onclick="login()">f &nbsp; Continue with Facebook</button>
-  <button class="phone" onclick="phoneLogin()">📱 Continue with Phone</button>
-  <button class="guest" onclick="login()">Continue as Guest</button>
- </div>
+      <div class="list-card" onclick="openRoom('Global Friends')">
+        <div class="avatar">🎤</div>
+        <div class="list-info">
+          <b>Global Friends</b>
+          <small>Room ID: 22001 · 156 online</small>
+        </div>
+        <div class="list-action">JOIN</div>
+      </div>
+
+      <div class="list-card" onclick="openRoom('Fun Zone')">
+        <div class="avatar">🎵</div>
+        <div class="list-info">
+          <b>Fun Zone</b>
+          <small>Room ID: 22002 · 93 online</small>
+        </div>
+        <div class="list-action">JOIN</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCOVER -->
+  <div id="discoverPage" class="subpage">
+    <div class="page">
+      <div class="section-title">
+        <h3>Discover</h3>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-item"><div>🏆</div>Ranking</div>
+        <div class="menu-item"><div>🎁</div>Gifts</div>
+        <div class="menu-item"><div>🎮</div>Games</div>
+        <div class="menu-item"><div>💎</div>VIP</div>
+        <div class="menu-item"><div>❤️</div>Love</div>
+        <div class="menu-item"><div>🎉</div>Events</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div id="chatPage" class="subpage">
+    <div class="page">
+      <div class="section-title"><h3>Messages</h3></div>
+
+      <div class="list-card">
+        <div class="avatar">👩</div>
+        <div class="list-info">
+          <b>Doel Friend</b>
+          <small>Hello! Welcome to Doel 👋</small>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="avatar">👨</div>
+        <div class="list-info">
+          <b>Music Friend</b>
+          <small>See you in the room!</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div id="profilePage" class="subpage">
+    <div class="page">
+
+      <div class="list-card">
+        <div class="avatar">👤</div>
+        <div class="list-info">
+          <b>Doel User</b>
+          <small>ID: 10000001 · LV 1</small>
+        </div>
+      </div>
+
+      <div class="menu-grid">
+
+        <div class="menu-item" onclick="openModal('wallet')">
+          <div>🪙</div>Wallet
+        </div>
+
+        <div class="menu-item" onclick="openModal('gift')">
+          <div>🎁</div>Gifts
+        </div>
+
+        <div class="menu-item" onclick="openModal('store')">
+          <div>🛍️</div>Store
+        </div>
+
+        <div class="menu-item" onclick="openModal('level')">
+          <div>⭐</div>Level
+        </div>
+
+        <div class="menu-item" onclick="openModal('vip')">
+          <div>💎</div>VIP
+        </div>
+
+        <div class="menu-item" onclick="openModal('cp')">
+          <div>❤️</div>CP Couple
+        </div>
+
+        <div class="menu-item" onclick="openModal('family')">
+          <div>👨‍👩‍👧</div>Family
+        </div>
+
+        <div class="menu-item" onclick="openModal('props')">
+          <div>🎒</div>Props
+        </div>
+
+        <div class="menu-item" onclick="openModal('invite')">
+          <div>🎁</div>Invite
+        </div>
+
+        <div class="menu-item" onclick="openModal('settings')">
+          <div>⚙️</div>Settings
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom">
+    <button class="active" onclick="showPage('homePage',this)">
+      <span>🏠</span>Home
+    </button>
+
+    <button onclick="showPage('voicePage',this)">
+      <span>🎤</span>Voice
+    </button>
+
+    <button onclick="showPage('discoverPage',this)">
+      <span>🌎</span>Discover
+    </button>
+
+    <button onclick="showPage('chatPage',this)">
+      <span>💬</span>Message
+    </button>
+
+    <button onclick="showPage('profilePage',this)">
+      <span>👤</span>Profile
+    </button>
+  </div>
 
 </section>
 
-
-
-<!-- =====================================================
-                         APP
-===================================================== -->
-
-<section id="app">
-
-<header class="top">
-
- <div class="topbar">
-
-  <div class="topbrand">DOEL 🐦</div>
-
-  <div class="top-actions">
-
-   <button class="topbtn" onclick="openNotifications()">🔔</button>
-
-   <div class="wallet" onclick="openWallet()">
-    🪙 <span id="topCoins">32,732</span>
-   </div>
-
-  </div>
-
- </div>
-
- <div class="tabs">
-  <span class="active">Following</span>
-  <span>Popular</span>
-  <span>Recent</span>
-  <span>Global</span>
-  <span>Events</span>
- </div>
-
-</header>
-
-
-
-<!-- ================= HOME ================= -->
-
-<div id="home" class="page active">
-
- <div class="banner">
-  <h2>Welcome to Doel</h2>
-  <p>Meet people, join voice rooms and enjoy together.</p>
- </div>
-
- <input
-  class="search"
-  placeholder="🔍 Search user, room or ID"
-  onkeydown="searchEnter(event)"
- >
-
- <div class="section-title">
-  <h3>🔥 Popular Rooms</h3>
-  <span onclick="page('voice',document.querySelectorAll('.nav')[1])">View All</span>
- </div>
-
- <div class="rooms">
-
-  <div class="room" onclick="openRoom('Fun House')">
-   <div class="roompic">🎤</div>
-   <div class="roominfo">
-    <div class="roomname">Fun House</div>
-    <div class="roommeta">👥 1.2K • 🇧🇩</div>
-   </div>
-  </div>
-
-  <div class="room" onclick="openRoom('Friend Zone')">
-   <div class="roompic">🎶</div>
-   <div class="roominfo">
-    <div class="roomname">Friend Zone</div>
-    <div class="roommeta">👥 856 • 🌎</div>
-   </div>
-  </div>
-
-  <div class="room" onclick="openRoom('Music World')">
-   <div class="roompic">🎵</div>
-   <div class="roominfo">
-    <div class="roomname">Music World</div>
-    <div class="roommeta">👥 643 • 🇸🇦</div>
-   </div>
-  </div>
-
-  <div class="room" onclick="openRoom('Night Talk')">
-   <div class="roompic">🌙</div>
-   <div class="roominfo">
-    <div class="roomname">Night Talk</div>
-    <div class="roommeta">👥 492 • 🇦🇪</div>
-   </div>
-  </div>
-
- </div>
-
-
- <div class="section-title">
-  <h3>✨ Explore Doel</h3>
- </div>
-
- <div class="feature-grid">
-
-  <div class="feature" onclick="openGifts()">
-   <div>🎁</div><small>Gifts</small>
-  </div>
-
-  <div class="feature" onclick="openWallet()">
-   <div>💰</div><small>Wallet</small>
-  </div>
-
-  <div class="feature" onclick="openStore()">
-   <div>🛍️</div><small>Store</small>
-  </div>
-
-  <div class="feature" onclick="openRanking()">
-   <div>🏆</div><small>Ranking</small>
-  </div>
-
-  <div class="feature" onclick="openFamily()">
-   <div>👨‍👩‍👧</div><small>Family</small>
-  </div>
-
-  <div class="feature" onclick="openCP()">
-   <div>💑</div><small>CP</small>
-  </div>
-
-  <div class="feature" onclick="openEvents()">
-   <div>🎉</div><small>Events</small>
-  </div>
-
-  <div class="feature" onclick="openInvite()">
-   <div>🎟️</div><small>Invite</small>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- ================= VOICE ================= -->
-
-<div id="voice" class="page">
-
- <div class="section-title">
-  <h3>🎤 Voice Rooms</h3>
-  <span onclick="createRoom()">＋ Create Room</span>
- </div>
-
- <div class="card user-card">
-  <div class="avatar">👨</div>
-  <div class="info">
-   <b>Rasel's Room</b>
-   <small>👥 328 people • 🎤 8 seats • 🇧🇩</small>
-  </div>
-  <button class="join" onclick="openRoom('Rasel Room')">Join</button>
- </div>
-
- <div class="card user-card">
-  <div class="avatar">👩</div>
-  <div class="info">
-   <b>Friends Forever</b>
-   <small>👥 211 people • 🎤 10 seats • 🌎</small>
-  </div>
-  <button class="join" onclick="openRoom('Friends Forever')">Join</button>
- </div>
-
- <div class="card user-card">
-  <div class="avatar">🎧</div>
-  <div class="info">
-   <b>Music Lounge</b>
-   <small>👥 167 people • 🎤 12 seats • 🇦🇪</small>
-  </div>
-  <button class="join" onclick="openRoom('Music Lounge')">Join</button>
- </div>
-
- <div class="card user-card">
-  <div class="avatar">🌙</div>
-  <div class="info">
-   <b>Night Talk</b>
-   <small>👥 96 people • 🎤 8 seats • 🇸🇦</small>
-  </div>
-  <button class="join" onclick="openRoom('Night Talk')">Join</button>
- </div>
-
-</div>
-
-
-
-<!-- ================= DISCOVER ================= -->
-
-<div id="discover" class="page">
-
- <div class="banner">
-  <h2>🌎 Discover</h2>
-  <p>Explore people, rooms, gifts, games and events.</p>
- </div>
-
- <div class="section-title">
-  <h3>Explore</h3>
- </div>
-
- <div class="card" onclick="openGifts()">🎁 Gift Center <span style="float:right">›</span></div>
- <div class="card" onclick="openRanking()">🏆 Rankings <span style="float:right">›</span></div>
- <div class="card" onclick="openStore()">🛍️ Store <span style="float:right">›</span></div>
- <div class="card" onclick="openFamily()">👨‍👩‍👧 Family <span style="float:right">›</span></div>
- <div class="card" onclick="openCP()">💑 CP / Couple <span style="float:right">›</span></div>
- <div class="card" onclick="openEvents()">🎉 Events <span style="float:right">›</span></div>
- <div class="card" onclick="openInvite()">🎟️ Invite Friends <span style="float:right">›</span></div>
-
-</div>
-
-
-
-<!-- ================= CHAT ================= -->
-
-<div id="chat" class="page">
-
- <div class="section-title">
-  <h3>💬 Messages</h3>
-  <span>＋</span>
- </div>
-
- <div class="card user-card" onclick="openUser('Sarah')">
-  <div class="avatar">👩</div>
-  <div class="info">
-   <b>Sarah</b>
-   <small>Hey! How are you?</small>
-  </div>
-  <small>2m</small>
- </div>
-
- <div class="card user-card" onclick="openUser('Ahmed')">
-  <div class="avatar">👨</div>
-  <div class="info">
-   <b>Ahmed</b>
-   <small>Join my room 🎤</small>
-  </div>
-  <small>8m</small>
- </div>
-
- <div class="card user-card" onclick="openUser('Nadia')">
-  <div class="avatar">👩</div>
-  <div class="info">
-   <b>Nadia</b>
-   <small>Sent you a gift 🎁</small>
-  </div>
-  <small>20m</small>
- </div>
-
-</div>
-
-
-
-<!-- ================= PROFILE ================= -->
-
-<div id="profile" class="page">
-
- <div class="profile-head">
-
-  <div class="bigavatar">👨</div>
-
-  <h2 style="margin-top:9px">Md Rasel</h2>
-  <small>ID: 10001234</small>
-
-  <div class="stats">
-
-   <div>
-    <b>328</b>
-    <span>Following</span>
-   </div>
-
-   <div>
-    <b>1.2K</b>
-    <span>Fans</span>
-   </div>
-
-   <div>
-    <b>LV 18</b>
-    <span>Level</span>
-   </div>
-
-  </div>
-
- </div>
-
-
- <div class="menu">
-
-  <div class="menu-item" onclick="openWallet()">
-   💰 Wallet <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openGifts()">
-   🎁 Gifts <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openStore()">
-   🛍️ Store <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openLevel()">
-   🏅 Level & XP <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openVIP()">
-   👑 VIP / SVIP <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openCP()">
-   💑 CP / Couple <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openFamily()">
-   👨‍👩‍👧 Family <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openProps()">
-   🎒 Prop Warehouse <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openInvite()">
-   🎟️ Invite & Earn <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openNotifications()">
-   🔔 Notifications <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="openSettings()">
-   ⚙️ Settings <span>›</span>
-  </div>
-
-  <div class="menu-item" onclick="logout()">
-   🚪 Logout <span>›</span>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- ================= BOTTOM ================= -->
-
-<nav class="bottom">
-
- <div class="nav active" onclick="page('home',this)">
-  <div>🏠</div>Home
- </div>
-
- <div class="nav" onclick="page('voice',this)">
-  <div>🎤</div>Voice
- </div>
-
- <div class="nav" onclick="page('discover',this)">
-  <div>🌎</div>Discover
- </div>
-
- <div class="nav" onclick="page('chat',this)">
-  <div>💬</div>Chat
- </div>
-
- <div class="nav" onclick="page('profile',this)">
-  <div>👤</div>Profile
- </div>
-
-</nav>
-
-</section>
-
-
-
-<!-- =====================================================
-                       WALLET
-===================================================== -->
-
-<div class="modal" id="walletModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>💰 My Wallet</span>
-   <span class="close" onclick="closeModal('walletModal')">✕</span>
-  </div>
-
-  <div class="balance">
-
-   <small>Your Balance</small>
-
-   <div class="balance-row">
-
-    <div class="balance-box">
-     <b id="walletCoins">32,732</b>
-     <small>🪙 Coins</small>
+<!-- MODALS -->
+
+<div id="modal" class="modal" onclick="closeModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h3 id="modalTitle">Doel</h3>
+      <button class="close" onclick="hideModal()">✕</button>
     </div>
-
-    <div class="balance-box">
-     <b id="walletDiamonds">0</b>
-     <small>💎 Diamonds</small>
-    </div>
-
-   </div>
-
+    <div id="modalContent"></div>
   </div>
-
-  <div class="action-grid">
-
-   <div class="action" onclick="openRecharge()">
-    <div>➕</div>
-    <small>Recharge</small>
-   </div>
-
-   <div class="action" onclick="openGifts()">
-    <div>🎁</div>
-    <small>Gifts</small>
-   </div>
-
-   <div class="action" onclick="openHistory()">
-    <div>📜</div>
-    <small>History</small>
-   </div>
-
-   <div class="action" onclick="exchangeCoins()">
-    <div>💎</div>
-    <small>Exchange</small>
-   </div>
-
-  </div>
-
- </div>
-
 </div>
-
-
-
-<!-- RECHARGE -->
-
-<div class="modal" id="rechargeModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🪙 Recharge</span>
-   <span class="close" onclick="closeModal('rechargeModal')">✕</span>
-  </div>
-
-  <div class="pack">
-   <div><b>1,000 Coins</b><br><small>Starter</small></div>
-   <button onclick="demoRecharge(1000)">Select</button>
-  </div>
-
-  <div class="pack">
-   <div><b>5,000 Coins</b><br><small>Popular</small></div>
-   <button onclick="demoRecharge(5000)">Select</button>
-  </div>
-
-  <div class="pack">
-   <div><b>10,000 Coins</b><br><small>Value</small></div>
-   <button onclick="demoRecharge(10000)">Select</button>
-  </div>
-
-  <div class="pack">
-   <div><b>50,000 Coins</b><br><small>Premium</small></div>
-   <button onclick="demoRecharge(50000)">Select</button>
-  </div>
-
-  <p style="font-size:10px;color:#777;margin-top:10px">
-   Demo only. No real payment is processed.
-  </p>
-
- </div>
-
-</div>
-
-
-
-<!-- GIFTS -->
-
-<div class="modal" id="giftModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🎁 Doel Gifts</span>
-   <span class="close" onclick="closeModal('giftModal')">✕</span>
-  </div>
-
-  <div class="gift-grid">
-
-   <div class="gift-box" onclick="buyGift('Rose',10)">
-    <div class="gift-icon">🌹</div>
-    <b>Rose</b><small>10 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Heart',50)">
-    <div class="gift-icon">💖</div>
-    <b>Heart</b><small>50 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Golden Egg',100)">
-    <div class="gift-icon">🥚</div>
-    <b>Golden Egg</b><small>100 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Diamond',500)">
-    <div class="gift-icon">💎</div>
-    <b>Diamond</b><small>500 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Super Car',1000)">
-    <div class="gift-icon">🏎️</div>
-    <b>Super Car</b><small>1K 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Gold Bar',5000)">
-    <div class="gift-icon">🪙</div>
-    <b>Gold Bar</b><small>5K 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Crown',10000)">
-    <div class="gift-icon">👑</div>
-    <b>Crown</b><small>10K 🪙</small>
-   </div>
-
-   <div class="gift-box" onclick="buyGift('Castle',50000)">
-    <div class="gift-icon">🏰</div>
-    <b>Castle</b><small>50K 🪙</small>
-   </div>
-
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- HISTORY -->
-
-<div class="modal" id="historyModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>📜 History</span>
-   <span class="close" onclick="closeModal('historyModal')">✕</span>
-  </div>
-
-  <div class="card">
-   🎁 Rose sent
-   <span style="float:right">-10 🪙</span>
-  </div>
-
-  <div class="card">
-   🎁 Heart received
-   <span style="float:right">+50 💎</span>
-  </div>
-
-  <div class="card">
-   🪙 Demo recharge
-   <span style="float:right">+1,000</span>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- STORE -->
-
-<div class="modal" id="storeModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🛍️ Doel Store</span>
-   <span class="close" onclick="closeModal('storeModal')">✕</span>
-  </div>
-
-  <div class="section-title"><h3>🚗 Vehicles</h3></div>
-
-  <div class="gift-grid">
-
-   <div class="gift-box"><div class="gift-icon">🚗</div><b>Sky Car</b><small>7 Days</small></div>
-   <div class="gift-box"><div class="gift-icon">🏎️</div><b>Speed Car</b><small>7 Days</small></div>
-   <div class="gift-box"><div class="gift-icon">🚀</div><b>Rocket</b><small>30 Days</small></div>
-   <div class="gift-box"><div class="gift-icon">🛸</div><b>Galaxy</b><small>30 Days</small></div>
-
-  </div>
-
-  <div class="section-title"><h3>🖼️ Frames</h3></div>
-
-  <div class="gift-grid">
-
-   <div class="gift-box"><div class="gift-icon">💠</div><b>Ocean</b><small>7 Days</small></div>
-   <div class="gift-box"><div class="gift-icon">✨</div><b>Star</b><small>7 Days</small></div>
-   <div class="gift-box"><div class="gift-icon">🌈</div><b>Rainbow</b><small>30 Days</small></div>
-   <div class="gift-box"><div class="gift-icon">🔥</div><b>Fire</b><small>30 Days</small></div>
-
-  </div>
-
-  <div class="section-title"><h3>💍 Rings</h3></div>
-
-  <div class="gift-grid">
-
-   <div class="gift-box"><div class="gift-icon">💍</div><b>Love Ring</b></div>
-   <div class="gift-box"><div class="gift-icon">💎</div><b>Diamond Ring</b></div>
-   <div class="gift-box"><div class="gift-icon">👑</div><b>Royal Ring</b></div>
-   <div class="gift-box"><div class="gift-icon">🌟</div><b>Star Ring</b></div>
-
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- VIP -->
-
-<div class="modal" id="vipModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>👑 VIP / SVIP</span>
-   <span class="close" onclick="closeModal('vipModal')">✕</span>
-  </div>
-
-  <div class="level-card">
-   <h2>👑 VIP 1</h2>
-   <p style="font-size:12px;margin-top:7px">
-    Badge • Entry Effect • Special Chat
-   </p>
-  </div>
-
-  <br>
-
-  <div class="level-card">
-   <h2>💎 SVIP 1</h2>
-   <p style="font-size:12px;margin-top:7px">
-    Premium Frame • Special Gifts • Exclusive Effects
-   </p>
-  </div>
-
-  <br>
-
-  <div class="level-card">
-   <h2>💎 SVIP 2</h2>
-   <p style="font-size:12px;margin-top:7px">
-    Advanced Identity • Premium Effects
-   </p>
-  </div>
-
-  <br>
-
-  <div class="level-card">
-   <h2>💎 SVIP 3</h2>
-   <p style="font-size:12px;margin-top:7px">
-    Elite Identity • Exclusive Items
-   </p>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- CP -->
-
-<div class="modal" id="cpModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>💑 CP / Couple</span>
-   <span class="close" onclick="closeModal('cpModal')">✕</span>
-  </div>
-
-  <div class="banner">
-   <h2>💖 Couple System</h2>
-   <p>Build your CP level together.</p>
-  </div>
-
-  <div class="card">💍 Proposal <span style="float:right">›</span></div>
-  <div class="card">❤️ CP Level <span style="float:right">LV 0</span></div>
-  <div class="card">🎁 Couple Gifts <span style="float:right">›</span></div>
-  <div class="card">🏠 CP House <span style="float:right">›</span></div>
-
- </div>
-
-</div>
-
-
-
-<!-- FAMILY -->
-
-<div class="modal" id="familyModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>👨‍👩‍👧 Doel Family</span>
-   <span class="close" onclick="closeModal('familyModal')">✕</span>
-  </div>
-
-  <div class="banner">
-   <h2>🏠 Family</h2>
-   <p>Create or join a Doel family.</p>
-  </div>
-
-  <div class="card">
-   👑 Family Leader
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   👥 Family Members
-   <span style="float:right">12</span>
-  </div>
-
-  <div class="card">
-   🏆 Family Level
-   <span style="float:right">LV 5</span>
-  </div>
-
-  <div class="card">
-   🎁 Family Gifts
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   📊 Family Contribution
-   <span style="float:right">›</span>
-  </div>
-
-  <button class="primary"
-   style="width:100%;margin-top:5px"
-   onclick="createFamily()">
-   ＋ Create Family
-  </button>
-
- </div>
-
-</div>
-
-
-
-<!-- LEVEL -->
-
-<div class="modal" id="levelModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🏅 Level & XP</span>
-   <span class="close" onclick="closeModal('levelModal')">✕</span>
-  </div>
-
-  <div class="level-card">
-
-   <h2>LV 18</h2>
-
-   <p style="margin-top:7px;font-size:12px">
-    6,500 / 10,000 XP
-   </p>
-
-   <div class="progress">
-    <i></i>
-   </div>
-
-   <small>Next Level: LV 19</small>
-
-  </div>
-
-  <br>
-
-  <div class="card">🏅 Level Badge <span style="float:right">LV 18</span></div>
-  <div class="card">🎁 Level Reward <span style="float:right">Available</span></div>
-  <div class="card">🚗 Vehicle Reward <span style="float:right">Locked</span></div>
-  <div class="card">✨ Frame Reward <span style="float:right">Locked</span></div>
-
- </div>
-
-</div>
-
-
-
-<!-- PROPS -->
-
-<div class="modal" id="propsModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🎒 Prop Warehouse</span>
-   <span class="close" onclick="closeModal('propsModal')">✕</span>
-  </div>
-
-  <div class="gift-grid">
-
-   <div class="gift-box"><div class="gift-icon">🖼️</div><b>Frame</b><small>Use</small></div>
-   <div class="gift-box"><div class="gift-icon">🚗</div><b>Vehicle</b><small>Use</small></div>
-   <div class="gift-box"><div class="gift-icon">💍</div><b>Ring</b><small>Use</small></div>
-   <div class="gift-box"><div class="gift-icon">✨</div><b>Effect</b><small>Use</small></div>
-   <div class="gift-box"><div class="gift-icon">🎨</div><b>Theme</b><small>Use</small></div>
-   <div class="gift-box"><div class="gift-icon">🏷️</div><b>Custom ID</b><small>Use</small></div>
-
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- INVITE -->
-
-<div class="modal" id="inviteModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🎟️ Invite & Earn</span>
-   <span class="close" onclick="closeModal('inviteModal')">✕</span>
-  </div>
-
-  <div class="banner">
-   <h2>Invite Friends</h2>
-   <p>Invite new users and earn rewards.</p>
-  </div>
-
-  <div class="card">
-   <b>Your Invite Code</b>
-   <div style="margin-top:9px;font-size:22px;font-weight:bold">
-    DOEL1234
-   </div>
-  </div>
-
-  <div class="card">
-   👥 Invited Users
-   <span style="float:right">0</span>
-  </div>
-
-  <div class="card">
-   🪙 Total Rewards
-   <span style="float:right">0 Coins</span>
-  </div>
-
-  <button class="primary"
-   style="width:100%"
-   onclick="shareInvite()">
-   📤 Share Invite
-  </button>
-
- </div>
-
-</div>
-
-
-
-<!-- EVENTS -->
-
-<div class="modal" id="eventsModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🎉 Events</span>
-   <span class="close" onclick="closeModal('eventsModal')">✕</span>
-  </div>
-
-  <div class="card">
-   🎁 <b>Daily Gift Event</b>
-   <small style="display:block;color:#777;margin-top:6px">
-    Send gifts and collect event points.
-   </small>
-  </div>
-
-  <div class="card">
-   🏆 <b>Weekly Ranking</b>
-   <small style="display:block;color:#777;margin-top:6px">
-    Compete for weekly rewards.
-   </small>
-  </div>
-
-  <div class="card">
-   🎤 <b>Voice Room Event</b>
-   <small style="display:block;color:#777;margin-top:6px">
-    Join rooms and complete tasks.
-   </small>
-  </div>
-
-  <div class="card">
-   🎟️ <b>Login Reward</b>
-   <small style="display:block;color:#777;margin-top:6px">
-    Daily login rewards available.
-   </small>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- RANKING -->
-
-<div class="modal" id="rankingModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🏆 Ranking</span>
-   <span class="close" onclick="closeModal('rankingModal')">✕</span>
-  </div>
-
-  <div class="tabs">
-   <span class="active">Wealth</span>
-   <span>Gift</span>
-   <span>Host</span>
-   <span>Family</span>
-   <span>CP</span>
-  </div>
-
-  <br>
-
-  <div class="rank">
-   <div class="ranknum">1</div>
-   <div class="rankavatar">👑</div>
-   <div class="rankinfo">
-    <b>Royal User</b>
-    <small>LV 35</small>
-   </div>
-   <b>950K</b>
-  </div>
-
-  <div class="rank">
-   <div class="ranknum">2</div>
-   <div class="rankavatar">👩</div>
-   <div class="rankinfo">
-    <b>Sarah</b>
-    <small>LV 29</small>
-   </div>
-   <b>720K</b>
-  </div>
-
-  <div class="rank">
-   <div class="ranknum">3</div>
-   <div class="rankavatar">👨</div>
-   <div class="rankinfo">
-    <b>Ahmed</b>
-    <small>LV 26</small>
-   </div>
-   <b>580K</b>
-  </div>
-
-  <div class="rank">
-   <div class="ranknum">4</div>
-   <div class="rankavatar">👩</div>
-   <div class="rankinfo">
-    <b>Nadia</b>
-    <small>LV 24</small>
-   </div>
-   <b>430K</b>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- NOTIFICATIONS -->
-
-<div class="modal" id="notificationModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>🔔 Notifications</span>
-   <span class="close" onclick="closeModal('notificationModal')">✕</span>
-  </div>
-
-  <div class="card">
-   🎁 <b>Sarah sent you a gift</b>
-   <small style="display:block;color:#777;margin-top:4px">2 minutes ago</small>
-  </div>
-
-  <div class="card">
-   🎤 <b>Ahmed invited you to a room</b>
-   <small style="display:block;color:#777;margin-top:4px">10 minutes ago</small>
-  </div>
-
-  <div class="card">
-   🏆 <b>You reached Level 18</b>
-   <small style="display:block;color:#777;margin-top:4px">Today</small>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- SETTINGS -->
-
-<div class="modal" id="settingsModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>⚙️ Settings</span>
-   <span class="close" onclick="closeModal('settingsModal')">✕</span>
-  </div>
-
-  <div class="card">
-   🔔 Notifications
-   <span class="switch on" onclick="toggleSwitch(this)"><i></i></span>
-  </div>
-
-  <div class="card">
-   🔊 Sound
-   <span class="switch on" onclick="toggleSwitch(this)"><i></i></span>
-  </div>
-
-  <div class="card">
-   🌙 Dark Mode
-   <span class="switch" onclick="toggleSwitch(this)"><i></i></span>
-  </div>
-
-  <div class="card">
-   🌎 Language
-   <span style="float:right">English ›</span>
-  </div>
-
-  <div class="card">
-   🔒 Privacy
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   🚫 Block List
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   🛡️ Account Security
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   💬 Customer Service
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   📝 Feedback
-   <span style="float:right">›</span>
-  </div>
-
-  <div class="card">
-   ⚠️ Report a Problem
-   <span style="float:right">›</span>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- USER -->
-
-<div class="modal" id="userModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>👤 User Profile</span>
-   <span class="close" onclick="closeModal('userModal')">✕</span>
-  </div>
-
-  <div style="text-align:center">
-
-   <div class="bigavatar">👩</div>
-
-   <h2 id="userName" style="margin-top:9px">Sarah</h2>
-
-   <small>ID: 10002345 • LV 25</small>
-
-  </div>
-
-  <div class="action-grid" style="margin-top:20px">
-
-   <div class="action">
-    <div>❤️</div><small>Follow</small>
-   </div>
-
-   <div class="action">
-    <div>💬</div><small>Message</small>
-   </div>
-
-   <div class="action" onclick="openGifts()">
-    <div>🎁</div><small>Gift</small>
-   </div>
-
-   <div class="action">
-    <div>🚫</div><small>Block</small>
-   </div>
-
-  </div>
-
-  <div class="card">
-   🏅 Level <span style="float:right">LV 25</span>
-  </div>
-
-  <div class="card">
-   👑 VIP <span style="float:right">VIP 2</span>
-  </div>
-
-  <div class="card">
-   💑 CP <span style="float:right">Available</span>
-  </div>
-
-  <div class="card">
-   ⚠️ Report User <span style="float:right">›</span>
-  </div>
-
- </div>
-
-</div>
-
-
-
-<!-- CREATE ROOM -->
-
-<div class="modal" id="createRoomModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>＋ Create Voice Room</span>
-   <span class="close" onclick="closeModal('createRoomModal')">✕</span>
-  </div>
-
-  <input id="newRoomName"
-   class="search"
-   placeholder="Room name">
-
-  <br><br>
-
-  <div class="card">
-   🎨 Room Theme
-   <span style="float:right">Default ›</span>
-  </div>
-
-  <div class="card">
-   🎤 Mic Seats
-   <span style="float:right">8 ›</span>
-  </div>
-
-  <div class="card">
-   🔒 Room Privacy
-   <span style="float:right">Public ›</span>
-  </div>
-
-  <div class="card">
-   🛡️ Room Security
-   <span style="float:right">Standard ›</span>
-  </div>
-
-  <button class="primary"
-   style="width:100%;margin-top:7px"
-   onclick="finishCreateRoom()">
-   Create Room
-  </button>
-
- </div>
-
-</div>
-
-
 
 <!-- ROOM -->
-
-<section id="room">
-
- <div class="roomtop">
-
-  <div class="roomhost">
-   🎤 <b id="roomTitle">Fun House</b><br>
-   <span class="roomid">Room ID: 10023456</span>
+<div id="roomOverlay">
+  <div class="room-top">
+    <button onclick="closeRoom()">←</button>
+    <div class="room-title">
+      <b id="roomTitle">Voice Room</b>
+      <small id="roomId">Room ID: 10001</small>
+    </div>
+    <button style="margin-left:auto" onclick="closeRoom()">✕</button>
   </div>
 
-  <div onclick="closeRoom()" style="font-size:24px">✕</div>
-
- </div>
-
-
- <div class="seats">
-
-  <div class="seat">
-   <div class="seatcircle">👨</div>
-   <small>Host</small>
+  <div class="seats">
+    <div class="seat"><div class="seat-avatar">👩</div><small>Host</small></div>
+    <div class="seat"><div class="seat-avatar">👨</div><small>Mike</small></div>
+    <div class="seat"><div class="seat-avatar">👩</div><small>Sara</small></div>
+    <div class="seat"><div class="seat-avatar">👨</div><small>Rasel</small></div>
+    <div class="seat"><div class="seat-avatar">👩</div><small>Lina</small></div>
+    <div class="seat"><div class="seat-avatar">👨</div><small>John</small></div>
+    <div class="seat"><div class="seat-avatar">👩</div><small>Maya</small></div>
+    <div class="seat"><div class="seat-avatar">➕</div><small>Empty</small></div>
   </div>
 
-  <div class="seat">
-   <div class="seatcircle">👩</div>
-   <small>Sarah</small>
+  <div class="room-chat" id="roomChat">
+    <div class="chat-msg">System: Welcome to the room 🎤</div>
+    <div class="chat-msg">Sara: Hello everyone 👋</div>
+    <div class="chat-msg">Mike: Welcome!</div>
   </div>
 
-  <div class="seat">
-   <div class="seatcircle">👨</div>
-   <small>Ahmed</small>
+  <div class="room-controls">
+    <div class="room-input">
+      <input id="roomMessage" placeholder="Say something...">
+      <button class="icon-btn" onclick="sendRoomMessage()">➤</button>
+    </div>
+
+    <div class="room-actions">
+      <button onclick="toast('Microphone toggled')">🎙️</button>
+      <button onclick="toast('Speaker toggled')">🔊</button>
+      <button onclick="toast('Emoji opened 😍')">😊</button>
+      <button onclick="openModal('gift')">🎁</button>
+      <button onclick="toast('More options')">•••</button>
+    </div>
   </div>
-
-  <div class="seat">
-   <div class="seatcircle">➕</div>
-   <small>Empty</small>
-  </div>
-
-  <div class="seat">
-   <div class="seatcircle">👩</div>
-   <small>Nadia</small>
-  </div>
-
-  <div class="seat">
-   <div class="seatcircle">👨</div>
-   <small>Rafi</small>
-  </div>
-
-  <div class="seat">
-   <div class="seatcircle">➕</div>
-   <small>Empty</small>
-  </div>
-
-  <div class="seat">
-   <div class="seatcircle">➕</div>
-   <small>Empty</small>
-  </div>
-
- </div>
-
-
- <div class="roomchat" id="roomChat">
-
-  <div class="chatmsg">👋 Welcome to the room!</div>
-  <div class="chatmsg">Sarah: Hello everyone ❤️</div>
-  <div class="chatmsg">Ahmed: Let's have fun 🎉</div>
-
- </div>
-
-
- <div class="roomcontrols">
-
-  <div class="roominput">
-
-   <input id="messageInput"
-    placeholder="Say something...">
-
-   <button onclick="sendMessage()">➤</button>
-
-  </div>
-
-  <div class="controls">
-
-   <div class="control"
-    onclick="toggleMic()"
-    id="mic">🎤</div>
-
-   <div class="control">🔊</div>
-
-   <div class="control">😊</div>
-
-   <div class="control"
-    onclick="openRoomMenu()">⋯</div>
-
-   <div class="control gift"
-    onclick="showRoomGifts()">🎁</div>
-
-  </div>
-
- </div>
-
-
- <!-- ROOM GIFTS -->
-
- <div id="giftPanel">
-
-  <div style="display:flex;justify-content:space-between;margin-bottom:15px">
-   <b>🎁 Send Gift</b>
-   <span onclick="hideRoomGifts()">✕</span>
-  </div>
-
-  <div class="gifts">
-
-   <div class="gift-box"
-    onclick="sendRoomGift('Rose',10)">
-    <div class="gift-icon">🌹</div>
-    <b>Rose</b>
-    <small>10 🪙</small>
-   </div>
-
-   <div class="gift-box"
-    onclick="sendRoomGift('Heart',50)">
-    <div class="gift-icon">💖</div>
-    <b>Heart</b>
-    <small>50 🪙</small>
-   </div>
-
-   <div class="gift-box"
-    onclick="sendRoomGift('Golden Egg',100)">
-    <div class="gift-icon">🥚</div>
-    <b>Golden Egg</b>
-    <small>100 🪙</small>
-   </div>
-
-   <div class="gift-box"
-    onclick="sendRoomGift('Super Car',1000)">
-    <div class="gift-icon">🏎️</div>
-    <b>Super Car</b>
-    <small>1K 🪙</small>
-   </div>
-
-  </div>
-
- </div>
-
-</section>
-
-
-
-<!-- ROOM MENU -->
-
-<div class="modal" id="roomMenuModal">
-
- <div class="modal-content">
-
-  <div class="modal-title">
-   <span>⋯ Room Menu</span>
-   <span class="close" onclick="closeModal('roomMenuModal')">✕</span>
-  </div>
-
-  <div class="host-action">👥 Room Members</div>
-  <div class="host-action">🔗 Share Room</div>
-  <div class="host-action">❤️ Follow Host</div>
-  <div class="host-action">🚫 Block User</div>
-  <div class="host-action">⚠️ Report Room</div>
-  <div class="host-action">🔒 Room Settings</div>
-
- </div>
-
 </div>
-
-
-
-<div id="toast"></div>
-
-
 
 <script>
 
-/* ================= DATA ================= */
+let coins = Number(localStorage.getItem("doelCoins")) || 32732;
 
-let coins =
- Number(localStorage.getItem("doel_coins")) || 32732;
-
-let diamonds =
- Number(localStorage.getItem("doel_diamonds")) || 0;
-
-
-/* ================= LOGIN ================= */
+function updateCoins(){
+  document.getElementById("coinTop").innerText = coins;
+  localStorage.setItem("doelCoins",coins);
+}
 
 function login(){
-
- localStorage.setItem("doel_logged","yes");
-
- document.getElementById("welcome").style.display="none";
- document.getElementById("app").style.display="block";
-
- updateBalance();
+  localStorage.setItem("doelLoggedIn","1");
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  updateCoins();
 }
 
 function phoneLogin(){
-
- let phone=prompt("Enter your phone number:");
-
- if(phone){
-
-  localStorage.setItem("doel_logged","yes");
-
-  document.getElementById("welcome").style.display="none";
-  document.getElementById("app").style.display="block";
-
-  updateBalance();
- }
+  const phone = prompt("Enter your phone number");
+  if(phone){
+    login();
+  }
 }
 
 function logout(){
-
- localStorage.removeItem("doel_logged");
- location.reload();
-
+  localStorage.removeItem("doelLoggedIn");
+  location.reload();
 }
 
-
-/* ================= AUTO LOGIN ================= */
-
-if(localStorage.getItem("doel_logged")==="yes"){
-
- document.getElementById("welcome").style.display="none";
- document.getElementById("app").style.display="block";
-
+/* AUTO LOGIN */
+if(localStorage.getItem("doelLoggedIn")==="1"){
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+  updateCoins();
 }
 
+/* PAGE */
+function showPage(page,btn){
+  document.querySelectorAll(".subpage").forEach(p=>p.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
 
-/* ================= BALANCE ================= */
-
-function saveBalance(){
-
- localStorage.setItem("doel_coins",coins);
- localStorage.setItem("doel_diamonds",diamonds);
-
+  document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
 }
 
-function updateBalance(){
+/* HOME TOP TABS */
+function homeTab(type){
 
- document.getElementById("topCoins").innerText =
- coins.toLocaleString();
+  document.querySelectorAll(".nav-tab").forEach(b=>b.classList.remove("active"));
 
- document.getElementById("walletCoins").innerText =
- coins.toLocaleString();
+  if(type==="following"){
+    document.getElementById("tabFollowing").classList.add("active");
+    document.getElementById("homeTitle").innerText="Following";
+    document.getElementById("homeCount").innerText="People you follow";
+  }
 
- document.getElementById("walletDiamonds").innerText =
- diamonds.toLocaleString();
+  if(type==="popular"){
+    document.getElementById("tabPopular").classList.add("active");
+    document.getElementById("homeTitle").innerText="Popular";
+    document.getElementById("homeCount").innerText="All popular users";
+  }
 
- saveBalance();
+  if(type==="recent"){
+    document.getElementById("tabRecent").classList.add("active");
+    document.getElementById("homeTitle").innerText="Recent";
+    document.getElementById("homeCount").innerText="Recently visited rooms";
+  }
+
+  toast(type.charAt(0).toUpperCase()+type.slice(1)+" selected");
 }
 
+/* SEARCH */
+function openSearch(){
 
-/* ================= PAGE ================= */
+  document.getElementById("modalTitle").innerText="Search Doel";
 
-function page(name,el){
+  document.getElementById("modalContent").innerHTML=`
 
- document.querySelectorAll(".page")
- .forEach(p=>p.classList.remove("active"));
+    <input class="input"
+      id="searchInput"
+      placeholder="User ID / Username / Room ID">
 
- document.getElementById(name)
- .classList.add("active");
+    <button class="primary" onclick="doSearch()">
+      🔍 Search
+    </button>
 
- document.querySelectorAll(".nav")
- .forEach(n=>n.classList.remove("active"));
+    <br><br>
 
- if(el)el.classList.add("active");
+    <div class="list-card">
+      <div class="avatar">👤</div>
+      <div class="list-info">
+        <b>Search User</b>
+        <small>Search by User ID or Room ID</small>
+      </div>
+    </div>
 
+  `;
+
+  document.getElementById("modal").classList.add("show");
 }
 
-
-/* ================= MODAL ================= */
-
-function openModal(id){
-
- document.getElementById(id).style.display="flex";
-
-}
-
-function closeModal(id){
-
- document.getElementById(id).style.display="none";
-
-}
-
-
-/* ================= WALLET ================= */
-
-function openWallet(){
-
- updateBalance();
- openModal("walletModal");
-
-}
-
-function openRecharge(){
-
- closeModal("walletModal");
- openModal("rechargeModal");
-
-}
-
-function demoRecharge(amount){
-
- coins+=amount;
-
- updateBalance();
-
- toast("+"+amount.toLocaleString()+" Coins added (Demo)");
-
- closeModal("rechargeModal");
-
-}
-
-function exchangeCoins(){
-
- if(coins<1000){
-
-  toast("Minimum 1,000 coins required");
-  return;
-
- }
-
- let amount=Math.floor(coins/1000);
-
- coins-=amount*1000;
- diamonds+=amount;
-
- updateBalance();
-
- toast("Exchange completed: +"+amount+" Diamonds");
-
-}
-
-function openHistory(){
-
- openModal("historyModal");
-
-}
-
-
-/* ================= GIFTS ================= */
-
-function openGifts(){
-
- openModal("giftModal");
-
-}
-
-function buyGift(name,price){
-
- if(coins<price){
-
-  toast("Not enough Coins");
-  return;
-
- }
-
- coins-=price;
-
- updateBalance();
-
- toast("🎁 "+name+" sent!");
-
- closeModal("giftModal");
-
-}
-
-
-/* ================= STORE ================= */
-
-function openStore(){
-
- openModal("storeModal");
-
-}
-
-
-/* ================= VIP ================= */
-
-function openVIP(){
-
- openModal("vipModal");
-
-}
-
-
-/* ================= CP ================= */
-
-function openCP(){
-
- openModal("cpModal");
-
-}
-
-
-/* ================= FAMILY ================= */
-
-function openFamily(){
-
- openModal("familyModal");
-
-}
-
-function createFamily(){
-
- toast("Family creation page opened");
-
-}
-
-
-/* ================= LEVEL ================= */
-
-function openLevel(){
-
- openModal("levelModal");
-
-}
-
-
-/* ================= PROPS ================= */
-
-function openProps(){
-
- openModal("propsModal");
-
-}
-
-
-/* ================= INVITE ================= */
-
-function openInvite(){
-
- openModal("inviteModal");
-
-}
-
-function shareInvite(){
-
- toast("Invite link copied");
-
-}
-
-
-/* ================= EVENTS ================= */
-
-function openEvents(){
-
- openModal("eventsModal");
-
-}
-
-
-/* ================= RANKING ================= */
-
-function openRanking(){
-
- openModal("rankingModal");
-
-}
-
-
-/* ================= NOTIFICATIONS ================= */
-
-function openNotifications(){
-
- openModal("notificationModal");
-
-}
-
-
-/* ================= SETTINGS ================= */
-
-function openSettings(){
-
- openModal("settingsModal");
-
-}
-
-function toggleSwitch(el){
-
- el.classList.toggle("on");
-
-}
-
-
-/* ================= USER ================= */
-
-function openUser(name){
-
- document.getElementById("userName").innerText=name;
-
- openModal("userModal");
-
-}
-
-
-/* ================= SEARCH ================= */
-
-function searchEnter(event){
-
- if(event.key==="Enter"){
-
-  let value=event.target.value.trim();
-
-  if(!value)return;
+function doSearch(){
+  const value=document.getElementById("searchInput").value.trim();
+
+  if(!value){
+    toast("Please enter User ID, Username or Room ID");
+    return;
+  }
 
   toast("Searching: "+value);
-
- }
-
 }
 
+/* MODALS */
+function openModal(type){
 
-/* ================= CREATE ROOM ================= */
+  const title=document.getElementById("modalTitle");
+  const content=document.getElementById("modalContent");
 
+  if(type==="wallet"){
+    title.innerText="My Wallet";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">🪙</div>
+        <div class="list-info">
+          <b>${coins} Coins</b>
+          <small>Available balance</small>
+        </div>
+      </div>
+
+      <button class="primary" onclick="recharge()">➕ Recharge Coins</button>
+
+      <br><br>
+
+      <button class="primary" onclick="exchange()">
+        💎 Exchange Coins to Diamonds
+      </button>
+    `;
+  }
+
+  if(type==="gift"){
+    title.innerText="Gift Center";
+
+    const gifts=[
+      ["🌹","Rose",10],
+      ["❤️","Heart",50],
+      ["🥚","Golden Egg",100],
+      ["💎","Diamond",500],
+      ["🏎️","Super Car",1000],
+      ["🪙","Gold Bar",5000],
+      ["👑","Crown",10000],
+      ["🏰","Castle",50000]
+    ];
+
+    content.innerHTML=`
+      <div class="menu-grid">
+        ${gifts.map(g=>`
+          <div class="menu-item" onclick="sendGift('${g[1]}',${g[2]})">
+            <div>${g[0]}</div>
+            ${g[1]}<br>
+            <b>🪙 ${g[2]}</b>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  if(type==="store"){
+    title.innerText="Store";
+    content.innerHTML=`
+      <div class="menu-grid">
+        <div class="menu-item"><div>🚗</div>Vehicles</div>
+        <div class="menu-item"><div>🖼️</div>Frames</div>
+        <div class="menu-item"><div>💍</div>Rings</div>
+        <div class="menu-item"><div>🎨</div>Themes</div>
+        <div class="menu-item"><div>🆔</div>Custom ID</div>
+        <div class="menu-item"><div>✨</div>Effects</div>
+      </div>
+    `;
+  }
+
+  if(type==="vip"){
+    title.innerText="VIP / SVIP";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">💎</div>
+        <div class="list-info">
+          <b>VIP</b>
+          <small>Special gifts, effects and privileges</small>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="avatar">👑</div>
+        <div class="list-info">
+          <b>SVIP</b>
+          <small>Premium room and profile privileges</small>
+        </div>
+      </div>
+
+      <button class="primary" onclick="toast('VIP purchase system coming next')">
+        View VIP Plans
+      </button>
+    `;
+  }
+
+  if(type==="cp"){
+    title.innerText="Love / CP";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">❤️</div>
+        <div class="list-info">
+          <b>CP Couple</b>
+          <small>Create a couple and build CP level</small>
+        </div>
+      </div>
+
+      <button class="primary" onclick="toast('CP proposal opened')">
+        ❤️ Propose
+      </button>
+    `;
+  }
+
+  if(type==="family"){
+    title.innerText="Family";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">👨‍👩‍👧</div>
+        <div class="list-info">
+          <b>My Family</b>
+          <small>Create or join a Doel family</small>
+        </div>
+      </div>
+
+      <button class="primary" onclick="toast('Family creation opened')">
+        Create Family
+      </button>
+    `;
+  }
+
+  if(type==="level"){
+    title.innerText="My Level";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">⭐</div>
+        <div class="list-info">
+          <b>LV 1</b>
+          <small>XP 0 / 100</small>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="list-info">
+          <b>Level Rewards</b>
+          <small>Unlock frames, badges, vehicles and effects.</small>
+        </div>
+      </div>
+    `;
+  }
+
+  if(type==="props"){
+    title.innerText="Prop Warehouse";
+    content.innerHTML=`
+      <div class="menu-grid">
+        <div class="menu-item"><div>🎨</div>Themes</div>
+        <div class="menu-item"><div>🆔</div>Custom ID</div>
+        <div class="menu-item"><div>💍</div>Ring</div>
+        <div class="menu-item"><div>🖼️</div>Frame</div>
+        <div class="menu-item"><div>✨</div>Entry Effect</div>
+        <div class="menu-item"><div>🎁</div>Gift Effect</div>
+      </div>
+    `;
+  }
+
+  if(type==="invite"){
+    title.innerText="Invite & Earn";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">🎁</div>
+        <div class="list-info">
+          <b>Your Invite Code</b>
+          <small>DOEL10000001</small>
+        </div>
+      </div>
+
+      <button class="primary" onclick="toast('Invite code copied')">
+        📋 Copy Invite Code
+      </button>
+    `;
+  }
+
+  if(type==="notifications"){
+    title.innerText="Notifications";
+    content.innerHTML=`
+      <div class="list-card">
+        <div class="avatar">🎁</div>
+        <div class="list-info">
+          <b>Gift Notification</b>
+          <small>Someone sent you a gift.</small>
+        </div>
+      </div>
+
+      <div class="list-card">
+        <div class="avatar">👋</div>
+        <div class="list-info">
+          <b>Welcome</b>
+          <small>Welcome to Doel Voice Chat Room.</small>
+        </div>
+      </div>
+    `;
+  }
+
+  if(type==="settings"){
+    title.innerText="Settings";
+    content.innerHTML=`
+      <div class="list-card" onclick="toast('Language settings')">
+        <div class="avatar">🌐</div>
+        <div class="list-info">
+          <b>Language</b>
+          <small>English</small>
+        </div>
+      </div>
+
+      <div class="list-card" onclick="toast('Privacy settings')">
+        <div class="avatar">🔒</div>
+        <div class="list-info">
+          <b>Privacy</b>
+          <small>Account and privacy settings</small>
+        </div>
+      </div>
+
+      <button class="primary" onclick="logout()">
+        Logout
+      </button>
+    `;
+  }
+
+  if(type==="create"){
+    title.innerText="Create Voice Room";
+
+    content.innerHTML=`
+      <input class="input"
+        id="newRoomName"
+        placeholder="Room name">
+
+      <input class="input"
+        id="newRoomTopic"
+        placeholder="Room topic">
+
+      <button class="primary" onclick="createRoom()">
+        🎤 Create My Room
+      </button>
+    `;
+  }
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function hideModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+
+function closeModal(e){
+  if(e.target.id==="modal") hideModal();
+}
+
+/* RECHARGE */
+function recharge(){
+  coins += 1000;
+  updateCoins();
+  toast("+1000 demo coins added");
+  hideModal();
+}
+
+/* EXCHANGE */
+function exchange(){
+  if(coins>=100){
+    coins-=100;
+    updateCoins();
+    toast("100 coins exchanged for diamonds");
+  }else{
+    toast("Not enough coins");
+  }
+}
+
+/* GIFT */
+function sendGift(name,price){
+
+  if(coins<price){
+    toast("Not enough coins");
+    return;
+  }
+
+  coins-=price;
+  updateCoins();
+
+  toast("🎁 "+name+" sent!");
+}
+
+/* CREATE ROOM */
 function createRoom(){
 
- openModal("createRoomModal");
+  const name=document.getElementById("newRoomName").value.trim();
 
+  if(!name){
+    toast("Enter a room name");
+    return;
+  }
+
+  hideModal();
+  openRoom(name);
 }
 
-function finishCreateRoom(){
-
- let name=
- document.getElementById("newRoomName").value.trim();
-
- if(!name){
-
-  toast("Enter a room name");
-  return;
-
- }
-
- closeModal("createRoomModal");
-
- openRoom(name);
-
-}
-
-
-/* ================= ROOM ================= */
-
+/* OPEN ROOM */
 function openRoom(name){
 
- document.getElementById("room").style.display="block";
+  document.getElementById("roomTitle").innerText=name;
 
- document.getElementById("roomTitle").innerText=name;
+  const randomId=Math.floor(10000+Math.random()*89999);
 
+  document.getElementById("roomId").innerText="Room ID: "+randomId;
+
+  document.getElementById("roomOverlay").style.display="flex";
 }
 
 function closeRoom(){
-
- document.getElementById("room").style.display="none";
-
- hideRoomGifts();
-
+  document.getElementById("roomOverlay").style.display="none";
 }
 
+/* ROOM MESSAGE */
+function sendRoomMessage(){
 
-/* ================= MIC ================= */
+  const input=document.getElementById("roomMessage");
+  const msg=input.value.trim();
 
-function toggleMic(){
+  if(!msg)return;
 
- let mic=document.getElementById("mic");
+  const chat=document.getElementById("roomChat");
 
- if(mic.innerText==="🎤"){
+  const div=document.createElement("div");
+  div.className="chat-msg";
+  div.innerText="You: "+msg;
 
-  mic.innerText="🔇";
-  toast("Microphone muted");
-
- }else{
-
-  mic.innerText="🎤";
-  toast("Microphone on");
-
- }
-
+  chat.appendChild(div);
+  input.value="";
+  chat.scrollTop=chat.scrollHeight;
 }
 
-
-/* ================= ROOM CHAT ================= */
-
-function sendMessage(){
-
- let input=
- document.getElementById("messageInput");
-
- let text=input.value.trim();
-
- if(!text)return;
-
- let msg=document.createElement("div");
-
- msg.className="chatmsg";
- msg.innerText="You: "+text;
-
- document.getElementById("roomChat")
- .appendChild(msg);
-
- input.value="";
-
-}
-
-
-/* ================= ROOM GIFT ================= */
-
-function showRoomGifts(){
-
- document.getElementById("giftPanel")
- .style.display="block";
-
-}
-
-function hideRoomGifts(){
-
- document.getElementById("giftPanel")
- .style.display="none";
-
-}
-
-function sendRoomGift(name,price){
-
- if(coins<price){
-
-  toast("Not enough Coins");
-  return;
-
- }
-
- coins-=price;
-
- updateBalance();
-
- toast("🎁 "+name+" sent!");
-
- hideRoomGifts();
-
-}
-
-
-/* ================= ROOM MENU ================= */
-
-function openRoomMenu(){
-
- openModal("roomMenuModal");
-
-}
-
-
-/* ================= TOAST ================= */
-
+/* TOAST */
 function toast(message){
 
- let t=document.getElementById("toast");
+  const old=document.getElementById("doelToast");
+  if(old)old.remove();
 
- t.innerText=message;
- t.style.display="block";
+  const t=document.createElement("div");
 
- setTimeout(()=>{
-  t.style.display="none";
- },2200);
+  t.id="doelToast";
+  t.innerText=message;
 
+  t.style.position="fixed";
+  t.style.bottom="85px";
+  t.style.left="50%";
+  t.style.transform="translateX(-50%)";
+  t.style.background="#172033";
+  t.style.color="white";
+  t.style.padding="11px 17px";
+  t.style.borderRadius="14px";
+  t.style.fontSize="12px";
+  t.style.zIndex="9999";
+  t.style.boxShadow="0 8px 25px #0004";
+
+  document.body.appendChild(t);
+
+  setTimeout(()=>{
+    if(t)t.remove();
+  },2200);
 }
-
-
-/* ================= START ================= */
-
-updateBalance();
 
 </script>
 
