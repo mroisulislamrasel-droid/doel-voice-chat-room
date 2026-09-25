@@ -3,26 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b18">
-<title>Doel - Voice Chat Room</title>
+<meta name="theme-color" content="#eefaff">
+<title>Doel Voice Chat Room</title>
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#070a14;
-  color:#fff;
-  overflow-x:hidden;
+  background:#eefaff;
+  color:#17233f;
+}
+
+button,input{
+  font:inherit;
 }
 
 button{
-  font-family:inherit;
   cursor:pointer;
+  border:0;
 }
 
 .app{
@@ -30,529 +33,797 @@ button{
   max-width:520px;
   min-height:100vh;
   margin:auto;
-  background:
-    radial-gradient(circle at 50% 0%,#263263 0%,transparent 38%),
-    linear-gradient(180deg,#10172e,#070a14);
-  position:relative;
-  overflow:hidden;
+  background:#f7fcff;
+  padding-bottom:82px;
 }
 
-/* ================= WELCOME ================= */
+/* =====================================================
+   WELCOME / LOGIN
+===================================================== */
 
 #welcome{
-  min-height:100vh;
   position:fixed;
   inset:0;
   z-index:100;
-  background:
-    radial-gradient(circle at 50% 25%,#3d4c94,#10152d 45%,#050711);
   overflow:hidden;
+  background:
+    linear-gradient(
+      180deg,
+      #dffaff 0%,
+      #eef8ff 48%,
+      #f7f9ff 100%
+    );
 }
 
-.welcome-content{
+/* TOP REALISTIC-LOOKING 3D PEOPLE AREA */
+
+.people-area{
   position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  padding-top:65px;
+  top:0;
+  left:0;
+  right:0;
+  height:57%;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      #ffffff 0%,
+      #c9f4ff 35%,
+      #b9d9ff 70%,
+      #9b8df2 100%
+    );
+}
+
+/* glowing background */
+
+.glow{
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:#ffffff99;
+  filter:blur(45px);
+  left:50%;
+  top:35px;
+  transform:translateX(-50%);
+}
+
+/* 3D stage */
+
+.people-stage{
+  position:absolute;
+  left:50%;
+  bottom:-35px;
+  width:390px;
+  height:330px;
+  transform:translateX(-50%);
+  perspective:800px;
+}
+
+/* realistic-style human models made with CSS */
+
+.human{
+  position:absolute;
+  bottom:25px;
+  width:105px;
+  height:255px;
+  transform-style:preserve-3d;
+  animation:humanFloat 3.4s ease-in-out infinite;
+}
+
+/* HEAD */
+
+.human .head{
+  position:absolute;
+  top:0;
+  left:22px;
+  width:74px;
+  height:82px;
+  border-radius:48% 48% 45% 45%;
+  background:
+    radial-gradient(
+      circle at 38% 35%,
+      #ffe0c1 0%,
+      #e8ae83 65%,
+      #bd795c 100%
+    );
+  box-shadow:
+    0 10px 18px #334b6c35,
+    inset -7px -5px 12px #9b604033;
+}
+
+/* hair */
+
+.human .hair{
+  position:absolute;
+  left:-2px;
+  top:-7px;
+  width:79px;
+  height:48px;
+  border-radius:48px 48px 20px 20px;
+  background:
+    radial-gradient(
+      circle at 35% 25%,
+      #65483f,
+      #211b22 72%
+    );
+}
+
+/* eyes */
+
+.human .eye{
+  position:absolute;
+  top:35px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#2b2530;
+}
+
+.human .eye.left{
+  left:21px;
+}
+
+.human .eye.right{
+  right:21px;
+}
+
+/* smile */
+
+.human .smile{
+  position:absolute;
+  width:25px;
+  height:11px;
+  border-bottom:3px solid #8b4050;
+  border-radius:0 0 50% 50%;
+  left:25px;
+  top:51px;
+}
+
+/* body */
+
+.human .body{
+  position:absolute;
+  left:8px;
+  top:75px;
+  width:92px;
+  height:135px;
+  border-radius:42px 42px 18px 18px;
+  background:
+    linear-gradient(
+      145deg,
+      #7666f5,
+      #4439aa
+    );
+  box-shadow:
+    0 16px 22px #26375c45;
+}
+
+/* arm */
+
+.human .arm{
+  position:absolute;
+  top:91px;
+  width:25px;
+  height:100px;
+  border-radius:20px;
+  background:#e0a67e;
+}
+
+.human .arm.left{
+  left:-8px;
+  transform:rotate(15deg);
+}
+
+.human .arm.right{
+  right:-8px;
+  transform:rotate(-18deg);
+}
+
+/* phone */
+
+.human .phone{
+  position:absolute;
+  right:-16px;
+  top:125px;
+  width:22px;
+  height:40px;
+  border-radius:5px;
+  background:#151725;
+  border:2px solid #555b78;
+  transform:rotate(-12deg);
+}
+
+/* THREE PEOPLE */
+
+.person1{
+  left:15px;
+  transform:scale(.82) rotateY(8deg);
+  animation-delay:.3s;
+}
+
+.person2{
+  left:140px;
+  transform:scale(1.08);
+  z-index:3;
+}
+
+.person3{
+  right:4px;
+  transform:scale(.88) rotateY(-8deg);
+  animation-delay:.7s;
+}
+
+/* different clothes */
+
+.person1 .body{
+  background:linear-gradient(145deg,#ff7190,#bd3e72);
+}
+
+.person2 .body{
+  background:linear-gradient(145deg,#655cf4,#30268f);
+}
+
+.person3 .body{
+  background:linear-gradient(145deg,#20c9dd,#167fae);
+}
+
+/* bird */
+
+.doel-bird{
+  position:absolute;
+  right:22px;
+  top:55px;
+  font-size:43px;
+  filter:drop-shadow(0 8px 8px #42516a44);
+  animation:birdFly 4s ease-in-out infinite;
+}
+
+/* floating chat bubbles */
+
+.chat-bubble{
+  position:absolute;
+  background:#ffffffdd;
+  color:#45536e;
+  padding:8px 11px;
+  border-radius:14px;
+  font-size:12px;
+  box-shadow:0 8px 20px #40557922;
+  animation:bubbleFloat 3s ease-in-out infinite;
+}
+
+.bubble1{
+  left:12px;
+  top:95px;
+}
+
+.bubble2{
+  right:10px;
+  top:145px;
+  animation-delay:1s;
+}
+
+/* welcome title */
+
+.welcome-info{
+  position:absolute;
+  top:56%;
+  left:0;
+  right:0;
   text-align:center;
   z-index:5;
 }
 
 .doel-logo{
-  width:82px;
-  height:82px;
-  border-radius:25px;
-  background:linear-gradient(135deg,#8a6cff,#20d9ef);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-  font-weight:900;
-  box-shadow:0 15px 50px #0008;
-  animation:logoFloat 3s ease-in-out infinite;
-}
-
-.welcome-title{
-  font-size:38px;
-  font-weight:900;
-  margin-top:18px;
-  letter-spacing:2px;
-}
-
-.welcome-subtitle{
-  color:#bdc6e4;
-  margin-top:8px;
-  font-size:15px;
-}
-
-.scene{
-  position:absolute;
-  bottom:0;
-  left:0;
-  right:0;
-  height:58%;
-  perspective:700px;
-}
-
-.sky-glow{
-  position:absolute;
-  width:250px;
-  height:250px;
-  border-radius:50%;
-  background:#6f78ff55;
-  filter:blur(40px);
-  left:50%;
-  top:5%;
-  transform:translateX(-50%);
-}
-
-.cloud{
-  position:absolute;
-  width:100px;
-  height:35px;
-  background:#ffffff18;
-  border-radius:50px;
-  filter:blur(3px);
-  animation:cloudMove 12s linear infinite;
-}
-
-.cloud.one{
-  top:18%;
-  left:-120px;
-}
-
-.cloud.two{
-  top:35%;
-  right:-120px;
-  animation-delay:4s;
-}
-
-.ground{
-  position:absolute;
-  left:-15%;
-  width:130%;
-  bottom:-25%;
-  height:70%;
-  border-radius:50% 50% 0 0;
-  background:linear-gradient(180deg,#1c2850,#0a1023);
-  transform:rotateX(55deg);
-}
-
-.character{
-  position:absolute;
-  bottom:16%;
-  width:75px;
-  height:150px;
-  animation:characterFloat 3s ease-in-out infinite;
-}
-
-.character .head{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  background:#f0b98a;
+  width:58px;
+  height:58px;
   margin:auto;
-  position:relative;
-  box-shadow:0 8px 15px #0006;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:33px;
+  font-weight:900;
+  background:
+    linear-gradient(
+      135deg,
+      #735cf6,
+      #20cee7
+    );
+  box-shadow:0 10px 30px #5d5af655;
 }
 
-.character .hair{
+.welcome-info h1{
+  font-size:30px;
+  margin-top:7px;
+  letter-spacing:2px;
+  color:#17233f;
+}
+
+.welcome-info p{
+  margin-top:4px;
+  color:#718099;
+  font-size:12px;
+}
+
+/* LOGIN BUTTON AREA */
+
+.login-area{
   position:absolute;
-  top:-3px;
-  left:3px;
-  width:46px;
-  height:25px;
-  border-radius:30px 30px 12px 12px;
-  background:#241b24;
-}
-
-.character .body{
-  width:65px;
-  height:85px;
-  margin:7px auto;
-  border-radius:30px 30px 12px 12px;
-  background:linear-gradient(180deg,#7158ff,#3a2d94);
-  box-shadow:0 15px 20px #0007;
-}
-
-.character .phone{
-  position:absolute;
-  width:18px;
-  height:32px;
-  border-radius:5px;
-  background:#111;
-  right:-2px;
-  top:75px;
-  transform:rotate(-15deg);
-}
-
-.c1{
-  left:8%;
-  transform:scale(.78);
-  animation-delay:.3s;
-}
-
-.c2{
-  left:32%;
-  transform:scale(1.05);
-}
-
-.c3{
-  right:29%;
-  transform:scale(.9);
-  animation-delay:.8s;
-}
-
-.c4{
-  right:5%;
-  transform:scale(.72);
-  animation-delay:1.2s;
-}
-
-.bird{
-  position:absolute;
-  right:23%;
-  top:10%;
-  font-size:43px;
-  animation:birdFly 4s ease-in-out infinite;
-  filter:drop-shadow(0 8px 8px #0007);
-}
-
-.music-note{
-  position:absolute;
-  font-size:25px;
-  opacity:.8;
-  animation:noteFloat 3s ease-in-out infinite;
-}
-
-.note1{
-  left:20%;
-  top:15%;
-}
-
-.note2{
-  right:17%;
-  top:25%;
-  animation-delay:1s;
-}
-
-.welcome-login{
-  position:absolute;
-  z-index:10;
-  bottom:35px;
   left:18px;
   right:18px;
+  bottom:18px;
+  z-index:10;
 }
 
-.welcome-login button{
+.login-area button{
   width:100%;
-  border:none;
-  border-radius:16px;
-  padding:15px;
-  margin-top:10px;
-  font-size:15px;
+  padding:13px;
+  margin-top:7px;
+  border-radius:14px;
+  font-size:14px;
   font-weight:bold;
 }
 
 .google{
-  background:#fff;
-  color:#222;
+  background:white;
+  color:#333;
+  box-shadow:0 4px 15px #52647d18;
 }
 
 .facebook{
   background:#1877f2;
-  color:#fff;
+  color:white;
 }
 
 .phone{
-  background:linear-gradient(90deg,#7658ff,#23cfe7);
-  color:#fff;
+  background:
+    linear-gradient(
+      90deg,
+      #735cf6,
+      #20cee7
+    );
+  color:white;
 }
 
 .guest{
-  background:#ffffff12;
-  color:#cbd3eb;
-  border:1px solid #ffffff20;
+  background:#dfe7f1;
+  color:#58667d;
 }
 
-@keyframes logoFloat{
-  0%,100%{transform:translateY(0) rotate(0)}
-  50%{transform:translateY(-10px) rotate(3deg)}
-}
+/* animations */
 
-@keyframes characterFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
+@keyframes humanFloat{
+  0%,100%{
+    margin-bottom:0;
+  }
+  50%{
+    margin-bottom:10px;
+  }
 }
 
 @keyframes birdFly{
-  0%,100%{transform:translate(0,0) rotate(-5deg)}
-  50%{transform:translate(-30px,-15px) rotate(5deg)}
+  0%,100%{
+    transform:translate(0,0) rotate(-5deg);
+  }
+  50%{
+    transform:translate(-28px,-16px) rotate(6deg);
+  }
 }
 
-@keyframes cloudMove{
-  from{transform:translateX(0)}
-  to{transform:translateX(700px)}
+@keyframes bubbleFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-8px);
+  }
 }
 
-@keyframes noteFloat{
-  0%,100%{transform:translateY(0);opacity:.3}
-  50%{transform:translateY(-25px);opacity:1}
-}
 
-/* ================= MAIN APP ================= */
+/* =====================================================
+   MAIN APP
+===================================================== */
 
 #mainApp{
   display:none;
-  min-height:100vh;
-  padding-bottom:78px;
 }
 
-.topbar{
-  padding:14px 16px 10px;
+.header{
+  padding:12px 15px 8px;
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  align-items:center;
+  background:white;
 }
 
-.small-logo{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#8063ff,#20d6ed);
+.brand{
   display:flex;
   align-items:center;
-  justify-content:center;
-  font-size:24px;
+  gap:9px;
   font-weight:900;
 }
 
-.coins{
-  background:#19213c;
-  border:1px solid #303c62;
-  padding:9px 13px;
-  border-radius:20px;
-  color:#ffd55e;
-  font-size:13px;
+.mini-logo{
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:
+    linear-gradient(
+      135deg,
+      #735cf6,
+      #20cee7
+    );
+  color:white;
+  font-size:23px;
 }
+
+.wallet{
+  background:#fff3c5;
+  color:#a56c00;
+  border-radius:18px;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* TOP 5 */
 
 .top-menu{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:7px;
-  padding:8px 12px 14px;
+  gap:6px;
+  padding:7px 10px 10px;
+  background:white;
 }
 
 .top-menu button{
-  background:#141c35;
-  color:#aab5d4;
-  border:1px solid #263253;
-  border-radius:12px;
-  padding:9px 3px;
+  padding:8px 2px;
+  border-radius:11px;
+  background:#f1f6fb;
+  color:#68758c;
   font-size:10px;
 }
 
 .top-menu button.active{
-  background:#2a315a;
-  color:#fff;
-  border-color:#675aff;
+  color:white;
+  background:
+    linear-gradient(
+      135deg,
+      #705cf5,
+      #25cce4
+    );
 }
+
+/* PAGES */
 
 .page{
   display:none;
-  padding:8px 16px 25px;
+  padding:12px 13px;
 }
 
 .page.active{
   display:block;
 }
 
-.hero h1{
-  font-size:28px;
-  margin-top:10px;
+.tabs{
+  display:flex;
+  gap:7px;
+  overflow:auto;
+  padding-bottom:12px;
 }
 
-.hero p{
-  color:#9da8c5;
-  line-height:1.5;
-  margin-top:7px;
+.tabs button{
+  white-space:nowrap;
+  padding:8px 12px;
+  border-radius:18px;
+  background:#eaf3fb;
+  color:#68758b;
+  font-size:12px;
+}
+
+.tabs button.active{
+  background:#665cf2;
+  color:white;
+}
+
+.banner{
+  padding:18px;
+  border-radius:20px;
+  background:
+    linear-gradient(
+      135deg,
+      #dffaff,
+      #ded9ff
+    );
+  margin-bottom:13px;
+}
+
+.banner h2{
+  font-size:20px;
+}
+
+.banner p{
+  margin-top:5px;
+  color:#64728a;
+  font-size:12px;
+}
+
+.search{
+  display:flex;
+  gap:7px;
+}
+
+.search input{
+  flex:1;
+  padding:11px;
+  border:1px solid #dce7f2;
+  border-radius:13px;
+  outline:none;
+  background:white;
+}
+
+.search button{
+  width:45px;
+  border-radius:13px;
+  color:white;
+  background:#675cf2;
 }
 
 .title{
-  font-size:19px;
-  margin:22px 0 12px;
+  font-size:18px;
+  margin:16px 0 9px;
 }
 
-.room{
-  background:linear-gradient(135deg,#18213d,#11172b);
-  border:1px solid #2a3558;
-  border-radius:18px;
-  padding:15px;
-  margin-bottom:12px;
+.room-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
-.room-head{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.room-card{
+  background:white;
+  border:1px solid #e3edf5;
+  border-radius:17px;
+  padding:10px;
+  box-shadow:0 6px 20px #385c7d10;
 }
 
-.room-icon{
-  width:53px;
-  height:53px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#725bff,#23cbe7);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
+.room-image{
+  height:90px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  background:
+    linear-gradient(
+      135deg,
+      #b9eff8,
+      #c8c0ff
+    );
+  position:relative;
 }
 
-.room-info{
-  flex:1;
+.live{
+  position:absolute;
+  left:6px;
+  top:6px;
+  background:#ff5575;
+  color:white;
+  padding:4px 6px;
+  border-radius:8px;
+  font-size:8px;
 }
 
-.room-info h3{
-  font-size:16px;
+.room-card h3{
+  font-size:13px;
+  margin-top:8px;
 }
 
-.room-info p{
-  color:#8996b8;
-  font-size:12px;
+.muted{
+  color:#8490a5;
+  font-size:10px;
   margin-top:4px;
 }
 
 .join{
   width:100%;
-  margin-top:12px;
-  padding:12px;
-  border:0;
-  border-radius:12px;
-  color:#fff;
-  font-weight:bold;
-  background:linear-gradient(90deg,#765cff,#28cee8);
-}
-
-.discover-card{
-  background:#151d35;
-  border:1px solid #293657;
-  padding:17px;
-  border-radius:17px;
-  margin-bottom:12px;
-}
-
-.profile{
-  text-align:center;
-}
-
-.avatar{
-  width:90px;
-  height:90px;
-  margin:10px auto;
-  border-radius:50%;
-  background:linear-gradient(135deg,#765cff,#28cee8);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-}
-
-.profile h2{
   margin-top:8px;
+  padding:9px;
+  border-radius:11px;
+  background:
+    linear-gradient(
+      90deg,
+      #6d5cf5,
+      #24cbe5
+    );
+  color:white;
+  font-size:11px;
+  font-weight:bold;
 }
 
-.profile p{
-  color:#8996b8;
-  margin-top:5px;
-}
-
-.profile-menu{
-  margin-top:20px;
-  background:#151d35;
-  border:1px solid #293657;
+.list{
+  background:white;
+  border:1px solid #e3edf5;
   border-radius:17px;
   overflow:hidden;
 }
 
-.profile-menu button{
-  width:100%;
-  text-align:left;
-  background:none;
-  border:0;
-  border-bottom:1px solid #293657;
-  color:#dce2f3;
-  padding:16px;
-  font-size:14px;
+.row{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:13px;
+  border-bottom:1px solid #edf2f7;
 }
 
-.profile-menu button:last-child{
+.row:last-child{
   border-bottom:0;
 }
 
+.icon-box{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:#eef2ff;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+}
+
+.row-main{
+  flex:1;
+}
+
+.row-main b{
+  font-size:13px;
+}
+
+.row-main small{
+  display:block;
+  color:#8995a9;
+  margin-top:3px;
+  font-size:10px;
+}
+
+.pill{
+  padding:7px 9px;
+  border-radius:10px;
+  background:#eeeaff;
+  color:#6454e8;
+  font-size:10px;
+  font-weight:bold;
+}
+
+/* PROFILE */
+
+.profile-card{
+  text-align:center;
+  padding:20px;
+  border-radius:20px;
+  background:
+    linear-gradient(
+      135deg,
+      #e8faff,
+      #e8e3ff
+    );
+}
+
+.avatar{
+  width:76px;
+  height:76px;
+  margin:auto;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:
+    linear-gradient(
+      135deg,
+      #715cf5,
+      #20cce7
+    );
+  color:white;
+  font-size:35px;
+}
+
+.profile-card h2{
+  margin-top:8px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:14px;
+}
+
+.stat{
+  background:white;
+  padding:9px;
+  border-radius:13px;
+}
+
+.stat b{
+  display:block;
+}
+
+.stat small{
+  color:#8793a7;
+  font-size:9px;
+}
+
+/* BOTTOM 5 */
+
 .bottom-nav{
   position:fixed;
-  z-index:50;
   bottom:0;
   left:50%;
   transform:translateX(-50%);
   width:100%;
   max-width:520px;
-  height:70px;
-  background:#0e1428f5;
-  backdrop-filter:blur(15px);
-  border-top:1px solid #273354;
+  height:74px;
+  z-index:30;
   display:grid;
   grid-template-columns:repeat(5,1fr);
+  background:white;
+  border-top:1px solid #e2ebf3;
 }
 
 .bottom-nav button{
-  border:0;
-  background:none;
-  color:#7783a4;
+  background:white;
+  color:#8a95a8;
   font-size:10px;
 }
 
-.bottom-nav .icon{
+.bottom-nav button.active{
+  color:#6357ef;
+  font-weight:bold;
+}
+
+.bottom-nav span{
   display:block;
   font-size:22px;
-  margin-bottom:4px;
+  margin-bottom:3px;
 }
 
-.bottom-nav button.active{
-  color:#4ed9f3;
-}
 
-/* ================= ROOM ================= */
+/* =====================================================
+   VOICE ROOM
+===================================================== */
 
 #room{
   display:none;
   position:fixed;
   inset:0;
   z-index:200;
-  background:#070b17;
   max-width:520px;
   margin:auto;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #5f62c9,
+      #182550 40%,
+      #070b18 100%
+    );
+  color:white;
 }
 
 .room-header{
-  height:65px;
+  height:63px;
+  padding:10px;
   display:flex;
   align-items:center;
-  gap:12px;
-  padding:10px 15px;
-  border-bottom:1px solid #263253;
+  gap:9px;
 }
 
 .back{
-  width:42px;
-  height:42px;
-  border:0;
+  width:40px;
+  height:40px;
   border-radius:12px;
-  background:#18213b;
-  color:#fff;
+  background:#ffffff18;
+  color:white;
   font-size:20px;
 }
 
@@ -560,17 +831,17 @@ button{
   font-weight:bold;
 }
 
-.room-users{
-  color:#8290b3;
-  font-size:11px;
+.room-sub{
+  color:#aeb9d5;
+  font-size:10px;
   margin-top:3px;
 }
 
 .seats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  padding:25px 18px;
+  gap:20px;
+  padding:22px 15px;
 }
 
 .seat{
@@ -578,243 +849,290 @@ button{
 }
 
 .seat-avatar{
-  width:65px;
-  height:65px;
+  width:61px;
+  height:61px;
   margin:auto;
+  display:grid;
+  place-items:center;
   border-radius:50%;
-  background:#1b2644;
-  border:2px solid #3b4b76;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
+  background:#273660;
+  border:2px solid #6879b9;
+  font-size:27px;
 }
 
-.seat-name{
-  margin-top:7px;
-  font-size:11px;
-  color:#aeb9d4;
+.seat small{
+  display:block;
+  margin-top:5px;
+  color:#b9c3df;
+  font-size:10px;
 }
 
-.chat{
+.room-chat{
   position:absolute;
-  left:0;
-  right:0;
-  top:350px;
-  bottom:65px;
+  left:12px;
+  right:12px;
+  top:330px;
+  bottom:80px;
   overflow:auto;
-  padding:15px;
 }
 
-.msg{
+.message{
   width:max-content;
   max-width:85%;
-  background:#18213a;
-  padding:9px 12px;
+  background:#ffffff14;
   border-radius:12px;
-  margin-bottom:8px;
-  font-size:13px;
+  padding:8px 10px;
+  margin:6px 0;
+  font-size:12px;
 }
 
-.msg b{
+.message b{
   display:block;
-  color:#64d9f4;
+  color:#64e0f4;
   font-size:10px;
   margin-bottom:3px;
 }
 
-.chatbar{
+.room-tools{
   position:absolute;
+  bottom:0;
   left:0;
   right:0;
-  bottom:0;
-  height:65px;
-  background:#10172a;
+  height:76px;
   display:flex;
-  gap:8px;
-  padding:10px;
+  align-items:center;
+  gap:6px;
+  padding:8px;
+  background:#0c1224;
 }
 
-.chatbar input{
+.room-tools input{
   flex:1;
+  min-width:0;
+  padding:11px;
   border:0;
   outline:0;
   border-radius:12px;
-  background:#1c2641;
-  color:#fff;
-  padding:10px;
+  background:#1b2745;
+  color:white;
 }
 
-.chatbar button{
-  width:65px;
-  border:0;
-  border-radius:12px;
-  background:#715bff;
-  color:#fff;
-}
-
-.mic{
-  position:absolute;
-  right:15px;
-  bottom:82px;
-  width:58px;
-  height:58px;
-  border:0;
+.tool{
+  width:43px;
+  height:43px;
+  flex-shrink:0;
   border-radius:50%;
-  background:#725bff;
-  color:#fff;
-  font-size:23px;
-  z-index:5;
+  background:#26345c;
+  color:white;
 }
 
-.mic.on{
-  background:#e95072;
+.gift-tool{
+  background:
+    linear-gradient(
+      135deg,
+      #ffb52f,
+      #ff557d
+    );
 }
 
-/* LOGIN MODAL */
 
-#loginModal{
+/* =====================================================
+   GIFT SHEET
+===================================================== */
+
+#giftModal{
   display:none;
   position:fixed;
   inset:0;
   z-index:300;
-  background:#050711eF;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+  background:#0008;
+  align-items:flex-end;
 }
 
-.login-box{
+.gift-sheet{
   width:100%;
-  max-width:400px;
-  background:#151d35;
-  border:1px solid #344263;
-  border-radius:22px;
-  padding:22px;
+  max-width:520px;
+  margin:auto;
+  padding:18px;
+  background:white;
+  border-radius:22px 22px 0 0;
 }
 
-.login-box h2{
+.gift-sheet h2{
+  margin-bottom:12px;
+}
+
+.gift-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.gift-item{
+  padding:9px;
   text-align:center;
-  margin-bottom:8px;
+  background:#f5f8fd;
+  border-radius:13px;
+  font-size:10px;
 }
 
-.login-box p{
-  text-align:center;
-  color:#8d99b8;
-  font-size:13px;
-  margin-bottom:18px;
+.gift-item strong{
+  display:block;
+  font-size:25px;
 }
 
-.login-box input{
+.gift-item button{
+  margin-top:5px;
+  padding:5px 7px;
+  border-radius:8px;
+  background:#695cf0;
+  color:white;
+  font-size:9px;
+}
+
+.close{
   width:100%;
-  padding:14px;
+  margin-top:13px;
+  padding:11px;
   border-radius:12px;
-  border:1px solid #344263;
-  background:#0f162a;
-  color:#fff;
-  outline:none;
-  margin-bottom:10px;
-}
-
-.login-action{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  background:linear-gradient(90deg,#765cff,#27cee8);
-  color:#fff;
-  font-weight:bold;
-}
-
-.close-login{
-  width:100%;
-  border:0;
-  background:none;
-  color:#8793b1;
-  margin-top:12px;
+  background:#edf2f8;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= WELCOME ================= -->
+<!-- =====================================================
+     WELCOME
+===================================================== -->
 
 <section id="welcome">
 
-  <div class="welcome-content">
+  <!-- PEOPLE AT TOP -->
 
-    <div class="doel-logo">D</div>
+  <div class="people-area">
 
-    <div class="welcome-title">DOEL</div>
+    <div class="glow"></div>
 
-    <div class="welcome-subtitle">
+    <div class="doel-bird">🐦</div>
+
+    <div class="chat-bubble bubble1">
+      Hello! 👋
+    </div>
+
+    <div class="chat-bubble bubble2">
+      Let's talk! 🎤
+    </div>
+
+    <div class="people-stage">
+
+      <!-- PERSON 1 -->
+
+      <div class="human person1">
+
+        <div class="head">
+          <div class="hair"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="smile"></div>
+        </div>
+
+        <div class="body"></div>
+
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+
+      </div>
+
+
+      <!-- PERSON 2 -->
+
+      <div class="human person2">
+
+        <div class="head">
+          <div class="hair"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="smile"></div>
+        </div>
+
+        <div class="body"></div>
+
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+
+        <div class="phone"></div>
+
+      </div>
+
+
+      <!-- PERSON 3 -->
+
+      <div class="human person3">
+
+        <div class="head">
+          <div class="hair"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="smile"></div>
+        </div>
+
+        <div class="body"></div>
+
+        <div class="arm left"></div>
+        <div class="arm right"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- LOGO -->
+
+  <div class="welcome-info">
+
+    <div class="doel-logo">
+      D
+    </div>
+
+    <h1>
+      DOEL
+    </h1>
+
+    <p>
       Voice • Friends • Entertainment
-    </div>
+    </p>
 
   </div>
 
-  <div class="scene">
 
-    <div class="sky-glow"></div>
+  <!-- LOGIN BUTTONS -->
 
-    <div class="cloud one"></div>
-    <div class="cloud two"></div>
+  <div class="login-area">
 
-    <div class="bird">🐦</div>
-
-    <div class="music-note note1">♪</div>
-    <div class="music-note note2">♫</div>
-
-    <div class="ground"></div>
-
-    <div class="character c1">
-      <div class="head">
-        <div class="hair"></div>
-      </div>
-      <div class="body"></div>
-    </div>
-
-    <div class="character c2">
-      <div class="head">
-        <div class="hair"></div>
-      </div>
-      <div class="body"></div>
-      <div class="phone"></div>
-    </div>
-
-    <div class="character c3">
-      <div class="head">
-        <div class="hair"></div>
-      </div>
-      <div class="body"></div>
-    </div>
-
-    <div class="character c4">
-      <div class="head">
-        <div class="hair"></div>
-      </div>
-      <div class="body"></div>
-      <div class="phone"></div>
-    </div>
-
-  </div>
-
-  <div class="welcome-login">
-
-    <button class="google" onclick="startLogin('Google')">
+    <button
+      class="google"
+      onclick="login('Google')">
       🔵 Continue with Google
     </button>
 
-    <button class="facebook" onclick="startLogin('Facebook')">
+    <button
+      class="facebook"
+      onclick="login('Facebook')">
       f&nbsp;&nbsp; Continue with Facebook
     </button>
 
-    <button class="phone" onclick="openPhoneLogin()">
+    <button
+      class="phone"
+      onclick="phoneLogin()">
       📱 Continue with Phone Number
     </button>
 
-    <button class="guest" onclick="guestLogin()">
+    <button
+      class="guest"
+      onclick="login('Guest')">
       Continue as Guest
     </button>
 
@@ -823,42 +1141,65 @@ button{
 </section>
 
 
-<!-- ================= MAIN APP ================= -->
+<!-- =====================================================
+     MAIN APP
+===================================================== -->
 
-<div id="mainApp" class="app">
+<div
+  id="mainApp"
+  class="app">
 
-  <div class="topbar">
+  <header class="header">
 
-    <div class="small-logo">D</div>
+    <div class="brand">
 
-    <div class="coins">
-      🪙 1,000
+      <div class="mini-logo">
+        D
+      </div>
+
+      Doel Voice
+
     </div>
 
-  </div>
+    <div class="wallet">
+
+      🪙
+      <span id="coinBalance">
+        1,000
+      </span>
+
+    </div>
+
+  </header>
 
 
   <!-- TOP FIVE -->
 
   <div class="top-menu">
 
-    <button class="active" onclick="topAction('Live')">
+    <button
+      class="active"
+      onclick="topAction(this,'Live')">
       🔥<br>Live
     </button>
 
-    <button onclick="topAction('Rooms')">
+    <button
+      onclick="topAction(this,'Rooms')">
       🎤<br>Rooms
     </button>
 
-    <button onclick="topAction('Global')">
+    <button
+      onclick="topAction(this,'Global')">
       🌍<br>Global
     </button>
 
-    <button onclick="topAction('Friends')">
+    <button
+      onclick="topAction(this,'Friends')">
       👥<br>Friends
     </button>
 
-    <button onclick="topAction('Search')">
+    <button
+      onclick="searchUser()">
       🔍<br>Search
     </button>
 
@@ -867,76 +1208,168 @@ button{
 
   <!-- HOME -->
 
-  <section id="homePage" class="page active">
+  <section
+    id="homePage"
+    class="page active">
 
-    <div class="hero">
+    <div class="tabs">
 
-      <h1>Welcome to Doel 👋</h1>
+      <button class="active">
+        Following
+      </button>
+
+      <button>
+        Popular
+      </button>
+
+      <button>
+        Recent
+      </button>
+
+      <button>
+        Events
+      </button>
+
+    </div>
+
+
+    <div class="banner">
+
+      <h2>
+        Meet people. Talk freely. 🎙️
+      </h2>
 
       <p>
-        Talk, make friends and enjoy live voice rooms.
+        Join live voice rooms around the world.
       </p>
 
     </div>
 
-    <h2 class="title">🔥 Popular Rooms</h2>
 
-    <div class="room">
+    <div class="search">
 
-      <div class="room-head">
+      <input
+        id="searchInput"
+        placeholder="Room ID / User ID / Username">
 
-        <div class="room-icon">🇧🇩</div>
-
-        <div class="room-info">
-          <h3>Bangladesh Friends</h3>
-          <p>👥 1,284 online</p>
-        </div>
-
-      </div>
-
-      <button class="join" onclick="openRoom('Bangladesh Friends')">
-        Join Room
+      <button
+        onclick="doSearch()">
+        🔍
       </button>
 
     </div>
 
 
-    <div class="room">
+    <h2 class="title">
+      🔥 Live Rooms
+    </h2>
 
-      <div class="room-head">
 
-        <div class="room-icon">🌍</div>
+    <div class="room-grid">
 
-        <div class="room-info">
-          <h3>Global Lounge</h3>
-          <p>👥 856 online</p>
+
+      <div class="room-card">
+
+        <div class="room-image">
+
+          🇧🇩
+
+          <span class="live">
+            LIVE
+          </span>
+
         </div>
+
+        <h3>
+          Bangladesh Friends
+        </h3>
+
+        <div class="muted">
+          👥 1,284 • LV41 • 🇧🇩
+        </div>
+
+        <button
+          class="join"
+          onclick="openRoom('Bangladesh Friends')">
+          Join Room
+        </button>
 
       </div>
 
-      <button class="join" onclick="openRoom('Global Lounge')">
-        Join Room
-      </button>
 
-    </div>
+      <div class="room-card">
 
+        <div class="room-image">
 
-    <div class="room">
+          🌍
 
-      <div class="room-head">
+          <span class="live">
+            LIVE
+          </span>
 
-        <div class="room-icon">🎵</div>
-
-        <div class="room-info">
-          <h3>Music & Fun</h3>
-          <p>👥 542 online</p>
         </div>
+
+        <h3>
+          Global Lounge
+        </h3>
+
+        <div class="muted">
+          👥 856 • LV38 • 🌍
+        </div>
+
+        <button
+          class="join"
+          onclick="openRoom('Global Lounge')">
+          Join Room
+        </button>
 
       </div>
 
-      <button class="join" onclick="openRoom('Music & Fun')">
-        Join Room
-      </button>
+
+      <div class="room-card">
+
+        <div class="room-image">
+          🎵
+        </div>
+
+        <h3>
+          Music & Fun
+        </h3>
+
+        <div class="muted">
+          👥 542 • LV29
+        </div>
+
+        <button
+          class="join"
+          onclick="openRoom('Music & Fun')">
+          Join Room
+        </button>
+
+      </div>
+
+
+      <div class="room-card">
+
+        <div class="room-image">
+          ❤️
+        </div>
+
+        <h3>
+          Friends Night
+        </h3>
+
+        <div class="muted">
+          👥 318 • LV25
+        </div>
+
+        <button
+          class="join"
+          onclick="openRoom('Friends Night')">
+          Join Room
+        </button>
+
+      </div>
 
     </div>
 
@@ -945,28 +1378,68 @@ button{
 
   <!-- VOICE -->
 
-  <section id="voicePage" class="page">
+  <section
+    id="voicePage"
+    class="page">
 
-    <h1>🎤 Voice Rooms</h1>
+    <h2 class="title">
+      🎤 Voice Rooms
+    </h2>
 
-    <h2 class="title">Live Now</h2>
+    <div class="list">
 
-    <div class="room" onclick="openRoom('Live Voice Room')">
+      <div class="row">
 
-      <div class="room-head">
-
-        <div class="room-icon">🎙️</div>
-
-        <div class="room-info">
-          <h3>Live Voice Room</h3>
-          <p>👥 245 people talking</p>
+        <div class="icon-box">
+          🎙️
         </div>
+
+        <div class="row-main">
+
+          <b>
+            Bangladesh Friends
+          </b>
+
+          <small>
+            1284 online • Host LV41
+          </small>
+
+        </div>
+
+        <button
+          class="pill"
+          onclick="openRoom('Bangladesh Friends')">
+          Join
+        </button>
 
       </div>
 
-      <button class="join">
-        Join Live
-      </button>
+
+      <div class="row">
+
+        <div class="icon-box">
+          🌍
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Global Lounge
+          </b>
+
+          <small>
+            856 online
+          </small>
+
+        </div>
+
+        <button
+          class="pill"
+          onclick="openRoom('Global Lounge')">
+          Join
+        </button>
+
+      </div>
 
     </div>
 
@@ -975,31 +1448,48 @@ button{
 
   <!-- DISCOVER -->
 
-  <section id="discoverPage" class="page">
+  <section
+    id="discoverPage"
+    class="page">
 
-    <h1>🔎 Discover</h1>
+    <h2 class="title">
+      🌍 Discover
+    </h2>
 
-    <h2 class="title">Find New People</h2>
+    <div class="room-grid">
 
-    <div class="discover-card">
-      🌍 People Around You
-      <p style="color:#8996b8;margin-top:7px">
-        Meet new friends from different countries.
-      </p>
-    </div>
+      <div class="room-card">
+        <div class="room-image">🌎</div>
+        <h3>People</h3>
+        <div class="muted">
+          Meet new friends.
+        </div>
+      </div>
 
-    <div class="discover-card">
-      🎤 Trending Rooms
-      <p style="color:#8996b8;margin-top:7px">
-        Discover popular conversations.
-      </p>
-    </div>
+      <div class="room-card">
+        <div class="room-image">⭐</div>
+        <h3>Trending</h3>
+        <div class="muted">
+          Popular rooms.
+        </div>
+      </div>
 
-    <div class="discover-card">
-      ⭐ Recommended
-      <p style="color:#8996b8;margin-top:7px">
-        Rooms recommended for you.
-      </p>
+      <div class="room-card">
+        <div class="room-image">🎁</div>
+        <h3>Gifts</h3>
+        <div class="muted">
+          Virtual gifts.
+        </div>
+      </div>
+
+      <div class="room-card">
+        <div class="room-image">🏪</div>
+        <h3>Store</h3>
+        <div class="muted">
+          Frames & vehicles.
+        </div>
+      </div>
+
     </div>
 
   </section>
@@ -1007,22 +1497,61 @@ button{
 
   <!-- CHAT -->
 
-  <section id="chatPage" class="page">
+  <section
+    id="chatPage"
+    class="page">
 
-    <h1>💬 Messages</h1>
+    <h2 class="title">
+      💬 Messages
+    </h2>
 
-    <div class="discover-card" style="margin-top:20px">
-      <b>Doel Team</b>
-      <p style="color:#8996b8;margin-top:6px">
-        Welcome to Doel! 🎉
-      </p>
-    </div>
+    <div class="list">
 
-    <div class="discover-card">
-      <b>New Friend</b>
-      <p style="color:#8996b8;margin-top:6px">
-        Hello! 👋
-      </p>
+      <div class="row">
+
+        <div class="icon-box">
+          👥
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Doel Team
+          </b>
+
+          <small>
+            Welcome to Doel! 🎉
+          </small>
+
+        </div>
+
+        <span class="pill">
+          NEW
+        </span>
+
+      </div>
+
+
+      <div class="row">
+
+        <div class="icon-box">
+          👩
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            New Friend
+          </b>
+
+          <small>
+            Hello! 👋
+          </small>
+
+        </div>
+
+      </div>
+
     </div>
 
   </section>
@@ -1030,60 +1559,242 @@ button{
 
   <!-- PROFILE -->
 
-  <section id="profilePage" class="page">
+  <section
+    id="profilePage"
+    class="page">
 
-    <div class="profile">
+    <div class="profile-card">
 
-      <div class="avatar">👤</div>
+      <div class="avatar">
+        👤
+      </div>
 
-      <h2>Doel User</h2>
+      <h2>
+        Doel User
+      </h2>
 
-      <p>ID: 100001</p>
+      <p class="muted">
+        ID: 100001 • LV1
+      </p>
+
+
+      <div class="stats">
+
+        <div class="stat">
+          <b>0</b>
+          <small>Following</small>
+        </div>
+
+        <div class="stat">
+          <b>0</b>
+          <small>Fans</small>
+        </div>
+
+        <div class="stat">
+          <b>1</b>
+          <small>Level</small>
+        </div>
+
+      </div>
 
     </div>
 
 
-    <div class="profile-menu">
+    <h2 class="title">
+      ✨ My Account
+    </h2>
 
-      <button onclick="editName()">
-        ✏️ Edit Profile
-      </button>
 
-      <button onclick="profileAlert('My Coins')">
-        🪙 My Coins
-      </button>
+    <div class="list">
 
-      <button onclick="profileAlert('My Voice Rooms')">
-        🎤 My Voice Rooms
-      </button>
 
-      <button onclick="profileAlert('Followers')">
-        👥 Followers & Following
-      </button>
+      <div
+        class="row"
+        onclick="alert('Wallet: Coins • Diamonds • Exchange')">
 
-      <button onclick="profileAlert('Account Settings')">
-        ⚙️ Account Settings
-      </button>
+        <div class="icon-box">
+          🪙
+        </div>
 
-      <button onclick="profileAlert('Privacy')">
-        🔒 Privacy & Security
-      </button>
+        <div class="row-main">
 
-      <button onclick="profileAlert('Notifications')">
-        🔔 Notifications
-      </button>
+          <b>
+            Wallet
+          </b>
 
-      <button onclick="profileAlert('Language')">
-        🌐 Language
-      </button>
+          <small>
+            Coins • Diamonds • Exchange
+          </small>
 
-      <button onclick="profileAlert('Help Center')">
-        ❓ Help Center
-      </button>
+        </div>
 
-      <button onclick="logout()">
-        🚪 Logout
-      </button>
+        <span>
+          ›
+        </span>
+
+      </div>
+
+
+      <div
+        class="row"
+        onclick="openGiftModal()">
+
+        <div class="icon-box">
+          🎁
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Gift Center
+          </b>
+
+          <small>
+            Gifts • Inventory • History
+          </small>
+
+        </div>
+
+        <span>
+          ›
+        </span>
+
+      </div>
+
+
+      <div
+        class="row"
+        onclick="alert('Store: Vehicles • Frames • Rings • Themes • Custom ID')">
+
+        <div class="icon-box">
+          🏪
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Store
+          </b>
+
+          <small>
+            Vehicles • Frames • Rings • Themes
+          </small>
+
+        </div>
+
+        <span>
+          ›
+        </span>
+
+      </div>
+
+
+      <div
+        class="row"
+        onclick="alert('Level & Rewards system will connect to backend.')">
+
+        <div class="icon-box">
+          🏆
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Level & Medal
+          </b>
+
+          <small>
+            XP • Rewards • Badges
+          </small>
+
+        </div>
+
+        <span>
+          ›
+        </span>
+
+      </div>
+
+
+      <div
+        class="row"
+        onclick="alert('SVIP and CP system will connect to backend.')">
+
+        <div class="icon-box">
+          👑
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            SVIP & CP
+          </b>
+
+          <small>
+            Premium • Couple • Exclusive
+          </small>
+
+        </div>
+
+        <span>
+          ›
+        </span>
+
+      </div>
+
+
+      <div
+        class="row"
+        onclick="alert('Settings: Privacy • Language • Security • Notifications')">
+
+        <div class="icon-box">
+          ⚙️
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Settings
+          </b>
+
+          <small>
+            Privacy • Language • Security
+          </small>
+
+        </div>
+
+        <span>
+          ›
+        </span>
+
+      </div>
+
+
+      <div
+        class="row"
+        onclick="logout()">
+
+        <div class="icon-box">
+          🚪
+        </div>
+
+        <div class="row-main">
+
+          <b>
+            Logout
+          </b>
+
+          <small>
+            Sign out from this device
+          </small>
+
+        </div>
+
+        <span>
+          ›
+        </span>
+
+      </div>
 
     </div>
 
@@ -1094,29 +1805,64 @@ button{
 
   <nav class="bottom-nav">
 
-    <button class="active" onclick="showPage('homePage',this)">
-      <span class="icon">🏠</span>
+    <button
+      class="active"
+      onclick="showPage('homePage',this)">
+
+      <span>
+        🏠
+      </span>
+
       Home
+
     </button>
 
-    <button onclick="showPage('voicePage',this)">
-      <span class="icon">🎤</span>
+
+    <button
+      onclick="showPage('voicePage',this)">
+
+      <span>
+        🎤
+      </span>
+
       Voice
+
     </button>
 
-    <button onclick="showPage('discoverPage',this)">
-      <span class="icon">🔎</span>
+
+    <button
+      onclick="showPage('discoverPage',this)">
+
+      <span>
+        🌍
+      </span>
+
       Discover
+
     </button>
 
-    <button onclick="showPage('chatPage',this)">
-      <span class="icon">💬</span>
+
+    <button
+      onclick="showPage('chatPage',this)">
+
+      <span>
+        💬
+      </span>
+
       Chat
+
     </button>
 
-    <button onclick="showPage('profilePage',this)">
-      <span class="icon">👤</span>
+
+    <button
+      onclick="showPage('profilePage',this)">
+
+      <span>
+        👤
+      </span>
+
       Profile
+
     </button>
 
   </nav>
@@ -1124,22 +1870,32 @@ button{
 </div>
 
 
-<!-- ================= ROOM ================= -->
+<!-- =====================================================
+     VOICE ROOM
+===================================================== -->
 
 <div id="room">
 
   <div class="room-header">
 
-    <button class="back" onclick="closeRoom()">←</button>
+    <button
+      class="back"
+      onclick="closeRoom()">
+      ←
+    </button>
 
     <div>
-      <div id="roomTitle" class="room-title">
+
+      <div
+        id="roomTitle"
+        class="room-title">
         Voice Room
       </div>
 
-      <div class="room-users">
-        👥 128 people online
+      <div class="room-sub">
+        👥 128 online • Room ID 100001
       </div>
+
     </div>
 
   </div>
@@ -1149,67 +1905,83 @@ button{
 
     <div class="seat">
       <div class="seat-avatar">👨</div>
-      <div class="seat-name">Rasel</div>
+      <small>Host • LV41</small>
     </div>
 
     <div class="seat">
       <div class="seat-avatar">👩</div>
-      <div class="seat-name">Nusrat</div>
+      <small>Nusrat</small>
     </div>
 
     <div class="seat">
       <div class="seat-avatar">👨</div>
-      <div class="seat-name">Ahmed</div>
+      <small>Ahmed</small>
     </div>
 
     <div class="seat">
       <div class="seat-avatar">👩</div>
-      <div class="seat-name">Maya</div>
+      <small>Maya</small>
     </div>
 
     <div class="seat">
       <div class="seat-avatar">👨</div>
-      <div class="seat-name">Karim</div>
+      <small>Karim</small>
     </div>
 
     <div class="seat">
       <div class="seat-avatar">➕</div>
-      <div class="seat-name">Empty</div>
+      <small>Join Mic</small>
     </div>
 
   </div>
 
 
-  <div id="roomChat" class="chat">
+  <div
+    id="roomChat"
+    class="room-chat">
 
-    <div class="msg">
-      <b>Rasel</b>
-      Hello everyone! 👋
+    <div class="message">
+      <b>Host</b>
+      Welcome to Doel! 👋
     </div>
 
-    <div class="msg">
+    <div class="message">
       <b>Nusrat</b>
-      Welcome to Doel ❤️
+      Hello everyone ❤️
     </div>
 
   </div>
 
 
-  <button id="micButton" class="mic" onclick="toggleMic()">
-    🎤
-  </button>
-
-
-  <div class="chatbar">
+  <div class="room-tools">
 
     <input
-      id="chatInput"
-      placeholder="Write a message..."
-      onkeydown="if(event.key==='Enter')sendMessage()"
-    >
+      id="roomMessage"
+      placeholder="Say Hi / Message"
+      onkeydown="if(event.key==='Enter')sendRoomMessage()">
 
-    <button onclick="sendMessage()">
-      Send
+    <button
+      class="tool"
+      onclick="sendRoomMessage()">
+      ➤
+    </button>
+
+    <button
+      class="tool"
+      onclick="toggleMic(this)">
+      🎤
+    </button>
+
+    <button
+      class="tool gift-tool"
+      onclick="openGiftModal()">
+      🎁
+    </button>
+
+    <button
+      class="tool"
+      onclick="alert('More: Follow • Share • Report • Game')">
+      •••
     </button>
 
   </div>
@@ -1217,30 +1989,109 @@ button{
 </div>
 
 
-<!-- ================= LOGIN MODAL ================= -->
+<!-- =====================================================
+     GIFT MODAL
+===================================================== -->
 
-<div id="loginModal">
+<div
+  id="giftModal"
+  class="modal"
+  style="display:none;position:fixed;inset:0;z-index:300;background:#0008;align-items:flex-end;">
 
-  <div class="login-box">
+  <div class="gift-sheet">
 
-    <h2>📱 Phone Login</h2>
+    <h2>
+      🎁 Send Gift
+    </h2>
 
-    <p>
-      Enter your phone number to continue.
-    </p>
+    <div class="gift-grid">
 
-    <input
-      id="phoneInput"
-      type="tel"
-      placeholder="+880 1XXXXXXXXX"
-    >
+      <div class="gift-item">
 
-    <button class="login-action" onclick="phoneLogin()">
-      Continue
-    </button>
+        <strong>
+          🌹
+        </strong>
 
-    <button class="close-login" onclick="closePhoneLogin()">
-      Cancel
+        Rose
+
+        <br>
+
+        10 🪙
+
+        <button
+          onclick="sendGift(10)">
+          Send
+        </button>
+
+      </div>
+
+
+      <div class="gift-item">
+
+        <strong>
+          🥚
+        </strong>
+
+        Golden Egg
+
+        <br>
+
+        100 🪙
+
+        <button
+          onclick="sendGift(100)">
+          Send
+        </button>
+
+      </div>
+
+
+      <div class="gift-item">
+
+        <strong>
+          🚗
+        </strong>
+
+        Supercar
+
+        <br>
+
+        1,000 🪙
+
+        <button
+          onclick="sendGift(1000)">
+          Send
+        </button>
+
+      </div>
+
+
+      <div class="gift-item">
+
+        <strong>
+          💰
+        </strong>
+
+        Gold Bar
+
+        <br>
+
+        5,000 🪙
+
+        <button
+          onclick="sendGift(5000)">
+          Send
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="close"
+      onclick="closeGiftModal()">
+      Close
     </button>
 
   </div>
@@ -1250,44 +2101,23 @@ button{
 
 <script>
 
-/* ================= LOGIN ================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
-function startLogin(provider){
+function login(provider){
 
-  /*
-    Demo login.
-    Real Google/Facebook authentication
-    will be connected with Firebase later.
-  */
+  localStorage.setItem(
+    "doelLoggedIn",
+    "true"
+  );
 
-  localStorage.setItem("doelLoggedIn","true");
-  localStorage.setItem("doelProvider",provider);
-
-  enterApp();
-
-}
-
-
-function guestLogin(){
-
-  localStorage.setItem("doelLoggedIn","true");
-  localStorage.setItem("doelProvider","Guest");
+  localStorage.setItem(
+    "doelProvider",
+    provider
+  );
 
   enterApp();
-
-}
-
-
-function openPhoneLogin(){
-
-  document.getElementById("loginModal").style.display="flex";
-
-}
-
-
-function closePhoneLogin(){
-
-  document.getElementById("loginModal").style.display="none";
 
 }
 
@@ -1295,225 +2125,456 @@ function closePhoneLogin(){
 function phoneLogin(){
 
   const phone =
-    document.getElementById("phoneInput").value.trim();
+    prompt(
+      "Enter your phone number"
+    );
 
-  if(phone===""){
+  if(
+    phone &&
+    phone.trim() !== ""
+  ){
 
-    alert("Please enter your phone number.");
+    localStorage.setItem(
+      "doelLoggedIn",
+      "true"
+    );
 
-    return;
+    localStorage.setItem(
+      "doelProvider",
+      "Phone"
+    );
+
+    localStorage.setItem(
+      "doelPhone",
+      phone
+    );
+
+    enterApp();
 
   }
-
-  localStorage.setItem("doelLoggedIn","true");
-  localStorage.setItem("doelProvider","Phone");
-  localStorage.setItem("doelPhone",phone);
-
-  closePhoneLogin();
-
-  enterApp();
 
 }
 
 
 function enterApp(){
 
-  document.getElementById("welcome").style.display="none";
+  document.getElementById(
+    "welcome"
+  ).style.display="none";
 
-  document.getElementById("mainApp").style.display="block";
+  document.getElementById(
+    "mainApp"
+  ).style.display="block";
 
 }
 
 
-/* ================= AUTO LOGIN ================= */
+/* AUTO LOGIN */
 
-window.addEventListener("load",function(){
+window.addEventListener(
+  "load",
+  function(){
 
-  const loggedIn =
-    localStorage.getItem("doelLoggedIn");
+    if(
+      localStorage.getItem(
+        "doelLoggedIn"
+      ) === "true"
+    ){
 
-  if(loggedIn==="true"){
+      enterApp();
 
-    enterApp();
+    }
 
   }
+);
 
-});
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(
+  pageId,
+  button
+){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(
+      function(page){
+
+        page.classList.remove(
+          "active"
+        );
+
+      }
+    );
 
 
-/* ================= NAVIGATION ================= */
-
-function showPage(pageId,button){
-
-  document.querySelectorAll(".page")
-    .forEach(function(page){
-
-      page.classList.remove("active");
-
-    });
-
-  document.getElementById(pageId)
+  document
+    .getElementById(pageId)
     .classList.add("active");
 
 
-  document.querySelectorAll(".bottom-nav button")
-    .forEach(function(btn){
+  document
+    .querySelectorAll(
+      ".bottom-nav button"
+    )
+    .forEach(
+      function(btn){
 
-      btn.classList.remove("active");
+        btn.classList.remove(
+          "active"
+        );
 
-    });
+      }
+    );
 
-  button.classList.add("active");
 
-  window.scrollTo(0,0);
+  button.classList.add(
+    "active"
+  );
+
+  window.scrollTo(
+    0,
+    0
+  );
 
 }
 
 
-/* ================= TOP MENU ================= */
+/* =====================================================
+   TOP MENU
+===================================================== */
 
-function topAction(name){
+function topAction(
+  button,
+  name
+){
 
-  if(name==="Rooms"){
+  document
+    .querySelectorAll(
+      ".top-menu button"
+    )
+    .forEach(
+      function(btn){
+
+        btn.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+  button.classList.add(
+    "active"
+  );
+
+
+  if(name === "Rooms"){
 
     showPage(
       "voicePage",
-      document.querySelectorAll(".bottom-nav button")[1]
+      document.querySelectorAll(
+        ".bottom-nav button"
+      )[1]
     );
 
     return;
 
   }
 
-  if(name==="Search"){
 
-    alert("Search system will be connected soon.");
+  if(name === "Search"){
+
+    searchUser();
 
     return;
 
   }
 
-  alert(name + " section selected.");
+
+  alert(
+    name +
+    " section selected."
+  );
 
 }
 
 
-/* ================= VOICE ROOM ================= */
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchUser(){
+
+  const q =
+    prompt(
+      "Search User ID, Username or Room ID"
+    );
+
+  if(q){
+
+    alert(
+      "Searching for: " +
+      q +
+      "\\n\\nReal search database will be connected in the backend."
+    );
+
+  }
+
+}
+
+
+function doSearch(){
+
+  const q =
+    document
+      .getElementById(
+        "searchInput"
+      )
+      .value
+      .trim();
+
+  if(!q){
+
+    searchUser();
+
+    return;
+
+  }
+
+  alert(
+    "Searching for: " +
+    q +
+    "\\n\\nReal search database will be connected in the backend."
+  );
+
+}
+
+
+/* =====================================================
+   VOICE ROOM
+===================================================== */
 
 function openRoom(name){
 
-  document.getElementById("roomTitle").textContent=name;
+  document
+    .getElementById(
+      "roomTitle"
+    )
+    .textContent = name;
 
-  document.getElementById("room").style.display="block";
+
+  document
+    .getElementById(
+      "room"
+    )
+    .style.display="block";
 
 }
 
 
 function closeRoom(){
 
-  document.getElementById("room").style.display="none";
+  document
+    .getElementById(
+      "room"
+    )
+    .style.display="none";
 
 }
 
 
-function toggleMic(){
+/* MICROPHONE */
 
-  const mic =
-    document.getElementById("micButton");
+function toggleMic(button){
 
-  mic.classList.toggle("on");
+  if(
+    button.textContent === "🎤"
+  ){
 
-  if(mic.classList.contains("on")){
+    button.textContent="🔴";
 
-    mic.textContent="🔴";
-
-    alert("Microphone ON");
+    alert(
+      "Microphone ON"
+    );
 
   }else{
 
-    mic.textContent="🎤";
+    button.textContent="🎤";
 
-    alert("Microphone OFF");
+    alert(
+      "Microphone OFF"
+    );
 
   }
 
 }
 
 
-/* ================= CHAT ================= */
+/* ROOM CHAT */
 
-function sendMessage(){
+function sendRoomMessage(){
 
   const input =
-    document.getElementById("chatInput");
+    document.getElementById(
+      "roomMessage"
+    );
 
-  const text=input.value.trim();
+  const text =
+    input.value.trim();
 
-  if(text==="") return;
+
+  if(!text){
+    return;
+  }
+
 
   const message =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  message.className="msg";
+  message.className =
+    "message";
 
-  const user =
-    document.createElement("b");
 
-  user.textContent="You";
+  const name =
+    document.createElement(
+      "b"
+    );
 
-  const body =
-    document.createTextNode(text);
+  name.textContent =
+    "You";
 
-  message.appendChild(user);
-  message.appendChild(body);
 
-  document.getElementById("roomChat")
-    .appendChild(message);
+  message.appendChild(
+    name
+  );
+
+
+  message.appendChild(
+    document.createTextNode(
+      text
+    )
+  );
+
+
+  document
+    .getElementById(
+      "roomChat"
+    )
+    .appendChild(
+      message
+    );
+
 
   input.value="";
 
-  const chat =
-    document.getElementById("roomChat");
 
-  chat.scrollTop=chat.scrollHeight;
+  const chat =
+    document.getElementById(
+      "roomChat"
+    );
+
+  chat.scrollTop =
+    chat.scrollHeight;
 
 }
 
 
-/* ================= PROFILE ================= */
+/* =====================================================
+   GIFTS
+===================================================== */
 
-function editName(){
+function openGiftModal(){
 
-  const name =
-    prompt("Enter your name:","Doel User");
+  document.getElementById(
+    "giftModal"
+  ).style.display="flex";
 
-  if(name && name.trim()!==""){
+}
 
-    document.querySelector(".profile h2")
-      .textContent=name.trim();
+
+function closeGiftModal(){
+
+  document.getElementById(
+    "giftModal"
+  ).style.display="none";
+
+}
+
+
+function sendGift(cost){
+
+  let coins =
+    Number(
+      localStorage.getItem(
+        "doelCoins"
+      ) || 1000
+    );
+
+
+  if(coins < cost){
+
+    alert(
+      "Not enough coins."
+    );
+
+    return;
 
   }
 
-}
+
+  coins -= cost;
 
 
-function profileAlert(name){
-
-  alert(
-    name +
-    " will be connected in the next development step."
+  localStorage.setItem(
+    "doelCoins",
+    coins
   );
 
+
+  document.getElementById(
+    "coinBalance"
+  ).textContent =
+    coins.toLocaleString();
+
+
+  alert(
+    "Gift sent! " +
+    cost +
+    " coins deducted."
+  );
+
+
+  closeGiftModal();
+
 }
 
 
-/* ================= LOGOUT ================= */
+/* =====================================================
+   COINS
+===================================================== */
+
+document.getElementById(
+  "coinBalance"
+).textContent =
+Number(
+  localStorage.getItem(
+    "doelCoins"
+  ) || 1000
+).toLocaleString();
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 function logout(){
 
-  localStorage.removeItem("doelLoggedIn");
-  localStorage.removeItem("doelProvider");
-  localStorage.removeItem("doelPhone");
+  localStorage.clear();
 
   location.reload();
 
