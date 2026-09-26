@@ -3149,6 +3149,652 @@ document.querySelectorAll('.modal')
 updateBalance();
 
 </script>
+<!-- =========================
+     MR CHAT GAME SYSTEM
+     Lucky Fruit
+     ========================= -->
 
+<style>
+#mrGameMenu,
+#mrLuckyFruitGame{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  font-family:Arial,sans-serif;
+}
+
+#mrGameMenu{
+  background:rgba(0,0,0,.65);
+  align-items:flex-end;
+}
+
+.mr-game-panel{
+  width:100%;
+  max-width:520px;
+  height:88%;
+  margin:auto auto 0;
+  background:#f7f8fc;
+  border-radius:26px 26px 0 0;
+  overflow:hidden;
+}
+
+.mr-game-head{
+  height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:white;
+  border-bottom:1px solid #eee;
+}
+
+.mr-game-head b{
+  font-size:19px;
+}
+
+.mr-game-close{
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#f0f0f0;
+  font-size:24px;
+}
+
+.mr-game-balance{
+  margin:15px;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#6c35ff,#a855f7);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.mr-game-balance b{
+  font-size:19px;
+}
+
+.mr-game-list{
+  padding:5px 15px 30px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.mr-game-card{
+  border:0;
+  min-height:105px;
+  border-radius:18px;
+  background:white;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  text-align:left;
+  padding:15px;
+}
+
+.mr-game-card .game-icon{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.mr-game-card b{
+  display:block;
+  font-size:15px;
+}
+
+.mr-game-card small{
+  color:#999;
+  display:block;
+  margin-top:5px;
+}
+
+.mr-game-card.active{
+  border:2px solid #7c3aed;
+}
+
+.mr-game-card.disabled{
+  opacity:.55;
+}
+
+#mrLuckyFruitGame{
+  background:linear-gradient(145deg,#21083d,#50137c,#170522);
+  color:white;
+}
+
+.lucky-fruit-wrap{
+  width:100%;
+  max-width:520px;
+  height:100%;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+}
+
+.lucky-fruit-head{
+  height:65px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 16px;
+  background:rgba(0,0,0,.25);
+}
+
+.lucky-fruit-head b{
+  font-size:20px;
+}
+
+.lucky-back{
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  color:white;
+  font-size:23px;
+}
+
+.lucky-balance{
+  margin:20px 16px;
+  padding:15px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.12);
+  display:flex;
+  justify-content:space-between;
+}
+
+.lucky-machine{
+  margin:25px 16px;
+  padding:22px 12px;
+  border-radius:25px;
+  background:rgba(255,255,255,.1);
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
+}
+
+.lucky-reels{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.lucky-reel{
+  height:100px;
+  border-radius:18px;
+  background:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:50px;
+  color:#222;
+}
+
+.lucky-result{
+  min-height:35px;
+  text-align:center;
+  margin-top:20px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.lucky-spin{
+  display:block;
+  width:calc(100% - 32px);
+  height:55px;
+  margin:20px 16px;
+  border:0;
+  border-radius:18px;
+  background:linear-gradient(135deg,#ffd700,#ff9d00);
+  color:#321500;
+  font-size:18px;
+  font-weight:900;
+}
+
+.lucky-spin:active{
+  transform:scale(.97);
+}
+
+.lucky-note{
+  text-align:center;
+  color:rgba(255,255,255,.65);
+  font-size:12px;
+  padding:10px 20px;
+}
+</style>
+
+
+<!-- GAME MENU -->
+<div id="mrGameMenu">
+
+  <div class="mr-game-panel">
+
+    <div class="mr-game-head">
+      <b>🎮 Games</b>
+
+      <button class="mr-game-close"
+              onclick="closeMrGameMenu()">
+        ×
+      </button>
+    </div>
+
+    <div class="mr-game-balance">
+      <span>My Coins</span>
+      <b>🪙 <span id="mrGameCoins">12,580</span></b>
+    </div>
+
+    <div class="mr-game-list">
+
+      <button class="mr-game-card active"
+              onclick="openLuckyFruitGame()">
+        <div class="game-icon">🍎</div>
+        <b>Lucky Fruit</b>
+        <small>Play with Coins</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Greedy Pro')">
+        <div class="game-icon">💰</div>
+        <b>Greedy Pro</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Jackpot')">
+        <div class="game-icon">🎰</div>
+        <b>Jackpot</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Teen Patti')">
+        <div class="game-icon">🃏</div>
+        <b>Teen Patti</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Lucky Pro')">
+        <div class="game-icon">🍀</div>
+        <b>Lucky Pro</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Greedy Box')">
+        <div class="game-icon">🎁</div>
+        <b>Greedy Box</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Jackpot Slot')">
+        <div class="game-icon">🎰</div>
+        <b>Jackpot Slot</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Ludo')">
+        <div class="game-icon">🎲</div>
+        <b>Ludo</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Ludo Team')">
+        <div class="game-icon">👥</div>
+        <b>Ludo Team</b>
+        <small>Coming Soon</small>
+      </button>
+
+      <button class="mr-game-card disabled"
+              onclick="gameComingSoon('Carrom')">
+        <div class="game-icon">🏏</div>
+        <b>Carrom</b>
+        <small>Coming Soon</small>
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- LUCKY FRUIT GAME -->
+<div id="mrLuckyFruitGame">
+
+  <div class="lucky-fruit-wrap">
+
+    <div class="lucky-fruit-head">
+
+      <button class="lucky-back"
+              onclick="closeLuckyFruitGame()">
+        ‹
+      </button>
+
+      <b>🍎 Lucky Fruit</b>
+
+      <div>🪙 <span id="luckyFruitCoins">12,580</span></div>
+
+    </div>
+
+
+    <div class="lucky-balance">
+      <span>Balance</span>
+      <b>🪙 <span id="luckyBalance">12,580</span></b>
+    </div>
+
+
+    <div class="lucky-machine">
+
+      <div class="lucky-reels">
+
+        <div class="lucky-reel"
+             id="fruit1">
+          🍎
+        </div>
+
+        <div class="lucky-reel"
+             id="fruit2">
+          🍊
+        </div>
+
+        <div class="lucky-reel"
+             id="fruit3">
+          🍉
+        </div>
+
+      </div>
+
+      <div class="lucky-result"
+           id="luckyResult">
+        Press SPIN to play
+      </div>
+
+    </div>
+
+
+    <button class="lucky-spin"
+            onclick="spinLuckyFruit()">
+      🎰 SPIN — 10 COINS
+    </button>
+
+
+    <div class="lucky-note">
+      Virtual Coins only · No cash withdrawal
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   MR CHAT GAME SYSTEM
+   ========================================= */
+
+function mrGetCoins(){
+
+  if(typeof coins !== "undefined"){
+    return coins;
+  }
+
+  return 12580;
+}
+
+
+function mrSetCoins(value){
+
+  if(typeof coins !== "undefined"){
+    coins = Math.max(0, Math.floor(value));
+  }
+
+  if(typeof updateBalance === "function"){
+    updateBalance();
+  }
+
+  updateMrGameCoins();
+}
+
+
+function updateMrGameCoins(){
+
+  const balance = mrGetCoins();
+
+  const a = document.getElementById("mrGameCoins");
+  const b = document.getElementById("luckyFruitCoins");
+  const c = document.getElementById("luckyBalance");
+
+  if(a) a.textContent = balance.toLocaleString();
+  if(b) b.textContent = balance.toLocaleString();
+  if(c) c.textContent = balance.toLocaleString();
+
+  const profile = document.getElementById("profileCoins");
+  const gift = document.getElementById("giftBalance");
+
+  if(profile) profile.textContent = balance.toLocaleString();
+  if(gift) gift.textContent = balance.toLocaleString();
+}
+
+
+/* =========================================
+   GAME MENU
+   ========================================= */
+
+function openMrGames(){
+
+  const menu = document.getElementById("mrGameMenu");
+
+  if(menu){
+
+    menu.style.display = "flex";
+
+    updateMrGameCoins();
+
+  }
+
+}
+
+
+function closeMrGameMenu(){
+
+  const menu = document.getElementById("mrGameMenu");
+
+  if(menu){
+    menu.style.display = "none";
+  }
+
+}
+
+
+/* =========================================
+   LUCKY FRUIT
+   ========================================= */
+
+function openLuckyFruitGame(){
+
+  closeMrGameMenu();
+
+  const game = document.getElementById("mrLuckyFruitGame");
+
+  if(game){
+
+    game.style.display = "block";
+
+    updateMrGameCoins();
+
+    document.getElementById("luckyResult").textContent =
+      "Press SPIN to play";
+
+  }
+
+}
+
+
+function closeLuckyFruitGame(){
+
+  const game = document.getElementById("mrLuckyFruitGame");
+
+  if(game){
+    game.style.display = "none";
+  }
+
+}
+
+
+/* =========================================
+   SPIN
+   ========================================= */
+
+function spinLuckyFruit(){
+
+  const cost = 10;
+
+  let currentCoins = mrGetCoins();
+
+  if(currentCoins < cost){
+
+    document.getElementById("luckyResult").textContent =
+      "❌ Not enough Coins";
+
+    return;
+  }
+
+
+  /* Pay 10 Coins */
+
+  currentCoins -= cost;
+
+  mrSetCoins(currentCoins);
+
+
+  const fruits = [
+    "🍎",
+    "🍊",
+    "🍋",
+    "🍉",
+    "🍇",
+    "🍓"
+  ];
+
+
+  const f1 =
+    fruits[Math.floor(Math.random() * fruits.length)];
+
+  const f2 =
+    fruits[Math.floor(Math.random() * fruits.length)];
+
+  const f3 =
+    fruits[Math.floor(Math.random() * fruits.length)];
+
+
+  document.getElementById("fruit1").textContent = f1;
+  document.getElementById("fruit2").textContent = f2;
+  document.getElementById("fruit3").textContent = f3;
+
+
+  let reward = 0;
+  let message = "";
+
+
+  if(f1 === f2 && f2 === f3){
+
+    reward = 100;
+
+    message = "🎉 JACKPOT! +100 Coins";
+
+  }
+  else if(
+    f1 === f2 ||
+    f1 === f3 ||
+    f2 === f3
+  ){
+
+    reward = 25;
+
+    message = "✨ Two Match! +25 Coins";
+
+  }
+  else{
+
+    message = "Try Again! -10 Coins";
+
+  }
+
+
+  if(reward > 0){
+
+    mrSetCoins(
+      mrGetCoins() + reward
+    );
+
+  }
+
+
+  document.getElementById("luckyResult").textContent =
+    message;
+
+  updateMrGameCoins();
+
+}
+
+
+/* =========================================
+   OTHER GAMES
+   ========================================= */
+
+function gameComingSoon(name){
+
+  alert(name + " is coming soon!");
+
+}
+
+
+/* =========================================
+   CONNECT YOUR EXISTING GAME BUTTON
+   ========================================= */
+
+const oldShowToast = window.showToast;
+
+window.showToast = function(message){
+
+  if(message === "Game"){
+
+    openMrGames();
+
+    return;
+
+  }
+
+
+  if(typeof oldShowToast === "function"){
+
+    oldShowToast(message);
+
+  }
+};
+
+
+/* =========================================
+   UPDATE COINS WHEN PAGE STARTS
+   ========================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    setTimeout(
+      updateMrGameCoins,
+      300
+    );
+
+  }
+);
+
+</script>
 </body>
 </html>
+
