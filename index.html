@@ -31,8 +31,6 @@ button{
   user-select:none;
 }
 
-/* APP */
-
 #app{
   width:100%;
   height:100%;
@@ -52,8 +50,6 @@ button{
 .page.show{
   display:block;
 }
-
-/* 3D BUTTON */
 
 .btn3d{
   position:relative;
@@ -178,57 +174,132 @@ button{
   font-size:24px;
 }
 
-/* BANNER */
+/* EVENT SLIDER */
 
-.banner-wrap{
-  padding:10px 10px 6px;
+.event-slider-wrap{
+  padding:10px 10px 4px;
 }
 
-.banner{
+.event-slider{
   width:100%;
   height:145px;
   border-radius:20px;
   overflow:hidden;
   position:relative;
-  background:
-    linear-gradient(110deg,rgba(65,36,160,.86),rgba(245,74,144,.48)),
-    url("https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80")
-    center/cover;
   box-shadow:0 8px 20px rgba(60,50,120,.22);
 }
 
-.banner-content{
-  position:absolute;
-  inset:0;
-  padding:20px;
+.event-track{
+  width:100%;
+  height:100%;
+  display:flex;
+  transition:transform .5s ease;
+}
+
+.event-slide{
+  min-width:100%;
+  height:100%;
+  position:relative;
+  overflow:hidden;
   color:white;
 }
 
-.banner-content h2{
-  font-size:25px;
-  margin-bottom:7px;
+.event-slide:nth-child(1){
+  background:
+    linear-gradient(110deg,rgba(65,36,160,.88),rgba(245,74,144,.48)),
+    url("https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
 }
 
-.banner-content p{
-  font-size:12px;
-  opacity:.92;
-  line-height:1.5;
+.event-slide:nth-child(2){
+  background:
+    linear-gradient(110deg,rgba(235,53,125,.86),rgba(255,181,75,.45)),
+    url("https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+}
+
+.event-slide:nth-child(3){
+  background:
+    linear-gradient(110deg,rgba(30,90,210,.88),rgba(91,211,255,.43)),
+    url("https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+}
+
+.event-slide:nth-child(4){
+  background:
+    linear-gradient(110deg,rgba(120,45,200,.88),rgba(255,88,167,.45)),
+    url("https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+}
+
+.event-slide:nth-child(5){
+  background:
+    linear-gradient(110deg,rgba(20,130,170,.88),rgba(50,220,160,.43)),
+    url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80")
+    center/cover;
+}
+
+.event-content{
+  position:absolute;
+  inset:0;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+
+.event-content h2{
+  font-size:23px;
+  margin-bottom:6px;
+  text-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.event-content p{
+  font-size:11px;
+  opacity:.94;
+  line-height:1.45;
   max-width:270px;
 }
 
-.banner-button{
-  height:36px;
-  padding:0 17px;
-  margin-top:13px;
-  border-radius:18px;
+.event-button{
+  height:33px;
+  padding:0 16px;
+  margin-top:11px;
+  border-radius:17px;
   background:white;
   color:#5b42df;
   font-weight:800;
-  font-size:11px;
+  font-size:10px;
   box-shadow:0 5px 12px rgba(0,0,0,.18);
 }
 
-/* CATEGORY */
+.event-dots{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:9px;
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  z-index:5;
+}
+
+.event-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
+  transition:.2s;
+}
+
+.event-dot.active{
+  width:18px;
+  border-radius:8px;
+  background:white;
+}
+
+/* CATEGORIES */
 
 .categories{
   display:grid;
@@ -351,7 +422,7 @@ button{
   box-shadow:0 0 8px #ff405d;
 }
 
-/* SOCIAL STAR */
+/* STARS */
 
 .star-list{
   padding:0 10px 15px;
@@ -405,7 +476,7 @@ button{
   font-weight:800;
 }
 
-/* DYNAMIC EMPTY / USER LIST */
+/* FOLLOWING / RECENT */
 
 .dynamic-area{
   min-height:calc(100vh - 64px);
@@ -554,6 +625,212 @@ button{
   height:3px;
   border-radius:10px;
   background:linear-gradient(90deg,#7155ff,#ed55a2);
+}
+
+/* SIMPLE PAGES */
+
+.simple-page{
+  padding:16px 12px 90px;
+}
+
+.simple-title{
+  font-size:23px;
+  font-weight:800;
+  margin:8px 2px 16px;
+}
+
+.big-feature{
+  height:150px;
+  border-radius:21px;
+  padding:20px;
+  color:white;
+  background:linear-gradient(120deg,#5c42dc,#f25a9e);
+  box-shadow:0 8px 18px rgba(80,60,190,.22);
+}
+
+.big-feature h2{
+  font-size:23px;
+}
+
+.big-feature p{
+  margin-top:8px;
+  font-size:11px;
+  opacity:.85;
+  line-height:1.5;
+}
+
+.feature-grid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.feature-card{
+  height:105px;
+  border-radius:19px;
+  background:white;
+  padding:14px;
+  border:1px solid #eeeef4;
+  box-shadow:0 5px 15px rgba(30,30,70,.07);
+}
+
+.feature-card .ic{
+  font-size:26px;
+}
+
+.feature-card b{
+  display:block;
+  margin-top:8px;
+  font-size:12px;
+}
+
+/* PROFILE */
+
+.profile-head{
+  height:205px;
+  padding:25px 15px;
+  color:white;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.25),transparent 25%),
+    linear-gradient(135deg,#5c43dc,#d74c9b);
+  border-radius:0 0 30px 30px;
+}
+
+.profile-main{
+  display:flex;
+  align-items:center;
+}
+
+.profile-avatar{
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  border:3px solid white;
+  object-fit:cover;
+}
+
+.profile-info{
+  padding-left:12px;
+}
+
+.profile-info h2{
+  font-size:20px;
+}
+
+.profile-info p{
+  margin-top:5px;
+  font-size:11px;
+  opacity:.85;
+}
+
+.profile-stats{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  text-align:center;
+}
+
+.profile-stats b{
+  display:block;
+  font-size:16px;
+}
+
+.profile-stats span{
+  font-size:9px;
+  opacity:.75;
+}
+
+.profile-body{
+  padding:12px;
+}
+
+.wallet{
+  background:white;
+  border-radius:20px;
+  padding:15px;
+  margin-bottom:12px;
+  border:1px solid #eeeef5;
+  box-shadow:0 6px 18px rgba(30,30,70,.08);
+}
+
+.wallet-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.wallet-top span{
+  color:#999;
+  font-size:11px;
+}
+
+.wallet-top b{
+  font-size:20px;
+  color:#f2a816;
+}
+
+.wallet-btn{
+  margin-top:12px;
+  width:100%;
+  height:45px;
+  border-radius:14px;
+  color:white;
+  background:linear-gradient(145deg,#ffdc67,#efa91d);
+  box-shadow:0 4px 0 #bd8613;
+  font-weight:800;
+}
+
+.profile-menu{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #eeeef5;
+  box-shadow:0 6px 18px rgba(30,30,70,.08);
+}
+
+.menu-row{
+  height:58px;
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  border-bottom:1px solid #f0f0f2;
+}
+
+.menu-row:last-child{
+  border-bottom:0;
+}
+
+.menu-icon{
+  width:39px;
+  height:39px;
+  border-radius:12px;
+  margin-right:3px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f1fb;
+  font-size:18px;
+}
+
+.menu-row span{
+  flex:1;
+  font-size:12px;
+  font-weight:700;
+  color:#343340;
+}
+
+.menu-row i{
+  width:25px;
+  height:25px;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f3f7;
+  color:#8b8995;
+  font-size:17px;
+  font-style:normal;
 }
 
 /* SEARCH */
@@ -979,7 +1256,7 @@ button{
     0 10px 20px rgba(235,45,124,.3);
 }
 
-/* MODAL */
+/* MODALS */
 
 .modal{
   position:fixed;
@@ -1123,8 +1400,6 @@ button{
   font-weight:800;
 }
 
-/* SETTINGS */
-
 .settings-panel{
   width:100%;
   height:80%;
@@ -1160,7 +1435,7 @@ button{
   font-size:9px;
 }
 
-.setting-row > span{
+.setting-row>span{
   width:27px;
   height:27px;
   border-radius:9px;
@@ -1198,212 +1473,6 @@ button{
   margin-left:20px;
 }
 
-/* PROFILE */
-
-.profile-head{
-  height:205px;
-  padding:25px 15px;
-  color:white;
-  background:
-    radial-gradient(circle at 90% 10%,rgba(255,255,255,.25),transparent 25%),
-    linear-gradient(135deg,#5c43dc,#d74c9b);
-  border-radius:0 0 30px 30px;
-}
-
-.profile-main{
-  display:flex;
-  align-items:center;
-}
-
-.profile-avatar{
-  width:75px;
-  height:75px;
-  border-radius:50%;
-  border:3px solid white;
-  object-fit:cover;
-}
-
-.profile-info{
-  padding-left:12px;
-}
-
-.profile-info h2{
-  font-size:20px;
-}
-
-.profile-info p{
-  margin-top:5px;
-  font-size:11px;
-  opacity:.85;
-}
-
-.profile-stats{
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  text-align:center;
-}
-
-.profile-stats b{
-  display:block;
-  font-size:16px;
-}
-
-.profile-stats span{
-  font-size:9px;
-  opacity:.75;
-}
-
-.profile-body{
-  padding:12px;
-}
-
-.wallet{
-  background:white;
-  border-radius:20px;
-  padding:15px;
-  margin-bottom:12px;
-  border:1px solid #eeeef5;
-  box-shadow:0 6px 18px rgba(30,30,70,.08);
-}
-
-.wallet-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.wallet-top span{
-  color:#999;
-  font-size:11px;
-}
-
-.wallet-top b{
-  font-size:20px;
-  color:#f2a816;
-}
-
-.wallet-btn{
-  margin-top:12px;
-  width:100%;
-  height:45px;
-  border-radius:14px;
-  color:white;
-  background:linear-gradient(145deg,#ffdc67,#efa91d);
-  box-shadow:0 4px 0 #bd8613;
-  font-weight:800;
-}
-
-.profile-menu{
-  background:white;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid #eeeef5;
-  box-shadow:0 6px 18px rgba(30,30,70,.08);
-}
-
-.menu-row{
-  height:58px;
-  padding:0 14px;
-  display:flex;
-  align-items:center;
-  border-bottom:1px solid #f0f0f2;
-}
-
-.menu-row:last-child{
-  border-bottom:0;
-}
-
-.menu-icon{
-  width:39px;
-  height:39px;
-  border-radius:12px;
-  margin-right:3px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f3f1fb;
-  font-size:18px;
-}
-
-.menu-row span{
-  flex:1;
-  font-size:12px;
-  font-weight:700;
-  color:#343340;
-}
-
-.menu-row i{
-  width:25px;
-  height:25px;
-  border-radius:9px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f3f3f7;
-  color:#8b8995;
-  font-size:17px;
-  font-style:normal;
-}
-
-/* SIMPLE PAGES */
-
-.simple-page{
-  padding:16px 12px 90px;
-}
-
-.simple-title{
-  font-size:23px;
-  font-weight:800;
-  margin:8px 2px 16px;
-}
-
-.big-feature{
-  height:150px;
-  border-radius:21px;
-  padding:20px;
-  color:white;
-  background:linear-gradient(120deg,#5c42dc,#f25a9e);
-  box-shadow:0 8px 18px rgba(80,60,190,.22);
-}
-
-.big-feature h2{
-  font-size:23px;
-}
-
-.big-feature p{
-  margin-top:8px;
-  font-size:11px;
-  opacity:.85;
-  line-height:1.5;
-}
-
-.feature-grid{
-  margin-top:12px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.feature-card{
-  height:105px;
-  border-radius:19px;
-  background:white;
-  padding:14px;
-  border:1px solid #eeeef4;
-  box-shadow:0 5px 15px rgba(30,30,70,.07);
-}
-
-.feature-card .ic{
-  font-size:26px;
-}
-
-.feature-card b{
-  display:block;
-  margin-top:8px;
-  font-size:12px;
-}
-
 /* TOAST */
 
 #toast{
@@ -1427,8 +1496,9 @@ button{
   transform:translateX(-50%) translateY(0);
 }
 
-@media(max-width:380px){
+/* RESPONSIVE */
 
+@media(max-width:380px){
   .home-tabs{
     gap:3px;
   }
@@ -1456,11 +1526,9 @@ button{
   .gift-main{
     font-size:11px;
   }
-
 }
 
 @media(min-width:700px){
-
   .page{
     max-width:520px;
     left:50%;
@@ -1479,9 +1547,7 @@ button{
     right:auto;
     width:520px;
   }
-
 }
-
 </style>
 </head>
 
@@ -1497,56 +1563,157 @@ button{
 
     <div class="home-tabs">
 
-      <button class="home-tab"
-              onclick="homeTab('following',this)">
+      <button class="home-tab" onclick="homeTab('following',this)">
         Following
       </button>
 
-      <button class="home-tab active"
-              onclick="homeTab('popular',this)">
+      <button class="home-tab active" onclick="homeTab('popular',this)">
         Popular
       </button>
 
-      <button class="home-tab"
-              onclick="homeTab('recent',this)">
+      <button class="home-tab" onclick="homeTab('recent',this)">
         Recent
       </button>
 
     </div>
 
-    <button class="top-action btn3d"
-            onclick="openSearch()">
-      ⌕
+    <button class="top-action btn3d" onclick="openSearch()">
+      🔍
     </button>
 
-    <button class="top-action btn3d primary"
-            onclick="openCreateRoom()">
+    <button class="top-action primary btn3d" onclick="openCreateRoom()">
       ＋
     </button>
 
   </div>
 
 
-  <!-- POPULAR CONTENT -->
+  <!-- POPULAR -->
 
   <div id="popularContent">
 
-    <div class="banner-wrap">
+    <!-- EVENT SLIDER -->
 
-      <div class="banner">
+    <div class="event-slider-wrap">
 
-        <div class="banner-content">
+      <div class="event-slider">
 
-          <h2>Meet New Friends</h2>
+        <div id="eventTrack" class="event-track">
 
-          <p>
-            Join voice rooms and talk with people around the world.
-          </p>
+          <div class="event-slide">
 
-          <button class="banner-button"
-                  onclick="showToast('Welcome to MR Chat')">
-            Explore Now
-          </button>
+            <div class="event-content">
+
+              <h2>🎉 MR Chat Grand Opening</h2>
+
+              <p>
+                Welcome to MR Chat! Join friends,
+                create rooms and enjoy voice chat.
+              </p>
+
+              <button class="event-button"
+                      onclick="showToast('Grand Opening Event')">
+                Join Event
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="event-slide">
+
+            <div class="event-content">
+
+              <h2>🎁 Daily Gift Event</h2>
+
+              <p>
+                Send gifts, enjoy the room and
+                celebrate with your friends.
+              </p>
+
+              <button class="event-button"
+                      onclick="showToast('Daily Gift Event')">
+                View Event
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="event-slide">
+
+            <div class="event-content">
+
+              <h2>🏆 Rank Challenge</h2>
+
+              <p>
+                Join today's demo rank challenge
+                and enjoy the competition.
+              </p>
+
+              <button class="event-button"
+                      onclick="showToast('Rank Challenge')">
+                Join Now
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="event-slide">
+
+            <div class="event-content">
+
+              <h2>💞 CP Event</h2>
+
+              <p>
+                Meet your favorite people and
+                enjoy today's CP event.
+              </p>
+
+              <button class="event-button"
+                      onclick="showToast('CP Event')">
+                Explore
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="event-slide">
+
+            <div class="event-content">
+
+              <h2>👨‍👩‍👧 Family Party</h2>
+
+              <p>
+                Create your family room and
+                invite your friends today.
+              </p>
+
+              <button class="event-button"
+                      onclick="showToast('Family Party')">
+                Enter
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="event-dots">
+
+          <span class="event-dot active"></span>
+          <span class="event-dot"></span>
+          <span class="event-dot"></span>
+          <span class="event-dot"></span>
+          <span class="event-dot"></span>
 
         </div>
 
@@ -1555,52 +1722,55 @@ button{
     </div>
 
 
+    <!-- CATEGORIES -->
+
     <div class="categories">
 
       <button class="category btn3d gold"
-              onclick="showToast('Contribution Ranking')">
+              onclick="showToast('Rank')">
 
         <div class="icon">🏆</div>
 
-        Contribution
+        Rank
 
       </button>
 
 
       <button class="category btn3d pink"
-              onclick="showToast('Charm Ranking')">
+              onclick="showToast('CP')">
 
-        <div class="icon">💎</div>
+        <div class="icon">💞</div>
 
-        Charm
+        CP
 
       </button>
 
 
       <button class="category btn3d blue"
-              onclick="showToast('Room Ranking')">
+              onclick="showToast('Family')">
 
-        <div class="icon">🎙️</div>
+        <div class="icon">👨‍👩‍👧</div>
 
-        Room
+        Family
 
       </button>
 
     </div>
 
 
+    <!-- VOICE ROOMS -->
+
     <div class="section-title">
 
-      Voice Rooms
+      <span>LIVE NOW</span>
 
-      <span>
-        See All ›
-      </span>
+      Voice Rooms
 
     </div>
 
 
-    <div class="room-grid" id="roomGrid">
+    <div id="roomGrid" class="room-grid">
+
 
       <div class="room-card"
            onclick="enterRoom('room1')">
@@ -1634,7 +1804,7 @@ button{
       <div class="room-card"
            onclick="enterRoom('room2')">
 
-        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80">
+        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=600&q=80">
 
         <div class="room-overlay"></div>
 
@@ -1663,7 +1833,7 @@ button{
       <div class="room-card"
            onclick="enterRoom('room3')">
 
-        <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=600&q=80">
+        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80">
 
         <div class="room-overlay"></div>
 
@@ -1680,7 +1850,7 @@ button{
               Live
             </span>
 
-            <span>74</span>
+            <span>76</span>
 
           </div>
 
@@ -1692,7 +1862,7 @@ button{
       <div class="room-card"
            onclick="enterRoom('room4')">
 
-        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80">
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80">
 
         <div class="room-overlay"></div>
 
@@ -1709,7 +1879,7 @@ button{
               Live
             </span>
 
-            <span>52</span>
+            <span>54</span>
 
           </div>
 
@@ -1720,18 +1890,19 @@ button{
     </div>
 
 
+    <!-- SOCIAL STARS -->
+
     <div class="section-title">
 
-      The brightest social star
+      <span>POPULAR</span>
 
-      <span>
-        More ›
-      </span>
+      Social Stars
 
     </div>
 
 
     <div class="star-list">
+
 
       <div class="star">
 
@@ -1743,16 +1914,14 @@ button{
           <b>Emma</b>
 
           <small>
-            ID: 100028 · Level 28 · Social Star
+            ID: 100028 · Level 28
           </small>
 
         </div>
 
         <button class="follow-btn"
                 onclick="followUser(this,'Emma','100028','https://i.pravatar.cc/150?img=47')">
-
           Follow
-
         </button>
 
       </div>
@@ -1768,16 +1937,14 @@ button{
           <b>Sophia</b>
 
           <small>
-            ID: 100035 · Level 25 · Popular
+            ID: 100035 · Level 25
           </small>
 
         </div>
 
         <button class="follow-btn"
                 onclick="followUser(this,'Sophia','100035','https://i.pravatar.cc/150?img=12')">
-
           Follow
-
         </button>
 
       </div>
@@ -1787,7 +1954,7 @@ button{
   </div>
 
 
-  <!-- FOLLOWING CONTENT -->
+  <!-- FOLLOWING -->
 
   <div id="followingContent"
        class="dynamic-area"
@@ -1798,7 +1965,7 @@ button{
   </div>
 
 
-  <!-- RECENT CONTENT -->
+  <!-- RECENT -->
 
   <div id="recentContent"
        class="dynamic-area"
@@ -1823,36 +1990,51 @@ button{
 
     <div class="big-feature">
 
-      <h2>
-        Discover People
-      </h2>
+      <h2>Explore MR Chat</h2>
 
       <p>
-        Find interesting people and join their voice rooms.
+        Discover popular rooms, new friends
+        and interesting communities.
       </p>
 
     </div>
 
+
     <div class="feature-grid">
 
       <div class="feature-card">
+
         <div class="ic">🔥</div>
-        <b>Popular Users</b>
+
+        <b>Trending Rooms</b>
+
       </div>
 
-      <div class="feature-card">
-        <div class="ic">🌎</div>
-        <b>Worldwide</b>
-      </div>
 
       <div class="feature-card">
-        <div class="ic">🎤</div>
-        <b>Voice Rooms</b>
+
+        <div class="ic">👥</div>
+
+        <b>New Friends</b>
+
       </div>
 
+
       <div class="feature-card">
-        <div class="ic">⭐</div>
-        <b>Top Stars</b>
+
+        <div class="ic">🏆</div>
+
+        <b>Rank</b>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="ic">🎁</div>
+
+        <b>Gifts</b>
+
       </div>
 
     </div>
@@ -1862,30 +2044,65 @@ button{
 </div>
 
 
-<!-- VOICE -->
+<!-- MOMENT -->
 
-<div id="voicePage" class="page">
+<div id="momentPage" class="page">
 
   <div class="simple-page">
 
     <div class="simple-title">
-      Voice
+      Moment
     </div>
+
 
     <div class="big-feature">
 
-      <h2>
-        Voice Rooms
-      </h2>
+      <h2>✨ Moments</h2>
 
       <p>
-        Join a room and start talking with friends.
+        Share your moments and discover
+        what your friends are doing.
       </p>
 
-      <button class="banner-button"
-              onclick="enterRoom('room1')">
-        Join Room
-      </button>
+    </div>
+
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <div class="ic">📸</div>
+
+        <b>My Moment</b>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="ic">❤️</div>
+
+        <b>Following</b>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="ic">🌟</div>
+
+        <b>Popular</b>
+
+      </div>
+
+
+      <div class="feature-card">
+
+        <div class="ic">➕</div>
+
+        <b>Create Moment</b>
+
+      </div>
 
     </div>
 
@@ -1901,43 +2118,26 @@ button{
   <div class="simple-page">
 
     <div class="simple-title">
-      Messages
+      Message
     </div>
 
+
     <div class="feature-card"
-         style="height:auto;margin-bottom:10px;display:flex;align-items:center">
+         style="height:85px;margin-bottom:10px">
 
-      <img src="https://i.pravatar.cc/150?img=47"
-           style="width:48px;height:48px;border-radius:50%;object-fit:cover">
+      <div class="ic">💬</div>
 
-      <div style="padding-left:10px">
-
-        <b>Emma</b>
-
-        <p style="font-size:10px;color:#999;margin-top:5px">
-          Hello! Welcome to MR Chat.
-        </p>
-
-      </div>
+      <b>Messages</b>
 
     </div>
 
 
     <div class="feature-card"
-         style="height:auto;display:flex;align-items:center">
+         style="height:85px">
 
-      <img src="https://i.pravatar.cc/150?img=12"
-           style="width:48px;height:48px;border-radius:50%;object-fit:cover">
+      <div class="ic">🔔</div>
 
-      <div style="padding-left:10px">
-
-        <b>Sophia</b>
-
-        <p style="font-size:10px;color:#999;margin-top:5px">
-          Let's join a room!
-        </p>
-
-      </div>
+      <b>Notifications</b>
 
     </div>
 
@@ -1946,7 +2146,7 @@ button{
 </div>
 
 
-<!-- PROFILE -->
+<!-- ME -->
 
 <div id="profilePage" class="page">
 
@@ -1959,16 +2159,10 @@ button{
 
       <div class="profile-info">
 
-        <h2>
-          MR User
-        </h2>
+        <h2>MR User</h2>
 
         <p>
-          ID: 10008688
-        </p>
-
-        <p>
-          Level 12 · VIP
+          ID: 100001
         </p>
 
       </div>
@@ -1979,18 +2173,31 @@ button{
     <div class="profile-stats">
 
       <div>
-        <b id="followingCount">0</b>
+
+        <b id="followingCount">
+          0
+        </b>
+
         <span>Following</span>
+
       </div>
 
+
       <div>
-        <b>2.8K</b>
+
+        <b>128</b>
+
         <span>Followers</span>
+
       </div>
 
+
       <div>
-        <b>356</b>
-        <span>Friends</span>
+
+        <b>25</b>
+
+        <span>Level</span>
+
       </div>
 
     </div>
@@ -2000,6 +2207,7 @@ button{
 
   <div class="profile-body">
 
+
     <div class="wallet">
 
       <div class="wallet-top">
@@ -2008,19 +2216,17 @@ button{
           My Coins
         </span>
 
-        <b>
-          🪙
-          <span id="profileCoins">
-            12,580
-          </span>
+        <b id="profileCoins">
+          12,580
         </b>
 
       </div>
 
-      <button class="wallet-btn"
-              onclick="showToast('Recharge page coming soon')">
 
-        Recharge
+      <button class="wallet-btn"
+              onclick="showToast('Recharge coming soon')">
+
+        💰 Recharge Coins
 
       </button>
 
@@ -2029,100 +2235,84 @@ button{
 
     <div class="profile-menu">
 
-      <div class="menu-row" onclick="showToast('Wallet')">
-        <div class="menu-icon">💰</div>
-        <span>Wallet</span>
+
+      <div class="menu-row"
+           onclick="showToast('My Profile')">
+
+        <div class="menu-icon">
+          👤
+        </div>
+
+        <span>
+          My Profile
+        </span>
+
         <i>›</i>
+
       </div>
 
-      <div class="menu-row" onclick="showToast('Store')">
-        <div class="menu-icon">🛍️</div>
-        <span>Store</span>
+
+      <div class="menu-row"
+           onclick="showToast('My Rooms')">
+
+        <div class="menu-icon">
+          🎙
+        </div>
+
+        <span>
+          My Rooms
+        </span>
+
         <i>›</i>
+
       </div>
 
-      <div class="menu-row" onclick="showToast('Gift & Props')">
-        <div class="menu-icon">🎁</div>
-        <span>Gift & Props</span>
+
+      <div class="menu-row"
+           onclick="showToast('My Gifts')">
+
+        <div class="menu-icon">
+          🎁
+        </div>
+
+        <span>
+          My Gifts
+        </span>
+
         <i>›</i>
+
       </div>
 
-      <div class="menu-row" onclick="showToast('VIP / SVIP')">
-        <div class="menu-icon">👑</div>
-        <span>VIP / SVIP</span>
+
+      <div class="menu-row"
+           onclick="showToast('Settings')">
+
+        <div class="menu-icon">
+          ⚙️
+        </div>
+
+        <span>
+          Settings
+        </span>
+
         <i>›</i>
+
       </div>
 
-      <div class="menu-row" onclick="showToast('CP / Couple')">
-        <div class="menu-icon">💞</div>
-        <span>CP / Couple</span>
-        <i>›</i>
-      </div>
 
-      <div class="menu-row" onclick="showToast('Family')">
-        <div class="menu-icon">👨‍👩‍👧</div>
-        <span>Family</span>
-        <i>›</i>
-      </div>
+      <div class="menu-row"
+           onclick="showToast('Help & Support')">
 
-      <div class="menu-row" onclick="showToast('My Level')">
-        <div class="menu-icon">⭐</div>
-        <span>My Level</span>
-        <i>›</i>
-      </div>
+        <div class="menu-icon">
+          ❓
+        </div>
 
-      <div class="menu-row" onclick="showToast('Invite Friends')">
-        <div class="menu-icon">📨</div>
-        <span>Invite Friends</span>
-        <i>›</i>
-      </div>
+        <span>
+          Help & Support
+        </span>
 
-      <div class="menu-row" onclick="showToast('Ranking')">
-        <div class="menu-icon">🏆</div>
-        <span>Ranking</span>
         <i>›</i>
-      </div>
 
-      <div class="menu-row" onclick="showToast('Events')">
-        <div class="menu-icon">🎉</div>
-        <span>Events</span>
-        <i>›</i>
-      </div>
-
-      <div class="menu-row" onclick="showToast('History')">
-        <div class="menu-icon">🕘</div>
-        <span>History</span>
-        <i>›</i>
-      </div>
-
-      <div class="menu-row" onclick="showToast('Notifications')">
-        <div class="menu-icon">🔔</div>
-        <span>Notifications</span>
-        <i>›</i>
-      </div>
-
-      <div class="menu-row" onclick="showToast('Settings')">
-        <div class="menu-icon">⚙️</div>
-        <span>Settings</span>
-        <i>›</i>
-      </div>
-
-      <div class="menu-row" onclick="showToast('Customer Service')">
-        <div class="menu-icon">🎧</div>
-        <span>Customer Service</span>
-        <i>›</i>
-      </div>
-
-      <div class="menu-row" onclick="showToast('Feedback')">
-        <div class="menu-icon">💬</div>
-        <span>Feedback</span>
-        <i>›</i>
-      </div>
-
-      <div class="menu-row" onclick="showToast('Language')">
-        <div class="menu-icon">🌐</div>
-        <span>Language</span>
-        <i>›</i>
       </div>
 
     </div>
@@ -2136,40 +2326,70 @@ button{
 
 <div class="bottom-nav">
 
+
   <button class="nav-item active"
           onclick="switchPage('homePage',this)">
-    <div class="nav-icon">⌂</div>
+
+    <div class="nav-icon">
+      🏠
+    </div>
+
     Home
+
   </button>
+
 
   <button class="nav-item"
           onclick="switchPage('discoverPage',this)">
-    <div class="nav-icon">◉</div>
+
+    <div class="nav-icon">
+      🔎
+    </div>
+
     Discover
+
   </button>
 
+
   <button class="nav-item"
-          onclick="switchPage('voicePage',this)">
-    <div class="nav-icon">🎙</div>
-    Voice
+          onclick="switchPage('momentPage',this)">
+
+    <div class="nav-icon">
+      ✨
+    </div>
+
+    Moment
+
   </button>
+
 
   <button class="nav-item"
           onclick="switchPage('messagePage',this)">
-    <div class="nav-icon">💬</div>
+
+    <div class="nav-icon">
+      💬
+    </div>
+
     Message
+
   </button>
+
 
   <button class="nav-item"
           onclick="switchPage('profilePage',this)">
-    <div class="nav-icon">♙</div>
-    Profile
+
+    <div class="nav-icon">
+      👤
+    </div>
+
+    Me
+
   </button>
 
 </div>
 
 
-<!-- SEARCH -->
+<!-- SEARCH PANEL -->
 
 <div id="searchPanel"
      class="search-panel">
@@ -2183,31 +2403,36 @@ button{
 
     <input id="searchInput"
            class="search-input"
-           placeholder="Search users or rooms..."
+           type="text"
+           placeholder="Search users or rooms"
            oninput="performSearch()">
 
   </div>
 
+
   <div id="searchResults"
        class="search-results">
+
+    <p style="text-align:center;color:#999;padding:25px;font-size:12px">
+      Search users or rooms
+    </p>
+
   </div>
 
 </div>
 
 
-<!-- CREATE ROOM -->
+<!-- CREATE ROOM MODAL -->
 
 <div id="createModal"
      class="modal">
 
   <div class="settings-panel"
-       style="height:auto;max-height:75%">
+       style="height:auto;max-height:80%;padding-bottom:10px">
 
     <div class="panel-head">
 
-      <b>
-        Create Room
-      </b>
+      <b>Create Room</b>
 
       <button class="close-panel"
               onclick="closeCreateRoom()">
@@ -2216,20 +2441,43 @@ button{
 
     </div>
 
+
     <div style="padding:15px">
 
       <input id="newRoomName"
-             class="search-input"
-             style="width:100%;margin-bottom:12px"
-             placeholder="Room name">
+             type="text"
+             placeholder="Room name"
+             style="
+               width:100%;
+               height:46px;
+               border:0;
+               outline:0;
+               border-radius:14px;
+               background:#f2f2f7;
+               padding:0 13px;
+               font-size:13px;
+               margin-bottom:10px;
+             ">
+
 
       <input id="newRoomNotice"
-             class="search-input"
-             style="width:100%;margin-bottom:12px"
-             placeholder="Room notice">
+             type="text"
+             placeholder="Room welcome message"
+             style="
+               width:100%;
+               height:46px;
+               border:0;
+               outline:0;
+               border-radius:14px;
+               background:#f2f2f7;
+               padding:0 13px;
+               font-size:13px;
+               margin-bottom:14px;
+             ">
 
-      <button class="btn3d primary"
-              style="width:100%;height:48px;font-weight:800"
+
+      <button class="gift-main"
+              style="width:100%"
               onclick="createRoom()">
 
         Create Room
@@ -2243,19 +2491,345 @@ button{
 </div>
 
 
+<!-- GIFT MODAL -->
+
+<div id="giftModal"
+     class="modal">
+
+  <div class="gift-panel">
+
+    <div class="panel-head">
+
+      <b>Send Gift</b>
+
+      <button class="close-panel"
+              onclick="closeGiftPanel()">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="gift-tabs">
+
+      <button class="gift-tab active">
+        Popular
+      </button>
+
+      <button class="gift-tab">
+        Love
+      </button>
+
+      <button class="gift-tab">
+        Special
+      </button>
+
+      <button class="gift-tab">
+        Luxury
+      </button>
+
+    </div>
+
+
+    <div class="gift-grid">
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Rose',50,'🌹')">
+
+        <div class="gift-icon">🌹</div>
+
+        <div class="gift-name">
+          Rose
+        </div>
+
+        <div class="gift-price">
+          🪙 50
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Heart',100,'❤️')">
+
+        <div class="gift-icon">❤️</div>
+
+        <div class="gift-name">
+          Heart
+        </div>
+
+        <div class="gift-price">
+          🪙 100
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Love',250,'💖')">
+
+        <div class="gift-icon">💖</div>
+
+        <div class="gift-name">
+          Love
+        </div>
+
+        <div class="gift-price">
+          🪙 250
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Crown',500,'👑')">
+
+        <div class="gift-icon">👑</div>
+
+        <div class="gift-name">
+          Crown
+        </div>
+
+        <div class="gift-price">
+          🪙 500
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Diamond',1000,'💎')">
+
+        <div class="gift-icon">💎</div>
+
+        <div class="gift-name">
+          Diamond
+        </div>
+
+        <div class="gift-price">
+          🪙 1,000
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Fire',1500,'🔥')">
+
+        <div class="gift-icon">🔥</div>
+
+        <div class="gift-name">
+          Fire
+        </div>
+
+        <div class="gift-price">
+          🪙 1,500
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Star',2000,'⭐')">
+
+        <div class="gift-icon">⭐</div>
+
+        <div class="gift-name">
+          Star
+        </div>
+
+        <div class="gift-price">
+          🪙 2,000
+        </div>
+
+      </div>
+
+
+      <div class="gift"
+           onclick="selectGift(this,'Rocket',5000,'🚀')">
+
+        <div class="gift-icon">🚀</div>
+
+        <div class="gift-name">
+          Rocket
+        </div>
+
+        <div class="gift-price">
+          🪙 5,000
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="gift-bottom">
+
+      <div class="balance">
+        Balance:
+        <b id="giftBalance">12,580</b>
+        🪙
+      </div>
+
+      <button class="send-gift"
+              onclick="sendGift()">
+
+        Send Gift
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ROOM SETTINGS MODAL -->
+
+<div id="settingsModal"
+     class="modal">
+
+  <div class="settings-panel">
+
+    <div class="panel-head">
+
+      <b>Room Settings</b>
+
+      <button class="close-panel"
+              onclick="closeRoomSettings()">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="setting-row">
+
+      <div class="setting-left">
+
+        <b>Room Notice</b>
+
+        <small>
+          Show welcome message
+        </small>
+
+      </div>
+
+      <div class="toggle on"
+           onclick="this.classList.toggle('on')">
+
+        <i></i>
+
+      </div>
+
+    </div>
+
+
+    <div class="setting-row">
+
+      <div class="setting-left">
+
+        <b>Room Chat</b>
+
+        <small>
+          Allow text messages
+        </small>
+
+      </div>
+
+      <div class="toggle on"
+           onclick="this.classList.toggle('on')">
+
+        <i></i>
+
+      </div>
+
+    </div>
+
+
+    <div class="setting-row">
+
+      <div class="setting-left">
+
+        <b>Guest Mic</b>
+
+        <small>
+          Allow guests to speak
+        </small>
+
+      </div>
+
+      <div class="toggle on"
+           onclick="this.classList.toggle('on')">
+
+        <i></i>
+
+      </div>
+
+    </div>
+
+
+    <div class="setting-row">
+
+      <div class="setting-left">
+
+        <b>Room Background</b>
+
+        <small>
+          Demo background settings
+        </small>
+
+      </div>
+
+      <span>›</span>
+
+    </div>
+
+
+    <div class="setting-row">
+
+      <div class="setting-left">
+
+        <b>Manage Members</b>
+
+        <small>
+          View room members
+        </small>
+
+      </div>
+
+      <span>›</span>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <!-- ROOM SCREEN -->
 
 <div id="roomScreen">
 
+
   <div class="room-bg"></div>
+
 
   <div class="room-top">
 
+
+    <button class="room-top-btn"
+            onclick="leaveRoom()">
+      ‹
+    </button>
+
+
     <div class="room-owner">
 
-      <img id="roomOwnerAvatar"
-           class="owner-avatar"
-           src="https://i.pravatar.cc/150?img=47">
+      <img class="owner-avatar"
+           src="https://i.pravatar.cc/150?img=68">
 
       <div class="owner-name">
 
@@ -2264,31 +2838,23 @@ button{
         </b>
 
         <small>
-          ID: 882013 · LV.18
+          Room ID: 882013
         </small>
 
       </div>
 
     </div>
 
-    <button class="room-top-btn"
-            onclick="showToast('Room Chat')">
-      💬
-    </button>
 
     <button class="room-top-btn"
             onclick="openRoomSettings()">
       ⚙
     </button>
 
+
     <button class="room-top-btn"
             onclick="showToast('Share Room')">
       ↗
-    </button>
-
-    <button class="room-top-btn"
-            onclick="leaveRoom()">
-      ×
     </button>
 
   </div>
@@ -2306,14 +2872,14 @@ button{
   <div class="host-area">
 
     <img class="host-avatar"
-         src="https://i.pravatar.cc/150?img=47">
+         src="https://i.pravatar.cc/150?img=68">
 
     <div class="host-name">
-      Emma
+      MR User
     </div>
 
     <div class="host-level">
-      👑 Room Owner · LV.28
+      HOST · LV.25
     </div>
 
   </div>
@@ -2321,68 +2887,156 @@ button{
 
   <div class="seats">
 
+
     <div class="seat speaking">
+
       <div class="seat-circle">
+
+        <img src="https://i.pravatar.cc/150?img=47">
+
+        <span class="seat-number">
+          1
+        </span>
+
+      </div>
+
+      <div class="seat-name">
+        Emma
+      </div>
+
+    </div>
+
+
+    <div class="seat">
+
+      <div class="seat-circle">
+
         <img src="https://i.pravatar.cc/150?img=12">
-        <div class="seat-number">1</div>
+
+        <span class="seat-number">
+          2
+        </span>
+
       </div>
-      <div class="seat-name">Sophia</div>
+
+      <div class="seat-name">
+        Sophia
+      </div>
+
     </div>
 
+
     <div class="seat">
+
       <div class="seat-circle">
+
+        <img src="https://i.pravatar.cc/150?img=33">
+
+        <span class="seat-number">
+          3
+        </span>
+
+      </div>
+
+      <div class="seat-name">
+        Alex
+      </div>
+
+    </div>
+
+
+    <div class="seat">
+
+      <div class="seat-circle">
+
+        <img src="https://i.pravatar.cc/150?img=14">
+
+        <span class="seat-number">
+          4
+        </span>
+
+      </div>
+
+      <div class="seat-name">
+        Mia
+      </div>
+
+    </div>
+
+
+    <div class="seat">
+
+      <div class="seat-circle">
+
+        <img src="https://i.pravatar.cc/150?img=22">
+
+        <span class="seat-number">
+          5
+        </span>
+
+      </div>
+
+      <div class="seat-name">
+        Daniel
+      </div>
+
+    </div>
+
+
+    <div class="seat">
+
+      <div class="seat-circle">
+
         <img src="https://i.pravatar.cc/150?img=32">
-        <div class="seat-number">2</div>
+
+        <span class="seat-number">
+          6
+        </span>
+
       </div>
-      <div class="seat-name">Alex</div>
+
+      <div class="seat-name">
+        Olivia
+      </div>
+
     </div>
 
+
     <div class="seat">
+
       <div class="seat-circle">
+
         <img src="https://i.pravatar.cc/150?img=44">
-        <div class="seat-number">3</div>
+
+        <span class="seat-number">
+          7
+        </span>
+
       </div>
-      <div class="seat-name">Mia</div>
+
+      <div class="seat-name">
+        James
+      </div>
+
     </div>
 
-    <div class="seat">
-      <div class="seat-circle">
-        <div style="font-size:20px">🎙️</div>
-        <div class="seat-number">4</div>
-      </div>
-      <div class="seat-name">Empty</div>
-    </div>
 
     <div class="seat">
-      <div class="seat-circle">
-        <img src="https://i.pravatar.cc/150?img=53">
-        <div class="seat-number">5</div>
-      </div>
-      <div class="seat-name">Daniel</div>
-    </div>
 
-    <div class="seat">
       <div class="seat-circle">
-        <div style="font-size:20px">🎙️</div>
-        <div class="seat-number">6</div>
-      </div>
-      <div class="seat-name">Empty</div>
-    </div>
 
-    <div class="seat">
-      <div class="seat-circle">
-        <img src="https://i.pravatar.cc/150?img=25">
-        <div class="seat-number">7</div>
-      </div>
-      <div class="seat-name">Olivia</div>
-    </div>
+        <img src="https://i.pravatar.cc/150?img=49">
 
-    <div class="seat">
-      <div class="seat-circle">
-        <div style="font-size:20px">🎙️</div>
-        <div class="seat-number">8</div>
+        <span class="seat-number">
+          8
+        </span>
+
       </div>
-      <div class="seat-name">Empty</div>
+
+      <div class="seat-name">
+        Lily
+      </div>
+
     </div>
 
   </div>
@@ -2390,30 +3044,23 @@ button{
 
   <div class="room-side">
 
+
     <button class="side-tool"
-            onclick="showToast('Lucky Wheel')">
-      🎡
+            onclick="showToast('Members')">
+      👥
     </button>
 
-    <button class="side-tool"
-            onclick="openGiftPanel()">
-
-      🎁
-
-      <small>
-        3
-      </small>
-
-    </button>
 
     <button class="side-tool"
-            onclick="showToast('Game')">
-      🎮
-    </button>
-
-    <button class="side-tool"
-            onclick="showToast('Ranking')">
+            onclick="showToast('Room Ranking')">
       🏆
+      <small>3</small>
+    </button>
+
+
+    <button class="side-tool"
+            onclick="showToast('More')">
+      ⋮
     </button>
 
   </div>
@@ -2423,18 +3070,11 @@ button{
        class="room-chat">
 
     <div class="chat-line">
-      <b>Sophia:</b>
-      Hello everyone 👋
+      <b>Emma:</b> Hello everyone! 👋
     </div>
 
     <div class="chat-line">
-      <b>Alex:</b>
-      Welcome to the room!
-    </div>
-
-    <div class="chat-line">
-      <b>Daniel:</b>
-      Let's have fun 🎉
+      <b>Sophia:</b> Welcome to MR Chat ❤️
     </div>
 
   </div>
@@ -2442,16 +3082,6 @@ button{
 
   <div class="room-controls">
 
-    <button class="control-btn"
-            onclick="showToast('Chat')">
-      💬
-    </button>
-
-    <button id="speakerBtn"
-            class="control-btn"
-            onclick="toggleSpeaker()">
-      🔊
-    </button>
 
     <button id="micBtn"
             class="control-btn"
@@ -2459,266 +3089,26 @@ button{
       🎙
     </button>
 
-    <button class="control-btn"
-            onclick="showToast('Emoji')">
-      😊
+
+    <button id="speakerBtn"
+            class="control-btn"
+            onclick="toggleSpeaker()">
+      🔊
     </button>
+
 
     <button class="gift-main"
             onclick="openGiftPanel()">
-      🎁 SEND GIFT
+
+      🎁 Send Gift
+
     </button>
 
-  </div>
 
-</div>
-
-
-<!-- GIFT -->
-
-<div id="giftModal"
-     class="modal">
-
-  <div class="gift-panel">
-
-    <div class="panel-head">
-
-      <b>
-        Send Gift
-      </b>
-
-      <button class="close-panel"
-              onclick="closeGiftPanel()">
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="gift-tabs">
-
-      <button class="gift-tab active">
-        Exclusive
-      </button>
-
-      <button class="gift-tab">
-        Customize
-      </button>
-
-      <button class="gift-tab">
-        Country
-      </button>
-
-      <button class="gift-tab">
-        Popular
-      </button>
-
-    </div>
-
-
-    <div class="gift-grid">
-
-      <button class="gift"
-              onclick="selectGift(this,'Rose',10,'🌹')">
-        <div class="gift-icon">🌹</div>
-        <div class="gift-name">Rose</div>
-        <div class="gift-price">🪙 10</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Heart',50,'💖')">
-        <div class="gift-icon">💖</div>
-        <div class="gift-name">Heart</div>
-        <div class="gift-price">🪙 50</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Diamond',100,'💎')">
-        <div class="gift-icon">💎</div>
-        <div class="gift-name">Diamond</div>
-        <div class="gift-price">🪙 100</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Crown',500,'👑')">
-        <div class="gift-icon">👑</div>
-        <div class="gift-name">Crown</div>
-        <div class="gift-price">🪙 500</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Fire',800,'🔥')">
-        <div class="gift-icon">🔥</div>
-        <div class="gift-name">Fire</div>
-        <div class="gift-price">🪙 800</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Star',1000,'⭐')">
-        <div class="gift-icon">⭐</div>
-        <div class="gift-name">Star</div>
-        <div class="gift-price">🪙 1,000</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Rocket',2500,'🚀')">
-        <div class="gift-icon">🚀</div>
-        <div class="gift-name">Rocket</div>
-        <div class="gift-price">🪙 2,500</div>
-      </button>
-
-      <button class="gift"
-              onclick="selectGift(this,'Castle',5000,'🏰')">
-        <div class="gift-icon">🏰</div>
-        <div class="gift-name">Castle</div>
-        <div class="gift-price">🪙 5,000</div>
-      </button>
-
-    </div>
-
-
-    <div class="gift-bottom">
-
-      <div class="balance">
-
-        Balance:
-
-        <b>
-          🪙
-          <span id="giftBalance">
-            12,580
-          </span>
-        </b>
-
-      </div>
-
-      <button class="send-gift"
-              onclick="sendGift()">
-        Send
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- ROOM SETTINGS -->
-
-<div id="settingsModal"
-     class="modal">
-
-  <div class="settings-panel">
-
-    <div class="panel-head">
-
-      <b>
-        Room Settings
-      </b>
-
-      <button class="close-panel"
-              onclick="closeRoomSettings()">
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Room Name</b>
-        <small>Friendship Lounge</small>
-      </div>
-      <span>›</span>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Room Notice</b>
-        <small>Welcome to MR Chat</small>
-      </div>
-      <span>›</span>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Join New Room Owner Support Program?</b>
-        <small>Help new room owners</small>
-      </div>
-      <div class="toggle on"
-           onclick="this.classList.toggle('on')">
-        <i></i>
-      </div>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Room Welcome Message</b>
-        <small>Show when users enter</small>
-      </div>
-      <div class="toggle on"
-           onclick="this.classList.toggle('on')">
-        <i></i>
-      </div>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Public Screen</b>
-        <small>Allow public discovery</small>
-      </div>
-      <div class="toggle on"
-           onclick="this.classList.toggle('on')">
-        <i></i>
-      </div>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Room Type</b>
-        <small>Chat</small>
-      </div>
-      <span>›</span>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Mic Mode</b>
-        <small>Free Mic</small>
-      </div>
-      <span>›</span>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Wheat Mode</b>
-        <small>8 People</small>
-      </div>
-      <span>›</span>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Super Mic</b>
-        <small>Enable special microphone</small>
-      </div>
-      <div class="toggle"
-           onclick="this.classList.toggle('on')">
-        <i></i>
-      </div>
-    </div>
-
-    <div class="setting-row">
-      <div class="setting-left">
-        <b>Effect Switch</b>
-        <small>Room effects</small>
-      </div>
-      <div class="toggle on"
-           onclick="this.classList.toggle('on')">
-        <i></i>
-      </div>
-    </div>
+    <button class="control-btn"
+            onclick="showToast('Chat')">
+      💬
+    </button>
 
   </div>
 
@@ -2727,29 +3117,20 @@ button{
 
 <div id="toast"></div>
 
-</div>
-
 
 <script>
-
-/* =========================
-   GLOBAL DATA
-========================= */
 
 let coins = 12580;
 let selectedGift = null;
 let createdRooms = 0;
 
-/* Dynamic Following + Recent */
-
 let followingUsers = [];
-
 let recentItems = [];
 
+let currentEvent = 0;
 
-/* =========================
-   PAGE SWITCH
-========================= */
+
+/* PAGE */
 
 function switchPage(pageId,btn){
 
@@ -2773,9 +3154,7 @@ function switchPage(pageId,btn){
 }
 
 
-/* =========================
-   HOME TABS
-========================= */
+/* HOME TABS */
 
 function homeTab(type,btn){
 
@@ -2784,24 +3163,28 @@ function homeTab(type,btn){
 
   btn.classList.add('active');
 
+  document.getElementById('popularContent')
+    .style.display='none';
 
-  document.getElementById('popularContent').style.display='none';
+  document.getElementById('followingContent')
+    .style.display='none';
 
-  document.getElementById('followingContent').style.display='none';
-
-  document.getElementById('recentContent').style.display='none';
+  document.getElementById('recentContent')
+    .style.display='none';
 
 
   if(type==='popular'){
 
-    document.getElementById('popularContent').style.display='block';
+    document.getElementById('popularContent')
+      .style.display='block';
 
   }
 
 
   if(type==='following'){
 
-    document.getElementById('followingContent').style.display='block';
+    document.getElementById('followingContent')
+      .style.display='block';
 
     renderFollowing();
 
@@ -2810,7 +3193,8 @@ function homeTab(type,btn){
 
   if(type==='recent'){
 
-    document.getElementById('recentContent').style.display='block';
+    document.getElementById('recentContent')
+      .style.display='block';
 
     renderRecent();
 
@@ -2819,9 +3203,7 @@ function homeTab(type,btn){
 }
 
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 let toastTimer;
 
@@ -2835,18 +3217,57 @@ function showToast(message){
 
   clearTimeout(toastTimer);
 
-  toastTimer=setTimeout(()=>{
-
-    toast.classList.remove('show');
-
-  },1800);
+  toastTimer=setTimeout(
+    ()=>toast.classList.remove('show'),
+    1800
+  );
 
 }
 
 
-/* =========================
-   FOLLOW USER
-========================= */
+/* EVENT SLIDER */
+
+function showEvent(index){
+
+  const track=document.getElementById('eventTrack');
+
+  const dots=document.querySelectorAll('.event-dot');
+
+  if(!track) return;
+
+  currentEvent=index;
+
+  track.style.transform=
+    'translateX(-'+(index*100)+'%)';
+
+  dots.forEach((dot,i)=>{
+
+    dot.classList.toggle(
+      'active',
+      i===index
+    );
+
+  });
+
+}
+
+
+/* AUTO EVENT SLIDE */
+
+setInterval(()=>{
+
+  currentEvent++;
+
+  if(currentEvent>=5){
+    currentEvent=0;
+  }
+
+  showEvent(currentEvent);
+
+},4000);
+
+
+/* FOLLOW */
 
 function followUser(btn,name,id,img){
 
@@ -2857,13 +3278,9 @@ function followUser(btn,name,id,img){
   if(!exists){
 
     followingUsers.push({
-
       name:name,
-
       id:id,
-
       img:img
-
     });
 
     btn.innerText="Following";
@@ -2886,7 +3303,6 @@ function followUser(btn,name,id,img){
   followingUsers=
     followingUsers.filter(x=>x.id!==id);
 
-
   btn.innerText="Follow";
 
   btn.style.background=
@@ -2894,7 +3310,6 @@ function followUser(btn,name,id,img){
 
   btn.style.boxShadow=
     "0 4px 0 #3421a0";
-
 
   showToast("Unfollowed");
 
@@ -2905,9 +3320,7 @@ function followUser(btn,name,id,img){
 }
 
 
-/* =========================
-   FOLLOWING RENDER
-========================= */
+/* FOLLOWING */
 
 function renderFollowing(){
 
@@ -2923,13 +3336,9 @@ function renderFollowing(){
 
         <div class="empty-state-inner">
 
-          <div class="empty-icon">
-            ♡
-          </div>
+          <div class="empty-icon">♡</div>
 
-          <div>
-            No Following
-          </div>
+          <div>No Following</div>
 
           <div style="font-size:10px;margin-top:5px">
             People you follow will appear here
@@ -2956,17 +3365,16 @@ function renderFollowing(){
 
     card.className='dynamic-card';
 
-
     card.innerHTML=`
 
-      <img class="dynamic-avatar"
-           src="${user.img}">
+      <img
+        class="dynamic-avatar"
+        src="${user.img}"
+      >
 
       <div class="dynamic-info">
 
-        <b>
-          ${user.name}
-        </b>
+        <b>${user.name}</b>
 
         <small>
           ID: ${user.id}
@@ -2974,15 +3382,15 @@ function renderFollowing(){
 
       </div>
 
-      <button class="dynamic-action"
-              onclick="visitUser('${user.name}','${user.id}','${user.img}')">
+      <button
+        class="dynamic-action"
+        onclick="visitUser('${user.name}','${user.id}','${user.img}')">
 
         Visit
 
       </button>
 
     `;
-
 
     box.appendChild(card);
 
@@ -2991,9 +3399,7 @@ function renderFollowing(){
 }
 
 
-/* =========================
-   FOLLOW COUNT
-========================= */
+/* FOLLOW COUNT */
 
 function updateFollowingCount(){
 
@@ -3003,16 +3409,12 @@ function updateFollowingCount(){
 }
 
 
-/* =========================
-   ADD RECENT
-========================= */
+/* RECENT */
 
 function addRecent(name,id,img,type){
 
   const exists=
-    recentItems.some(x=>
-      x.id===id
-    );
+    recentItems.some(x=>x.id===id);
 
 
   if(exists){
@@ -3024,19 +3426,12 @@ function addRecent(name,id,img,type){
 
 
   recentItems.unshift({
-
     name:name,
-
     id:id,
-
     img:img,
-
     type:type
-
   });
 
-
-  /* Keep latest 30 */
 
   if(recentItems.length>30){
 
@@ -3048,9 +3443,7 @@ function addRecent(name,id,img,type){
 }
 
 
-/* =========================
-   RECENT RENDER
-========================= */
+/* RECENT RENDER */
 
 function renderRecent(){
 
@@ -3066,13 +3459,9 @@ function renderRecent(){
 
         <div class="empty-state-inner">
 
-          <div class="empty-icon">
-            ◷
-          </div>
+          <div class="empty-icon">◷</div>
 
-          <div>
-            No Recent Visits
-          </div>
+          <div>No Recent Visits</div>
 
           <div style="font-size:10px;margin-top:5px">
             IDs and rooms you visit will appear here
@@ -3099,17 +3488,16 @@ function renderRecent(){
 
     card.className='dynamic-card';
 
-
     card.innerHTML=`
 
-      <img class="dynamic-avatar"
-           src="${item.img}">
+      <img
+        class="dynamic-avatar"
+        src="${item.img}"
+      >
 
       <div class="dynamic-info">
 
-        <b>
-          ${item.name}
-        </b>
+        <b>${item.name}</b>
 
         <small>
           ${item.type} · ID: ${item.id}
@@ -3117,15 +3505,15 @@ function renderRecent(){
 
       </div>
 
-      <button class="dynamic-action"
-              onclick="visitAgain('${item.name}','${item.id}','${item.img}','${item.type}')">
+      <button
+        class="dynamic-action"
+        onclick="visitAgain('${item.name}','${item.id}','${item.img}','${item.type}')">
 
         Visit
 
       </button>
 
     `;
-
 
     box.appendChild(card);
 
@@ -3134,9 +3522,7 @@ function renderRecent(){
 }
 
 
-/* =========================
-   VISIT USER
-========================= */
+/* VISIT USER */
 
 function visitUser(name,id,img){
 
@@ -3156,9 +3542,7 @@ function visitUser(name,id,img){
 }
 
 
-/* =========================
-   VISIT AGAIN
-========================= */
+/* VISIT AGAIN */
 
 function visitAgain(name,id,img,type){
 
@@ -3178,9 +3562,7 @@ function visitAgain(name,id,img,type){
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 function openSearch(){
 
@@ -3194,12 +3576,10 @@ function openSearch(){
     .innerHTML=
       '<p style="text-align:center;color:#999;padding:25px;font-size:12px">Search users or rooms</p>';
 
-  setTimeout(()=>{
-
-    document.getElementById('searchInput')
-      .focus();
-
-  },150);
+  setTimeout(
+    ()=>document.getElementById('searchInput').focus(),
+    150
+  );
 
 }
 
@@ -3219,7 +3599,6 @@ function performSearch(){
       .value
       .trim()
       .toLowerCase();
-
 
   const box=
     document.getElementById('searchResults');
@@ -3279,16 +3658,13 @@ function performSearch(){
 
       item.className='search-result';
 
-
       item.innerHTML=`
 
         <img src="${x.img}">
 
         <div class="search-result-info">
 
-          <b>
-            ${x.name}
-          </b>
+          <b>${x.name}</b>
 
           <small>
             ${x.info} · ID: ${x.id}
@@ -3296,15 +3672,15 @@ function performSearch(){
 
         </div>
 
-        <button class="follow-btn"
-                onclick="openSearchResult('${x.name}','${x.id}','${x.img}','${x.type}')">
+        <button
+          class="follow-btn"
+          onclick="openSearchResult('${x.name}','${x.id}','${x.img}','${x.type}')">
 
           Open
 
         </button>
 
       `;
-
 
       box.appendChild(item);
 
@@ -3321,11 +3697,14 @@ function performSearch(){
 }
 
 
-/* =========================
-   SEARCH RESULT VISIT
-========================= */
+/* SEARCH RESULT */
 
-function openSearchResult(name,id,img,type){
+function openSearchResult(
+  name,
+  id,
+  img,
+  type
+){
 
   addRecent(
     name,
@@ -3333,7 +3712,6 @@ function openSearchResult(name,id,img,type){
     img,
     type
   );
-
 
   closeSearch();
 
@@ -3350,7 +3728,8 @@ function openSearchResult(name,id,img,type){
     document.getElementById('roomScreen')
       .classList.add('show');
 
-  }else{
+  }
+  else{
 
     showToast(
       "Visited "+name+" · ID: "+id
@@ -3364,9 +3743,7 @@ function openSearchResult(name,id,img,type){
 }
 
 
-/* =========================
-   CREATE ROOM
-========================= */
+/* CREATE ROOM */
 
 function openCreateRoom(){
 
@@ -3390,7 +3767,6 @@ function createRoom(){
     document.getElementById('newRoomName')
       .value
       .trim();
-
 
   const notice=
     document.getElementById('newRoomNotice')
@@ -3421,23 +3797,23 @@ function createRoom(){
   const card=
     document.createElement('div');
 
+
   card.className='room-card';
 
 
-  card.onclick=()=>{
-
-    openCreatedRoom(
+  card.onclick=
+    ()=>openCreatedRoom(
       name,
       notice,
       roomId
     );
 
-  };
-
 
   card.innerHTML=`
 
-    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80">
+    <img
+      src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80"
+    >
 
     <div class="room-overlay"></div>
 
@@ -3454,9 +3830,7 @@ function createRoom(){
           Live
         </span>
 
-        <span>
-          1
-        </span>
+        <span>1</span>
 
       </div>
 
@@ -3467,13 +3841,10 @@ function createRoom(){
 
   roomGrid.prepend(card);
 
-
   closeCreateRoom();
-
 
   document.getElementById('newRoomName')
     .value="";
-
 
   document.getElementById('newRoomNotice')
     .value="";
@@ -3488,7 +3859,13 @@ function createRoom(){
 }
 
 
-function openCreatedRoom(name,notice,id){
+/* CREATED ROOM */
+
+function openCreatedRoom(
+  name,
+  notice,
+  id
+){
 
   addRecent(
     name,
@@ -3500,7 +3877,6 @@ function openCreatedRoom(name,notice,id){
 
   document.getElementById('roomTitle')
     .innerText=name;
-
 
   document.getElementById('roomNotice')
     .innerText=
@@ -3514,9 +3890,7 @@ function openCreatedRoom(name,notice,id){
 }
 
 
-/* =========================
-   ENTER ROOM
-========================= */
+/* ENTER ROOM */
 
 function enterRoom(id){
 
@@ -3564,17 +3938,17 @@ function enterRoom(id){
   document.getElementById('roomTitle')
     .innerText=room.name;
 
-
   document.getElementById('roomNotice')
     .innerText=
       "Welcome to MR Chat — Be kind and have fun!";
-
 
   document.getElementById('roomScreen')
     .classList.add('show');
 
 }
 
+
+/* LEAVE ROOM */
 
 function leaveRoom(){
 
@@ -3584,9 +3958,7 @@ function leaveRoom(){
 }
 
 
-/* =========================
-   MIC
-========================= */
+/* MIC */
 
 function toggleMic(){
 
@@ -3603,7 +3975,8 @@ function toggleMic(){
 
     showToast("Microphone Off");
 
-  }else{
+  }
+  else{
 
     btn.innerText="🎙";
 
@@ -3617,9 +3990,7 @@ function toggleMic(){
 }
 
 
-/* =========================
-   SPEAKER
-========================= */
+/* SPEAKER */
 
 function toggleSpeaker(){
 
@@ -3633,7 +4004,8 @@ function toggleSpeaker(){
 
     showToast("Speaker Off");
 
-  }else{
+  }
+  else{
 
     btn.innerText="🔊";
 
@@ -3644,9 +4016,7 @@ function toggleSpeaker(){
 }
 
 
-/* =========================
-   GIFTS
-========================= */
+/* GIFTS */
 
 function openGiftPanel(){
 
@@ -3666,13 +4036,17 @@ function closeGiftPanel(){
 }
 
 
-function selectGift(element,name,price,icon){
+function selectGift(
+  element,
+  name,
+  price,
+  icon
+){
 
   document.querySelectorAll('.gift')
-    .forEach(g=>{
-      g.classList.remove('selected');
-    });
-
+    .forEach(g=>
+      g.classList.remove('selected')
+    );
 
   element.classList.add('selected');
 
@@ -3691,7 +4065,6 @@ function updateBalance(){
   document.getElementById('giftBalance')
     .innerText=
       coins.toLocaleString();
-
 
   document.getElementById('profileCoins')
     .innerText=
@@ -3744,14 +4117,19 @@ function sendGift(){
 
 
   document.querySelectorAll('.gift')
-    .forEach(g=>{
-      g.classList.remove('selected');
-    });
+    .forEach(g=>
+      g.classList.remove('selected')
+    );
 
 }
 
 
-function addGiftChat(icon,name){
+/* GIFT CHAT */
+
+function addGiftChat(
+  icon,
+  name
+){
 
   const chat=
     document.getElementById('roomChat');
@@ -3780,9 +4158,7 @@ function addGiftChat(icon,name){
 }
 
 
-/* =========================
-   ROOM SETTINGS
-========================= */
+/* ROOM SETTINGS */
 
 function openRoomSettings(){
 
@@ -3800,29 +4176,28 @@ function closeRoomSettings(){
 }
 
 
-/* =========================
-   MODAL BACKDROP
-========================= */
+/* MODAL CLOSE */
 
 document.querySelectorAll('.modal')
-.forEach(modal=>{
+  .forEach(modal=>{
 
-  modal.addEventListener('click',function(e){
+    modal.addEventListener(
+      'click',
+      function(e){
 
-    if(e.target===modal){
+        if(e.target===modal){
 
-      modal.classList.remove('show');
+          modal.classList.remove('show');
 
-    }
+        }
+
+      }
+    );
 
   });
 
-});
 
-
-/* =========================
-   INITIAL
-========================= */
+/* INITIAL */
 
 updateBalance();
 
@@ -3833,6 +4208,8 @@ renderFollowing();
 renderRecent();
 
 </script>
+
+</div>
 
 </body>
 </html>
