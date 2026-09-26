@@ -1,1 +1,323 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Fruit</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+  background:linear-gradient(180deg,#19112d,#32194d);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:18px;
+}
+
+.game{
+  width:100%;
+  max-width:430px;
+  background:#241536;
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.45);
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.title{
+  font-size:25px;
+  font-weight:800;
+}
+
+.coin{
+  background:#3b2850;
+  border:1px solid #765495;
+  border-radius:20px;
+  padding:9px 13px;
+  font-weight:bold;
+}
+
+.machine{
+  background:#160d23;
+  border-radius:20px;
+  padding:15px;
+  border:2px solid #69428b;
+}
+
+.reels{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.reel{
+  height:105px;
+  background:#fff;
+  border-radius:15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:54px;
+  box-shadow:inset 0 0 12px rgba(0,0,0,.2);
+}
+
+.info{
+  text-align:center;
+  margin:18px 0;
+  min-height:28px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.cost{
+  text-align:center;
+  color:#d8cce3;
+  margin-bottom:12px;
+}
+
+.spin{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:15px;
+  font-size:19px;
+  font-weight:800;
+  cursor:pointer;
+  background:#8b4dcc;
+  color:white;
+}
+
+.spin:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.back{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:1px solid #765495;
+  border-radius:14px;
+  background:transparent;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.rules{
+  margin-top:18px;
+  background:#301d42;
+  border-radius:15px;
+  padding:13px;
+  font-size:13px;
+  line-height:1.6;
+  color:#ddd2e5;
+}
+
+.win{
+  animation:win .45s ease-in-out 2;
+}
+
+@keyframes win{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.06)}
+  100%{transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+  <div class="top">
+    <div class="title">🍎 Lucky Fruit</div>
+    <div class="coin">🪙 <span id="coins">1000</span></div>
+  </div>
+
+  <div class="machine">
+
+    <div class="reels">
+      <div class="reel" id="r1">🍎</div>
+      <div class="reel" id="r2">🍊</div>
+      <div class="reel" id="r3">🍇</div>
+    </div>
+
+  </div>
+
+  <div class="info" id="message">
+    Choose your luck!
+  </div>
+
+  <div class="cost">
+    Spin Cost: 🪙 10
+  </div>
+
+  <button class="spin" id="spinButton">
+    🎰 SPIN
+  </button>
+
+  <button class="back" onclick="goBack()">
+    ← Back to MrChat
+  </button>
+
+  <div class="rules">
+    <b>How to Play</b><br>
+    • প্রতিটি Spin-এর জন্য 10 Coin লাগবে।<br>
+    • তিনটি একই Fruit হলে Bonus Score পাওয়া যাবে।<br>
+    • দুইটি একই Fruit হলে ছোট Bonus পাওয়া যাবে।<br>
+    • Coin শুধুমাত্র এই গেমের virtual Coin হিসেবে ব্যবহার করা হচ্ছে।
+  </div>
+
+</div>
+
+<script>
+
+const fruits = [
+  "🍎",
+  "🍊",
+  "🍋",
+  "🍇",
+  "🍉",
+  "🍓",
+  "🍒",
+  "🥝"
+];
+
+let coins = 1000;
+const spinCost = 10;
+
+const coinDisplay = document.getElementById("coins");
+const message = document.getElementById("message");
+const spinButton = document.getElementById("spinButton");
+
+const reels = [
+  document.getElementById("r1"),
+  document.getElementById("r2"),
+  document.getElementById("r3")
+];
+
+function randomFruit(){
+  return fruits[Math.floor(Math.random() * fruits.length)];
+}
+
+function updateCoins(){
+  coinDisplay.textContent = coins;
+}
+
+function spin(){
+
+  if(coins < spinCost){
+    message.textContent = "❌ Not enough Coins!";
+    return;
+  }
+
+  coins -= spinCost;
+  updateCoins();
+
+  spinButton.disabled = true;
+  message.textContent = "🍀 Spinning...";
+
+  let count = 0;
+
+  const animation = setInterval(() => {
+
+    reels.forEach(reel => {
+      reel.textContent = randomFruit();
+    });
+
+    count++;
+
+    if(count >= 12){
+
+      clearInterval(animation);
+
+      const result = [
+        randomFruit(),
+        randomFruit(),
+        randomFruit()
+      ];
+
+      reels[0].textContent = result[0];
+      reels[1].textContent = result[1];
+      reels[2].textContent = result[2];
+
+      checkResult(result);
+
+      spinButton.disabled = false;
+    }
+
+  },100);
+
+}
+
+function checkResult(result){
+
+  const [a,b,c] = result;
+
+  reels.forEach(reel => {
+    reel.classList.remove("win");
+  });
+
+  if(a === b && b === c){
+
+    coins += 100;
+
+    message.textContent = "🎉 JACKPOT! +100 Coins";
+
+    reels.forEach(reel => {
+      reel.classList.add("win");
+    });
+
+  }else if(a === b || a === c || b === c){
+
+    coins += 25;
+
+    message.textContent = "🍀 Lucky! +25 Coins";
+
+    reels.forEach(reel => {
+      reel.classList.add("win");
+    });
+
+  }else{
+
+    message.textContent = "🙂 Try Again!";
+  }
+
+  updateCoins();
+}
+
+function goBack(){
+
+  if(document.referrer){
+    history.back();
+  }else{
+    window.location.href="../../index.html";
+  }
+
+}
+
+spinButton.addEventListener("click",spin);
+
+updateCoins();
+
+</script>
+
+</body>
+</html>
