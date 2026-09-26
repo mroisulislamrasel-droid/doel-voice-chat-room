@@ -1,1 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
+<title>Mr Z - Lucky Pro</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#120400;
+  color:#fff;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+button{
+  font-family:inherit;
+}
+
+#app{
+  width:100%;
+  max-width:700px;
+  min-height:100vh;
+  margin:auto;
+  background:
+    radial-gradient(circle at 50% 20%,#7b3100 0,#3b1200 38%,#170500 75%);
+  position:relative;
+  overflow:hidden;
+}
+
+/* TOP BAR */
+
+.topbar{
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 12px;
+  background:linear-gradient(#551800,#210600);
+  border-bottom:2px solid #e8a91d;
+}
+
+.logo{
+  font-size:19px;
+  font-weight:900;
+  color:#ffd95a;
+  text-shadow:0 2px 3px #000;
+}
+
+.top-actions{
+  display:flex;
+  gap:7px;
+}
+
+.iconBtn{
+  width:38px;
+  height:38px;
+  border:1px solid #ffd45b;
+  border-radius:50%;
+  background:linear-gradient(#8b5109,#3b1800);
+  color:#fff;
+  font-size:19px;
+  cursor:pointer;
+}
+
+/* GAME */
+
+.game{
+  padding:10px;
+}
+
+.game-title{
+  text-align:center;
+  font-size:38px;
+  font-weight:900;
+  font-style:italic;
+  color:#ffd64c;
+  text-shadow:
+    0 3px 0 #8d2800,
+    0 5px 8px #000;
+  padding:8px 0 2px;
+}
+
+.round{
+  text-align:center;
+  background:#260800;
+  border:1px solid #a95b13;
+  border-radius:20px;
+  width:75%;
+  margin:0 auto 9px;
+  padding:7px;
+  color:#ffe3a0;
+  font-size:15px;
+}
+
+.timer{
+  text-align:center;
+  color:#ffe35b;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+/* BOARD */
+
+.board{
+  border:5px solid #d69a22;
+  border-radius:25px;
+  padding:8px;
+  background:
+    linear-gradient(#260700,#090100);
+  box-shadow:
+    0 0 0 2px #673000 inset,
+    0 0 18px #f6ad25;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+
+.cell{
+  min-height:112px;
+  border:2px solid #671000;
+  border-radius:13px;
+  background:
+    radial-gradient(circle,#331000,#090100);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  position:relative;
+  transition:.15s;
+}
+
+.cell:active{
+  transform:scale(.94);
+}
+
+.cell.selected{
+  border-color:#ffe75a;
+  box-shadow:
+    0 0 10px #ffd21e,
+    inset 0 0 15px #ff8a00;
+}
+
+.cell.disabled{
+  opacity:.45;
+  pointer-events:none;
+}
+
+.fruit{
+  font-size:50px;
+  line-height:1;
+  filter:drop-shadow(0 4px 3px #000);
+}
+
+.multiplier{
+  margin-top:8px;
+  font-size:17px;
+  color:#fff3b0;
+  font-weight:bold;
+}
+
+/* RESULT */
+
+.result-box{
+  margin:10px auto;
+  width:75%;
+  height:90px;
+  border-radius:17px;
+  background:linear-gradient(#a63c38,#48130e);
+  border:5px solid #c65a35;
+  box-shadow:inset 0 0 12px #270000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.result-label{
+  font-size:12px;
+  color:#ffd5a0;
+}
+
+.result{
+  font-size:48px;
+  font-weight:900;
+  color:#fff4a1;
+  text-shadow:0 3px 5px #5a0000;
+}
+
+/* BET */
+
+.bet-title{
+  text-align:center;
+  margin:10px 0 7px;
+  color:#ffdf8a;
+}
+
+.bets{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+
+.bet{
+  border:none;
+  border-radius:20px;
+  padding:10px 4px;
+  background:linear-gradient(#ffd34e,#b96b0c);
+  color:#5c2800;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 3px 0 #653000;
+}
+
+.bet.active{
+  background:linear-gradient(#a98aff,#5030b9);
+  color:white;
+  box-shadow:
+    0 0 12px #8b72ff,
+    0 3px 0 #1c0d5c;
+}
+
+/* PLAY AREA */
+
+.play-panel{
+  margin-top:10px;
+  padding:10px;
+  border-radius:15px;
+  background:linear-gradient(#69300e,#301000);
+  border:1px solid #9e571d;
+}
+
+.selected-info{
+  text-align:center;
+  min-height:25px;
+  color:#ffe7a2;
+}
+
+.bet-summary{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
+  color:#ffd98c;
+}
+
+.playBtn{
+  width:100%;
+  border:none;
+  border-radius:28px;
+  padding:15px;
+  font-size:21px;
+  font-weight:900;
+  color:#5d2400;
+  background:linear-gradient(#ffe774,#e79b18);
+  box-shadow:0 4px 0 #7b3500;
+  cursor:pointer;
+}
+
+.playBtn:active{
+  transform:translateY(3px);
+  box-shadow:0 1px 0 #7b3500;
+}
+
+.playBtn:disabled{
+  opacity:.45;
+}
+
+/* BALANCE */
+
+.stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.stat{
+  padding:12px;
+  border-radius:12px;
+  background:linear-gradient(#6d3210,#321000);
+  border:1px solid #9c551c;
+}
+
+.stat-title{
+  color:#e9bd83;
+  font-size:14px;
+}
+
+.stat-value{
+  font-size:22px;
+  font-weight:bold;
+  margin-top:5px;
+  color:#fff1bd;
+}
+
+/* HISTORY */
+
+.history{
+  margin-top:10px;
+  padding:10px;
+  background:#341000;
+  border-top:1px solid #9d5117;
+}
+
+.history-title{
+  color:#e9b65d;
+  margin-bottom:8px;
+}
+
+.history-list{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:4px;
+}
+
+.history-item{
+  min-width:48px;
+  height:48px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#180500;
+  border:1px solid #71330b;
+  font-size:28px;
+}
+
+/* WIN */
+
+.win{
+  position:fixed;
+  z-index:100;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%) scale(.5);
+  opacity:0;
+  pointer-events:none;
+  width:85%;
+  max-width:420px;
+  padding:30px 15px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle,#7d4000,#260800);
+  border:5px solid #ffd84a;
+  box-shadow:0 0 50px #ffb300;
+  text-align:center;
+  transition:.3s;
+}
+
+.win.show{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+.win-title{
+  font-size:34px;
+  color:#ffe66b;
+  font-weight:900;
+}
+
+.win-amount{
+  font-size:50px;
+  font-weight:900;
+  color:#fff;
+  margin:10px;
+}
+
+.closeWin{
+  border:none;
+  border-radius:20px;
+  padding:10px 25px;
+  background:#ffd33d;
+  font-weight:bold;
+}
+
+/* HELP */
+
+.modal{
+  position:fixed;
+  z-index:200;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:480px;
+  max-height:85vh;
+  overflow:auto;
+  border-radius:20px;
+  padding:20px;
+  background:linear-gradient(#551e08,#190500);
+  border:2px solid #e7a527;
+}
+
+.modal-box h2{
+  color:#ffd84d;
+  margin-top:0;
+}
+
+.modal-box p{
+  color:#f4d8b2;
+  line-height:1.55;
+}
+
+.modal-close{
+  width:100%;
+  border:0;
+  border-radius:20px;
+  padding:12px;
+  background:#e9a925;
+  font-weight:bold;
+}
+
+/* SPIN EFFECT */
+
+.shake{
+  animation:shake .12s infinite;
+}
+
+@keyframes shake{
+  0%{transform:translateX(-2px)}
+  50%{transform:translateX(2px)}
+  100%{transform:translateX(-2px)}
+}
+
+.flash{
+  animation:flash .5s ease-in-out 3;
+}
+
+@keyframes flash{
+  0%,100%{box-shadow:0 0 5px #ffd000}
+  50%{box-shadow:0 0 30px #fff}
+}
+
+@media(max-width:430px){
+  .cell{
+    min-height:92px;
+  }
+
+  .fruit{
+    font-size:42px;
+  }
+
+  .multiplier{
+    font-size:14px;
+  }
+
+  .game-title{
+    font-size:32px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+  <div class="topbar">
+    <div class="logo">👑 Mr Z • GAME</div>
+
+    <div class="top-actions">
+      <button class="iconBtn" id="soundBtn">🔊</button>
+      <button class="iconBtn" id="helpBtn">?</button>
+      <button class="iconBtn" id="resetBtn">↻</button>
+    </div>
+  </div>
+
+  <div class="game">
+
+    <div class="game-title">
+      Lucky Pro
+    </div>
+
+    <div class="round" id="roundText">
+      Round 1 of today
+    </div>
+
+    <div class="timer" id="timer">
+      Betting time: 30s
+    </div>
+
+    <div class="board">
+
+      <div class="grid" id="grid"></div>
+
+      <div class="result-box">
+        <div class="result-label">RESULT</div>
+        <div class="result" id="result">--</div>
+      </div>
+
+      <div class="bet-title">
+        Select Coin
+      </div>
+
+      <div class="bets">
+
+        <button class="bet active" data-bet="100">
+          🪙 100
+        </button>
+
+        <button class="bet" data-bet="1000">
+          🪙 1K
+        </button>
+
+        <button class="bet" data-bet="10000">
+          🪙 10K
+        </button>
+
+        <button class="bet" data-bet="50000">
+          🪙 50K
+        </button>
+
+      </div>
+
+      <div class="play-panel">
+
+        <div class="selected-info" id="selectedInfo">
+          Select a fruit
+        </div>
+
+        <div class="bet-summary">
+          <span>Selected Bet</span>
+          <strong id="betValue">100</strong>
+        </div>
+
+        <button class="playBtn" id="playBtn">
+          🎯 PLACE BET
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-title">
+          Balance
+        </div>
+
+        <div class="stat-value">
+          🪙 <span id="balance">94820</span>
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">
+          Today's Winnings
+        </div>
+
+        <div class="stat-value">
+          🪙 <span id="winnings">0</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="history">
+
+      <div class="history-title">
+        Results:
+      </div>
+
+      <div class="history-list" id="history"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- WIN POPUP -->
+
+<div class="win" id="win">
+
+  <div class="win-title">
+    🎉 WIN!
+  </div>
+
+  <div class="win-amount" id="winAmount">
+    +0
+  </div>
+
+  <div id="winText">
+    Congratulations!
+  </div>
+
+  <br>
+
+  <button class="closeWin" id="closeWin">
+    CONTINUE
+  </button>
+
+</div>
+
+
+<!-- HELP -->
+
+<div class="modal" id="helpModal">
+
+  <div class="modal-box">
+
+    <h2>🎮 Lucky Pro</h2>
+
+    <p>
+      প্রথমে একটি fruit নির্বাচন করো।
+      তারপর 100 / 1K / 10K / 50K virtual coin
+      নির্বাচন করে PLACE BET চাপো।
+    </p>
+
+    <p>
+      Round শেষ হলে একটি ফলাফল তৈরি হবে।
+      নির্বাচিত ফলের multiplier অনুযায়ী
+      virtual coin হিসাব হবে।
+    </p>
+
+    <p>
+      🍊 Orange — 5×<br>
+      🍋 Lemon — 5×<br>
+      🍇 Grapes — 5×<br>
+      🍒 Cherry — 5×<br>
+      🍏 Apple — 10×<br>
+      🍉 Watermelon — 15×<br>
+      🥭 Mango — 25×<br>
+      🍓 Strawberry — 45×
+    </p>
+
+    <p>
+      এই demo-তে coin শুধুমাত্র game score হিসেবে
+      ব্যবহার করা হয়। কোনো real-money deposit,
+      withdrawal বা cash-out নেই।
+    </p>
+
+    <button class="modal-close" id="closeHelp">
+      CLOSE
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   MR Z - LUCKY PRO
+   VIRTUAL COIN DEMO
+===================================================== */
+
+const fruits = [
+
+  {
+    id:"orange",
+    name:"Orange",
+    icon:"🍊",
+    multiplier:5
+  },
+
+  {
+    id:"lemon",
+    name:"Lemon",
+    icon:"🍋",
+    multiplier:5
+  },
+
+  {
+    id:"grapes",
+    name:"Grapes",
+    icon:"🍇",
+    multiplier:5
+  },
+
+  {
+    id:"cherry",
+    name:"Cherry",
+    icon:"🍒",
+    multiplier:5
+  },
+
+  {
+    id:"apple",
+    name:"Apple",
+    icon:"🍏",
+    multiplier:10
+  },
+
+  {
+    id:"watermelon",
+    name:"Watermelon",
+    icon:"🍉",
+    multiplier:15
+  },
+
+  {
+    id:"mango",
+    name:"Mango",
+    icon:"🥭",
+    multiplier:25
+  },
+
+  {
+    id:"strawberry",
+    name:"Strawberry",
+    icon:"🍓",
+    multiplier:45
+  }
+
+];
+
+
+/* STATE */
+
+let balance = Number(
+  localStorage.getItem("mrz_balance")
+) || 94820;
+
+let winnings = Number(
+  localStorage.getItem("mrz_winnings")
+) || 0;
+
+let round = Number(
+  localStorage.getItem("mrz_round")
+) || 1;
+
+let selectedBet = 100;
+
+let selectedFruit = null;
+
+let roundTime = 30;
+
+let bettingOpen = true;
+
+let playerBet = null;
+
+let soundEnabled = true;
+
+let history =
+  JSON.parse(
+    localStorage.getItem("mrz_history") || "[]"
+  );
+
+
+/* ELEMENTS */
+
+const grid =
+  document.getElementById("grid");
+
+const balanceEl =
+  document.getElementById("balance");
+
+const winningsEl =
+  document.getElementById("winnings");
+
+const betValueEl =
+  document.getElementById("betValue");
+
+const selectedInfo =
+  document.getElementById("selectedInfo");
+
+const timerEl =
+  document.getElementById("timer");
+
+const resultEl =
+  document.getElementById("result");
+
+const roundText =
+  document.getElementById("roundText");
+
+const historyEl =
+  document.getElementById("history");
+
+const playBtn =
+  document.getElementById("playBtn");
+
+const win =
+  document.getElementById("win");
+
+const winAmount =
+  document.getElementById("winAmount");
+
+const winText =
+  document.getElementById("winText");
+
+
+/* FORMAT NUMBER */
+
+function formatNumber(n){
+
+  return Number(n).toLocaleString();
+
+}
+
+
+/* SAVE */
+
+function save(){
+
+  localStorage.setItem(
+    "mrz_balance",
+    balance
+  );
+
+  localStorage.setItem(
+    "mrz_winnings",
+    winnings
+  );
+
+  localStorage.setItem(
+    "mrz_round",
+    round
+  );
+
+  localStorage.setItem(
+    "mrz_history",
+    JSON.stringify(history)
+  );
+
+}
+
+
+/* UPDATE UI */
+
+function updateUI(){
+
+  balanceEl.textContent =
+    formatNumber(balance);
+
+  winningsEl.textContent =
+    formatNumber(winnings);
+
+  betValueEl.textContent =
+    formatNumber(selectedBet);
+
+  roundText.textContent =
+    "Round " + round + " of today";
+
+}
+
+
+/* CREATE GRID */
+
+function createGrid(){
+
+  grid.innerHTML = "";
+
+  fruits.forEach((fruit,index)=>{
+
+    const cell =
+      document.createElement("div");
+
+    cell.className = "cell";
+
+    cell.dataset.id = fruit.id;
+
+    cell.innerHTML = `
+
+      <div class="fruit">
+        ${fruit.icon}
+      </div>
+
+      <div class="multiplier">
+        ${fruit.multiplier} times
+      </div>
+
+    `;
+
+    cell.addEventListener(
+      "click",
+      ()=>selectFruit(fruit,cell)
+    );
+
+    grid.appendChild(cell);
+
+  });
+
+}
+
+
+/* SELECT FRUIT */
+
+function selectFruit(fruit,cell){
+
+  if(!bettingOpen){
+
+    return;
+
+  }
+
+  document
+    .querySelectorAll(".cell")
+    .forEach(c=>{
+      c.classList.remove("selected");
+    });
+
+  cell.classList.add("selected");
+
+  selectedFruit = fruit;
+
+  selectedInfo.innerHTML =
+    `Selected: ${fruit.icon} ${fruit.name}
+     • ${fruit.multiplier}×`;
+
+}
+
+
+/* BET BUTTONS */
+
+document
+  .querySelectorAll(".bet")
+  .forEach(button=>{
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        if(!bettingOpen){
+
+          return;
+
+        }
+
+        document
+          .querySelectorAll(".bet")
+          .forEach(b=>{
+            b.classList.remove("active");
+          });
+
+        button.classList.add("active");
+
+        selectedBet =
+          Number(button.dataset.bet);
+
+        betValueEl.textContent =
+          formatNumber(selectedBet);
+
+      }
+    );
+
+  });
+
+
+/* PLACE BET */
+
+playBtn.addEventListener(
+  "click",
+  placeBet
+);
+
+
+function placeBet(){
+
+  if(!bettingOpen){
+
+    alert("Betting is closed for this round.");
+
+    return;
+
+  }
+
+  if(!selectedFruit){
+
+    alert("প্রথমে একটি fruit নির্বাচন করো।");
+
+    return;
+
+  }
+
+  if(playerBet){
+
+    alert("এই round-এ ইতিমধ্যে bet করা হয়েছে।");
+
+    return;
+
+  }
+
+  if(balance < selectedBet){
+
+    alert("Not enough virtual coins.");
+
+    return;
+
+  }
+
+  balance -= selectedBet;
+
+  playerBet = {
+
+    fruit:selectedFruit,
+
+    amount:selectedBet
+
+  };
+
+  selectedInfo.innerHTML =
+    `Bet placed: ${selectedFruit.icon}
+     ${selectedFruit.name}
+     • ${formatNumber(selectedBet)}`;
+
+  playBtn.disabled = true;
+
+  updateUI();
+
+  save();
+
+}
+
+
+/* RANDOM RESULT */
+
+function generateResult(){
+
+  /*
+    Weighted result.
+
+    Lower multipliers are more common.
+    Highest multiplier is intentionally rarer.
+  */
+
+  const pool = [
+
+    fruits[0],
+    fruits[0],
+    fruits[0],
+
+    fruits[1],
+    fruits[1],
+    fruits[1],
+
+    fruits[2],
+    fruits[2],
+    fruits[2],
+
+    fruits[3],
+    fruits[3],
+    fruits[3],
+
+    fruits[4],
+    fruits[4],
+
+    fruits[5],
+
+    fruits[6],
+
+    fruits[7]
+
+  ];
+
+  return pool[
+    Math.floor(
+      Math.random() * pool.length
+    )
+  ];
+
+}
+
+
+/* ROUND TIMER */
+
+let timer =
+  setInterval(()=>{
+
+    if(!bettingOpen){
+
+      return;
+
+    }
+
+    roundTime--;
+
+    timerEl.textContent =
+      "Betting time: " +
+      roundTime +
+      "s";
+
+    if(roundTime <= 0){
+
+      endRound();
+
+    }
+
+  },1000);
+
+
+/* END ROUND */
+
+function endRound(){
+
+  if(!bettingOpen){
+
+    return;
+
+  }
+
+  bettingOpen = false;
+
+  timerEl.textContent =
+    "🎲 Calculating result...";
+
+  playBtn.disabled = true;
+
+  document
+    .querySelectorAll(".cell")
+    .forEach(c=>{
+      c.classList.add("shake");
+    });
+
+  setTimeout(()=>{
+
+    const result =
+      generateResult();
+
+    resultEl.textContent =
+      result.icon;
+
+    history.unshift(result);
+
+    if(history.length > 15){
+
+      history.pop();
+
+    }
+
+    renderHistory();
+
+    document
+      .querySelectorAll(".cell")
+      .forEach(c=>{
+        c.classList.remove("shake");
+      });
+
+    /*
+      PAYOUT
+    */
+
+    if(playerBet){
+
+      if(
+        playerBet.fruit.id === result.id
+      ){
+
+        const payout =
+          playerBet.amount *
+          result.multiplier;
+
+        balance += payout;
+
+        winnings += payout;
+
+        showWin(
+          payout,
+          result
+        );
+
+      }else{
+
+        selectedInfo.innerHTML =
+          `Result: ${result.icon}
+           ${result.name}. Better luck next round!`;
+
+      }
+
+    }
+
+    playerBet = null;
+
+    updateUI();
+
+    save();
+
+    /*
+      Next round
+    */
+
+    setTimeout(
+      startNextRound,
+      3500
+    );
+
+  },1800);
+
+}
+
+
+/* NEXT ROUND */
+
+function startNextRound(){
+
+  round++;
+
+  roundTime = 30;
+
+  bettingOpen = true;
+
+  selectedFruit = null;
+
+  playerBet = null;
+
+  resultEl.textContent = "--";
+
+  selectedInfo.textContent =
+    "Select a fruit";
+
+  playBtn.disabled = false;
+
+  document
+    .querySelectorAll(".cell")
+    .forEach(c=>{
+      c.classList.remove("selected");
+      c.classList.remove("disabled");
+    });
+
+  timerEl.textContent =
+    "Betting time: 30s";
+
+  updateUI();
+
+  save();
+
+}
+
+
+/* HISTORY */
+
+function renderHistory(){
+
+  historyEl.innerHTML = "";
+
+  history.forEach(item=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "history-item";
+
+    div.textContent =
+      item.icon;
+
+    div.title =
+      item.name +
+      " " +
+      item.multiplier +
+      "×";
+
+    historyEl.appendChild(div);
+
+  });
+
+}
+
+
+/* WIN POPUP */
+
+function showWin(amount,result){
+
+  winAmount.textContent =
+    "+" + formatNumber(amount);
+
+  winText.textContent =
+    `${result.icon} ${result.name}
+     • ${result.multiplier}×`;
+
+  win.classList.add("show");
+
+}
+
+
+/* CLOSE WIN */
+
+document
+  .getElementById("closeWin")
+  .addEventListener(
+    "click",
+    ()=>{
+      win.classList.remove("show");
+    }
+  );
+
+
+/* HELP */
+
+const helpModal =
+  document.getElementById("helpModal");
+
+document
+  .getElementById("helpBtn")
+  .addEventListener(
+    "click",
+    ()=>{
+      helpModal.classList.add("show");
+    }
+  );
+
+document
+  .getElementById("closeHelp")
+  .addEventListener(
+    "click",
+    ()=>{
+      helpModal.classList.remove("show");
+    }
+  );
+
+
+/* SOUND */
+
+document
+  .getElementById("soundBtn")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      soundEnabled =
+        !soundEnabled;
+
+      document.getElementById(
+        "soundBtn"
+      ).textContent =
+        soundEnabled ? "🔊" : "🔇";
+
+    }
+  );
+
+
+/* RESET */
+
+document
+  .getElementById("resetBtn")
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const ok =
+        confirm(
+          "Reset demo game balance and history?"
+        );
+
+      if(!ok){
+
+        return;
+
+      }
+
+      balance = 94820;
+
+      winnings = 0;
+
+      round = 1;
+
+      history = [];
+
+      selectedFruit = null;
+
+      playerBet = null;
+
+      bettingOpen = true;
+
+      roundTime = 30;
+
+      resultEl.textContent = "--";
+
+      selectedInfo.textContent =
+        "Select a fruit";
+
+      playBtn.disabled = false;
+
+      renderHistory();
+
+      updateUI();
+
+      save();
+
+    }
+  );
+
+
+/* INIT */
+
+createGrid();
+
+renderHistory();
+
+updateUI();
+
+</script>
+
+</body>
+</html>
