@@ -3148,7 +3148,1319 @@ document.querySelectorAll('.modal')
 
 updateBalance();
 
-</script>
+<script>
 
-</body>
-</html>
+/* =========================
+   GLOBAL DATA
+========================= */
+
+let coins = 12580;
+let selectedGift = null;
+let createdRooms = 0;
+let toastTimer;
+
+
+/* =========================
+   PAGE SWITCH
+========================= */
+
+function switchPage(pageId,btn){
+
+  document.querySelectorAll('.page')
+    .forEach(p=>p.classList.remove('show'));
+
+  const page=document.getElementById(pageId);
+
+  if(page){
+    page.classList.add('show');
+    page.scrollTop=0;
+  }
+
+  document.querySelectorAll('.nav-item')
+    .forEach(n=>n.classList.remove('active'));
+
+  if(btn){
+    btn.classList.add('active');
+  }
+}
+
+
+/* =========================
+   HOME TABS
+========================= */
+
+function homeTab(btn){
+
+  document.querySelectorAll('.home-tab')
+    .forEach(x=>x.classList.remove('active'));
+
+  btn.classList.add('active');
+
+  showToast(btn.innerText);
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+  /* GAME BUTTON */
+  if(message === 'Game'){
+    openGames();
+    return;
+  }
+
+  const toast=document.getElementById('toast');
+
+  if(!toast) return;
+
+  toast.innerText=message;
+
+  toast.classList.add('show');
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    toast.classList.remove('show');
+  },1800);
+
+}
+
+
+/* =========================
+   FOLLOW
+========================= */
+
+function followUser(btn){
+
+  if(btn.innerText==="Follow"){
+
+    btn.innerText="Following";
+
+    btn.style.background=
+      "linear-gradient(145deg,#aaa,#777)";
+
+    btn.style.boxShadow=
+      "0 4px 0 #555";
+
+    showToast("Following");
+
+  }else{
+
+    btn.innerText="Follow";
+
+    btn.style.background=
+      "linear-gradient(145deg,#765cff,#4a30d5)";
+
+    btn.style.boxShadow=
+      "0 4px 0 #3421a0";
+
+    showToast("Unfollowed");
+
+  }
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function openSearch(){
+
+  document.getElementById('searchPanel')
+    .classList.add('show');
+
+  setTimeout(()=>{
+    document.getElementById('searchInput').focus();
+  },150);
+
+}
+
+function closeSearch(){
+
+  document.getElementById('searchPanel')
+    .classList.remove('show');
+
+}
+
+function performSearch(){
+
+  const value=
+    document.getElementById('searchInput')
+    .value
+    .trim()
+    .toLowerCase();
+
+  const box=
+    document.getElementById('searchResults');
+
+  if(!value){
+
+    box.innerHTML=
+      '<p style="text-align:center;color:#999;padding:25px;font-size:12px">Search users or rooms</p>';
+
+    return;
+
+  }
+
+  const results=[
+
+    {
+      name:"Emma",
+      info:"User · Level 28",
+      img:"https://i.pravatar.cc/150?img=47"
+    },
+
+    {
+      name:"Sophia",
+      info:"User · Level 25",
+      img:"https://i.pravatar.cc/150?img=12"
+    },
+
+    {
+      name:"Friendship Lounge",
+      info:"Voice Room · 128 users",
+      img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=200&q=80"
+    }
+
+  ];
+
+  box.innerHTML="";
+
+  results
+    .filter(x=>x.name.toLowerCase().includes(value))
+    .forEach(x=>{
+
+      const item=document.createElement('div');
+
+      item.className='search-result';
+
+      item.innerHTML=`
+
+        <img src="${x.img}">
+
+        <div class="search-result-info">
+
+          <b>${x.name}</b>
+
+          <small>${x.info}</small>
+
+        </div>
+
+        <button class="follow-btn"
+                onclick="showToast('Opening ${x.name}')">
+          Open
+        </button>
+
+      `;
+
+      box.appendChild(item);
+
+    });
+
+}
+
+
+/* =========================
+   CREATE ROOM
+========================= */
+
+function openCreateRoom(){
+
+  document.getElementById('createModal')
+    .classList.add('show');
+
+}
+
+function closeCreateRoom(){
+
+  document.getElementById('createModal')
+    .classList.remove('show');
+
+}
+
+function createRoom(){
+
+  const name=
+    document.getElementById('newRoomName')
+    .value.trim();
+
+  const notice=
+    document.getElementById('newRoomNotice')
+    .value.trim();
+
+  if(!name){
+
+    showToast("Please enter room name");
+
+    return;
+
+  }
+
+  createdRooms++;
+
+  const roomGrid=
+    document.getElementById('roomGrid');
+
+  const card=document.createElement('div');
+
+  card.className='room-card';
+
+  card.onclick=()=>{
+    openCreatedRoom(name,notice);
+  };
+
+  card.innerHTML=`
+
+    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80">
+
+    <div class="room-overlay"></div>
+
+    <div class="room-info">
+
+      <div class="room-name">
+        ${name}
+      </div>
+
+      <div class="room-meta">
+
+        <span class="live">
+          <i class="live-dot"></i>
+          Live
+        </span>
+
+        <span>1</span>
+
+      </div>
+
+    </div>
+
+  `;
+
+  roomGrid.prepend(card);
+
+  closeCreateRoom();
+
+  document.getElementById('newRoomName').value="";
+  document.getElementById('newRoomNotice').value="";
+
+  openCreatedRoom(name,notice);
+
+}
+
+function openCreatedRoom(name,notice){
+
+  document.getElementById('roomTitle')
+    .innerText=name;
+
+  document.getElementById('roomNotice')
+    .innerText=
+      notice || "Welcome to MR Chat";
+
+  document.getElementById('roomScreen')
+    .classList.add('show');
+
+}
+
+
+/* =========================
+   ENTER ROOM
+========================= */
+
+function enterRoom(id){
+
+  const titles={
+
+    room1:"Friendship Lounge",
+    room2:"Night Friends",
+    room3:"Music & Chat",
+    room4:"Global Friends"
+
+  };
+
+  document.getElementById('roomTitle')
+    .innerText=
+      titles[id] || "MR Chat Room";
+
+  document.getElementById('roomNotice')
+    .innerText=
+      "Welcome to MR Chat — Be kind and have fun!";
+
+  document.getElementById('roomScreen')
+    .classList.add('show');
+
+}
+
+
+function leaveRoom(){
+
+  document.getElementById('roomScreen')
+    .classList.remove('show');
+
+}
+
+
+/* =========================
+   MIC
+========================= */
+
+function toggleMic(){
+
+  const btn=
+    document.getElementById('micBtn');
+
+  if(btn.innerText==="🎙"){
+
+    btn.innerText="🔇";
+
+    btn.style.background=
+      "rgba(255,60,80,.45)";
+
+    showToast("Microphone Off");
+
+  }else{
+
+    btn.innerText="🎙";
+
+    btn.style.background=
+      "rgba(255,255,255,.14)";
+
+    showToast("Microphone On");
+
+  }
+
+}
+
+
+/* =========================
+   SPEAKER
+========================= */
+
+function toggleSpeaker(){
+
+  const btn=
+    document.getElementById('speakerBtn');
+
+  if(btn.innerText==="🔊"){
+
+    btn.innerText="🔇";
+
+    showToast("Speaker Off");
+
+  }else{
+
+    btn.innerText="🔊";
+
+    showToast("Speaker On");
+
+  }
+
+}
+
+
+/* =========================
+   GIFTS
+========================= */
+
+function openGiftPanel(){
+
+  document.getElementById('giftModal')
+    .classList.add('show');
+
+  updateBalance();
+
+}
+
+function closeGiftPanel(){
+
+  document.getElementById('giftModal')
+    .classList.remove('show');
+
+}
+
+function selectGift(element,name,price,icon){
+
+  document.querySelectorAll('.gift')
+    .forEach(g=>g.classList.remove('selected'));
+
+  element.classList.add('selected');
+
+  selectedGift={
+    name:name,
+    price:price,
+    icon:icon
+  };
+
+}
+
+function updateBalance(){
+
+  const giftBalance=
+    document.getElementById('giftBalance');
+
+  const profileCoins=
+    document.getElementById('profileCoins');
+
+  if(giftBalance){
+    giftBalance.innerText=
+      coins.toLocaleString();
+  }
+
+  if(profileCoins){
+    profileCoins.innerText=
+      coins.toLocaleString();
+  }
+
+}
+
+function sendGift(){
+
+  if(!selectedGift){
+
+    showToast("Select a gift first");
+
+    return;
+
+  }
+
+  if(coins<selectedGift.price){
+
+    showToast("Not enough coins");
+
+    return;
+
+  }
+
+  coins-=selectedGift.price;
+
+  updateBalance();
+
+  addGiftChat(
+    selectedGift.icon,
+    selectedGift.name
+  );
+
+  showToast(
+    selectedGift.icon+
+    " "+
+    selectedGift.name+
+    " sent!"
+  );
+
+  selectedGift=null;
+
+  document.querySelectorAll('.gift')
+    .forEach(g=>g.classList.remove('selected'));
+
+}
+
+
+function addGiftChat(icon,name){
+
+  const chat=
+    document.getElementById('roomChat');
+
+  const line=
+    document.createElement('div');
+
+  line.className='chat-line';
+
+  line.innerHTML=
+    '<b>MR User:</b> sent '+
+    icon+
+    ' '+name;
+
+  chat.appendChild(line);
+
+  chat.scrollTop=
+    chat.scrollHeight;
+
+}
+
+
+/* =========================
+   ROOM SETTINGS
+========================= */
+
+function openRoomSettings(){
+
+  document.getElementById('settingsModal')
+    .classList.add('show');
+
+}
+
+function closeRoomSettings(){
+
+  document.getElementById('settingsModal')
+    .classList.remove('show');
+
+}
+
+
+/* ==================================================
+   🎮 MRCHAT GAME MENU
+================================================== */
+
+function openGames(){
+
+  let old=document.getElementById('mrGameMenu');
+
+  if(old){
+    old.remove();
+  }
+
+  const menu=document.createElement('div');
+
+  menu.id='mrGameMenu';
+
+  menu.style.cssText=`
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:rgba(0,0,0,.60);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  `;
+
+  menu.innerHTML=`
+
+    <div style="
+      width:100%;
+      max-width:520px;
+      height:88%;
+      background:#f7f8fc;
+      border-radius:25px 25px 0 0;
+      overflow:hidden;
+      box-shadow:0 -10px 35px rgba(0,0,0,.3);
+    ">
+
+      <!-- HEADER -->
+
+      <div style="
+        height:60px;
+        background:white;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:0 15px;
+        border-bottom:1px solid #eee;
+      ">
+
+        <div style="
+          font-size:19px;
+          font-weight:800;
+          color:#222;
+        ">
+          🎮 Games
+        </div>
+
+        <button onclick="closeGames()" style="
+          width:38px;
+          height:38px;
+          border:0;
+          border-radius:12px;
+          background:#f0f1f5;
+          font-size:24px;
+        ">
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- COIN BALANCE -->
+
+      <div style="
+        margin:12px;
+        padding:12px 15px;
+        border-radius:16px;
+        background:linear-gradient(145deg,#fff7d2,#ffe58a);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        box-shadow:0 4px 12px rgba(0,0,0,.08);
+      ">
+
+        <span style="
+          font-size:12px;
+          color:#765800;
+        ">
+          My Coins
+        </span>
+
+        <b style="
+          font-size:18px;
+          color:#b87800;
+        ">
+          🪙 <span id="gameMenuCoins">
+            ${coins.toLocaleString()}
+          </span>
+        </b>
+
+      </div>
+
+
+      <!-- GAME GRID -->
+
+      <div style="
+        height:calc(100% - 125px);
+        overflow-y:auto;
+        padding:0 12px 20px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:11px;
+      ">
+
+
+        <!-- GAME 01 -->
+
+        <button onclick="openLuckyFruit()" style="
+          border:0;
+          border-radius:19px;
+          background:linear-gradient(145deg,#fff,#f0edff);
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.12);
+        ">
+
+          <div style="
+            font-size:42px;
+            margin-bottom:7px;
+          ">
+            🍎
+          </div>
+
+          <div style="
+            font-size:16px;
+            font-weight:800;
+            color:#3f2ca7;
+          ">
+            Lucky Fruit
+          </div>
+
+          <div style="
+            font-size:10px;
+            color:#999;
+            margin-top:5px;
+          ">
+            🪙 Play with Coins
+          </div>
+
+        </button>
+
+
+        <!-- GAME 02 -->
+
+        <button onclick="gameComingSoon('Greedy Pro')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">💰</div>
+
+          <b style="display:block;margin-top:7px">
+            Greedy Pro
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 03 -->
+
+        <button onclick="gameComingSoon('Jackpot')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">🎰</div>
+
+          <b style="display:block;margin-top:7px">
+            Jackpot
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 04 -->
+
+        <button onclick="gameComingSoon('Teen Patti')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">🃏</div>
+
+          <b style="display:block;margin-top:7px">
+            Teen Patti
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 05 -->
+
+        <button onclick="gameComingSoon('Lucky Pro')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">🍀</div>
+
+          <b style="display:block;margin-top:7px">
+            Lucky Pro
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 06 -->
+
+        <button onclick="gameComingSoon('Greedy Box')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">🎁</div>
+
+          <b style="display:block;margin-top:7px">
+            Greedy Box
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 07 -->
+
+        <button onclick="gameComingSoon('Jackpot Slot')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">🎰</div>
+
+          <b style="display:block;margin-top:7px">
+            Jackpot Slot
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 08 -->
+
+        <button onclick="gameComingSoon('Ludo')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">🎲</div>
+
+          <b style="display:block;margin-top:7px">
+            Ludo
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 09 -->
+
+        <button onclick="gameComingSoon('Ludo Team')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">👥🎲</div>
+
+          <b style="display:block;margin-top:7px">
+            Ludo Team
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+
+        <!-- GAME 10 -->
+
+        <button onclick="gameComingSoon('Carrom')" style="
+          border:0;
+          border-radius:19px;
+          background:white;
+          padding:15px 10px;
+          box-shadow:0 5px 14px rgba(50,40,100,.10);
+        ">
+
+          <div style="font-size:42px">⭕</div>
+
+          <b style="display:block;margin-top:7px">
+            Carrom
+          </b>
+
+          <small style="color:#999">
+            🪙 Coming Soon
+          </small>
+
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(menu);
+
+}
+
+
+/* =========================
+   CLOSE GAME MENU
+========================= */
+
+function closeGames(){
+
+  const menu=document.getElementById('mrGameMenu');
+
+  if(menu){
+    menu.remove();
+  }
+
+}
+
+
+/* ==================================================
+   🍎 LUCKY FRUIT
+================================================== */
+
+function openLuckyFruit(){
+
+  closeGames();
+
+  let old=document.getElementById('luckyFruitGame');
+
+  if(old){
+    old.remove();
+  }
+
+  const game=document.createElement('div');
+
+  game.id='luckyFruitGame';
+
+  game.style.cssText=`
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:
+      radial-gradient(circle at 50% 15%,#8e5cff,#30126b 55%,#120525);
+    color:white;
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+  `;
+
+  game.innerHTML=`
+
+    <!-- GAME HEADER -->
+
+    <div style="
+      height:60px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 14px;
+      background:rgba(0,0,0,.20);
+      border-bottom:1px solid rgba(255,255,255,.12);
+    ">
+
+      <button onclick="closeLuckyFruit()" style="
+        width:38px;
+        height:38px;
+        border:0;
+        border-radius:12px;
+        background:rgba(255,255,255,.15);
+        color:white;
+        font-size:22px;
+      ">
+        ‹
+      </button>
+
+      <b style="
+        font-size:19px;
+      ">
+        🍎 Lucky Fruit
+      </b>
+
+      <div style="
+        width:38px;
+      "></div>
+
+    </div>
+
+
+    <!-- COINS -->
+
+    <div style="
+      margin:18px auto 10px;
+      width:max-content;
+      padding:9px 18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.18);
+      font-size:14px;
+      font-weight:800;
+    ">
+
+      🪙
+      <span id="luckyFruitCoins">
+        ${coins.toLocaleString()}
+      </span>
+
+    </div>
+
+
+    <div style="
+      text-align:center;
+      margin-top:5px;
+      font-size:12px;
+      opacity:.75;
+    ">
+      Match the fruits and win Coins
+    </div>
+
+
+    <!-- REELS -->
+
+    <div style="
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-top:45px;
+    ">
+
+      <div id="fruit1" style="
+        width:92px;
+        height:105px;
+        background:white;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:52px;
+        box-shadow:
+          0 8px 20px rgba(0,0,0,.3),
+          inset 0 0 0 3px #f1d85b;
+      ">
+        🍎
+      </div>
+
+      <div id="fruit2" style="
+        width:92px;
+        height:105px;
+        background:white;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:52px;
+        box-shadow:
+          0 8px 20px rgba(0,0,0,.3),
+          inset 0 0 0 3px #f1d85b;
+      ">
+        🍊
+      </div>
+
+      <div id="fruit3" style="
+        width:92px;
+        height:105px;
+        background:white;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:52px;
+        box-shadow:
+          0 8px 20px rgba(0,0,0,.3),
+          inset 0 0 0 3px #f1d85b;
+      ">
+        🍉
+      </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div id="fruitResult" style="
+      height:40px;
+      margin-top:25px;
+      text-align:center;
+      font-size:14px;
+      font-weight:800;
+    ">
+      Spin and try your luck!
+    </div>
+
+
+    <!-- SPIN -->
+
+    <button id="fruitSpinBtn"
+            onclick="spinLuckyFruit()"
+            style="
+      display:block;
+      margin:20px auto 0;
+      width:190px;
+      height:58px;
+      border:0;
+      border-radius:20px;
+      background:linear-gradient(145deg,#ffe66d,#f6a91a);
+      color:#6b4300;
+      font-size:17px;
+      font-weight:900;
+      box-shadow:
+        0 6px 0 #b9780d,
+        0 12px 25px rgba(0,0,0,.3);
+    ">
+      🎰 SPIN
+      <br>
+      <span style="font-size:10px">
+        COST 🪙 10
+      </span>
+    </button>
+
+
+    <!-- RULES -->
+
+    <div style="
+      position:absolute;
+      left:15px;
+      right:15px;
+      bottom:25px;
+      padding:12px;
+      border-radius:15px;
+      background:rgba(0,0,0,.18);
+      text-align:center;
+      font-size:10px;
+      line-height:1.6;
+      opacity:.8;
+    ">
+
+      🍎🍎🍎 = +100 Coins
+      &nbsp;&nbsp;
+      🍊🍊🍊 = +100 Coins
+      <br>
+
+      Any 2 matching = +25 Coins
+      &nbsp; | &nbsp;
+      No match = Lose 10 Coins
+
+    </div>
+
+  `;
+
+  document.body.appendChild(game);
+
+}
+
+
+/* =========================
+   LUCKY FRUIT SPIN
+========================= */
+
+function spinLuckyFruit(){
+
+  const cost=10;
+
+  if(coins<cost){
+
+    document.getElementById('fruitResult').innerText=
+      "❌ Not enough Coins";
+
+    return;
+
+  }
+
+  coins-=cost;
+
+  updateBalance();
+
+  const fruits=[
+    "🍎",
+    "🍊",
+    "🍉",
+    "🍇",
+    "🍓",
+    "🍋",
+    "🍍",
+    "🥝"
+  ];
+
+  const a=
+    fruits[Math.floor(Math.random()*fruits.length)];
+
+  const b=
+    fruits[Math.floor(Math.random()*fruits.length)];
+
+  const c=
+    fruits[Math.floor(Math.random()*fruits.length)];
+
+  document.getElementById('fruit1').innerText=a;
+  document.getElementById('fruit2').innerText=b;
+  document.getElementById('fruit3').innerText=c;
+
+  let reward=0;
+  let message="";
+
+  if(a===b && b===c){
+
+    reward=100;
+
+    message=
+      "🎉 JACKPOT! +100 Coins";
+
+  }else if(a===b || a===c || b===c){
+
+    reward=25;
+
+    message=
+      "✨ Two Match! +25 Coins";
+
+  }else{
+
+    message=
+      "😅 No Match! Try Again";
+
+  }
+
+  coins+=reward;
+
+  updateBalance();
+
+  const coinBox=
+    document.getElementById('luckyFruitCoins');
+
+  if(coinBox){
+    coinBox.innerText=
+      coins.toLocaleString();
+  }
+
+  const result=
+    document.getElementById('fruitResult');
+
+  if(result){
+    result.innerText=message;
+  }
+
+}
+
+
+/* =========================
+   CLOSE LUCKY FRUIT
+========================= */
+
+function closeLuckyFruit(){
+
+  const game=
+    document.getElementById('luckyFruitGame');
+
+  if(game){
+    game.remove();
+  }
+
+  updateBalance();
+
+}
+
+
+/* =========================
+   FUTURE GAMES
+========================= */
+
+function gameComingSoon(name){
+
+  showToast(name+" — Coming Soon");
+
+}
+
+
+/* =========================
+   CLOSE NORMAL MODALS
+========================= */
+
+document.querySelectorAll('.modal')
+.forEach(modal=>{
+
+  modal.addEventListener('click',function(e){
+
+    if(e.target===modal){
+
+      modal.classList.remove('show');
+
+    }
+
+  });
+
+});
+
+
+/* =========================
+   INITIAL
+========================= */
+
+updateBalance();
+
+</script>
