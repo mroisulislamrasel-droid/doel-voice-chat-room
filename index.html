@@ -2,137 +2,141 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>MR Chat</title>
 
 <style>
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
   -webkit-tap-highlight-color:transparent;
 }
 
-body{
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f5f9;
-  color:#252525;
-  overflow-x:hidden;
+  background:#f5f7fb;
+  color:#222;
 }
 
-button,input,textarea{
-  font-family:inherit;
+button,input,textarea,select{
+  font:inherit;
 }
 
 button{
   border:0;
-  background:none;
+  cursor:pointer;
 }
 
-.app{
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
   width:100%;
   max-width:700px;
   min-height:100vh;
   margin:auto;
-  background:#f4f5f9;
+  background:#f5f7fb;
   position:relative;
+  overflow:hidden;
+}
+
+.page{
+  min-height:100vh;
   padding-bottom:82px;
 }
 
-/* =====================================================
-   GENERAL PAGE
-===================================================== */
-
-.page{
+.screen{
   display:none;
-  min-height:100vh;
 }
 
-.page.active{
+.screen.active{
   display:block;
 }
 
-.page-header{
-  height:70px;
-  display:flex;
-  align-items:center;
-  padding:0 20px;
-  background:#fff;
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-
-.page-header h2{
-  font-size:22px;
-}
-
-.header-space{
-  flex:1;
-}
-
-/* =====================================================
+/* =========================
    HOME
-===================================================== */
+========================= */
 
-.home{
-  padding-bottom:90px;
-}
-
-.home-top{
+.home-header{
   padding:18px 16px 8px;
   background:#fff;
 }
 
 .home-tabs{
   display:flex;
-  gap:7px;
+  gap:8px;
   align-items:center;
 }
 
 .home-tab{
   flex:1;
   height:42px;
-  border-radius:22px;
-  background:#f1f2f6;
-  font-size:14px;
+  border-radius:14px;
+  background:#f0f2f7;
   color:#777;
+  font-weight:700;
 }
 
 .home-tab.active{
   color:#fff;
-  background:linear-gradient(135deg,#5f8cff,#9a5cff);
+  background:linear-gradient(135deg,#6b5cff,#22c9ff);
+}
+
+.top-actions{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
 }
 
 .top-action{
-  width:43px;
+  flex:1;
   height:42px;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid #e9eaf0;
+  font-weight:600;
+}
+
+.event-slider{
+  margin:12px 16px;
   border-radius:20px;
-  background:#f1f2f6;
-  font-size:19px;
-}
-
-.event-box{
-  margin:13px 0;
-  height:125px;
-  border-radius:18px;
-  padding:20px;
-  color:#fff;
-  background:linear-gradient(135deg,#6e8cff,#b65cff);
-  position:relative;
+  height:150px;
   overflow:hidden;
+  position:relative;
+  background:linear-gradient(135deg,#6b5cff,#21c8ff);
+  color:#fff;
 }
 
-.event-box h2{
-  font-size:23px;
-  margin-bottom:8px;
+.event-slide{
+  position:absolute;
+  inset:0;
+  padding:25px;
+  display:none;
 }
 
-.event-box p{
+.event-slide.active{
+  display:block;
+}
+
+.event-slide h2{
+  margin:0 0 8px;
+  font-size:25px;
+}
+
+.event-slide p{
+  margin:0;
   opacity:.9;
 }
 
-.event-dots{
+.slider-dots{
   position:absolute;
   bottom:10px;
   left:0;
@@ -140,59 +144,52 @@ button{
   text-align:center;
 }
 
-.event-dot{
+.slider-dot{
   display:inline-block;
-  width:6px;
-  height:6px;
+  width:7px;
+  height:7px;
   border-radius:50%;
-  background:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.45);
   margin:0 3px;
 }
 
-.event-dot.active{
-  width:18px;
+.slider-dot.active{
+  width:20px;
   border-radius:10px;
   background:#fff;
 }
 
-.categories{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+.category-row{
+  display:flex;
   gap:10px;
-  padding:10px 16px;
+  padding:2px 16px 12px;
 }
 
-.category{
-  background:#fff;
-  padding:15px 5px;
+.category-box{
+  flex:1;
+  padding:14px 8px;
   text-align:center;
   border-radius:16px;
-  font-size:14px;
-}
-
-.category-icon{
-  font-size:24px;
-  margin-bottom:6px;
-}
-
-.rooms{
-  padding:8px 16px;
+  background:#fff;
+  border:1px solid #eee;
+  font-weight:700;
 }
 
 .room-card{
-  background:#fff;
-  border-radius:18px;
+  margin:10px 16px;
   padding:15px;
-  margin-bottom:12px;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:0 4px 16px rgba(0,0,0,.04);
 }
 
-.room-top{
+.room-head{
   display:flex;
   align-items:center;
   gap:12px;
 }
 
-.room-avatar{
+.avatar{
   width:48px;
   height:48px;
   border-radius:50%;
@@ -205,7 +202,6 @@ button{
 
 .room-name{
   font-weight:700;
-  font-size:16px;
 }
 
 .room-id{
@@ -214,724 +210,798 @@ button{
   margin-top:4px;
 }
 
-.room-enter{
+.follow-btn{
   padding:9px 14px;
   border-radius:18px;
   color:#fff;
-  background:linear-gradient(135deg,#6d8cff,#a45bff);
+  background:linear-gradient(135deg,#ff4fa3,#725cff);
 }
 
+.follow-btn.following{
+  background:#ddd;
+  color:#555;
+}
+
+.room-actions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+}
+
+.room-btn{
+  flex:1;
+  padding:10px;
+  border-radius:13px;
+  background:#f5f6fa;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
 .empty{
-  margin:20px 16px;
-  padding:70px 20px;
+  padding:80px 20px;
   text-align:center;
   color:#aaa;
-  background:#fff;
-  border-radius:20px;
 }
 
 .empty-icon{
-  font-size:45px;
+  font-size:48px;
   margin-bottom:12px;
 }
 
-/* =====================================================
-   MOMENT
-===================================================== */
+/* =========================
+   PAGE HEADER
+========================= */
 
-.moment-page{
-  padding-bottom:90px;
+.page-header{
+  height:62px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  font-size:20px;
+  font-weight:700;
+  position:sticky;
+  top:0;
+  z-index:5;
 }
 
+.back-btn{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#f2f3f7;
+  margin-right:10px;
+}
+
+/* =========================
+   MOMENT
+========================= */
+
 .moment-compose{
-  margin:15px;
-  padding:17px;
+  margin:14px;
   background:#fff;
+  padding:15px;
   border-radius:18px;
 }
 
 .moment-compose textarea{
   width:100%;
   min-height:90px;
-  resize:none;
   border:0;
-  outline:none;
-  font-size:16px;
+  outline:0;
+  resize:none;
 }
 
-.primary-btn{
-  padding:11px 20px;
-  border-radius:20px;
+.primary{
+  background:linear-gradient(135deg,#695cff,#1ec8ff);
   color:#fff;
-  background:linear-gradient(135deg,#6b8cff,#a456ff);
+  border-radius:13px;
+  padding:11px 20px;
 }
 
 .moment-card{
+  margin:12px 14px;
   background:#fff;
-  margin:12px 15px;
-  padding:16px;
   border-radius:18px;
+  padding:15px;
 }
 
 .moment-user{
   display:flex;
-  align-items:center;
   gap:10px;
-}
-
-.moment-user img{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  object-fit:cover;
+  align-items:center;
 }
 
 .moment-text{
-  padding:14px 0;
+  padding:15px 0 5px;
   line-height:1.5;
 }
 
-/* =====================================================
+/* =========================
    MESSAGE
-===================================================== */
-
-.message-page{
-  padding-bottom:90px;
-}
+========================= */
 
 .message-card{
-  margin:12px 15px;
+  margin:10px 14px;
+  padding:15px;
+  border-radius:17px;
   background:#fff;
-  border-radius:18px;
-  padding:17px;
+}
+
+.message-card.system{
+  background:linear-gradient(135deg,#f1edff,#e8f9ff);
 }
 
 .message-title{
   font-weight:700;
-  font-size:17px;
-}
-
-.message-time{
-  float:right;
-  color:#aaa;
-  font-size:12px;
+  margin-bottom:5px;
 }
 
 .message-text{
-  color:#777;
-  margin-top:9px;
+  color:#666;
 }
 
-.new-message{
+.chat-box{
   margin:15px;
   background:#fff;
   border-radius:18px;
-  padding:16px;
+  padding:15px;
 }
 
-.new-message input{
-  width:100%;
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  outline:none;
-  margin-bottom:10px;
+.chat-row{
+  display:flex;
+  gap:10px;
+  margin:12px 0;
 }
 
-/* =====================================================
-   ME PAGE
-===================================================== */
-
-.me-page{
-  background:#f4f5f9;
-  padding-bottom:90px;
+.chat-row.me{
+  justify-content:flex-end;
 }
 
-/* upper blue/green background */
-
-.me-head{
-  min-height:390px;
-  padding:18px 22px 15px;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(255,255,255,.55),transparent 28%),
-    linear-gradient(
-      180deg,
-      #a8eaf1 0%,
-      #d5f4f3 55%,
-      #f4f5f9 100%
-    );
+.bubble{
+  max-width:75%;
+  padding:10px 14px;
+  border-radius:18px;
+  background:#f1f2f7;
 }
 
-.status-space{
-  height:48px;
+.chat-row.me .bubble{
+  color:#fff;
+  background:linear-gradient(135deg,#735dff,#1ec8ff);
 }
 
-.me-profile{
+.chat-input{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.chat-input input{
+  flex:1;
+  border:1px solid #eee;
+  border-radius:20px;
+  padding:11px 14px;
+  outline:0;
+}
+
+/* =========================
+   ME / PROFILE
+========================= */
+
+#mePage{
+  background:linear-gradient(180deg,#dff9ff 0,#f3f7fa 36%,#f4f6fa 100%);
+}
+
+.me-top{
+  padding:35px 22px 12px;
+  position:relative;
+}
+
+.profile-main{
   display:flex;
   align-items:center;
-  padding:12px 25px 0;
-  gap:24px;
+  gap:25px;
+  padding-top:15px;
 }
 
-.me-photo-wrap{
-  width:126px;
-  height:126px;
+.profile-photo-wrap{
   position:relative;
   flex-shrink:0;
 }
 
-.me-photo{
+.profile-photo{
   width:126px;
   height:126px;
   border-radius:50%;
   object-fit:cover;
-  border:2px solid rgba(255,255,255,.95);
-  box-shadow:0 4px 15px rgba(0,0,0,.12);
+  border:4px solid rgba(255,255,255,.75);
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
-.photo-edit{
+.photo-camera{
   position:absolute;
-  right:2px;
-  bottom:2px;
-  width:34px;
-  height:34px;
+  right:3px;
+  bottom:5px;
+  width:32px;
+  height:32px;
   border-radius:50%;
   background:#fff;
-  box-shadow:0 2px 7px rgba(0,0,0,.18);
-  font-size:17px;
-}
-
-.me-info{
-  flex:1;
-  min-width:0;
-}
-
-.me-name{
-  font-size:29px;
-  font-weight:700;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  cursor:pointer;
-}
-
-.me-id{
-  color:#999;
-  font-size:18px;
-  margin-top:20px;
-}
-
-.profile-switch{
-  position:absolute;
-  right:24px;
-  top:135px;
-  font-size:28px;
-  color:#aaa;
-}
-
-.me-stats{
-  margin-top:42px;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-.me-stat{
-  width:120px;
+.profile-name-area{
+  min-width:0;
+}
+
+.profile-name{
+  font-size:27px;
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.profile-id{
+  color:#9299a0;
+  font-size:17px;
+  margin-top:10px;
+}
+
+.switch-icon{
+  position:absolute;
+  right:25px;
+  top:105px;
+  color:#aaa;
+  font-size:27px;
+}
+
+.profile-stats{
+  display:flex;
+  align-items:center;
+  margin-top:35px;
+}
+
+.stat{
+  flex:1;
   text-align:center;
 }
 
-.me-stat strong{
-  display:block;
-  font-size:30px;
+.stat-number{
+  font-size:27px;
+  font-weight:700;
 }
 
-.me-stat span{
-  display:block;
-  color:#999;
-  font-size:19px;
-  margin-top:6px;
+.stat-label{
+  color:#a0a5ab;
+  margin-top:4px;
+  font-size:17px;
 }
 
 .stat-line{
   width:1px;
-  height:40px;
-  background:#ddd;
+  height:38px;
+  background:#d7dadd;
 }
 
 .family-logo{
-  width:82px;
+  width:100px;
   height:82px;
   object-fit:contain;
-  margin-left:20px;
+  margin-left:18px;
 }
 
 /* wallet store */
 
 .wallet-store{
-  display:grid;
-  grid-template-columns:1fr 1fr;
+  display:flex;
   gap:11px;
-  padding:0 22px;
-  margin-top:-1px;
+  padding:12px 22px;
+}
+
+.wallet-card,
+.store-card{
+  flex:1;
+  height:128px;
+  border-radius:22px;
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  padding:23px 15px;
 }
 
 .wallet-card{
-  height:127px;
-  border-radius:22px;
-  color:#fff;
-  padding:25px 28px;
-  position:relative;
-  overflow:hidden;
-  text-align:left;
+  background:linear-gradient(135deg,#ff6545,#ffae42);
 }
 
-.wallet-card.wallet{
-  background:
-    radial-gradient(circle at 20% 15%,rgba(255,255,255,.15),transparent 25%),
-    linear-gradient(135deg,#ff6847,#ff9c40);
+.store-card{
+  background:linear-gradient(135deg,#36b9ff,#51a8ed);
 }
 
-.wallet-card.store{
-  background:
-    radial-gradient(circle at 20% 15%,rgba(255,255,255,.15),transparent 25%),
-    linear-gradient(135deg,#45ace7,#56c5ef);
+.wallet-card:after,
+.store-card:after{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  right:-65px;
+  top:-55px;
+  border-radius:50%;
+  background:rgba(255,255,255,.12);
 }
 
-.wallet-title{
+.card-title{
   font-size:27px;
   position:relative;
   z-index:2;
 }
 
-.wallet-number{
-  font-size:21px;
-  margin-top:13px;
+.card-value{
+  font-size:20px;
+  margin-top:14px;
   position:relative;
   z-index:2;
 }
 
-.wallet-icon{
+.card-art{
   position:absolute;
-  right:17px;
-  top:27px;
-  font-size:57px;
+  right:12px;
+  bottom:7px;
+  font-size:54px;
+  z-index:2;
 }
 
-/* main menu */
+/* menu */
 
-.me-card{
-  margin:22px 22px 0;
+.me-menu{
+  margin:10px 22px 18px;
   background:#fff;
-  border-radius:23px;
+  border-radius:22px;
   overflow:hidden;
 }
 
 .me-row{
-  min-height:91px;
+  min-height:94px;
   display:flex;
   align-items:center;
-  padding:0 31px;
-  gap:25px;
+  padding:0 30px;
+  gap:22px;
 }
 
-.me-row-icon{
-  width:42px;
+.me-row:active{
+  background:#f5f5f5;
+}
+
+.me-icon{
+  width:40px;
   text-align:center;
   font-size:32px;
   flex-shrink:0;
 }
 
-.me-row-title{
+.me-label{
   flex:1;
-  font-size:27px;
-  color:#2d2d2d;
+  font-size:22px;
+  color:#333;
 }
 
 .me-right{
   display:flex;
   align-items:center;
-  gap:17px;
+  gap:20px;
+}
+
+.badge-level{
+  font-size:18px;
+  font-weight:700;
+  color:#6c35b6;
+  background:linear-gradient(90deg,#ffd64d,#9e50ff);
+  padding:4px 10px;
+  border-radius:20px;
+}
+
+.badge-svip{
+  font-size:15px;
+  color:#ffe7a0;
+  background:#176c4d;
+  border-radius:12px;
+  padding:5px 9px;
+}
+
+.aristo{
+  font-size:30px;
 }
 
 .arrow{
-  color:#bbb;
-  font-size:34px;
-  line-height:1;
+  color:#b8b8b8;
+  font-size:30px;
 }
 
-.level-badge{
-  min-width:101px;
-  height:34px;
-  padding:5px 12px;
-  color:#fff;
-  border-radius:17px;
-  font-size:15px;
-  font-weight:bold;
-  text-align:center;
-  background:linear-gradient(90deg,#6024ad,#b833d5,#5921ae);
-  border:2px solid #e6bb36;
-  box-shadow:0 2px 4px rgba(0,0,0,.12);
+/* =========================
+   PROFILE DETAILS
+========================= */
+
+#profileDetails{
+  background:#f5f7fa;
 }
 
-.svip-badge{
-  min-width:82px;
-  height:31px;
-  padding:6px 8px;
-  border-radius:15px;
-  background:linear-gradient(135deg,#06753b,#1a9b53);
-  color:#f4d77a;
-  font-size:13px;
-  font-weight:bold;
-  border:1px solid #e1c46b;
-}
-
-.aristo-badge{
-  font-size:31px;
-}
-
-/* icon colors */
-
-.i-gold{color:#f8b31c}
-.i-purple{color:#8666ec}
-.i-pink{color:#f32c82}
-.i-blue{color:#29b6e9}
-.i-orange{color:#ff8b13}
-.i-green{color:#50db6e}
-
-/* lower card */
-
-.lower-card{
-  margin-bottom:22px;
-}
-
-.offline{
-  border:1px solid #e1e1e1;
-  color:#999;
-  border-radius:18px;
-  padding:5px 12px;
-  font-size:15px;
-}
-
-/* =====================================================
-   PROFILE EDIT SCREEN
-===================================================== */
-
-.profile-editor{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#f4f5f9;
-  z-index:200;
-  overflow-y:auto;
-}
-
-.profile-editor.show{
-  display:block;
-}
-
-.editor-header{
-  height:68px;
+.details-head{
+  height:62px;
   background:#fff;
   display:flex;
   align-items:center;
-  padding:0 18px;
+  padding:0 16px;
   position:sticky;
   top:0;
-  z-index:5;
-  border-bottom:1px solid #eee;
+  z-index:10;
 }
 
-.editor-header button{
-  font-size:27px;
-  width:42px;
-}
-
-.editor-header h2{
+.details-head h2{
   flex:1;
   text-align:center;
+  margin:0;
   font-size:20px;
 }
 
-.editor-save{
-  color:#657fff;
-  font-size:16px!important;
+.details-edit{
+  color:#6254ff;
+  font-weight:700;
 }
 
-.editor-body{
-  padding:25px 18px 50px;
+.details-photo-section{
+  background:#fff;
+  text-align:center;
+  padding:28px 20px;
 }
 
-.editor-photo{
-  display:flex;
-  justify-content:center;
-  margin-bottom:25px;
-}
-
-.editor-photo-box{
-  width:112px;
-  height:112px;
+.details-photo-wrap{
+  display:inline-block;
   position:relative;
 }
 
-.editor-photo-box img{
-  width:112px;
-  height:112px;
-  border-radius:50%;
+.details-photo{
+  width:125px;
+  height:125px;
   object-fit:cover;
-}
-
-.editor-camera{
-  position:absolute;
-  right:0;
-  bottom:0;
-  width:36px;
-  height:36px;
   border-radius:50%;
-  background:#fff;
-  box-shadow:0 2px 8px rgba(0,0,0,.18);
+  border:4px solid #fff;
+  box-shadow:0 5px 20px rgba(0,0,0,.12);
 }
 
-.form-card{
+.change-photo{
+  display:block;
+  margin:13px auto 0;
+  color:#6356ff;
+  font-weight:700;
+  background:none;
+}
+
+.profile-fields{
+  margin:14px;
   background:#fff;
   border-radius:20px;
   overflow:hidden;
 }
 
-.form-row{
-  min-height:72px;
+.profile-field{
+  min-height:68px;
   padding:12px 18px;
   border-bottom:1px solid #f0f0f0;
+  display:flex;
+  align-items:center;
 }
 
-.form-row:last-child{
+.profile-field:last-child{
   border-bottom:0;
 }
 
-.form-label{
-  display:block;
-  color:#999;
-  font-size:13px;
-  margin-bottom:6px;
+.field-label{
+  width:125px;
+  color:#888;
+  font-size:16px;
 }
 
-.form-input,
-.form-textarea{
-  width:100%;
+.field-input{
+  flex:1;
   border:0;
-  outline:none;
+  outline:0;
   font-size:17px;
-  color:#222;
   background:transparent;
+  color:#222;
 }
 
-.form-textarea{
-  min-height:85px;
+.field-textarea{
+  min-height:80px;
   resize:none;
+  padding-top:8px;
 }
 
-.photo-input{
-  display:none;
+.save-profile{
+  margin:10px 14px 30px;
+  width:calc(100% - 28px);
+  height:52px;
+  border-radius:18px;
+  color:#fff;
+  background:linear-gradient(135deg,#6e58ff,#21c8ff);
+  font-weight:700;
 }
 
-/* =====================================================
-   SIMPLE MODAL
-===================================================== */
+/* =========================
+   MODALS
+========================= */
 
-.modal-bg{
-  display:none;
+.modal{
   position:fixed;
   inset:0;
-  z-index:300;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.48);
+  display:none;
   align-items:flex-end;
   justify-content:center;
+  z-index:1000;
 }
 
-.modal-bg.show{
+.modal.show{
   display:flex;
 }
 
-.modal{
+.modal-box{
   width:100%;
   max-width:700px;
   background:#fff;
   border-radius:25px 25px 0 0;
-  padding:25px;
+  padding:22px;
+  max-height:85vh;
+  overflow:auto;
 }
 
-.modal h2{
-  font-size:23px;
+.modal-title{
+  font-size:21px;
+  font-weight:700;
   margin-bottom:18px;
 }
 
-.modal-option{
-  padding:17px 0;
-  border-bottom:1px solid #eee;
-  font-size:18px;
+.modal input,
+.modal textarea,
+.modal select{
+  width:100%;
+  padding:13px;
+  border:1px solid #e3e4ea;
+  border-radius:13px;
+  outline:0;
+  margin-bottom:10px;
 }
 
-/* =====================================================
+.modal-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.modal-buttons button{
+  flex:1;
+  padding:13px;
+  border-radius:13px;
+}
+
+.cancel{
+  background:#eee;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+  margin:14px;
+  display:flex;
+  gap:8px;
+}
+
+.search-box input{
+  flex:1;
+  border:1px solid #e5e6eb;
+  border-radius:16px;
+  padding:13px;
+  outline:0;
+}
+
+.search-results{
+  margin:0 14px;
+}
+
+/* =========================
+   ROOM
+========================= */
+
+#roomScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(180deg,#15153d,#35186d);
+  color:#fff;
+  z-index:500;
+  display:none;
+  overflow:auto;
+}
+
+#roomScreen.show{
+  display:block;
+}
+
+.room-top{
+  padding:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.room-top .room-title{
+  flex:1;
+}
+
+.room-stage{
+  padding:25px 15px;
+  text-align:center;
+}
+
+.host-avatar{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #ffd45a;
+}
+
+.seats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px 8px;
+  margin-top:30px;
+}
+
+.seat{
+  text-align:center;
+}
+
+.seat-avatar{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#49427b;
+}
+
+.room-chat{
+  margin:20px 15px;
+  padding:15px;
+  border-radius:20px;
+  background:rgba(255,255,255,.1);
+  min-height:180px;
+}
+
+.room-bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  max-width:700px;
+  margin:auto;
+  padding:13px 15px 22px;
+  background:rgba(12,9,35,.92);
+  display:flex;
+  gap:8px;
+}
+
+.room-control{
+  flex:1;
+  height:48px;
+  border-radius:18px;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-size:20px;
+}
+
+/* =========================
    BOTTOM NAV
-===================================================== */
+========================= */
 
 .bottom-nav{
   position:fixed;
   bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
+  left:0;
+  right:0;
   max-width:700px;
-  height:82px;
-  background:rgba(255,255,255,.97);
+  margin:auto;
+  height:72px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(15px);
   border-top:1px solid #eee;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
+  display:flex;
   z-index:100;
 }
 
-.nav-item{
+.nav-btn{
+  flex:1;
+  background:transparent;
+  color:#b7bac4;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  color:#cbd0da;
-  gap:4px;
+  gap:3px;
 }
 
 .nav-icon{
-  font-size:31px;
-  line-height:1;
+  font-size:25px;
 }
 
-.nav-item.active{
-  color:#8d88ff;
+.nav-text{
+  font-size:11px;
 }
 
-.nav-item.active .nav-icon{
-  background:linear-gradient(135deg,#35d7ff,#b14dff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.nav-btn.active{
+  color:#685cff;
 }
 
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-  display:none;
-  position:fixed;
-  left:50%;
-  bottom:105px;
-  transform:translateX(-50%);
-  padding:12px 20px;
-  background:rgba(30,30,30,.9);
-  color:#fff;
-  border-radius:25px;
-  z-index:500;
-  white-space:nowrap;
+.nav-btn.active .nav-icon{
+  color:#685cff;
 }
 
-.toast.show{
-  display:block;
-}
-
-/* =====================================================
+/* =========================
    RESPONSIVE
-===================================================== */
+========================= */
 
-@media(max-width:500px){
+@media(max-width:430px){
 
-  .me-head{
-    min-height:389px;
+  .me-top{
+    padding:30px 22px 8px;
   }
 
-  .me-profile{
-    padding-left:25px;
-    padding-right:25px;
+  .profile-main{
+    gap:24px;
   }
 
-  .me-photo-wrap,
-  .me-photo{
+  .profile-photo{
     width:126px;
     height:126px;
   }
 
-  .me-name{
-    font-size:28px;
+  .profile-name{
+    font-size:25px;
   }
 
-  .me-row{
-    min-height:91px;
+  .profile-id{
+    font-size:16px;
   }
 
-  .me-row-title{
-    font-size:27px;
-  }
-}
-
-@media(max-width:390px){
-
-  .me-head{
-    min-height:380px;
-  }
-
-  .me-profile{
-    padding-left:10px;
-    padding-right:10px;
-    gap:15px;
-  }
-
-  .me-photo-wrap,
-  .me-photo{
-    width:105px;
-    height:105px;
-  }
-
-  .me-name{
-    font-size:23px;
-  }
-
-  .me-id{
-    font-size:15px;
-    margin-top:13px;
-  }
-
-  .profile-switch{
-    top:125px;
-  }
-
-  .me-stat{
-    width:90px;
+  .switch-icon{
+    right:20px;
   }
 
   .family-logo{
-    width:70px;
-    height:70px;
-    margin-left:5px;
+    width:88px;
+    margin-left:10px;
   }
 
-  .wallet-store{
-    padding:0 15px;
+  .wallet-card,
+  .store-card{
+    height:125px;
   }
 
-  .me-card{
-    margin-left:15px;
-    margin-right:15px;
+  .card-title{
+    font-size:26px;
   }
 
   .me-row{
-    padding:0 20px;
-    gap:17px;
+    min-height:94px;
+    padding:0 28px;
+    gap:18px;
   }
 
-  .me-row-title{
-    font-size:22px;
-  }
-
-  .me-row-icon{
-    width:35px;
-    font-size:28px;
+  .me-label{
+    font-size:21px;
   }
 }
 </style>
@@ -939,540 +1009,341 @@ button{
 
 <body>
 
-<div class="app">
+<div id="app">
 
-<!-- =====================================================
-     HOME
-===================================================== -->
+<!-- ================= HOME ================= -->
 
-<section class="page home" id="homePage">
+<section id="homePage" class="screen active page">
 
-  <div class="home-top">
+  <div class="home-header">
 
     <div class="home-tabs">
-      <button class="home-tab active">Following</button>
-      <button class="home-tab">Popular</button>
-      <button class="home-tab">Recent</button>
-      <button class="top-action">⌕</button>
-      <button class="top-action">＋</button>
+      <button class="home-tab active" onclick="homeTab(this,'Following')">Following</button>
+      <button class="home-tab" onclick="homeTab(this,'Popular')">Popular</button>
+      <button class="home-tab" onclick="homeTab(this,'Recent')">Recent</button>
     </div>
 
-    <div class="event-box">
+    <div class="top-actions">
+      <button class="top-action" onclick="openSearch()">🔍 Search</button>
+      <button class="top-action" onclick="createRoom()">＋ Create Room</button>
+    </div>
+
+  </div>
+
+  <div class="event-slider">
+
+    <div class="event-slide active">
       <h2>MR Chat Grand Opening</h2>
       <p>Welcome to MR Chat Voice Room</p>
+    </div>
 
-      <div class="event-dots">
-        <span class="event-dot active"></span>
-        <span class="event-dot"></span>
-        <span class="event-dot"></span>
-        <span class="event-dot"></span>
-        <span class="event-dot"></span>
-      </div>
+    <div class="event-slide">
+      <h2>Daily Gift Event</h2>
+      <p>Send gifts and enjoy the event</p>
+    </div>
+
+    <div class="event-slide">
+      <h2>Rank Challenge</h2>
+      <p>Join today's ranking challenge</p>
+    </div>
+
+    <div class="event-slide">
+      <h2>CP Event</h2>
+      <p>Build your CP relationship</p>
+    </div>
+
+    <div class="event-slide">
+      <h2>Family Party</h2>
+      <p>Enjoy with your family</p>
+    </div>
+
+    <div class="slider-dots">
+      <span class="slider-dot active"></span>
+      <span class="slider-dot"></span>
+      <span class="slider-dot"></span>
+      <span class="slider-dot"></span>
+      <span class="slider-dot"></span>
     </div>
 
   </div>
 
-  <div class="categories">
-    <div class="category">
-      <div class="category-icon">🏆</div>
-      Rank
-    </div>
-
-    <div class="category">
-      <div class="category-icon">💞</div>
-      CP
-    </div>
-
-    <div class="category">
-      <div class="category-icon">👨‍👩‍👧</div>
-      Family
-    </div>
+  <div class="category-row">
+    <div class="category-box">🏆<br>Rank</div>
+    <div class="category-box">💗<br>CP</div>
+    <div class="category-box">👨‍👩‍👧<br>Family</div>
   </div>
 
-  <div class="rooms">
+  <div id="homeContent"></div>
 
-    <div class="room-card">
-      <div class="room-top">
+</section>
 
-        <img class="room-avatar"
-             src="https://i.pravatar.cc/100?img=47">
 
-        <div class="room-info">
-          <div class="room-name">Friendship Lounge</div>
-          <div class="room-id">Room ID: 882013</div>
-        </div>
+<!-- ================= DISCOVER ================= -->
 
-        <button class="room-enter"
-                onclick="showToast('Entering room...')">
-          Join
-        </button>
+<section id="discoverPage" class="screen page">
 
-      </div>
+  <div class="page-header">Discover</div>
+
+  <div id="discoverContent">
+    <div class="empty">
+      <div class="empty-icon">🌎</div>
+      <div>No content yet</div>
+      <p>Discover content from real MR Chat users here.</p>
     </div>
-
-    <div class="room-card">
-      <div class="room-top">
-
-        <img class="room-avatar"
-             src="https://i.pravatar.cc/100?img=32">
-
-        <div class="room-info">
-          <div class="room-name">Global Talk</div>
-          <div class="room-id">Room ID: 781245</div>
-        </div>
-
-        <button class="room-enter"
-                onclick="showToast('Entering room...')">
-          Join
-        </button>
-
-      </div>
-    </div>
-
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     DISCOVER
-===================================================== -->
+<!-- ================= MOMENT ================= -->
 
-<section class="page" id="discoverPage">
+<section id="momentPage" class="screen page">
 
-  <div class="page-header">
-    <h2>Discover</h2>
-  </div>
-
-  <div class="empty">
-    <div class="empty-icon">🌎</div>
-    <div>No content yet</div>
-    <small>When users become active, their content will appear here.</small>
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     MOMENT
-===================================================== -->
-
-<section class="page moment-page" id="momentPage">
-
-  <div class="page-header">
-    <h2>Moment</h2>
-  </div>
+  <div class="page-header">Moment</div>
 
   <div class="moment-compose">
 
-    <textarea
-      id="momentText"
-      placeholder="Share something with your friends..."
-    ></textarea>
+    <textarea id="momentText" placeholder="Share something with MR Chat..."></textarea>
 
-    <button class="primary-btn"
-            onclick="postMoment()">
-      Post Moment
-    </button>
+    <button class="primary" onclick="postMoment()">Post Moment</button>
 
   </div>
 
-  <div id="momentList"></div>
+  <div id="momentContent">
+    <div class="empty">
+      <div class="empty-icon">✨</div>
+      <div>No Moments yet</div>
+    </div>
+  </div>
 
 </section>
 
 
-<!-- =====================================================
-     MESSAGE
-===================================================== -->
+<!-- ================= MESSAGE ================= -->
 
-<section class="page message-page" id="messagePage">
+<section id="messagePage" class="screen page">
 
-  <div class="page-header">
-    <h2>Message</h2>
+  <div class="page-header">Message</div>
+
+  <div class="message-card system">
+    <div class="message-title">🎁 MR Chat Reward</div>
+    <div class="message-text">Your MR Chat rewards and event notifications will appear here.</div>
   </div>
 
-  <div class="message-card">
-
-    <div class="message-title">
-      MR Chat Reward
-      <span class="message-time">System</span>
-    </div>
-
-    <div class="message-text">
-      Your MR Chat reward information will appear here.
-    </div>
-
+  <div class="message-card system">
+    <div class="message-title">💬 MR Chat</div>
+    <div class="message-text">Welcome to MR Chat.</div>
   </div>
 
-  <div class="message-card">
-
-    <div class="message-title">
-      MR Chat
-      <span class="message-time">System</span>
-    </div>
-
-    <div class="message-text">
-      Welcome to MR Chat.
-    </div>
-
+  <div class="message-card system">
+    <div class="message-title">🎁 Gift Notice</div>
+    <div class="message-text">Gift notifications will appear here.</div>
   </div>
 
-  <div class="message-card">
+  <div class="chat-box">
 
-    <div class="message-title">
-      Gift Notice
-      <span class="message-time">System</span>
+    <div class="message-title">Messages</div>
+
+    <div id="chatMessages">
+      <div class="empty" style="padding:30px 10px;">
+        Select a user to start chatting.
+      </div>
     </div>
 
-    <div class="message-text">
-      Gift notifications from other users will appear here.
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Type a message...">
+      <button class="primary" onclick="sendMessage()">Send</button>
     </div>
-
-  </div>
-
-  <div class="new-message">
-
-    <input
-      id="messageId"
-      placeholder="Enter user ID"
-    >
-
-    <button class="primary-btn"
-            onclick="startMessage()">
-      Message User
-    </button>
 
   </div>
 
 </section>
 
 
-<!-- =====================================================
-     ME
-===================================================== -->
+<!-- ================= ME ================= -->
 
-<section class="page me-page" id="mePage">
+<section id="mePage" class="screen page">
 
-  <!-- PROFILE HEADER -->
+  <div class="me-top">
 
-  <div class="me-head">
+    <div class="profile-main">
 
-    <div class="status-space"></div>
+      <div class="profile-photo-wrap"
+           onclick="openProfileDetails()">
 
-    <div class="me-profile">
+        <img id="mePhoto"
+             class="profile-photo"
+             src="https://i.pravatar.cc/300?img=11">
 
-      <div class="me-photo-wrap">
-
-        <img
-          id="mePhoto"
-          class="me-photo"
-          src="https://i.pravatar.cc/300?img=12"
-          onclick="changePhoto()"
-        >
-
-        <button class="photo-edit"
-                onclick="changePhoto()">
-          📷
-        </button>
+        <div class="photo-camera">📷</div>
 
       </div>
 
-      <div class="me-info"
-           onclick="openProfileEditor()">
+      <div class="profile-name-area">
 
-        <div class="me-name"
-             id="meName">
-          〰Mia༶❀Vai〰
+        <div id="meName" class="profile-name">
+          Mia Vai
         </div>
 
-        <div class="me-id">
-          ID:<span id="meId">100927248</span>
+        <div id="meId" class="profile-id">
+          ID:100927248
         </div>
 
       </div>
 
     </div>
 
-    <div class="profile-switch">⇄</div>
+    <div class="switch-icon">⇄</div>
 
-    <div class="me-stats">
+    <div class="profile-stats">
 
-      <div class="me-stat">
-        <strong id="followCount">15</strong>
-        <span>Follow</span>
+      <div class="stat">
+        <div class="stat-number" id="followCount">15</div>
+        <div class="stat-label">Follow</div>
       </div>
 
       <div class="stat-line"></div>
 
-      <div class="me-stat">
-        <strong id="fansCount">26</strong>
-        <span>Fans</span>
+      <div class="stat">
+        <div class="stat-number" id="fansCount">26</div>
+        <div class="stat-label">Fans</div>
       </div>
 
       <img
+        id="familyLogo"
         class="family-logo"
-        src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png"
-      >
+        src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png"
+        alt="Family">
 
     </div>
 
   </div>
 
-
-  <!-- WALLET STORE -->
 
   <div class="wallet-store">
 
-    <button class="wallet-card wallet"
-            onclick="openWallet()">
-
-      <div class="wallet-title">
-        Wallet
-      </div>
-
-      <div class="wallet-number">
-        🪙 <span id="coinNumber">13658</span>
-      </div>
-
-      <div class="wallet-icon">
-        👛
-      </div>
-
+    <button class="wallet-card" onclick="openWallet()">
+      <div class="card-title">Wallet</div>
+      <div class="card-value">🪙 <span id="coinBalance">13658</span></div>
+      <div class="card-art">👛</div>
     </button>
 
-
-    <button class="wallet-card store"
-            onclick="openStore()">
-
-      <div class="wallet-title">
-        Store
-      </div>
-
-      <div class="wallet-icon">
-        🛍️
-      </div>
-
+    <button class="store-card" onclick="openStore()">
+      <div class="card-title">Store</div>
+      <div class="card-value">&nbsp;</div>
+      <div class="card-art">🏪</div>
     </button>
 
   </div>
 
 
-  <!-- MAIN PROFILE MENU -->
+  <div class="me-menu">
 
-  <div class="me-card">
-
-    <div class="me-row"
-         onclick="showToast('Invite get coins')">
-
-      <div class="me-row-icon i-gold">💰</div>
-
-      <div class="me-row-title">
-        Invite get coins
-      </div>
-
-      <div class="arrow">›</div>
-
-    </div>
-
-
-    <div class="me-row"
-         onclick="showToast('Love House')">
-
-      <div class="me-row-icon i-purple">⬟</div>
-
-      <div class="me-row-title">
-        Love House
-      </div>
-
-      <div class="arrow">›</div>
-
-    </div>
-
-
-    <div class="me-row"
-         onclick="openCP()">
-
-      <div class="me-row-icon i-pink">💗</div>
-
-      <div class="me-row-title">
-        CP Level
-      </div>
-
-      <div class="arrow">›</div>
-
-    </div>
-
-
-    <div class="me-row"
-         onclick="showToast('Prop Warehouse')">
-
-      <div class="me-row-icon i-blue">👜</div>
-
-      <div class="me-row-title">
-        Prop Warehouse
-      </div>
-
-      <div class="arrow">›</div>
-
-    </div>
-
-
-    <div class="me-row"
-         onclick="showToast('Medal')">
-
-      <div class="me-row-icon i-orange">🏅</div>
-
-      <div class="me-row-title">
-        Medal
-      </div>
-
-      <div class="arrow">›</div>
-
-    </div>
-
-
-    <div class="me-row"
-         onclick="showToast('Level')">
-
-      <div class="me-row-icon i-green">⬢</div>
-
-      <div class="me-row-title">
-        Level
-      </div>
-
+    <div class="me-row" onclick="inviteCoins()">
+      <div class="me-icon">💰</div>
+      <div class="me-label">Invite get coins</div>
       <div class="me-right">
-
-        <div class="level-badge">
-          ✦ LV.41 ✦
-        </div>
-
-        <div class="arrow">›</div>
-
+        <span class="arrow">›</span>
       </div>
-
     </div>
 
-
-    <div class="me-row"
-         onclick="showToast('SVIP')">
-
-      <div class="me-row-icon i-purple">▼</div>
-
-      <div class="me-row-title">
-        SVIP
-      </div>
-
+    <div class="me-row" onclick="loveHouse()">
+      <div class="me-icon">💜</div>
+      <div class="me-label">Love House</div>
       <div class="me-right">
-
-        <div class="svip-badge">
-          🛡 SVIP2
-        </div>
-
-        <div class="arrow">›</div>
-
+        <span class="arrow">›</span>
       </div>
-
     </div>
 
-
-    <div class="me-row"
-         onclick="showToast('Aristocracy')">
-
-      <div class="me-row-icon i-gold">♛</div>
-
-      <div class="me-row-title">
-        Aristocracy
-      </div>
-
+    <div class="me-row" onclick="openCP()">
+      <div class="me-icon">💗</div>
+      <div class="me-label">CP Level</div>
       <div class="me-right">
-
-        <div class="aristo-badge">
-          👑
-        </div>
-
-        <div class="arrow">›</div>
-
+        <span class="arrow">›</span>
       </div>
+    </div>
 
+    <div class="me-row" onclick="propWarehouse()">
+      <div class="me-icon">🧰</div>
+      <div class="me-label">Prop Warehouse</div>
+      <div class="me-right">
+        <span class="arrow">›</span>
+      </div>
+    </div>
+
+    <div class="me-row" onclick="medal()">
+      <div class="me-icon">🏅</div>
+      <div class="me-label">Medal</div>
+      <div class="me-right">
+        <span class="arrow">›</span>
+      </div>
+    </div>
+
+    <div class="me-row" onclick="level()">
+      <div class="me-icon">🟢</div>
+      <div class="me-label">Level</div>
+      <div class="me-right">
+        <span class="badge-level">⭐ LV.41 ⭐</span>
+        <span class="arrow">›</span>
+      </div>
+    </div>
+
+    <div class="me-row" onclick="svip()">
+      <div class="me-icon">💜</div>
+      <div class="me-label">SVIP</div>
+      <div class="me-right">
+        <span class="badge-svip">👑 SVIP2</span>
+        <span class="arrow">›</span>
+      </div>
+    </div>
+
+    <div class="me-row" onclick="aristocracy()">
+      <div class="me-icon">👑</div>
+      <div class="me-label">Aristocracy</div>
+      <div class="me-right">
+        <span class="aristo">❄️</span>
+        <span class="arrow">›</span>
+      </div>
     </div>
 
   </div>
 
 
-  <!-- LOWER MENU -->
+  <div class="me-menu">
 
-  <div class="me-card lower-card">
-
-    <div class="me-row"
-         onclick="showToast('Language')">
-
-      <div class="me-row-icon">
-        🌐
+    <div class="me-row" onclick="language()">
+      <div class="me-icon">🌐</div>
+      <div class="me-label">Language</div>
+      <div class="me-right">
+        <span class="arrow">›</span>
       </div>
-
-      <div class="me-row-title">
-        Language
-      </div>
-
-      <div class="arrow">›</div>
-
     </div>
 
-
-    <div class="me-row"
-         onclick="showToast('Customer service')">
-
-      <div class="me-row-icon">
-        🎧
-      </div>
-
-      <div class="me-row-title">
-        Customer service
-      </div>
-
+    <div class="me-row" onclick="customerService()">
+      <div class="me-icon">🎧</div>
+      <div class="me-label">Customer service</div>
       <div class="me-right">
-
-        <span class="offline">
+        <span style="border:1px solid #ddd;padding:3px 10px;border-radius:15px;color:#999;font-size:14px;">
           ● Offline
         </span>
-
-        <div class="arrow">›</div>
-
+        <span class="arrow">›</span>
       </div>
-
     </div>
 
-
-    <div class="me-row"
-         onclick="showToast('Feedback')">
-
-      <div class="me-row-icon">
-        💬
+    <div class="me-row" onclick="feedback()">
+      <div class="me-icon">💬</div>
+      <div class="me-label">Feedback</div>
+      <div class="me-right">
+        <span class="arrow">›</span>
       </div>
-
-      <div class="me-row-title">
-        Feedback
-      </div>
-
-      <div class="arrow">›</div>
-
     </div>
 
-
-    <div class="me-row"
-         onclick="showToast('Settings')">
-
-      <div class="me-row-icon">
-        ⬡
+    <div class="me-row" onclick="settings()">
+      <div class="me-icon">⚙️</div>
+      <div class="me-label">Settings</div>
+      <div class="me-right">
+        <span class="arrow">›</span>
       </div>
-
-      <div class="me-row-title">
-        Settings
-      </div>
-
-      <div class="arrow">›</div>
-
     </div>
 
   </div>
@@ -1480,209 +1351,131 @@ button{
 </section>
 
 
-<!-- =====================================================
-     BOTTOM NAVIGATION
-===================================================== -->
+<!-- ================= PROFILE DETAILS ================= -->
 
-<nav class="bottom-nav">
+<section id="profileDetails" class="screen page">
 
-  <button class="nav-item"
-          id="navHome"
-          onclick="showPage('homePage','navHome')">
+  <div class="details-head">
 
-    <div class="nav-icon">⌂</div>
-
-  </button>
-
-
-  <button class="nav-item"
-          id="navDiscover"
-          onclick="showPage('discoverPage','navDiscover')">
-
-    <div class="nav-icon">◉</div>
-
-  </button>
-
-
-  <button class="nav-item"
-          id="navMoment"
-          onclick="showPage('momentPage','navMoment')">
-
-    <div class="nav-icon">◖</div>
-
-  </button>
-
-
-  <button class="nav-item"
-          id="navMessage"
-          onclick="showPage('messagePage','navMessage')">
-
-    <div class="nav-icon">☁</div>
-
-  </button>
-
-
-  <button class="nav-item active"
-          id="navMe"
-          onclick="showPage('mePage','navMe')">
-
-    <div class="nav-icon">◉</div>
-
-  </button>
-
-</nav>
-
-</div>
-
-
-<!-- =====================================================
-     PROFILE EDITOR
-===================================================== -->
-
-<div class="profile-editor"
-     id="profileEditor">
-
-  <div class="editor-header">
-
-    <button onclick="closeProfileEditor()">
-      ‹
-    </button>
+    <button class="back-btn" onclick="closeProfileDetails()">‹</button>
 
     <h2>Edit Profile</h2>
 
-    <button class="editor-save"
-            onclick="saveProfile()">
-      Save
+    <button class="details-edit" onclick="saveProfile()">Save</button>
+
+  </div>
+
+
+  <div class="details-photo-section">
+
+    <div class="details-photo-wrap">
+
+      <img id="detailsPhoto"
+           class="details-photo"
+           src="https://i.pravatar.cc/300?img=11">
+
+    </div>
+
+    <button class="change-photo" onclick="changePhoto()">
+      📷 Change profile photo
     </button>
 
+    <input
+      id="photoFile"
+      type="file"
+      accept="image/*"
+      style="display:none"
+      onchange="loadPhoto(event)">
+
   </div>
 
 
-  <div class="editor-body">
+  <div class="profile-fields">
 
-    <div class="editor-photo">
-
-      <div class="editor-photo-box">
-
-        <img
-          id="editorPhoto"
-          src="https://i.pravatar.cc/300?img=12"
-        >
-
-        <button class="editor-camera"
-                onclick="changePhoto()">
-          📷
-        </button>
-
-      </div>
-
+    <div class="profile-field">
+      <div class="field-label">Nickname</div>
+      <input id="editName"
+             class="field-input"
+             value="Mia Vai"
+             maxlength="30">
     </div>
 
+    <div class="profile-field">
+      <div class="field-label">ID</div>
+      <input id="editId"
+             class="field-input"
+             value="100927248"
+             readonly>
+    </div>
 
-    <div class="form-card">
+    <div class="profile-field">
+      <div class="field-label">Date of Birth</div>
+      <input id="editBirthday"
+             class="field-input"
+             type="date">
+    </div>
 
-      <div class="form-row">
+    <div class="profile-field">
+      <div class="field-label">Nationality</div>
+      <select id="editNationality" class="field-input">
+        <option>Bangladesh</option>
+        <option>India</option>
+        <option>Pakistan</option>
+        <option>Saudi Arabia</option>
+        <option>United Arab Emirates</option>
+        <option>Qatar</option>
+        <option>Kuwait</option>
+        <option>Oman</option>
+        <option>Bahrain</option>
+        <option>Other</option>
+      </select>
+    </div>
 
-        <label class="form-label">
-          Nickname
-        </label>
+    <div class="profile-field">
+      <div class="field-label">Location</div>
+      <input id="editLocation"
+             class="field-input"
+             value="Bangladesh">
+    </div>
 
-        <input
-          class="form-input"
-          id="editNickname"
-          placeholder="Enter nickname"
-        >
-
-      </div>
-
-
-      <div class="form-row">
-
-        <label class="form-label">
-          Date of Birth
-        </label>
-
-        <input
-          class="form-input"
-          id="editBirthday"
-          type="date"
-        >
-
-      </div>
-
-
-      <div class="form-row">
-
-        <label class="form-label">
-          Nationality
-        </label>
-
-        <input
-          class="form-input"
-          id="editNationality"
-          placeholder="Bangladesh"
-        >
-
-      </div>
-
-
-      <div class="form-row">
-
-        <label class="form-label">
-          Location
-        </label>
-
-        <input
-          class="form-input"
-          id="editLocation"
-          placeholder="Enter location"
-        >
-
-      </div>
-
-
-      <div class="form-row">
-
-        <label class="form-label">
-          Bio
-        </label>
-
-        <textarea
-          class="form-textarea"
-          id="editBio"
-          placeholder="Write something about yourself..."
-        ></textarea>
-
-      </div>
-
+    <div class="profile-field">
+      <div class="field-label">Bio</div>
+      <textarea id="editBio"
+                class="field-input field-textarea"
+                placeholder="Write something about yourself...">Welcome to MR Chat ❤️</textarea>
     </div>
 
   </div>
 
-</div>
+  <button class="save-profile" onclick="saveProfile()">
+    Save Profile
+  </button>
+
+</section>
 
 
-<!-- =====================================================
-     MODAL
-===================================================== -->
+<!-- ================= SEARCH MODAL ================= -->
 
-<div class="modal-bg"
-     id="modalBg"
-     onclick="closeModal(event)">
+<div id="searchModal" class="modal">
 
-  <div class="modal"
-       onclick="event.stopPropagation()">
+  <div class="modal-box">
 
-    <h2 id="modalTitle">
-      MR Chat
-    </h2>
+    <div class="modal-title">Search MR Chat</div>
 
-    <div id="modalContent"></div>
+    <input id="searchInput"
+           placeholder="Search ID, username or room ID">
 
-    <br>
+    <button class="primary"
+            style="width:100%;margin-bottom:10px"
+            onclick="doSearch()">
+      Search
+    </button>
 
-    <button class="primary-btn"
-            onclick="closeModal()">
+    <div id="searchResults"></div>
+
+    <button class="cancel"
+            style="width:100%;padding:13px"
+            onclick="closeModal('searchModal')">
       Close
     </button>
 
@@ -1691,367 +1484,717 @@ button{
 </div>
 
 
-<input
-  type="file"
-  accept="image/*"
-  class="photo-input"
-  id="photoInput"
->
+<!-- ================= CREATE ROOM MODAL ================= -->
+
+<div id="createRoomModal" class="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-title">Create Room</div>
+
+    <input id="roomTitle"
+           placeholder="Room title">
+
+    <select id="roomLanguage">
+      <option>English</option>
+      <option>Bangla</option>
+      <option>Arabic</option>
+      <option>Hindi</option>
+      <option>Urdu</option>
+    </select>
+
+    <div class="modal-buttons">
+      <button class="cancel"
+              onclick="closeModal('createRoomModal')">
+        Cancel
+      </button>
+
+      <button class="primary"
+              onclick="confirmCreateRoom()">
+        Create
+      </button>
+    </div>
+
+  </div>
+
+</div>
 
 
-<div class="toast"
-     id="toast">
+<!-- ================= TOAST ================= -->
+
+<div id="toast"
+style="
+position:fixed;
+left:50%;
+bottom:95px;
+transform:translateX(-50%);
+background:rgba(0,0,0,.82);
+color:#fff;
+padding:11px 18px;
+border-radius:22px;
+z-index:2000;
+display:none;
+font-size:14px;
+">
+</div>
+
+
+<!-- ================= ROOM SCREEN ================= -->
+
+<div id="roomScreen">
+
+  <div class="room-top">
+
+    <button class="room-control"
+            onclick="leaveRoom()">
+      ‹
+    </button>
+
+    <div class="room-title">
+      <strong id="roomScreenTitle">MR Chat Room</strong><br>
+      <small id="roomScreenId">ID:882013</small>
+    </div>
+
+    <button class="room-control">⋮</button>
+
+  </div>
+
+
+  <div class="room-stage">
+
+    <img
+      class="host-avatar"
+      src="https://i.pravatar.cc/200?img=12">
+
+    <h3>Host</h3>
+
+    <div class="seats">
+
+      <div class="seat">
+        <img class="seat-avatar" src="https://i.pravatar.cc/100?img=5">
+        <div>1 · User</div>
+      </div>
+
+      <div class="seat">
+        <img class="seat-avatar" src="https://i.pravatar.cc/100?img=6">
+        <div>2 · User</div>
+      </div>
+
+      <div class="seat">
+        <img class="seat-avatar" src="https://i.pravatar.cc/100?img=7">
+        <div>3 · User</div>
+      </div>
+
+      <div class="seat">
+        <img class="seat-avatar" src="https://i.pravatar.cc/100?img=8">
+        <div>4 · User</div>
+      </div>
+
+      <div class="seat">
+        <img class="seat-avatar" src="https://i.pravatar.cc/100?img=9">
+        <div>5 · User</div>
+      </div>
+
+      <div class="seat">
+        <img class="seat-avatar" src="https://i.pravatar.cc/100?img=10">
+        <div>6 · User</div>
+      </div>
+
+      <div class="seat">
+        <div class="seat-avatar"
+             style="display:flex;align-items:center;justify-content:center;font-size:25px">
+          ＋
+        </div>
+        <div>7 · Join</div>
+      </div>
+
+      <div class="seat">
+        <div class="seat-avatar"
+             style="display:flex;align-items:center;justify-content:center;font-size:25px">
+          ＋
+        </div>
+        <div>8 · Join</div>
+      </div>
+
+    </div>
+
+    <div class="room-chat">
+
+      <div>💬 Welcome to MR Chat</div>
+      <div style="margin-top:12px">Rasel: Hello everyone 👋</div>
+      <div style="margin-top:8px">User: Nice room ❤️</div>
+
+    </div>
+
+  </div>
+
+
+  <div class="room-bottom">
+
+    <button class="room-control"
+            onclick="toggleMic(this)">
+      🎙️
+    </button>
+
+    <button class="room-control"
+            onclick="showToast('Gift panel')">
+      🎁
+    </button>
+
+    <button class="room-control"
+            onclick="showToast('Emoji')">
+      😊
+    </button>
+
+    <button class="room-control"
+            onclick="showToast('More options')">
+      ⋮
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================= BOTTOM NAV ================= -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-btn active"
+          onclick="showPage('homePage',this)">
+    <div class="nav-icon">⌂</div>
+    <div class="nav-text">Home</div>
+  </button>
+
+  <button class="nav-btn"
+          onclick="showPage('discoverPage',this)">
+    <div class="nav-icon">🪐</div>
+    <div class="nav-text">Discover</div>
+  </button>
+
+  <button class="nav-btn"
+          onclick="showPage('momentPage',this)">
+    <div class="nav-icon">🎙</div>
+    <div class="nav-text">Moment</div>
+  </button>
+
+  <button class="nav-btn"
+          onclick="showPage('messagePage',this)">
+    <div class="nav-icon">💬</div>
+    <div class="nav-text">Message</div>
+  </button>
+
+  <button class="nav-btn"
+          onclick="showPage('mePage',this)">
+    <div class="nav-icon">◉</div>
+    <div class="nav-text">Me</div>
+  </button>
+
+</nav>
+
 </div>
 
 
 <script>
 
-/* =====================================================
-   PROFILE DATA
-===================================================== */
+/* ==========================================
+   DATA
+========================================== */
 
-let profile = JSON.parse(
-  localStorage.getItem("mrchat_profile") || "null"
-) || {
+let coins = 13658;
 
-  name:"〰Mia༶❀Vai〰",
-
+let profile = {
+  name:"Mia Vai",
   id:"100927248",
-
   birthday:"",
-
   nationality:"Bangladesh",
-
   location:"Bangladesh",
-
   bio:"Welcome to MR Chat ❤️",
-
-  photo:"https://i.pravatar.cc/300?img=12"
-
+  photo:"https://i.pravatar.cc/300?img=11"
 };
 
+let followingUsers = [];
+let recentItems = [];
+let moments = [];
 
-/* =====================================================
-   LOAD PROFILE
-===================================================== */
+let currentHomeTab = "Following";
 
-function loadProfile(){
-
-  document.getElementById("meName").textContent =
-    profile.name;
-
-  document.getElementById("meId").textContent =
-    profile.id;
-
-  document.getElementById("mePhoto").src =
-    profile.photo;
-
-  document.getElementById("editorPhoto").src =
-    profile.photo;
-
-  document.getElementById("editNickname").value =
-    profile.name;
-
-  document.getElementById("editBirthday").value =
-    profile.birthday || "";
-
-  document.getElementById("editNationality").value =
-    profile.nationality || "";
-
-  document.getElementById("editLocation").value =
-    profile.location || "";
-
-  document.getElementById("editBio").value =
-    profile.bio || "";
-
-}
+let eventIndex = 0;
 
 
-/* =====================================================
+/* ==========================================
    PAGE NAVIGATION
-===================================================== */
+========================================== */
 
-function showPage(pageId,navId){
+function showPage(id,btn){
 
-  document.querySelectorAll(".page")
-    .forEach(page=>{
-      page.classList.remove("active");
-    });
+  document.querySelectorAll(".screen")
+    .forEach(x=>x.classList.remove("active"));
 
-  document.getElementById(pageId)
-    .classList.add("active");
+  const page=document.getElementById(id);
 
-  document.querySelectorAll(".nav-item")
-    .forEach(nav=>{
-      nav.classList.remove("active");
-    });
+  if(page){
+    page.classList.add("active");
+  }
 
-  document.getElementById(navId)
-    .classList.add("active");
+  document.querySelectorAll(".nav-btn")
+    .forEach(x=>x.classList.remove("active"));
+
+  if(btn){
+    btn.classList.add("active");
+  }
 
   window.scrollTo(0,0);
-}
-
-
-/* =====================================================
-   PROFILE EDITOR
-===================================================== */
-
-function openProfileEditor(){
-
-  document.getElementById("profileEditor")
-    .classList.add("show");
-
-  loadProfile();
 
 }
 
 
-function closeProfileEditor(){
+/* ==========================================
+   HOME TABS
+========================================== */
 
-  document.getElementById("profileEditor")
-    .classList.remove("show");
+function homeTab(btn,type){
 
-}
+  document.querySelectorAll(".home-tab")
+    .forEach(x=>x.classList.remove("active"));
 
+  btn.classList.add("active");
 
-function saveProfile(){
+  currentHomeTab=type;
 
-  profile.name =
-    document.getElementById("editNickname").value.trim()
-    || "MR User";
-
-  profile.birthday =
-    document.getElementById("editBirthday").value;
-
-  profile.nationality =
-    document.getElementById("editNationality").value.trim();
-
-  profile.location =
-    document.getElementById("editLocation").value.trim();
-
-  profile.bio =
-    document.getElementById("editBio").value.trim();
-
-  localStorage.setItem(
-    "mrchat_profile",
-    JSON.stringify(profile)
-  );
-
-  loadProfile();
-
-  closeProfileEditor();
-
-  showToast("Profile saved");
-
+  renderHome();
 
 }
 
 
-/* =====================================================
-   CHANGE PROFILE PHOTO
-===================================================== */
+/* ==========================================
+   HOME DATA
+========================================== */
 
-function changePhoto(){
+function renderHome(){
 
-  document.getElementById("photoInput").click();
+  const box=document.getElementById("homeContent");
 
-}
+  if(currentHomeTab==="Following"){
 
+    if(followingUsers.length===0){
 
-document.getElementById("photoInput")
-.addEventListener("change",function(){
+      box.innerHTML=`
+        <div class="empty">
+          <div class="empty-icon">👥</div>
+          <div>No Following yet</div>
+          <p>Follow users from Popular and they will appear here.</p>
+        </div>
+      `;
 
-  const file=this.files[0];
+      return;
+    }
 
-  if(!file){
+    box.innerHTML=followingUsers.map(user=>`
+
+      <div class="room-card">
+
+        <div class="room-head">
+
+          <img class="avatar" src="${escapeHTML(user.img)}">
+
+          <div class="room-info">
+            <div class="room-name">${escapeHTML(user.name)}</div>
+            <div class="room-id">ID:${escapeHTML(user.id)}</div>
+          </div>
+
+          <button
+            class="follow-btn following"
+            onclick="followUser(this,'${escapeHTML(user.name)}','${escapeHTML(user.id)}','${escapeHTML(user.img)}')">
+            Following
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
     return;
   }
 
-  const reader=new FileReader();
 
-  reader.onload=function(e){
+  if(currentHomeTab==="Recent"){
 
-    profile.photo=e.target.result;
+    if(recentItems.length===0){
 
-    document.getElementById("mePhoto").src =
-      profile.photo;
-
-    document.getElementById("editorPhoto").src =
-      profile.photo;
-
-    localStorage.setItem(
-      "mrchat_profile",
-      JSON.stringify(profile)
-    );
-
-    showToast("Profile photo changed");
-
-  };
-
-  reader.readAsDataURL(file);
-
-});
-
-
-/* =====================================================
-   WALLET
-===================================================== */
-
-function openWallet(){
-
-  openModal(
-    "Wallet",
-    `
-      <div style="
-        text-align:center;
-        padding:15px;
-      ">
-
-        <div style="font-size:65px;">
-          👛
+      box.innerHTML=`
+        <div class="empty">
+          <div class="empty-icon">🕘</div>
+          <div>No Recent activity</div>
         </div>
+      `;
 
-        <div style="
-          font-size:28px;
-          margin-top:10px;
-        ">
-          🪙 13658
-        </div>
+      return;
+    }
 
-        <div style="
-          color:#999;
-          margin-top:8px;
-        ">
-          MR Chat Coins
-        </div>
+    box.innerHTML=recentItems.map(item=>`
 
-      </div>
-    `
-  );
+      <div class="room-card">
 
-}
+        <div class="room-head">
 
+          <img class="avatar"
+               src="${escapeHTML(item.img)}">
 
-/* =====================================================
-   STORE
-===================================================== */
+          <div class="room-info">
 
-function openStore(){
+            <div class="room-name">
+              ${escapeHTML(item.name)}
+            </div>
 
-  openModal(
-    "Store",
-    `
-      <div style="
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:12px;
-      ">
+            <div class="room-id">
+              ${escapeHTML(item.type)} · ID:${escapeHTML(item.id)}
+            </div>
 
-        <div style="
-          background:#fff3f5;
-          padding:25px 10px;
-          border-radius:18px;
-          text-align:center;
-        ">
-          🎁<br>
-          Gift Store
-        </div>
+          </div>
 
-        <div style="
-          background:#eef8ff;
-          padding:25px 10px;
-          border-radius:18px;
-          text-align:center;
-        ">
-          💎<br>
-          VIP Store
-        </div>
-
-      </div>
-    `
-  );
-
-}
-
-
-/* =====================================================
-   CP
-===================================================== */
-
-function openCP(){
-
-  openModal(
-    "CP Level",
-    `
-      <div style="
-        text-align:center;
-        padding:10px;
-      ">
-
-        <div style="
-          font-size:55px;
-        ">
-          💗
-        </div>
-
-        <div style="
-          font-size:24px;
-          margin:12px;
-        ">
-          CP Level 8
-        </div>
-
-        <div style="
-          display:grid;
-          grid-template-columns:repeat(5,1fr);
-          gap:8px;
-        ">
-
-          ${Array.from(
-            {length:15},
-            (_,i)=>`
-              <div style="
-                padding:10px 2px;
-                border-radius:10px;
-                background:${i===7
-                  ? "#f43b91"
-                  : "#f3f3f7"};
-                color:${i===7
-                  ? "#fff"
-                  : "#777"};
-              ">
-                ${i+1}
-              </div>
-            `
-          ).join("")}
+          <button class="follow-btn"
+            onclick="openRecent('${escapeHTML(item.name)}','${escapeHTML(item.id)}','${escapeHTML(item.type)}')">
+            Visit
+          </button>
 
         </div>
 
       </div>
-    `
-  );
+
+    `).join("");
+
+    return;
+  }
+
+
+  /* POPULAR */
+
+  box.innerHTML=`
+
+    <div class="room-card">
+
+      <div class="room-head">
+
+        <img class="avatar"
+             src="https://i.pravatar.cc/200?img=12">
+
+        <div class="room-info">
+
+          <div class="room-name">
+            Emma
+          </div>
+
+          <div class="room-id">
+            ID:100028
+          </div>
+
+        </div>
+
+        <button class="follow-btn"
+          onclick="followUser(this,'Emma','100028','https://i.pravatar.cc/200?img=12')">
+          Follow
+        </button>
+
+      </div>
+
+      <div class="room-actions">
+
+        <button class="room-btn"
+          onclick="openUser('Emma','100028','https://i.pravatar.cc/200?img=12')">
+          Profile
+        </button>
+
+        <button class="room-btn"
+          onclick="openMessageUser('Emma','100028')">
+          Message
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="room-card">
+
+      <div class="room-head">
+
+        <img class="avatar"
+             src="https://i.pravatar.cc/200?img=47">
+
+        <div class="room-info">
+
+          <div class="room-name">
+            Sophia
+          </div>
+
+          <div class="room-id">
+            ID:100035
+          </div>
+
+        </div>
+
+        <button class="follow-btn"
+          onclick="followUser(this,'Sophia','100035','https://i.pravatar.cc/200?img=47')">
+          Follow
+        </button>
+
+      </div>
+
+      <div class="room-actions">
+
+        <button class="room-btn"
+          onclick="openUser('Sophia','100035','https://i.pravatar.cc/200?img=47')">
+          Profile
+        </button>
+
+        <button class="room-btn"
+          onclick="openMessageUser('Sophia','100035')">
+          Message
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="room-card">
+
+      <div class="room-head">
+
+        <img class="avatar"
+             src="https://i.pravatar.cc/200?img=32">
+
+        <div class="room-info">
+
+          <div class="room-name">
+            Friendship Lounge
+          </div>
+
+          <div class="room-id">
+            Room ID:882013
+          </div>
+
+        </div>
+
+        <button class="follow-btn"
+          onclick="enterRoom('Friendship Lounge','882013')">
+          Join
+        </button>
+
+      </div>
+
+      <div class="room-actions">
+
+        <button class="room-btn"
+          onclick="enterRoom('Friendship Lounge','882013')">
+          🎙 Join Room
+        </button>
+
+        <button class="room-btn"
+          onclick="addRecent('Friendship Lounge','882013','https://i.pravatar.cc/200?img=32','Room')">
+          Save
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
 
-/* =====================================================
+/* ==========================================
+   FOLLOW
+========================================== */
+
+function followUser(btn,name,id,img){
+
+  const exists=followingUsers.find(x=>x.id===id);
+
+  if(exists){
+
+    followingUsers=followingUsers.filter(x=>x.id!==id);
+
+    if(btn){
+      btn.classList.remove("following");
+      btn.innerText="Follow";
+    }
+
+    showToast("Unfollowed");
+
+  }else{
+
+    followingUsers.push({
+      name,
+      id,
+      img
+    });
+
+    if(btn){
+      btn.classList.add("following");
+      btn.innerText="Following";
+    }
+
+    showToast("Following "+name);
+
+  }
+
+  renderHome();
+
+}
+
+
+/* ==========================================
+   RECENT
+========================================== */
+
+function addRecent(name,id,img,type){
+
+  recentItems=recentItems.filter(x=>x.id!==id);
+
+  recentItems.unshift({
+    name,
+    id,
+    img,
+    type
+  });
+
+  recentItems=recentItems.slice(0,30);
+
+  if(currentHomeTab==="Recent"){
+    renderHome();
+  }
+
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+function openSearch(){
+
+  document.getElementById("searchModal")
+    .classList.add("show");
+
+  document.getElementById("searchInput").focus();
+
+}
+
+function doSearch(){
+
+  const q=document.getElementById("searchInput")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const box=document.getElementById("searchResults");
+
+  if(!q){
+
+    box.innerHTML="<div style='padding:20px;text-align:center;color:#999'>Type something to search</div>";
+
+    return;
+  }
+
+  const results=[];
+
+  if("emma 100028".includes(q)){
+    results.push({
+      name:"Emma",
+      id:"100028",
+      type:"User",
+      img:"https://i.pravatar.cc/200?img=12"
+    });
+  }
+
+  if("sophia 100035".includes(q)){
+    results.push({
+      name:"Sophia",
+      id:"100035",
+      type:"User",
+      img:"https://i.pravatar.cc/200?img=47"
+    });
+  }
+
+  if("friendship lounge 882013".includes(q)){
+    results.push({
+      name:"Friendship Lounge",
+      id:"882013",
+      type:"Room",
+      img:"https://i.pravatar.cc/200?img=32"
+    });
+  }
+
+  if(results.length===0){
+
+    box.innerHTML=`
+      <div class="empty" style="padding:30px">
+        No result found
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=results.map(x=>`
+
+    <div class="room-card"
+         onclick="openSearchResult('${escapeHTML(x.name)}','${escapeHTML(x.id)}','${escapeHTML(x.type)}','${escapeHTML(x.img)}')">
+
+      <div class="room-head">
+
+        <img class="avatar" src="${escapeHTML(x.img)}">
+
+        <div class="room-info">
+
+          <div class="room-name">
+            ${escapeHTML(x.name)}
+          </div>
+
+          <div class="room-id">
+            ${escapeHTML(x.type)} · ID:${escapeHTML(x.id)}
+          </div>
+
+        </div>
+
+        <span class="arrow">›</span>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+function openSearchResult(name,id,type,img){
+
+  addRecent(name,id,img,type);
+
+  closeModal("searchModal");
+
+  if(type==="Room"){
+    enterRoom(name,id);
+  }else{
+    openUser(name,id,img);
+  }
+
+}
+
+
+/* ==========================================
    MOMENT
-===================================================== */
-
-let moments =
-  JSON.parse(
-    localStorage.getItem("mrchat_moments") || "[]"
-  );
-
+========================================== */
 
 function postMoment(){
 
-  const input =
-    document.getElementById("momentText");
+  const input=document.getElementById("momentText");
 
-  const text =
-    input.value.trim();
+  const text=input.value.trim();
 
   if(!text){
     showToast("Write something first");
@@ -2059,23 +2202,9 @@ function postMoment(){
   }
 
   moments.unshift({
-
-    text:text,
-
-    name:profile.name,
-
-    id:profile.id,
-
-    photo:profile.photo,
-
+    text,
     time:new Date().toLocaleString()
-
   });
-
-  localStorage.setItem(
-    "mrchat_moments",
-    JSON.stringify(moments)
-  );
 
   input.value="";
 
@@ -2085,143 +2214,398 @@ function postMoment(){
 
 }
 
-
 function renderMoments(){
 
-  const list =
-    document.getElementById("momentList");
+  const box=document.getElementById("momentContent");
 
-  if(!moments.length){
+  if(moments.length===0){
 
-    list.innerHTML=`
+    box.innerHTML=`
       <div class="empty">
-        <div class="empty-icon">
-          ✨
-        </div>
-        <div>
-          No Moments yet
-        </div>
+        <div class="empty-icon">✨</div>
+        <div>No Moments yet</div>
       </div>
     `;
 
     return;
   }
 
-  list.innerHTML =
-    moments.map(m=>`
+  box.innerHTML=moments.map(m=>`
 
-      <div class="moment-card">
+    <div class="moment-card">
 
-        <div class="moment-user">
+      <div class="moment-user">
 
-          <img src="${m.photo}">
+        <img class="avatar"
+             src="${escapeHTML(profile.photo)}">
 
-          <div>
-            <b>${escapeHTML(m.name)}</b>
-            <div style="
-              color:#999;
-              font-size:12px;
-              margin-top:3px;
-            ">
-              ID:${escapeHTML(m.id)}
-            </div>
+        <div>
+          <strong>${escapeHTML(profile.name)}</strong>
+          <div style="font-size:12px;color:#999">
+            ID:${escapeHTML(profile.id)}
           </div>
-
-        </div>
-
-        <div class="moment-text">
-          ${escapeHTML(m.text)}
-        </div>
-
-        <div style="
-          color:#aaa;
-          font-size:12px;
-        ">
-          ${escapeHTML(m.time)}
         </div>
 
       </div>
 
-    `).join("");
+      <div class="moment-text">
+        ${escapeHTML(m.text)}
+      </div>
+
+      <div style="font-size:12px;color:#aaa">
+        ${escapeHTML(m.time)}
+      </div>
+
+    </div>
+
+  `).join("");
 
 }
 
 
-/* =====================================================
+/* ==========================================
+   PROFILE DETAILS
+========================================== */
+
+function openProfileDetails(){
+
+  document.getElementById("mePage")
+    .classList.remove("active");
+
+  document.getElementById("profileDetails")
+    .classList.add("active");
+
+  document.getElementById("editName").value=profile.name;
+  document.getElementById("editId").value=profile.id;
+  document.getElementById("editBirthday").value=profile.birthday;
+  document.getElementById("editNationality").value=profile.nationality;
+  document.getElementById("editLocation").value=profile.location;
+  document.getElementById("editBio").value=profile.bio;
+
+  document.getElementById("detailsPhoto").src=profile.photo;
+
+  window.scrollTo(0,0);
+
+}
+
+function closeProfileDetails(){
+
+  document.getElementById("profileDetails")
+    .classList.remove("active");
+
+  document.getElementById("mePage")
+    .classList.add("active");
+
+  window.scrollTo(0,0);
+
+}
+
+function changePhoto(){
+
+  document.getElementById("photoFile").click();
+
+}
+
+function loadPhoto(event){
+
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+
+    profile.photo=e.target.result;
+
+    document.getElementById("detailsPhoto").src=profile.photo;
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+function saveProfile(){
+
+  profile.name=document.getElementById("editName").value.trim() || "MR User";
+
+  profile.id=document.getElementById("editId").value.trim();
+
+  profile.birthday=document.getElementById("editBirthday").value;
+
+  profile.nationality=document.getElementById("editNationality").value;
+
+  profile.location=document.getElementById("editLocation").value.trim();
+
+  profile.bio=document.getElementById("editBio").value.trim();
+
+  document.getElementById("meName").innerText=profile.name;
+
+  document.getElementById("meId").innerText="ID:"+profile.id;
+
+  document.getElementById("mePhoto").src=profile.photo;
+
+  document.getElementById("detailsPhoto").src=profile.photo;
+
+  closeProfileDetails();
+
+  showToast("Profile updated");
+
+}
+
+
+/* ==========================================
+   PROFILE MENU
+========================================== */
+
+function openWallet(){
+  showToast("Wallet opened");
+}
+
+function openStore(){
+  showToast("Store opened");
+}
+
+function inviteCoins(){
+  showToast("Invite & Get Coins");
+}
+
+function loveHouse(){
+  showToast("Love House");
+}
+
+function openCP(){
+  showToast("CP Level 1 - 15");
+}
+
+function propWarehouse(){
+  showToast("Prop Warehouse");
+}
+
+function medal(){
+  showToast("Medal");
+}
+
+function level(){
+  showToast("Your Level is LV.41");
+}
+
+function svip(){
+  showToast("SVIP 2");
+}
+
+function aristocracy(){
+  showToast("Aristocracy");
+}
+
+function language(){
+  showToast("Language settings");
+}
+
+function customerService(){
+  showToast("Customer service is Offline");
+}
+
+function feedback(){
+  showToast("Feedback");
+}
+
+function settings(){
+  showToast("Settings");
+}
+
+
+/* ==========================================
    MESSAGE
-===================================================== */
+========================================== */
 
-function startMessage(){
+function openMessageUser(name,id){
 
-  const id =
-    document.getElementById("messageId")
-      .value.trim();
+  showPage("messagePage",document.querySelectorAll(".nav-btn")[3]);
 
-  if(!id){
+  document.getElementById("chatMessages").innerHTML=`
 
-    showToast("Enter user ID");
+    <div class="chat-row">
+      <div class="bubble">
+        ${escapeHTML(name)} · ID:${escapeHTML(id)}
+      </div>
+    </div>
 
-    return;
-  }
+  `;
 
-  showToast("Opening chat with ID "+id);
+}
+
+function sendMessage(){
+
+  const input=document.getElementById("chatInput");
+
+  const value=input.value.trim();
+
+  if(!value)return;
+
+  const box=document.getElementById("chatMessages");
+
+  box.innerHTML+=`
+
+    <div class="chat-row me">
+      <div class="bubble">
+        ${escapeHTML(value)}
+      </div>
+    </div>
+
+  `;
+
+  input.value="";
 
 }
 
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* ==========================================
+   USER
+========================================== */
 
-function openModal(title,content){
+function openUser(name,id,img){
 
-  document.getElementById("modalTitle")
-    .textContent=title;
+  addRecent(name,id,img,"User");
 
-  document.getElementById("modalContent")
-    .innerHTML=content;
+  showToast(name+" · ID:"+id);
 
-  document.getElementById("modalBg")
+}
+
+
+/* ==========================================
+   ROOM
+========================================== */
+
+function enterRoom(name,id){
+
+  addRecent(
+    name,
+    id,
+    "https://i.pravatar.cc/200?img=32",
+    "Room"
+  );
+
+  document.getElementById("roomScreenTitle").innerText=name;
+  document.getElementById("roomScreenId").innerText="ID:"+id;
+
+  document.getElementById("roomScreen")
     .classList.add("show");
 
 }
 
+function leaveRoom(){
 
-function closeModal(event){
+  document.getElementById("roomScreen")
+    .classList.remove("show");
 
-  if(event && event.target !== event.currentTarget){
-    return;
+}
+
+function toggleMic(btn){
+
+  if(btn.innerText.includes("🎙️")){
+
+    btn.innerText="🔇";
+    showToast("Microphone off");
+
+  }else{
+
+    btn.innerText="🎙️";
+    showToast("Microphone on");
+
   }
 
-  document.getElementById("modalBg")
+}
+
+
+/* ==========================================
+   CREATE ROOM
+========================================== */
+
+function createRoom(){
+
+  document.getElementById("createRoomModal")
+    .classList.add("show");
+
+}
+
+function confirmCreateRoom(){
+
+  const title=
+    document.getElementById("roomTitle").value.trim()
+    || "My MR Chat Room";
+
+  const id=
+    String(Math.floor(800000+Math.random()*99999));
+
+  closeModal("createRoomModal");
+
+  enterRoom(title,id);
+
+}
+
+
+/* ==========================================
+   MODAL
+========================================== */
+
+function closeModal(id){
+
+  document.getElementById(id)
     .classList.remove("show");
 
 }
 
 
-/* =====================================================
+/* ==========================================
    TOAST
-===================================================== */
+========================================== */
+
+let toastTimer;
 
 function showToast(message){
 
-  const toast =
-    document.getElementById("toast");
+  const t=document.getElementById("toast");
 
-  toast.textContent=message;
+  t.innerText=message;
+  t.style.display="block";
 
-  toast.classList.add("show");
+  clearTimeout(toastTimer);
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
+  toastTimer=setTimeout(()=>{
+    t.style.display="none";
   },1800);
 
 }
 
 
-/* =====================================================
-   SECURITY
-===================================================== */
+/* ==========================================
+   RECENT OPEN
+========================================== */
+
+function openRecent(name,id,type){
+
+  if(type==="Room"){
+
+    enterRoom(name,id);
+
+  }else{
+
+    openUser(
+      name,
+      id,
+      "https://i.pravatar.cc/200?img=12"
+    );
+
+  }
+
+}
+
+
+/* ==========================================
+   ESCAPE
+========================================== */
 
 function escapeHTML(value){
 
@@ -2235,15 +2619,38 @@ function escapeHTML(value){
 }
 
 
-/* =====================================================
+/* ==========================================
+   EVENT SLIDER
+========================================== */
+
+setInterval(()=>{
+
+  const slides=document.querySelectorAll(".event-slide");
+  const dots=document.querySelectorAll(".slider-dot");
+
+  if(!slides.length)return;
+
+  slides[eventIndex].classList.remove("active");
+  dots[eventIndex].classList.remove("active");
+
+  eventIndex++;
+
+  if(eventIndex>=slides.length){
+    eventIndex=0;
+  }
+
+  slides[eventIndex].classList.add("active");
+  dots[eventIndex].classList.add("active");
+
+},4000);
+
+
+/* ==========================================
    INITIALIZE
-===================================================== */
+========================================== */
 
-loadProfile();
-
+renderHome();
 renderMoments();
-
-showPage("mePage","navMe");
 
 </script>
 
